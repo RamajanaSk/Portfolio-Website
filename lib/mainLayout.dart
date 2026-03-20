@@ -7,10 +7,10 @@ import 'package:ramajana05/Data/dummyData.dart';
 
 import 'package:ramajana05/Core/widgets/CustomeDrawerMenu.dart';
 import 'package:ramajana05/Core/widgets/CustomeDropdownMenu.dart';
-import 'package:ramajana05/Screens/StartScreen.dart';
-import 'package:ramajana05/Screens/AboutMeScreen.dart';
-import 'package:ramajana05/Screens/ProjectListScreen.dart';
-import 'package:ramajana05/Screens/ProjectDetailScreen.dart';
+import 'package:ramajana05/Features/Home/HomeScreen.dart';
+import 'package:ramajana05/Features/About/AboutMeScreen.dart';
+import 'package:ramajana05/Features/Projects/ProjectListScreen.dart';
+import 'package:ramajana05/Features/Projects/ProjectDetailScreen.dart';
 import 'package:ramajana05/Core/widgets/TopBar.dart';
 
 class MainLayout extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MainLayoutState extends State<MainLayout> {
   Timer? _hideMenuTimer;
 
   final List<Widget> _pages = [
-    StartScreen(title: "Homepage"),
+    Homescreen(title: "Homepage"),
     AboutMeScreen(),
   ];
 

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Footer.dart';
-import 'package:ramajana05/Screens/ProjectListScreen.dart';
+import 'package:ramajana05/Features/Projects/ProjectListScreen.dart';
 import 'package:ramajana05/Sections/SkillsSection.dart';
 import 'package:ramajana05/Core/widgets/TopBar.dart'; // Ensure this import path is correct
 import 'package:ramajana05/Sections/SkillsSection.dart';
 import 'package:ramajana05/Widgets/LandingWidget.dart';
-import '../Widgets/StartScreenWidget.dart';
-import '../Widgets/GetToKnowMeWidget.dart';
-import '../Core/theme/appColors.dart';
+import '../../Widgets/StartScreenWidget.dart';
+import '../../Widgets/GetToKnowMeWidget.dart';
+import '../../Core/theme/appColors.dart';
 
-class StartScreen extends StatefulWidget {
-  const StartScreen({super.key, required this.title});
+class Homescreen extends StatefulWidget {
+  const Homescreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<StartScreen> createState() => _StartScreenState();
+  State<Homescreen> createState() => _HomescreenState();
 }
 
-class _StartScreenState extends State<StartScreen> {
+class _HomescreenState extends State<Homescreen> {
   final GlobalKey _aboutMeKey = GlobalKey();
   final GlobalKey _titleKey = GlobalKey();
   final GlobalKey _footerKey = GlobalKey();

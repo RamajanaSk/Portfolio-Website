@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/Screens/ProjectDetailScreen.dart';
+import 'package:ramajana05/Features/Projects/ProjectDetailScreen.dart';
 
 class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});

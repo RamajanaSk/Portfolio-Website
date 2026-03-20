@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/Screens/ProjectDetailScreen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ramajana05/Features/Projects/ProjectFilterBar.dart';
 
-class ProjectListScreen extends StatelessWidget {
+class ProjectListScreen extends StatefulWidget {
   final void Function(Project) onProjectSelected;
 
   const ProjectListScreen({
@@ -12,17 +13,22 @@ class ProjectListScreen extends StatelessWidget {
   });
 
   @override
+  State<ProjectListScreen> createState() => _ProjectListScreenState();
+}
+
+class _ProjectListScreenState extends State<ProjectListScreen> {
+  List<Project> filteredProjects = dummyProjects;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🔥 TITLE + FILTER
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'SOFTWARE PROJECTS',
@@ -32,22 +38,18 @@ class ProjectListScreen extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                PopupMenuButton<String>(
-                  onSelected: (value) => print('Selected: $value'),
-                  itemBuilder: (context) => const [
-                    PopupMenuItem(value: 'Option 1', child: Text('Option 1')),
-                    PopupMenuItem(value: 'Option 2', child: Text('Option 2')),
-                    PopupMenuItem(value: 'Option 3', child: Text('Option 3')),
-                  ],
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      'Filter',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    ),
-                  ),
-                ),
               ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: ProjectFilterBar(
+              allProjects: dummyProjects,
+              onFilterChanged: (projects) {
+                setState(() {
+                  filteredProjects = projects;
+                });
+              },
             ),
           ),
 
@@ -55,19 +57,19 @@ class ProjectListScreen extends StatelessWidget {
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(20),
-              itemCount: dummyProjects.length,
+              itemCount: filteredProjects.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: getCrossAxisCount(context), // responsive
+                crossAxisCount: getCrossAxisCount(context),
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
                 childAspectRatio: 2.0,
               ),
               itemBuilder: (context, index) {
-                final project = dummyProjects[index];
+                final project = filteredProjects[index];
 
                 return ProjectCard(
                   project: project,
-                  onTap: () => onProjectSelected(project),
+                  onTap: () => widget.onProjectSelected(project),
                 );
               },
             ),
@@ -86,7 +88,7 @@ class ProjectListScreen extends StatelessWidget {
   }
 }
 
-// 🔥 PROJECT CARD (CLEAN COMPONENT)
+// 🔥 PROJECT CARD
 class ProjectCard extends StatelessWidget {
   final Project project;
   final VoidCallback onTap;
@@ -150,14 +152,32 @@ class ProjectCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
+
+                    // 🔥 PLATFORM ICONS
                     Row(
-                      children: const [
-                        Icon(Icons.favorite, color: Colors.pink, size: 20),
-                        SizedBox(width: 8),
-                        Icon(Icons.star, color: Colors.amber, size: 20),
-                        SizedBox(width: 8),
-                        Icon(Icons.share, color: Colors.blue, size: 20),
-                      ],
+                      children:
+                          project.platformIcons.asMap().entries.map((entry) {
+                        final index = entry.key;
+                        final icon = entry.value;
+
+                        return Container(
+                          margin: EdgeInsets.only(left: index == 0 ? 0 : 4),
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.6),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: SvgPicture.asset(
+                            getIconPath(icon),
+                            width: 16,
+                            height: 16,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ],
                 ),
@@ -186,34 +206,39 @@ class ProjectCard extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Align(
+                          // 🔥 GITHUB BUTTON
+                          Align(
                             alignment: Alignment.topRight,
-                            child:
-                                Icon(Icons.star, size: 24, color: Colors.white),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Row(
-                                children: [
-                                  Icon(Icons.favorite,
-                                      color: Colors.white, size: 20),
-                                  SizedBox(width: 6),
-                                  Icon(Icons.access_time,
-                                      color: Colors.white, size: 20),
-                                ],
-                              ),
-                              Text(
-                                "2024",
-                                style: TextStyle(
+                            child: InkWell(
+                              onTap: project.githubUrl != null ? () {} : null,
+                              child: Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.6),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(
+                                  Icons.code,
+                                  size: 20,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(color: Colors.black, blurRadius: 4)
-                                  ],
                                 ),
                               ),
-                            ],
+                            ),
+                          ),
+
+                          // 🔥 DATE
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              formatDate(project),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(color: Colors.black, blurRadius: 2)
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -228,6 +253,24 @@ class ProjectCard extends StatelessWidget {
     );
   }
 
+  String formatDate(Project project) {
+    const months = [
+      'JAN',
+      'FEB',
+      'MAR',
+      'APR',
+      'MAY',
+      'JUN',
+      'JUL',
+      'AUG',
+      'SEP',
+      'OCT',
+      'NOV',
+      'DEC'
+    ];
+    return '${months[project.startDate.month - 1]} ${project.startDate.year}';
+  }
+
   Color hexToColor(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) {
@@ -235,5 +278,21 @@ class ProjectCard extends StatelessWidget {
     }
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
+  }
+}
+
+// 🔥 ICON MAPPING
+String getIconPath(String icon) {
+  switch (icon.toLowerCase()) {
+    case 'flutter':
+      return 'assets/icons/flutter.svg';
+    case 'dart':
+      return 'assets/icons/dart.svg';
+    case 'unity':
+      return 'assets/icons/unity.svg';
+    case 'osm':
+      return 'assets/icons/map.svg';
+    default:
+      return 'assets/icons/code.svg';
   }
 }
