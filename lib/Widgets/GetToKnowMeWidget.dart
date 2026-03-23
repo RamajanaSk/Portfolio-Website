@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
 import '../Widgets/GetToKnowMeWidgetParts/GTKMLeftSideWidget.dart';
 import '../Widgets/GetToKnowMeWidgetParts/GTKMRightSideWidget.dart';
 

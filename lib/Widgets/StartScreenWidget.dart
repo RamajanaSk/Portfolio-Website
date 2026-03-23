@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
+import 'package:ramajana05/Core/theme/app_colors.dart';
 import '../Widgets/StartScreenWidgetParts/LeftSideWidget.dart';
 import '../Widgets/StartScreenWidgetParts/RightSideWidget.dart';
 
@@ -13,8 +13,8 @@ class StartScreenWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: AppColors.black,
-            width: 10,
+            color: const Color.fromARGB(255, 0, 0, 0),
+            width: 8,
           ),
         ),
         child: Padding(

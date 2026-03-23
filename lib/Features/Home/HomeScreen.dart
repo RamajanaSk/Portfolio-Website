@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/Core/theme/animated_background.dart';
 import 'package:ramajana05/Core/widgets/Footer.dart';
 import 'package:ramajana05/Features/Projects/ProjectListScreen.dart';
 import 'package:ramajana05/Sections/SkillsSection.dart';
@@ -7,7 +8,7 @@ import 'package:ramajana05/Sections/SkillsSection.dart';
 import 'package:ramajana05/Widgets/LandingWidget.dart';
 import '../../Widgets/StartScreenWidget.dart';
 import '../../Widgets/GetToKnowMeWidget.dart';
-import '../../Core/theme/appColors.dart';
+import '../../Core/theme/app_colors.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key, required this.title});
@@ -48,83 +49,88 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height -
-                  AppBar().preferredSize.height,
-              child: const Landingwidget(), // <<-- here it goes
-            ),
-            //StartScreenWidget
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height -
-                  AppBar().preferredSize.height,
-              child: const StartScreenWidget(), // <<-- here it goes
-            ),
-            //GetToKnowMeWidget
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height -
-                  AppBar().preferredSize.height,
-              child: const GetToKnowMeWidget(), // <<-- here it goes
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height -
-                  AppBar().preferredSize.height,
-              decoration: BoxDecoration(color: AppColors.background),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    key: _titleKey,
-                    padding: const EdgeInsets.all(20.0),
-                    color: Color.fromARGB(255, 250, 0, 0),
-                    width: double.infinity,
-                    child: Text(
-                      "I'm Ramajana, Creative Developer",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontFamily: 'Poppins', fontSize: 20),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      "asda dadada da dafasdfgs sagasgag asdfasg g g gfga gfdagfg adfghfg aer gawrga sfg ag gsg asdgsftgsg s g sg gsf fgsgs gs sg sg sdfsdafs fgagfd ga.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: AppColors.black, fontSize: 20),
-                    ),
-                  ),
-                  _buildButtons(),
-                ],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: AnimatedGradientBackground(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height,
+                child: const Landingwidget(), // <<-- here it goes
               ),
-            ),
-            Container(
-              key: _aboutMeKey,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  SkillsSection(
-                      skills: mySkills), // Adding the SkillsSection here
-                ],
+              //StartScreenWidget
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height,
+                child: const StartScreenWidget(), // <<-- here it goes
               ),
-            ),
+              //GetToKnowMeWidget
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height,
+                child: const GetToKnowMeWidget(), // <<-- here it goes
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      key: _titleKey,
+                      padding: const EdgeInsets.all(20.0),
+                      color: Color.fromARGB(255, 250, 0, 0),
+                      width: double.infinity,
+                      child: Text(
+                        "I'm Ramajana, Creative Developer",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: 'Poppins', fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        "asda dadada da dafasdfgs sagasgag asdfasg g g gfga gfdagfg adfghfg aer gawrga sfg ag gsg asdgsftgsg s g sg gsf fgsgs gs sg sg sdfsdafs fgagfd ga.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontSize: 20),
+                      ),
+                    ),
+                    _buildButtons(),
+                  ],
+                ),
+              ),
+              Container(
+                key: _aboutMeKey,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    SkillsSection(
+                        skills: mySkills), // Adding the SkillsSection here
+                  ],
+                ),
+              ),
 
-            Container(
-              key: _footerKey,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Footer(),
-                  // Adding the SkillsSection here
-                ],
+              Container(
+                key: _footerKey,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Footer(),
+                    // Adding the SkillsSection here
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

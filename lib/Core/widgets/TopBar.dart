@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Screens/Portfolioscreen.dart';
 import 'package:ramajana05/Core/widgets/SmokyAnimatedBar.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
+import 'package:ramajana05/Core/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
@@ -30,7 +29,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       title: GestureDetector(
@@ -56,33 +55,40 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
 
   List<Widget> _buildAppBarActions(BuildContext context) {
     return [
-      _buildHomeButton(),
+      _buildHomeButton(context),
       SizedBox(width: 10),
-      _buildAboutMeButton(),
+      _buildAboutMeButton(context),
       SizedBox(width: 10),
-      _buildSkillButton(),
+      _buildProjectButtonNormal(context),
       SizedBox(width: 10),
-      _buildExperienceButton(),
-      SizedBox(width: 10),
-      _buildProjectButton(context),
+      _buildContactButtonNormal(context),
       SizedBox(width: 10),
     ];
   }
 
-  Widget _buildHomeButton() => TextButton(
+  Widget _buildHomeButton(BuildContext context) => TextButton(
         onPressed: onHomePressed,
         child: Text('HOME',
             style: TextStyle(
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.bold,
                 fontSize: 19)),
       );
 
-  Widget _buildAboutMeButton() => TextButton(
+  Widget _buildAboutMeButton(BuildContext context) => TextButton(
         onPressed: onAboutMePressed,
-        child: Text('ABOUT ME',
+        child: Text('ABOUT',
             style: TextStyle(
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.bold,
+                fontSize: 19)),
+      );
+
+  Widget _buildProjectButtonNormal(BuildContext context) => TextButton(
+        onPressed: onProjectPressed,
+        child: Text('PROJECT',
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.bold,
                 fontSize: 19)),
       );
@@ -97,7 +103,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             child: Text(
               'PROJECTS',
               style: TextStyle(
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.bold,
                 fontSize: 19,
               ),
@@ -109,27 +115,27 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(
               isDropdownVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
               size: 30,
-              color: AppColors.black,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             onPressed: onPortfolioIconPressed,
           ),
         ],
       );
 
-  Widget _buildSkillButton() => TextButton(
-        onPressed: onAboutMePressed,
-        child: Text('SKILLS',
+  Widget _buildContactButtonNormal(BuildContext context) => TextButton(
+        onPressed: onProjectPressed,
+        child: Text('CONTACT',
             style: TextStyle(
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.bold,
                 fontSize: 19)),
       );
 
-  Widget _buildExperienceButton() => TextButton(
+  Widget _buildSkillButton(BuildContext context) => TextButton(
         onPressed: onAboutMePressed,
-        child: Text('EXPERIENCE',
+        child: Text('SKILLS',
             style: TextStyle(
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.bold,
                 fontSize: 19)),
       );

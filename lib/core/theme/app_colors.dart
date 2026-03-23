@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._(); // verhindert Instanziierung
 
+  // 🎨 BACKGROUND
+
+  static const backgroundLight = Color(0xFFFFFFFF);
+  static const backgroundDark = Color(0xFF333333);
+  static const backgroundCard = Colors.white;
+
   // 🔵 BRAND COLORS
   static const logoBlue = Color(0xFF3196FE);
   static const logoLightPurple = Color(0xFFB620E4);
   static const logoPurple = Color(0xFF6857FC);
   static const logoRed = Color(0xFFF65165);
 
-  // 🎨 BACKGROUND
-  static const background = Color(0xFFFFFFFF);
-  static const backgroundDark = Color(0xFF333333);
-  static const backgroundCard = Colors.white;
-
   // ⚫ NEUTRALS
-  static const white = Colors.white;
-  static const black = Colors.black;
+  static const Textwhite = Colors.white;
+  static const Textblack = Colors.black;
 
   // 🌫️ SHADOWS
   static const cardShadow = Color(0xFF919191);

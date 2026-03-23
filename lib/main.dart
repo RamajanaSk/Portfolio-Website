@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/Core/theme/app_theme.dart'; // 👈 your theme file
 import 'package:ramajana05/mainLayout.dart';
 
 void main() {
@@ -12,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'RAMAJANA05',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.purple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Poppins',
-      ),
+
+      theme: getLightTheme(), // ✅ light theme
+      darkTheme: getDarkTheme(), // ✅ dark theme
+
+      themeMode: ThemeMode.system, // ✅ auto switch
+
       home: const MainLayout(),
       debugShowCheckedModeBanner: false,
     );

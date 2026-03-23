@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
+import 'package:ramajana05/Core/theme/app_colors.dart';
+import 'package:ramajana05/Core/widgets/SocialLinksRow.dart';
 
 class LeftSideWidget extends StatefulWidget {
   const LeftSideWidget({super.key});
@@ -50,13 +51,13 @@ class _LeftSideWidgetState extends State<LeftSideWidget>
           Row(
             children: [
               Container(
-                width: 150,
-                height: 20,
-                color: AppColors.black,
+                width: 120,
+                height: 15,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               Container(
-                width: 150,
-                height: 20,
+                width: 120,
+                height: 15,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -73,22 +74,15 @@ class _LeftSideWidgetState extends State<LeftSideWidget>
           ),
           const SizedBox(height: 6), // Smaller spacing above name
           const Text(
-            'RAMAJANA',
+            'HEY, IM RAMAJANA SKOPLJAK',
             style: TextStyle(
-              fontSize: 90,
+              fontSize: 70,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.5,
             ),
           ),
           const SizedBox(height: 1), // Reduced spacing
-          const Text(
-            'SKOPLJAK',
-            style: TextStyle(
-              fontSize: 85,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.5,
-            ),
-          ),
+
           const SizedBox(height: 6),
           Row(
             mainAxisSize:
@@ -112,14 +106,13 @@ class _LeftSideWidgetState extends State<LeftSideWidget>
               ),
             ],
           ),
-          const SizedBox(height: 30), // Reduced spacing
-          const Text(
-            'BACHELOR OF SCIENCE 2025',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          const SizedBox(height: 30),
+          const Row(
+              mainAxisSize:
+                  MainAxisSize.min, // Keeps the row as tight as its content
+              children: [
+                SocialLinksRow(),
+              ]),
           const SizedBox(height: 100),
           Row(
             mainAxisSize:

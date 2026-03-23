@@ -1,7 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
+import 'package:ramajana05/Core/theme/app_colors.dart';
+import 'package:ramajana05/Core/widgets/ProjectCarousel.dart';
+import 'package:ramajana05/Data/dummyData.dart';
 import '../Widgets/StartScreenWidgetParts/LeftSideWidget.dart';
 import '../Widgets/StartScreenWidgetParts/RightSideWidget.dart';
 
@@ -28,11 +30,12 @@ class Landingwidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(4),
+                          child: ProjectCarousel(
+                            projects: dummyProjects,
+                            onProjectTap: (project) {
+                              print(project.name); // or navigate
+                            },
                           ),
-                          child: const Center(child: Text("Links oben")),
                         ),
                       ),
                       const SizedBox(height: 12), // Abstand
@@ -56,7 +59,12 @@ class Landingwidget extends StatelessWidget {
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: const Center(child: Text("Rechts groß")),
+                    child: ProjectCarousel(
+                      projects: dummyProjects,
+                      onProjectTap: (project) {
+                        print(project.name); // or navigate
+                      },
+                    ),
                   ),
                 ),
               ],

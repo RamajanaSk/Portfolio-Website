@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/appColors.dart';
+import 'package:ramajana05/Core/theme/app_colors.dart';
 
 class GTKMLeftSideWidget extends StatefulWidget {
   const GTKMLeftSideWidget({super.key});
@@ -52,7 +52,7 @@ class _GTMKLeftSideWidgetState extends State<GTKMLeftSideWidget>
               Container(
                 width: 150,
                 height: 20,
-                color: AppColors.black,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               Container(
                 width: 150,
