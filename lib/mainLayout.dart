@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 
-import 'package:ramajana05/Core/widgets/CustomeDrawerMenu.dart';
-import 'package:ramajana05/Core/widgets/CustomeDropdownMenu.dart';
-import 'package:ramajana05/Features/Home/HomeScreen.dart';
-import 'package:ramajana05/Features/About/AboutMeScreen.dart';
-import 'package:ramajana05/Features/Projects/ProjectListScreen.dart';
-import 'package:ramajana05/Features/Projects/ProjectDetailScreen.dart';
-import 'package:ramajana05/Core/widgets/TopBar.dart';
+import 'package:ramajana05/core/widgets/custome_drawer_menu.dart';
+import 'package:ramajana05/core/widgets/custome_dropdown_menu.dart';
+import 'package:ramajana05/core/widgets/top_bar.dart';
+import 'package:ramajana05/features/Home/HomeScreen.dart';
+import 'package:ramajana05/features/About/AboutMeScreen.dart';
+import 'package:ramajana05/features/Projects/ProjectListScreen.dart';
+import 'package:ramajana05/features/Projects/ProjectDetailScreen.dart';
+import 'package:ramajana05/features/contact/contact_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -31,22 +32,20 @@ class _MainLayoutState extends State<MainLayout> {
   final List<Widget> _pages = [
     Homescreen(title: "Homepage"),
     AboutMeScreen(),
+    ContactScreen(),
   ];
 
   @override
   void initState() {
     super.initState();
 
-    // 🔥 initial load (VERY IMPORTANT)
     _handleRoute(html.window.location.pathname ?? '/');
 
-    // 🔥 browser back/forward
     html.window.onPopState.listen((event) {
       _handleRoute(html.window.location.pathname ?? '/');
     });
   }
 
-  // 🔥 CENTRAL ROUTER LOGIC
   void _handleRoute(String path) {
     setState(() {
       if (path.startsWith('/projects/')) {
@@ -56,17 +55,20 @@ class _MainLayoutState extends State<MainLayout> {
           _selectedProject = dummyProjects.firstWhere(
             (p) => p.name.toLowerCase().replaceAll(' ', '-') == slug,
           );
-          _currentIndex = 2;
+          _currentIndex = 3;
         } catch (_) {
           _selectedProject = null;
-          _currentIndex = 2;
+          _currentIndex = 3;
         }
       } else if (path == '/projects') {
         _selectedProject = null;
-        _currentIndex = 2;
+        _currentIndex = 3;
       } else if (path == '/about') {
         _selectedProject = null;
         _currentIndex = 1;
+      } else if (path == '/contact') {
+        _selectedProject = null;
+        _currentIndex = 2;
       } else {
         _selectedProject = null;
         _currentIndex = 0;
@@ -103,7 +105,10 @@ class _MainLayoutState extends State<MainLayout> {
           html.window.history.pushState(null, '', '/projects');
           _handleRoute('/projects');
         },
-        onPortfolioIconPressed: _toggleMenuVisibility,
+        onContactPressed: () {
+          html.window.history.pushState(null, '', '/contact');
+          _handleRoute('/contact');
+        },
         isDropdownVisible: _isMenuVisible,
       ),
       body: Stack(
@@ -127,7 +132,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   Widget _buildCurrentPage() {
     // HOME / ABOUT
-    if (_currentIndex != 2) {
+    if (_currentIndex != 3) {
       return _pages[_currentIndex];
     }
 

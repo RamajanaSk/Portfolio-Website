@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/ProjectSection.dart' show ProjectSection;
 import 'package:ramajana05/Data/Models/ProjectType.dart';
 import 'package:ramajana05/Data/Models/SectionType.dart';

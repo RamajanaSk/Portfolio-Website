@@ -59,7 +59,6 @@ class ProjectCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppTextStyles.title(context),
                     ),
 
                     const SizedBox(height: 8),

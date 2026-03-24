@@ -1,11 +1,8 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/theme/app_colors.dart';
-import 'package:ramajana05/Core/widgets/ProjectCarousel.dart';
+
 import 'package:ramajana05/Data/dummyData.dart';
-import '../Widgets/StartScreenWidgetParts/LeftSideWidget.dart';
-import '../Widgets/StartScreenWidgetParts/RightSideWidget.dart';
+import 'package:ramajana05/core/widgets/project_carousel.dart';
 
 class Landingwidget extends StatelessWidget {
   const Landingwidget({super.key});

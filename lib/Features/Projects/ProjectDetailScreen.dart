@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/Sections/ProjectOverviewSection.dart';
+import 'package:ramajana05/features/Home/widgets/Sections/project_overview_section.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
   final Project project;

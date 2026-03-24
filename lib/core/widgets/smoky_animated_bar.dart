@@ -23,8 +23,8 @@ class _SmokyAnimatedBarState extends State<SmokyAnimatedBar>
     )..repeat(reverse: true);
 
     _animation = ColorTween(
-      begin: Colors.blue.withOpacity(0.5),
-      end: Colors.purple.withOpacity(0.5),
+      begin: const Color.fromARGB(255, 255, 15, 159),
+      end: Colors.blue.withOpacity(0.5),
     ).animate(_controller);
   }
 
@@ -54,7 +54,10 @@ class _SmokyAnimatedBarState extends State<SmokyAnimatedBar>
             height: widget.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, _animation.value ?? Colors.purple],
+                colors: [
+                  const Color.fromARGB(255, 255, 15, 159),
+                  _animation.value ?? const Color.fromARGB(255, 33, 26, 255)
+                ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),

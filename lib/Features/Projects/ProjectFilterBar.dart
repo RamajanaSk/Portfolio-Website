@@ -55,7 +55,6 @@ class _ProjectFilterBarState extends State<ProjectFilterBar> {
             hintText: 'Search projects...',
             prefixIcon: const Icon(Icons.search),
             filled: true,
-            fillColor: Colors.grey[100],
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,

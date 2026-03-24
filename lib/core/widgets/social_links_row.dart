@@ -27,7 +27,6 @@ class SocialLinksRow extends StatelessWidget {
           child: Icon(
             icon,
             size: 26,
-            color: Colors.black87,
           ),
         ),
       ),
@@ -37,22 +36,17 @@ class SocialLinksRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         _buildIcon(
           icon: FontAwesomeIcons.github,
-          url: "https://github.com/yourusername",
+          url: "https://github.com/Ramajana05",
           tooltip: "GitHub",
         ),
         _buildIcon(
           icon: FontAwesomeIcons.linkedin,
-          url: "https://linkedin.com/in/yourusername",
+          url: "https://linkedin.com/in/RamajanaSkopljak",
           tooltip: "LinkedIn",
-        ),
-        _buildIcon(
-          icon: FontAwesomeIcons.twitter,
-          url: "https://twitter.com/yourusername",
-          tooltip: "Twitter",
         ),
         _buildIcon(
           icon: FontAwesomeIcons.twitch,
@@ -60,8 +54,13 @@ class SocialLinksRow extends StatelessWidget {
           tooltip: "Twitch",
         ),
         _buildIcon(
+          icon: FontAwesomeIcons.soundcloud,
+          url: "https://SoundCloud.com/ramajana05",
+          tooltip: "Soundcloud",
+        ),
+        _buildIcon(
           icon: FontAwesomeIcons.instagram,
-          url: "https://instagram.com/yourusername",
+          url: "https://instagram.com/Ramajana05",
           tooltip: "Instagram",
         ),
       ],

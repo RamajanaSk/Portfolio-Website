@@ -1,32 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Sections/HobbiesSection.dart';
-import 'package:ramajana05/Sections/SkillsSection.dart';
+import 'package:ramajana05/features/Home/widgets/Sections/hobbies_section.dart';
+import 'package:ramajana05/features/Home/widgets/Sections/skills_section.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutMeScreen extends StatelessWidget {
   final String githubURL = 'https://github.com/yourusername';
   final String linkedInURL = 'https://linkedin.com/in/yourusername';
-
-  final List<Skill> mySkills = [
-    Skill(
-      icon: Icons.code,
-      title: "Web Development",
-      description: "Experienced in modern web technologies.",
-      iconColor: Colors.lightBlue,
-    ),
-    Skill(
-      icon: Icons.security,
-      title: "Cyber Security",
-      description: "Deep understanding of secure coding practices.",
-      iconColor: Colors.redAccent,
-    ),
-    Skill(
-      icon: Icons.phone_android,
-      title: "Mobile Apps",
-      description: "Building smooth and responsive mobile applications.",
-      iconColor: Colors.green,
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +17,7 @@ class AboutMeScreen extends StatelessWidget {
           buildAboutMeSection(),
           buildHobbySection(),
           HobbiesSection(),
-          SkillsSection(skills: mySkills),
+          SkillsSection(),
           buildGallerySection(),
           buildProjectsSection(),
           buildTextSection(),

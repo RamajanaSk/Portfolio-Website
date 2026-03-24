@@ -3,7 +3,7 @@ import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ramajana05/Features/Projects/ProjectFilterBar.dart';
+import 'package:ramajana05/features/Projects/ProjectFilterBar.dart';
 
 class ProjectListScreen extends StatefulWidget {
   final void Function(Project) onProjectSelected;
@@ -23,7 +23,6 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

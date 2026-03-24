@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/animated_background.dart';
 import 'package:ramajana05/Core/widgets/Footer.dart';
-import 'package:ramajana05/Features/Projects/ProjectListScreen.dart';
-import 'package:ramajana05/Sections/SkillsSection.dart';
-import 'package:ramajana05/Core/widgets/TopBar.dart'; // Ensure this import path is correct
-import 'package:ramajana05/Sections/SkillsSection.dart';
-import 'package:ramajana05/Widgets/LandingWidget.dart';
-import '../../Widgets/StartScreenWidget.dart';
-import '../../Widgets/GetToKnowMeWidget.dart';
-import '../../Core/theme/app_colors.dart';
+import 'package:ramajana05/data/dummyData.dart';
+import 'package:ramajana05/features/home/widgets/GetToKnowMeWidget.dart';
+
+import 'package:ramajana05/features/home/widgets/Sections/skills_section.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key, required this.title});
@@ -24,113 +19,100 @@ class _HomescreenState extends State<Homescreen> {
   final GlobalKey _titleKey = GlobalKey();
   final GlobalKey _footerKey = GlobalKey();
 
-  // Create a list of skills
-  final List<Skill> mySkills = [
-    Skill(
-      icon: Icons.code,
-      title: "Web Development",
-      description: "Experienced in modern web technologies.",
-      iconColor: Colors.lightBlue,
-    ),
-    Skill(
-      icon: Icons.security,
-      title: "Cyber Security",
-      description: "Deep understanding of secure coding practices.",
-      iconColor: Colors.redAccent,
-    ),
-    Skill(
-      icon: Icons.phone_android,
-      title: "Mobile Apps",
-      description: "Building smooth and responsive mobile applications.",
-      iconColor: Colors.green,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: AnimatedGradientBackground(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height,
-                child: const Landingwidget(), // <<-- here it goes
-              ),
-              //StartScreenWidget
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height,
-                child: const StartScreenWidget(), // <<-- here it goes
-              ),
-              //GetToKnowMeWidget
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height,
-                child: const GetToKnowMeWidget(), // <<-- here it goes
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              child: const GetToKnowMeWidget(),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      key: _titleKey,
-                      padding: const EdgeInsets.all(20.0),
-                      color: Color.fromARGB(255, 250, 0, 0),
-                      width: double.infinity,
-                      child: Text(
-                        "I'm Ramajana, Creative Developer",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: 'Poppins', fontSize: 20),
+                    Text(
+                      "ABOUT ME",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "I’m a Flutter-focused developer with a strong interest in creating interactive and visually engaging applications. "
+                      "My work combines clean architecture with creative UI/UX to build products that feel modern and intuitive.",
+                      style: TextStyle(
+                        fontSize: 18,
+                        height: 1.6,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        "asda dadada da dafasdfgs sagasgag asdfasg g g gfga gfdagfg adfghfg aer gawrga sfg ag gsg asdgsftgsg s g sg gsf fgsgs gs sg sg sdfsdafs fgagfd ga.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: 20),
-                      ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 60),
+            SkillsSection(),
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "PROJECTS",
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    _buildButtons(),
+                    const SizedBox(height: 30),
+                    Wrap(
+                      spacing: 20,
+                      runSpacing: 20,
+                      children: dummyProjects.take(3).map((project) {
+                        return SizedBox(
+                          width: 300,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    project.name,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ],
                 ),
               ),
-              Container(
-                key: _aboutMeKey,
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    SkillsSection(
-                        skills: mySkills), // Adding the SkillsSection here
-                  ],
-                ),
+            ),
+            Container(
+              key: _footerKey,
+              child: Column(
+                children: [
+                  Footer(),
+                  // Adding the SkillsSection here
+                ],
               ),
-
-              Container(
-                key: _footerKey,
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Footer(),
-                    // Adding the SkillsSection here
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -159,13 +141,5 @@ class _HomescreenState extends State<Homescreen> {
         ],
       ),
     );
-  }
-
-  void _scrollToSection(GlobalKey key) {
-    final context = key.currentContext;
-    if (context != null) {
-      Scrollable.ensureVisible(context,
-          duration: Duration(seconds: 1), curve: Curves.easeInOut);
-    }
   }
 }

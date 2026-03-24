@@ -3,10 +3,29 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._(); // verhindert Instanziierung
 
+  bool get isDark =>
+      Theme.of(this as BuildContext).brightness == Brightness.dark;
+
+  Color get pinkGlow => isDark
+      ? const Color(0xFFFF2D95)
+      : const Color(0xFFFF7AB8); // lighter pink
+
+  Color get blueGlow => isDark
+      ? const Color(0xFF00CFFF)
+      : const Color(0xFF5EDCFF); // lighter blue
+
+  Color get purpleGlow => isDark
+      ? const Color(0xFF6A00FF)
+      : const Color(0xFFB388FF); // lighter purple
+
+  Color get backgroundPure => isDark ? const Color(0xFF020203) : Colors.white;
+
   // 🎨 BACKGROUND
 
+  static const pink = Color(0xFFFF2D95);
+
   static const backgroundLight = Color(0xFFFFFFFF);
-  static const backgroundDark = Color(0xFF333333);
+  static const backgroundDark = Color.fromARGB(255, 12, 12, 12);
   static const backgroundCard = Colors.white;
 
   // 🔵 BRAND COLORS
@@ -35,5 +54,5 @@ class AppColors {
   static const logoPurple50 = Color(0x806857FC);
   static const logoRed50 = Color(0x80F65165);
 
-  static var primary;
+  static var primary = Color(0x806857FC);
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/theme/app_colors.dart';
-import '../Widgets/StartScreenWidgetParts/LeftSideWidget.dart';
-import '../Widgets/StartScreenWidgetParts/RightSideWidget.dart';
+import '../StartScreenWidgetParts/LeftSideWidget.dart';
+import '../StartScreenWidgetParts/RightSideWidget.dart';
 
 class StartScreenWidget extends StatelessWidget {
   const StartScreenWidget({super.key});
