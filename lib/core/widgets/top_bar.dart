@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/widgets/smoky_animated_bar.dart';
 
-import 'package:url_launcher/url_launcher.dart';
-
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBack;

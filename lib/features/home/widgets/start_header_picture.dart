@@ -105,7 +105,17 @@ class GTKMRightSideWidget extends StatelessWidget {
                 ),
               ),
 
-              Image.asset('assets/me_cut.png'),
+              ClipRect(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  heightFactor:
+                      0.8, // 👈 adjust this (0.7–0.9 depending how much to cut)
+                  child: Image.asset(
+                    'assets/me_cut.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
             ],
           )),
     );
@@ -115,10 +125,19 @@ class GTKMRightSideWidget extends StatelessWidget {
     return Transform.translate(
       offset: offset,
       child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-        //child: Image.asset(''assets/me_cut.png'),
-        child: Image.asset('assets/me_cut.png'),
-      ),
+          imageFilter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+          //child: Image.asset(''assets/me_cut.png'),
+          child: ClipRect(
+            child: Align(
+              alignment: Alignment.topCenter,
+              heightFactor:
+                  0.8, // 👈 adjust this (0.7–0.9 depending how much to cut)
+              child: Image.asset(
+                'assets/me_cut.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          )),
     );
   }
 }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ramajana05/features/Projects/ProjectFilterBar.dart';
+import 'package:ramajana05/core/widgets/footer.dart';
+import 'package:ramajana05/core/widgets/neon_background_secetion.dart';
+import 'package:ramajana05/features/Projects/widget/project_filter_searchbar.dart';
 
 class ProjectListScreen extends StatefulWidget {
   final void Function(Project) onProjectSelected;
@@ -22,29 +23,30 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: ListView(
         children: [
+          // 🔹 TITLE
           const Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: Row(
               children: [
-                const Text(
+                Text(
                   'SOFTWARE PROJECTS',
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
+                Spacer(),
               ],
             ),
           ),
 
+          // 🔹 FILTER
           Padding(
             padding: const EdgeInsets.all(20),
-            child: ProjectFilterBar(
+            child: ProjectFilterSearchBar(
               allProjects: dummyProjects,
               onFilterChanged: (projects) {
                 setState(() {
@@ -54,10 +56,12 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
             ),
           ),
 
-          // 🔥 GRID
-          Expanded(
+          // 🔥 GRID (part of scroll now)
+          Padding(
+            padding: const EdgeInsets.all(20),
             child: GridView.builder(
-              padding: const EdgeInsets.all(20),
+              shrinkWrap: true, // ✅ required
+              physics: const NeverScrollableScrollPhysics(), // ✅ required
               itemCount: filteredProjects.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: getCrossAxisCount(context),
@@ -72,7 +76,8 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                   title: project.name,
                   description: project.shortDescription,
                   hexColor: project.hexcolor,
-                  platformIcons: project.platformIcons,
+                  previewImage: project.previewPicture,
+                  platformLinks: project.platformLinks,
                   date: formatDate(project),
                   githubUrl: project.githubUrl,
                   onTap: () => widget.onProjectSelected(project),
@@ -80,6 +85,10 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
               },
             ),
           ),
+
+          // 🔥 EXTRA SECTIONS (NOW SCROLLABLE)
+          const NeonGradientSection(),
+          const Footer(),
         ],
       ),
     );

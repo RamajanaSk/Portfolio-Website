@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/core/utils/platform_link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
   final String description;
   final String hexColor;
-  final List<String> platformIcons;
+  final String? previewImage;
+  final List<PlatformLink> platformLinks;
   final String date;
   final String? githubUrl;
   final VoidCallback onTap;
@@ -16,7 +19,8 @@ class ProjectCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.hexColor,
-    required this.platformIcons,
+    required this.previewImage,
+    required this.platformLinks,
     required this.date,
     required this.onTap,
     this.githubUrl,
@@ -74,29 +78,17 @@ class ProjectCard extends StatelessWidget {
 
                     // 🔥 PLATFORM ICONS
                     Row(
-                      children: platformIcons.asMap().entries.map((entry) {
-                        final index = entry.key;
-                        final icon = entry.value;
-
-                        return Container(
-                          margin: EdgeInsets.only(left: index == 0 ? 0 : 4),
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: SvgPicture.asset(
-                            _getIconPath(icon),
-                            width: 16,
-                            height: 16,
-                            colorFilter: ColorFilter.mode(
-                              Theme.of(context).colorScheme.onSurface,
-                              BlendMode.srcIn,
-                            ),
+                      children: platformLinks.map((link) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: _buildIcon(
+                            icon: link.icon,
+                            url: link.url,
+                            tooltip: link.tooltip,
                           ),
                         );
                       }).toList(),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -112,12 +104,25 @@ class ProjectCard extends StatelessWidget {
                   Container(
                     color: Theme.of(context).colorScheme.onSurface,
                     child: Center(
-                      child: Text(
-                        "IMAGE",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ),
+                      child: previewImage != null && previewImage!.isNotEmpty
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.asset(
+                                previewImage!,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: double.infinity,
+                              ),
+                            )
+                          : Center(
+                              child: Text(
+                                "NO IMAGE",
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
+                                ),
+                              ),
+                            ),
                     ),
                   ),
                   Positioned.fill(
@@ -184,18 +189,31 @@ class ProjectCard extends StatelessWidget {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  String _getIconPath(String icon) {
-    switch (icon.toLowerCase()) {
-      case 'flutter':
-        return 'assets/icons/flutter.svg';
-      case 'dart':
-        return 'assets/icons/dart.svg';
-      case 'unity':
-        return 'assets/icons/unity.svg';
-      case 'osm':
-        return 'assets/icons/map.svg';
-      default:
-        return 'assets/icons/code.svg';
+  Future<void> _openLink(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
     }
+  }
+
+  Widget _buildIcon({
+    required IconData icon,
+    required String url,
+    required String tooltip,
+  }) {
+    return Tooltip(
+      message: tooltip,
+      child: InkWell(
+        onTap: () => _openLink(url),
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Icon(
+            icon,
+            size: 16, // smaller than SocialLinksRow (fits card)
+          ),
+        ),
+      ),
+    );
   }
 }

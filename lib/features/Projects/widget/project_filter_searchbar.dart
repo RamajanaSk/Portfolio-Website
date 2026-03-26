@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 
-class ProjectFilterBar extends StatefulWidget {
+class ProjectFilterSearchBar extends StatefulWidget {
   final List<Project> allProjects;
   final Function(List<Project>) onFilterChanged;
 
-  const ProjectFilterBar({
+  const ProjectFilterSearchBar({
     super.key,
     required this.allProjects,
     required this.onFilterChanged,
   });
 
   @override
-  State<ProjectFilterBar> createState() => _ProjectFilterBarState();
+  State<ProjectFilterSearchBar> createState() => _ProjectFilterSearchBarState();
 }
 
-class _ProjectFilterBarState extends State<ProjectFilterBar> {
+class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
   String searchText = '';
   Set<String> selectedTech = {};
 

@@ -6,12 +6,13 @@ import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/Data/dummyData.dart';
 
 import 'package:ramajana05/core/widgets/custome_drawer_menu.dart';
-import 'package:ramajana05/core/widgets/custome_dropdown_menu.dart';
+import 'package:ramajana05/core/widgets/dropdown/custome_dropdown_menu.dart';
 import 'package:ramajana05/core/widgets/top_bar.dart';
 import 'package:ramajana05/features/Home/HomeScreen.dart';
-import 'package:ramajana05/features/About/AboutMeScreen.dart';
+
 import 'package:ramajana05/features/Projects/ProjectListScreen.dart';
 import 'package:ramajana05/features/Projects/ProjectDetailScreen.dart';
+import 'package:ramajana05/features/about/presentation/AboutMeScreen.dart';
 import 'package:ramajana05/features/contact/contact_screen.dart';
 
 class MainLayout extends StatefulWidget {
@@ -30,23 +31,28 @@ class _MainLayoutState extends State<MainLayout> {
   Timer? _hideMenuTimer;
 
   final List<Widget> _pages = [
-    Homescreen(title: "Homepage"),
+    const Homescreen(title: "Homepage"),
     AboutMeScreen(),
-    ContactScreen(),
+    const ContactScreen(),
   ];
 
   @override
   void initState() {
     super.initState();
 
-    _handleRoute(html.window.location.pathname ?? '/');
+    // initial route ONLY ONCE
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleRoute(_getCurrentPath());
+    });
 
     html.window.onPopState.listen((event) {
-      _handleRoute(html.window.location.pathname ?? '/');
+      _handleRoute(_getCurrentPath());
     });
   }
 
   void _handleRoute(String path) {
+    if (!mounted) return;
+
     setState(() {
       if (path.startsWith('/projects/')) {
         final slug = path.split('/projects/').last;
@@ -94,20 +100,16 @@ class _MainLayoutState extends State<MainLayout> {
       appBar: TopBar(
         title: 'RAMAJANA05',
         onHomePressed: () {
-          html.window.history.pushState(null, '', '/');
-          _handleRoute('/');
+          _navigateTo('/');
         },
         onAboutMePressed: () {
-          html.window.history.pushState(null, '', '/about');
-          _handleRoute('/about');
+          _navigateTo('/about');
         },
         onProjectPressed: () {
-          html.window.history.pushState(null, '', '/projects');
-          _handleRoute('/projects');
+          _navigateTo('/projects');
         },
         onContactPressed: () {
-          html.window.history.pushState(null, '', '/contact');
-          _handleRoute('/contact');
+          _navigateTo('/contact');
         },
         isDropdownVisible: _isMenuVisible,
       ),
@@ -141,14 +143,7 @@ class _MainLayoutState extends State<MainLayout> {
       return ProjectListScreen(
         onProjectSelected: (project) {
           final slug = project.name.toLowerCase().replaceAll(' ', '-');
-
-          html.window.history.pushState(
-            null,
-            '',
-            '/projects/$slug',
-          );
-
-          _handleRoute('/projects/$slug'); // 🔥 KEY LINE
+          _navigateTo('/projects/$slug'); // ✅ ONLY THIS
         },
       );
     }
@@ -215,5 +210,20 @@ class _MainLayoutState extends State<MainLayout> {
   void dispose() {
     _cancelHideMenuTimer();
     super.dispose();
+  }
+
+  void _navigateTo(String path) {
+    html.window.history.pushState(null, '', '#$path');
+    _handleRoute(path);
+  }
+
+  String _getCurrentPath() {
+    final hash = html.window.location.hash;
+
+    if (hash.isNotEmpty && hash.startsWith('#')) {
+      return hash.substring(1); // remove #
+    }
+
+    return html.window.location.pathname ?? '/';
   }
 }

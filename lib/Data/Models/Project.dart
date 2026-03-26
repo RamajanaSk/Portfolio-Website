@@ -1,6 +1,7 @@
 import 'package:ramajana05/Data/Models/ProjectSection.dart' show ProjectSection;
 import 'package:ramajana05/Data/Models/ProjectType.dart';
 import 'package:ramajana05/Data/Models/SectionType.dart';
+import 'package:ramajana05/core/utils/platform_link.dart';
 
 class Project {
   final String id;
@@ -24,7 +25,7 @@ class Project {
   final String? universityContext; // z.B. "Bachelor Project"
 
   // Tech
-  final List<String> platformIcons;
+  final List<PlatformLink> platformLinks;
   final List<String> technologies; // z.B. ["Flutter", "Dart", "REST"]
 
   // Links
@@ -63,7 +64,7 @@ class Project {
     required this.role,
     this.grade,
     this.universityContext,
-    required this.platformIcons,
+    required this.platformLinks,
     required this.technologies,
     this.githubUrl,
     this.liveDemoUrl,
@@ -84,13 +85,6 @@ class Project {
     sections[type]?.text = newText;
   }
 
-  /// Update a platform icon at a given index
-  void updatePlatformIcon(int index, String newIcon) {
-    if (index >= 0 && index < platformIcons.length) {
-      platformIcons[index] = newIcon;
-    }
-  }
-
   /// Change color theme
   void updateColor(String newHexColor) {
     hexcolor = newHexColor;
@@ -109,7 +103,7 @@ class Project {
         "previewPicture": previewPicture,
         "mockupPicture": mockupPicture,
         "sections": sections.map((k, v) => MapEntry(k.name, v.toMap())),
-        "platformIcons": platformIcons,
+        "platformLinks": platformLinks.map((e) => e.toMap()).toList(),
       };
 
   /// Rebuild Project from DB
@@ -143,7 +137,9 @@ class Project {
           ProjectSection.fromMap(value),
         ),
       ),
-      platformIcons: List<String>.from(map["platformIcons"] ?? []),
+      platformLinks: (map["platformLinks"] as List<dynamic>? ?? [])
+          .map((e) => PlatformLink.fromMap(e))
+          .toList(),
       keyFeatures: List<String>.from(map["keyFeatures"] ?? []),
       challenges: List<String>.from(map["challenges"] ?? []),
       learnings: List<String>.from(map["learnings"] ?? []),

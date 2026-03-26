@@ -42,4 +42,14 @@ class AppTextStyles {
       color: Theme.of(context).colorScheme.onSurface,
     );
   }
+
+  static TextStyle smalldescription(BuildContext context) {
+    final s = AppResponsive.scale(context);
+
+    return TextStyle(
+      fontSize: 18 * s,
+      height: 1.7,
+      color: Colors.grey,
+    );
+  }
 }
