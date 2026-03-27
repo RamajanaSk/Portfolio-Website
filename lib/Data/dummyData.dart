@@ -12,26 +12,31 @@ final List<Project> dummyProjects = [
     typ: ProjectType.mobileApp,
     name: 'Traveler',
     shortDescription:
-        '3D travel experience using Unity and OpenStreetMap data.',
-    longDescription: '...',
-    projectReason: '...',
+        'A 3D social travel experience combining real-world movement with interactive map exploration.',
+    longDescription:
+        'Traveler was developed as a response to the growing disconnect between digital and physical experiences. The goal was to create an application that encourages users to explore their real-world environment while still enjoying interactive digital features.\n\n'
+        'The app combines Flutter for a modern, intuitive UI with Unity for real-time 3D rendering. Using OpenStreetMap data, users can visualize their surroundings in a dynamic 3D environment and see both their own position and that of their friends.\n\n'
+        'By merging social interaction, geolocation, and immersive visualization, Traveler transforms movement into a shared experience and motivates users to actively explore their environment instead of passively consuming content.',
+    projectReason:
+        'The motivation behind Traveler was to counterbalance excessive screen time with meaningful real-world interaction. Instead of replacing reality, the app enhances it by making exploration engaging, social, and visually immersive.\n\n'
+        'The project also served as an opportunity to combine multiple technologies (Flutter + Unity + geolocation services) into one cohesive product and to explore how hybrid systems can deliver both performance and usability.',
     startDate: DateTime(2024, 6),
     endDate: DateTime(2025, 2),
     durationInMonths: 8,
     isSolo: true,
-    role: 'VR / Mobile Developer',
+    role: 'Mobile & Unity Developer',
     grade: '1.0',
     universityContext: 'Bachelor Thesis',
     platformLinks: [
       PlatformLink(
-        icon: FontAwesomeIcons.gamepad,
+        icon: FontAwesomeIcons.unity,
         url: "",
         tooltip: "Unity",
       ),
       PlatformLink(
-        icon: FontAwesomeIcons.code,
+        icon: FontAwesomeIcons.flutter,
         url: "",
-        tooltip: "C#",
+        tooltip: "Flutter",
       ),
       PlatformLink(
         icon: FontAwesomeIcons.map,
@@ -39,7 +44,7 @@ final List<Project> dummyProjects = [
         tooltip: "OpenStreetMap",
       ),
     ],
-    technologies: ['Unity', 'C#', 'OpenStreetMap'],
+    technologies: ['Flutter', 'Unity', 'C#', 'OpenStreetMap', 'Geolocation'],
     githubUrl: null,
     liveDemoUrl: null,
     apkUrl: null,
@@ -48,14 +53,31 @@ final List<Project> dummyProjects = [
     mockupPicture: ['images/traveler/traveler_logo.png'],
     gallery: [],
     hexcolor: '#854BED',
-    keyFeatures: [],
-    challenges: [],
-    learnings: [],
+    keyFeatures: [
+      'Real-time location tracking and visualization',
+      '3D map rendering using Unity',
+      'Integration of OpenStreetMap data',
+      'Social interaction through shared locations',
+      'Cross-platform mobile UI built with Flutter',
+    ],
+    challenges: [
+      'Integrating Unity with Flutter in a performant way',
+      'Handling real-time geolocation updates efficiently',
+      'Rendering large map datasets without performance drops',
+      'Synchronizing user positions in real time',
+    ],
+    learnings: [
+      'How to combine multiple frameworks (Flutter + Unity) in one system',
+      'Working with geospatial data and map APIs',
+      'Optimizing performance in real-time applications',
+      'Designing user experiences that bridge digital and physical interaction',
+    ],
     sections: {
       SectionType.about: ProjectSection(
         type: SectionType.about,
-        text: '',
-        imageUrl: '',
+        text:
+            'Traveler is a project focused on bringing digital interaction into the real world. Instead of isolating users, it encourages exploration, movement, and shared experiences through immersive 3D visualization.',
+        imageUrl: 'images/traveler/traveler_main.png',
       ),
     },
   ),
@@ -66,7 +88,8 @@ final List<Project> dummyProjects = [
     typ: ProjectType.mobileApp,
     name: 'Fitness Tracker',
     shortDescription: 'Flutter app integrating Samsung Health data.',
-    longDescription: '...',
+    longDescription:
+        'The app is designed as a response TO STRENGTHEN THE CONNECTION BETWEEN VIRTUAL AND PHYSICAL WORLDS. THE AIM IS TO INSPIRE USERS TO BECOME ACTIVE AND EXPERIENCE PERSONAL ADVENTURES, RATHER THAN LOSING THEMSELVES IN VIRTUAL REALITIES. BUILT WITH FLUTTER FOR A SLEEK AND USER-FRIENDLY UI, AND POWERED BY UNITY FOR HIGH-PERFORMANCE 3D RENDERING, THE APP FEATURES AN IMMERSIVE STREET VIEW-BASED MAP THAT LETS USERS SEE THEIR LOCATION AND THAT OF THEIR FRIENDS IN REAL TIME. THIS SEAMLESS INTEGRATION CREATES AN EASY-TO-USE EXPERIENCE THAT BRINGS EXPLORATION AND CONNECTION TO LIFE.',
     projectReason: '...',
     startDate: DateTime(2025, 3),
     endDate: DateTime(2025, 4),
@@ -158,7 +181,8 @@ final List<Project> dummyProjects = [
     typ: ProjectType.virtualReality,
     name: 'Forest',
     shortDescription: 'VR monitoring system',
-    longDescription: '...',
+    longDescription:
+        'The app is designed as a response TO STRENGTHEN THE CONNECTION BETWEEN VIRTUAL AND PHYSICAL WORLDS. THE AIM IS TO INSPIRE USERS TO BECOME ACTIVE AND EXPERIENCE PERSONAL ADVENTURES, RATHER THAN LOSING THEMSELVES IN VIRTUAL REALITIES. BUILT WITH FLUTTER FOR A SLEEK AND USER-FRIENDLY UI, AND POWERED BY UNITY FOR HIGH-PERFORMANCE 3D RENDERING, THE APP FEATURES AN IMMERSIVE STREET VIEW-BASED MAP THAT LETS USERS SEE THEIR LOCATION AND THAT OF THEIR FRIENDS IN REAL TIME. THIS SEAMLESS INTEGRATION CREATES AN EASY-TO-USE EXPERIENCE THAT BRINGS EXPLORATION AND CONNECTION TO LIFE.',
     projectReason: '...',
     startDate: DateTime(2023, 11),
     endDate: DateTime(2024, 1),
