@@ -4,7 +4,8 @@ import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/widgets/footer.dart';
 import 'package:ramajana05/core/widgets/neon_background_secetion.dart';
-import 'package:ramajana05/features/Projects/widget/project_filter_searchbar.dart';
+import 'package:ramajana05/features/projects/section/project_showcase_section.dart';
+import 'package:ramajana05/features/projects/widget/project_filter_searchbar.dart';
 
 class ProjectListScreen extends StatefulWidget {
   final void Function(Project) onProjectSelected;

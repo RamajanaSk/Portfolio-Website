@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ramajana05/features/Projects/widget/project_header.dart';
+import 'package:ramajana05/features/projects/widget/project_header.dart';
 
 import '../../../Data/Models/Project.dart' show Project;
 

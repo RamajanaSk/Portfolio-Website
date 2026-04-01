@@ -8,7 +8,6 @@ import 'package:ramajana05/features/about/presentation/widget/sections/about_me_
 import 'package:ramajana05/features/about/presentation/widget/sections/education_section.dart';
 import 'package:ramajana05/features/about/presentation/widget/sections/experience_section.dart';
 import 'package:ramajana05/Data/dummyData.dart';
-import 'package:ramajana05/features/about/presentation/widget/sections/tech_category_section.dart';
 
 class AboutMeScreen extends StatelessWidget {
   final String githubURL = 'https://github.com/yourusername';
@@ -43,7 +42,7 @@ class AboutMeScreen extends StatelessWidget {
 
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 80),
-            child: AboutMeWidget(),
+            child: AboutMeSection(),
           ),
 
           const SizedBox(height: 60),

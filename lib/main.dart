@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RAMAJANA05',
+      title: 'RAMAJANA SKOPLJAK',
       theme: getLightTheme(),
       darkTheme: getDarkTheme(),
       themeMode: ThemeMode.system,

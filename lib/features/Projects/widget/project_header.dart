@@ -13,59 +13,85 @@ class ProjectHeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      height: 300, // wichtig für Background!
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          // 🔥 TITLE
-          Text(
-            project.name.toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 34,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
+          // 🔥 BACKGROUND IMAGE
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.asset(
+              project.gallery.first,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
 
-          const SizedBox(height: 12),
-
-          // 🔥 DESCRIPTION
-          Text(
-            project.shortDescription,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 18,
-              height: 1.4,
+          // 🔥 DARK OVERLAY (für Lesbarkeit)
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.black.withOpacity(0.7),
+                  Colors.black.withOpacity(0.3),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             ),
           ),
 
-          const Spacer(),
-
-          // 🔥 OPTIONAL META (nice touch)
-          Row(
-            children: [
-              if (project.role != null)
+          // 🔥 CONTENT
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  project.role!,
+                  project.name.toUpperCase(),
                   style: const TextStyle(
-                    color: Colors.white54,
-                    fontSize: 14,
+                    color: Colors.white,
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
                   ),
                 ),
-              const Spacer(),
-              Text(
-                project.startDate.year.toString(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 12),
+                Text(
+                  project.catchPhrase,
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 20,
+                    height: 1.4,
+                  ),
                 ),
-              ),
-            ],
+                const Spacer(),
+                Row(
+                  children: [
+                    if (project.role != null)
+                      Text(
+                        project.role!,
+                        style: const TextStyle(
+                          color: Colors.white54,
+                          fontSize: 14,
+                        ),
+                      ),
+                    const Spacer(),
+                    Text(
+                      project.startDate.year.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

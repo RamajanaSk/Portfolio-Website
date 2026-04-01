@@ -13,6 +13,7 @@ final List<Project> dummyProjects = [
     name: 'Traveler',
     shortDescription:
         'A 3D social travel experience combining real-world movement with interactive map exploration.',
+    catchPhrase: "Where Gaming meets Social Media",
     longDescription:
         'Traveler was developed as a response to the growing disconnect between digital and physical experiences. The goal was to create an application that encourages users to explore their real-world environment while still enjoying interactive digital features.\n\n'
         'The app combines Flutter for a modern, intuitive UI with Unity for real-time 3D rendering. Using OpenStreetMap data, users can visualize their surroundings in a dynamic 3D environment and see both their own position and that of their friends.\n\n'
@@ -28,7 +29,7 @@ final List<Project> dummyProjects = [
     grade: '1.0',
     universityContext: 'Bachelor Thesis',
     platformLinks: [
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.unity,
         url: "",
         tooltip: "Unity",
@@ -51,7 +52,7 @@ final List<Project> dummyProjects = [
     logoPicture: 'images/traveler/traveler_logo.png',
     previewPicture: 'images/traveler/traveler_main.png',
     mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: [],
+    gallery: ['images/traveler/3D_unity_map.png'],
     hexcolor: '#854BED',
     keyFeatures: [
       'Real-time location tracking and visualization',
@@ -88,6 +89,7 @@ final List<Project> dummyProjects = [
     typ: ProjectType.mobileApp,
     name: 'Fitness Tracker',
     shortDescription: 'Flutter app integrating Samsung Health data.',
+    catchPhrase: "Monitor your Vineyard",
     longDescription:
         'The app is designed as a response TO STRENGTHEN THE CONNECTION BETWEEN VIRTUAL AND PHYSICAL WORLDS. THE AIM IS TO INSPIRE USERS TO BECOME ACTIVE AND EXPERIENCE PERSONAL ADVENTURES, RATHER THAN LOSING THEMSELVES IN VIRTUAL REALITIES. BUILT WITH FLUTTER FOR A SLEEK AND USER-FRIENDLY UI, AND POWERED BY UNITY FOR HIGH-PERFORMANCE 3D RENDERING, THE APP FEATURES AN IMMERSIVE STREET VIEW-BASED MAP THAT LETS USERS SEE THEIR LOCATION AND THAT OF THEIR FRIENDS IN REAL TIME. THIS SEAMLESS INTEGRATION CREATES AN EASY-TO-USE EXPERIENCE THAT BRINGS EXPLORATION AND CONNECTION TO LIFE.',
     projectReason: '...',
@@ -135,6 +137,7 @@ final List<Project> dummyProjects = [
     typ: ProjectType.mobileApp,
     name: 'Clock Logic Challenge',
     shortDescription: 'Algorithmic challenge project.',
+    catchPhrase: "Where Gaming meets Social Media",
     longDescription: '...',
     projectReason: '...',
     startDate: DateTime(2024, 10),
@@ -175,12 +178,13 @@ final List<Project> dummyProjects = [
     },
   ),
 
-  // 🔥 VR PROJECTS (reuse pattern)
+  // 🔥 Forest
   Project(
     id: '4',
     typ: ProjectType.virtualReality,
     name: 'Forest',
     shortDescription: 'VR monitoring system',
+    catchPhrase: "Where Gaming meets Social Media",
     longDescription:
         'The app is designed as a response TO STRENGTHEN THE CONNECTION BETWEEN VIRTUAL AND PHYSICAL WORLDS. THE AIM IS TO INSPIRE USERS TO BECOME ACTIVE AND EXPERIENCE PERSONAL ADVENTURES, RATHER THAN LOSING THEMSELVES IN VIRTUAL REALITIES. BUILT WITH FLUTTER FOR A SLEEK AND USER-FRIENDLY UI, AND POWERED BY UNITY FOR HIGH-PERFORMANCE 3D RENDERING, THE APP FEATURES AN IMMERSIVE STREET VIEW-BASED MAP THAT LETS USERS SEE THEIR LOCATION AND THAT OF THEIR FRIENDS IN REAL TIME. THIS SEAMLESS INTEGRATION CREATES AN EASY-TO-USE EXPERIENCE THAT BRINGS EXPLORATION AND CONNECTION TO LIFE.',
     projectReason: '...',
@@ -203,7 +207,7 @@ final List<Project> dummyProjects = [
     logoPicture: 'images/forest/forest_logo.png',
     previewPicture: 'images/forest/forest_main.png',
     mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: [],
+    gallery: ['images/forest/forest_digital.png'],
     hexcolor: '#0FFF82',
     keyFeatures: [],
     challenges: [],

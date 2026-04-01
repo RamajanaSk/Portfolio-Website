@@ -40,28 +40,13 @@ class SocialLinksRow extends StatelessWidget {
       children: [
         _buildIcon(
           icon: FontAwesomeIcons.github,
-          url: "https://github.com/Ramajana05",
+          url: "https://github.com/RamajanaSk",
           tooltip: "GitHub",
         ),
         _buildIcon(
           icon: FontAwesomeIcons.linkedin,
           url: "https://linkedin.com/in/RamajanaSkopljak",
           tooltip: "LinkedIn",
-        ),
-        _buildIcon(
-          icon: FontAwesomeIcons.twitch,
-          url: "https://twitch.tv/ramajana05",
-          tooltip: "Twitch",
-        ),
-        _buildIcon(
-          icon: FontAwesomeIcons.soundcloud,
-          url: "https://SoundCloud.com/ramajana05",
-          tooltip: "Soundcloud",
-        ),
-        _buildIcon(
-          icon: FontAwesomeIcons.instagram,
-          url: "https://instagram.com/Ramajana05",
-          tooltip: "Instagram",
         ),
       ],
     );

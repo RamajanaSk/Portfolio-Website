@@ -5,7 +5,7 @@ class NeonGradientSection extends StatefulWidget {
 
   const NeonGradientSection({
     super.key,
-    this.height = 10,
+    this.height = 5,
   });
 
   @override

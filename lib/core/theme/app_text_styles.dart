@@ -14,6 +14,16 @@ class AppTextStyles {
     );
   }
 
+  static TextStyle sectionHeader(BuildContext context) {
+    final s = AppResponsive.scale(context);
+
+    return TextStyle(
+      fontSize: 42 * s,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 4 * s,
+    );
+  }
+
   static TextStyle role(BuildContext context) {
     final s = AppResponsive.scale(context);
 

@@ -98,7 +98,7 @@ class _MainLayoutState extends State<MainLayout> {
 
     return Scaffold(
       appBar: TopBar(
-        title: 'RAMAJANA05',
+        title: 'RAMAJANA SKOPLJAK',
         onHomePressed: () {
           _navigateTo('/');
         },

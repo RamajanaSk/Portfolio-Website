@@ -9,6 +9,7 @@ class Project {
 
   // Basic
   String name;
+  String catchPhrase;
   String shortDescription;
   String longDescription;
   String projectReason;
@@ -54,6 +55,7 @@ class Project {
     required this.id,
     required this.typ,
     required this.name,
+    required this.catchPhrase,
     required this.shortDescription,
     required this.longDescription,
     required this.projectReason,
@@ -96,6 +98,7 @@ class Project {
         "typ": typ.name,
         "name": name,
         "shortDescription": shortDescription,
+        "catchPhrase": catchPhrase,
         "longDescription": longDescription,
         "projectReason": projectReason,
         "hexcolor": hexcolor,
@@ -113,6 +116,7 @@ class Project {
       typ: ProjectType.values.firstWhere((e) => e.name == map["typ"]),
       name: map["name"],
       shortDescription: map["shortDescription"],
+      catchPhrase: map["catchPhrase"],
       longDescription: map["longDescription"],
       projectReason: map["projectReason"],
       startDate: DateTime.parse(map["startDate"]),
