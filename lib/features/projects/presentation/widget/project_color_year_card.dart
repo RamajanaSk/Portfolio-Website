@@ -14,7 +14,7 @@ class ProjectColorYearCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: Theme.of(context).colorScheme.onSurface,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Align(
@@ -26,7 +26,6 @@ class ProjectColorYearCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
             ),
           ),
         ),

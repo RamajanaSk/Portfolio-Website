@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/features/Projects/widget/project_header.dart';
-import 'package:ramajana05/features/projects/widget/project_color_year_card.dart';
-import 'package:ramajana05/features/projects/widget/project_info_card.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_color_year_card.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_header.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_info_card.dart';
 
 class Projectoverviewsection extends StatelessWidget {
   final Project project;
@@ -15,11 +15,10 @@ class Projectoverviewsection extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(20),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 🔥 LEFT SIDE (jetzt auch "vollhöhe")
             Expanded(
               flex: 4,
               child: Container(
@@ -30,15 +29,11 @@ class Projectoverviewsection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 🔥 HEADER
                     Expanded(
                       flex: 5,
                       child: ProjectHeaderSection(project: project),
                     ),
-
                     const SizedBox(height: 24),
-
-                    // 🔥 LOGO + MOCKUP + INFO
                     Expanded(
                       flex: 3,
                       child: Row(
@@ -74,8 +69,8 @@ class Projectoverviewsection extends StatelessWidget {
                             child: ProjectInfoCard(
                               technologies: project.technologies.join(", "),
                               description: project.shortDescription,
-                              role: project.role, // 👈 falls vorhanden
-                              outcome: "", // 👈 falls vorhanden
+                              role: project.role,
+                              outcome: "",
                               startDate: project.startDate,
                               endDate: project.endDate,
                             ),
@@ -87,16 +82,7 @@ class Projectoverviewsection extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(width: 32),
-
-            Expanded(
-              flex: 1,
-              child: ProjectColorYearCard(
-                year: project.startDate.year,
-                backgroundColor: mainColor,
-              ),
-            ),
           ],
         ),
       ),

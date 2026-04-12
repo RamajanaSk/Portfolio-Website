@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:ramajana05/Core/widgets/Footer.dart';
-import 'package:ramajana05/core/theme/app_text_styles.dart';
-import 'package:ramajana05/core/widgets/cards/info_card.dart';
+import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
+import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 
 import 'package:ramajana05/core/widgets/full_width_text.dart';
 import 'package:ramajana05/core/widgets/metric_item.dart';
-import 'package:ramajana05/core/widgets/neon_background_secetion.dart';
-import 'package:ramajana05/core/widgets/section_header_text.dart';
-import 'package:ramajana05/features/Home/HomeScreen.dart';
 
-import 'package:ramajana05/features/about/presentation/widget/sections/about_me_section.dart';
 import 'package:ramajana05/features/home/widgets/Sections/about_me_small_section.dart';
 import 'package:ramajana05/features/home/widgets/Sections/featured_project_section.dart';
-import 'package:ramajana05/features/home/widgets/skill_chip.dart';
+import 'package:ramajana05/features/home/widgets/skill_chart.dart';
 
 import 'package:ramajana05/features/home/widgets/start_section.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key, required this.title});
@@ -27,9 +23,29 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  final GlobalKey _aboutMeKey = GlobalKey();
-  final GlobalKey _titleKey = GlobalKey();
-  final GlobalKey _footerKey = GlobalKey();
+  final skills = [
+    SkillStat(
+      name: "Flutter",
+      value: 0.9,
+      color: Colors.cyan,
+    ),
+    SkillStat(
+      name: "UI/UX",
+      value: 0.8,
+      color: Colors.purple,
+    ),
+    SkillStat(
+      name: "Backend",
+      value: 0.65,
+      color: Colors.pink,
+    ),
+  ];
+
+  final project = Project(
+    previewPicture: 'images/traveler/traveler_main.png',
+    mockupPicture: 'images/forest/forest_main.png',
+    logoPicture: 'images/traveler/logo.png',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +59,23 @@ class _HomescreenState extends State<Homescreen> {
               width: double.infinity,
               child: const StartSection(),
             ),
-            const NeonGradientSection(),
-            const AboutMeSmallSection(),
+            const NeonSectionDivider(),
+            AboutMeSmallSection(),
+            const NormalSectionDivider(),
+            const FullWidthText(
+                text:
+                    "I love building things that are not just functional, but feel good to use."),
+            const NormalSectionDivider(),
             const FeaturedProjectSection(),
-
+            //Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //children: [
+            //MetricItem(value: "2.5+", label: "Years"),
+            //MetricItem(value: "10+", label: "Projects"),
+            //MetricItem(value: "Flutter", label: "Focus"),
+            // ],
+            //),
+            const NormalSectionDivider(),
             Wrap(
               spacing: 10,
               runSpacing: 10,
@@ -57,27 +86,10 @@ class _HomescreenState extends State<Homescreen> {
                 _badge("Kotlin"),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MetricItem(value: "2.5+", label: "Years"),
-                MetricItem(value: "10+", label: "Projects"),
-                MetricItem(value: "Flutter", label: "Focus"),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 60),
-              height: 1,
-            ),
-
-            const NeonGradientSection(),
-            const FullWidthText(
-                text:
-                    "I love building things that are not just functional, but feel good to use."),
-
-            const NeonGradientSection(),
+            const NeonSectionDivider(),
+            const FullWidthText(text: "Let’s build something meaningful."),
+            const NeonSectionDivider(),
             const Footer(),
-            // Adding the SkillsSection here
           ],
         ),
       ),

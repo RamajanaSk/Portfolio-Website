@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NeonGradientSection extends StatefulWidget {
+class NeonSectionDivider extends StatefulWidget {
   final double height;
 
-  const NeonGradientSection({
+  const NeonSectionDivider({
     super.key,
     this.height = 5,
   });
 
   @override
-  State<NeonGradientSection> createState() => _NeonGradientSectionState();
+  State<NeonSectionDivider> createState() => _NeonSectionDividerState();
 }
 
-class _NeonGradientSectionState extends State<NeonGradientSection>
+class _NeonSectionDividerState extends State<NeonSectionDivider>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

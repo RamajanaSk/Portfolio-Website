@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/core/widgets/neon_background_secetion.dart';
+import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 
-import 'package:ramajana05/features/Projects/project_overview_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_about_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_challenge_section.dart';
 
-import 'package:ramajana05/features/projects/section/project_about_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_learning_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_overview_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_showcase_section.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
   final Project project;
@@ -25,8 +28,11 @@ class ProjectDetailScreen extends StatelessWidget {
               height: screenHeight,
               child: Projectoverviewsection(project: project),
             ),
-            NeonGradientSection(),
+            const NeonSectionDivider(),
             ProjectAboutSection(project: project),
+            ProjectShowcaseSection(project: project),
+            ProjectLearningsSection(project: project),
+            ProjectChallengesSection(key: key, project: project)
           ],
         ),
       ),

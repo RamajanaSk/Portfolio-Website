@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/widgets/cards/project_card.dart';
+import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/footer.dart';
-import 'package:ramajana05/core/widgets/neon_background_secetion.dart';
+import 'package:ramajana05/core/widgets/section_header_text.dart';
+
 import 'package:ramajana05/features/about/presentation/widget/componets/build_tech_category.dart';
 import 'package:ramajana05/features/about/presentation/widget/sections/about_me_section.dart';
 import 'package:ramajana05/features/about/presentation/widget/sections/education_section.dart';
@@ -24,19 +26,10 @@ class AboutMeScreen extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 60),
-
           // 🔥 HERO / TITLE
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 80),
-            child: Text(
-              "ABOUT",
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 2,
-              ),
-            ),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 80),
+              child: SectionHeaderText("GET TO KNOW ME")),
 
           const SizedBox(height: 20),
 
@@ -164,7 +157,7 @@ class AboutMeScreen extends StatelessWidget {
               ],
             ),
           ),
-          const NeonGradientSection(),
+          const NeonSectionDivider(),
           const Footer(),
         ],
       ),

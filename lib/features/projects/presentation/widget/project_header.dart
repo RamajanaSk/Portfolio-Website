@@ -13,13 +13,12 @@ class ProjectHeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 300, // wichtig für Background!
+      height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
       ),
       child: Stack(
         children: [
-          // 🔥 BACKGROUND IMAGE
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
@@ -29,8 +28,6 @@ class ProjectHeaderSection extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
-          // 🔥 DARK OVERLAY (für Lesbarkeit)
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -44,8 +41,6 @@ class ProjectHeaderSection extends StatelessWidget {
               ),
             ),
           ),
-
-          // 🔥 CONTENT
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -85,6 +80,7 @@ class ProjectHeaderSection extends StatelessWidget {
                       project.startDate.year.toString(),
                       style: const TextStyle(
                         color: Colors.white,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

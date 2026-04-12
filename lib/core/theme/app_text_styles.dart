@@ -18,10 +18,7 @@ class AppTextStyles {
     final s = AppResponsive.scale(context);
 
     return TextStyle(
-      fontSize: 42 * s,
-      fontWeight: FontWeight.w700,
-      letterSpacing: 4 * s,
-    );
+        fontSize: 42 * s, fontWeight: FontWeight.bold, letterSpacing: 2 * s);
   }
 
   static TextStyle role(BuildContext context) {
@@ -60,6 +57,17 @@ class AppTextStyles {
       fontSize: 18 * s,
       height: 1.7,
       color: Colors.grey,
+    );
+  }
+
+  static TextStyle projectoverviewtopic(BuildContext context) {
+    final s = AppResponsive.scale(context);
+
+    return TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 25 * s,
+      height: 1.7,
+      letterSpacing: 0.5,
     );
   }
 }

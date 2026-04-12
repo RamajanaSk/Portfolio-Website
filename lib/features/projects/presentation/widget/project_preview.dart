@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:ramajana05/features/projects/widget/project_header.dart';
-
-import '../../../Data/Models/Project.dart' show Project;
+import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_header.dart';
 
 class ProjectPreview extends StatelessWidget {
   final Project project;

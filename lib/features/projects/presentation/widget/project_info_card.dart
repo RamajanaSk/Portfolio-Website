@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/features/projects/widget/tech_chip.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/features/projects/presentation/widget/tech_chip.dart';
 
 class ProjectInfoCard extends StatelessWidget {
   final String technologies;
@@ -24,23 +25,18 @@ class ProjectInfoCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔥 TECHNOLOGIES (SPEZIAL ROW)
         ProjectTechnologiesRow(
           technologies: technologies,
         ),
-
         const SizedBox(height: 12),
-
-        _buildRow("DESCRIPTION", description),
+        _buildRow(context, "DESCRIPTION", description),
         const SizedBox(height: 12),
-
-        _buildRow("ROLE AND CONTRIBUTION", role),
+        _buildRow(context, "ROLE AND CONTRIBUTION", role),
         const SizedBox(height: 12),
-
-        _buildRow("OUTCOME", outcome),
+        _buildRow(context, "OUTCOME", outcome),
         const SizedBox(height: 12),
-
         _buildRow(
+          context,
           "TIME PERIOD",
           _formatDateRange(startDate, endDate),
         ),
@@ -48,26 +44,22 @@ class ProjectInfoCard extends StatelessWidget {
     );
   }
 
-  Widget _buildRow(String title, String value) {
+  Widget _buildRow(BuildContext context, String title, String value) {
+    final textTheme = Theme.of(context).textTheme;
+
     return RichText(
       text: TextSpan(
+        style: textTheme.bodyMedium?.copyWith(color: Colors.white70),
         children: [
           TextSpan(
             text: "$title: ",
-            style: const TextStyle(
+            style: textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: 14,
-              letterSpacing: 0.5,
             ),
           ),
           TextSpan(
             text: value.toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-              height: 1.5,
-            ),
           ),
         ],
       ),
@@ -95,16 +87,11 @@ class ProjectTechnologiesRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "TECHNOLOGIES & PLATFORM:",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 17,
-            letterSpacing: 0.5,
-          ),
+        Text(
+          "TECHNOLOGIES & PLATFORM",
+          style: AppTextStyles.projectoverviewtopic(context),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 10),
         Wrap(
           spacing: 6,
           runSpacing: 6,

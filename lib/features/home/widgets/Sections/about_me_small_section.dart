@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
+import 'package:ramajana05/features/home/widgets/skill_chart.dart';
 import 'package:ramajana05/features/home/widgets/skill_chip.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
-  const AboutMeSmallSection({super.key});
+  AboutMeSmallSection({super.key});
 
+  final skills = [
+    SkillStat(
+      name: "Flutter",
+      value: 0.9,
+      color: Colors.cyan,
+    ),
+    SkillStat(
+      name: "UI/UX",
+      value: 0.8,
+      color: Colors.purple,
+    ),
+    SkillStat(
+      name: "Backend",
+      value: 0.65,
+      color: Colors.pink,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
@@ -47,7 +65,6 @@ class AboutMeSmallSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔥 HEADLINE
         const Text(
           "I build mobile apps that connect digital and real-world experiences.",
           style: TextStyle(
@@ -59,7 +76,6 @@ class AboutMeSmallSection extends StatelessWidget {
 
         const SizedBox(height: 16),
 
-        // 🧠 TEXT
         const Text(
           "Focused on Flutter development, I create clean, scalable applications with strong UI design and real-world integration. I enjoy combining technical precision with creative problem-solving to build meaningful user experiences.",
           style: TextStyle(
@@ -70,30 +86,28 @@ class AboutMeSmallSection extends StatelessWidget {
         ),
 
         const SizedBox(height: 20),
-
-        // 👇 SKILL CHIPS
-        const Row(
-          children: [
-            SkillChip(label: "Mobile Development"),
-            SizedBox(width: 12),
-            SkillChip(label: "UI / UX Design"),
-            SizedBox(width: 12),
-            SkillChip(label: "Backend Development"),
-          ],
-        ),
+        //const Row(
+        //children: [
+        //SkillChip(label: "Mobile Development"),
+        //SizedBox(width: 12),
+        //SkillChip(label: "UI / UX Design"),
+        //SizedBox(width: 12),
+        //SkillChip(label: "Backend Development"),
+        //],
+        //),
 
         const SizedBox(height: 28),
-
-        // 🚀 CTA BUTTON (clean + fits your design)
+        SkillBars(skills: skills),
+        const SizedBox(height: 28),
         TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
             foregroundColor: Colors.purpleAccent,
           ),
-          child: Row(
+          child: const Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text(
                 "Learn more about me",
                 style: TextStyle(
@@ -112,12 +126,12 @@ class AboutMeSmallSection extends StatelessWidget {
 
   Widget _buildImage() {
     return Container(
-      width: 300,
-      height: 300,
+      width: 400,
+      height: 450,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
-          image: AssetImage("assets/me_cv.png"),
+          image: AssetImage("assets/me_cvv.png"),
           fit: BoxFit.cover,
         ),
       ),

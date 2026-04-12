@@ -49,7 +49,6 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔍 SEARCH BAR
         TextField(
           decoration: InputDecoration(
             hintText: 'Search projects...',
@@ -65,10 +64,7 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
             applyFilter();
           },
         ),
-
         const SizedBox(height: 12),
-
-        // 🏷️ TECH FILTER CHIPS
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -88,10 +84,12 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
                   applyFilter();
                 });
               },
-              selectedColor: Colors.black,
-              checkmarkColor: Colors.white,
+              selectedColor: Theme.of(context).colorScheme.onPrimary,
+              checkmarkColor: Theme.of(context).colorScheme.onSurface,
               labelStyle: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.onSurface
+                    : Theme.of(context).colorScheme.onSurface,
               ),
             );
           }).toList(),
