@@ -26,21 +26,19 @@ class AboutMeScreen extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 60),
-          // 🔥 HERO / TITLE
-          const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80),
-              child: SectionHeaderText("GET TO KNOW ME")),
-
-          const SizedBox(height: 20),
 
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 80),
-            child: AboutMeSection(),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                SectionHeaderText("GET TO KNOW ME"),
+                SizedBox(height: 20),
+                AboutMeSection(),
+              ],
+            ),
           ),
 
-          const SizedBox(height: 60),
-
-          // 🔥 EXPERIENCE + EDUCATION
           Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1200),

@@ -8,12 +8,12 @@ import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/core/widgets/custome_drawer_menu.dart';
 import 'package:ramajana05/core/widgets/dropdown/custome_dropdown_menu.dart';
 import 'package:ramajana05/core/widgets/top_bar.dart';
-import 'package:ramajana05/features/Home/HomeScreen.dart';
 
 import 'package:ramajana05/features/Projects/ProjectListScreen.dart';
 import 'package:ramajana05/features/Projects/ProjectDetailScreen.dart';
 import 'package:ramajana05/features/about/presentation/AboutMeScreen.dart';
 import 'package:ramajana05/features/contact/contact_screen.dart';
+import 'package:ramajana05/features/home/presentation/HomeScreen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -30,17 +30,10 @@ class _MainLayoutState extends State<MainLayout> {
   bool _isMouseOverMenu = false;
   Timer? _hideMenuTimer;
 
-  final List<Widget> _pages = [
-    const Homescreen(title: "Homepage"),
-    AboutMeScreen(),
-    const ContactScreen(),
-  ];
-
   @override
   void initState() {
     super.initState();
 
-    // initial route ONLY ONCE
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _handleRoute(_getCurrentPath());
     });
@@ -99,18 +92,10 @@ class _MainLayoutState extends State<MainLayout> {
     return Scaffold(
       appBar: TopBar(
         title: 'RAMAJANA SKOPLJAK',
-        onHomePressed: () {
-          _navigateTo('/');
-        },
-        onAboutMePressed: () {
-          _navigateTo('/about');
-        },
-        onProjectPressed: () {
-          _navigateTo('/projects');
-        },
-        onContactPressed: () {
-          _navigateTo('/contact');
-        },
+        onHomePressed: () => _navigateTo('/'),
+        onAboutMePressed: () => _navigateTo('/about'),
+        onProjectPressed: () => _navigateTo('/projects'),
+        onContactPressed: () => _navigateTo('/contact'),
         isDropdownVisible: _isMenuVisible,
       ),
       body: Stack(
@@ -132,10 +117,26 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
+  // ✅ FIXED: dynamic page building
   Widget _buildCurrentPage() {
-    // HOME / ABOUT
+    // HOME / ABOUT / CONTACT
     if (_currentIndex != 3) {
-      return _pages[_currentIndex];
+      if (_currentIndex == 0) {
+        return Homescreen(
+          title: "Homepage",
+          onAboutMePressed: () {
+            _navigateTo('/about');
+          },
+        );
+      }
+
+      if (_currentIndex == 1) {
+        return const AboutMeScreen();
+      }
+
+      if (_currentIndex == 2) {
+        return const ContactScreen();
+      }
     }
 
     // PROJECT LIST
@@ -143,7 +144,7 @@ class _MainLayoutState extends State<MainLayout> {
       return ProjectListScreen(
         onProjectSelected: (project) {
           final slug = project.name.toLowerCase().replaceAll(' ', '-');
-          _navigateTo('/projects/$slug'); // ✅ ONLY THIS
+          _navigateTo('/projects/$slug');
         },
       );
     }
@@ -151,27 +152,8 @@ class _MainLayoutState extends State<MainLayout> {
     // PROJECT DETAIL
     return ProjectDetailScreen(
       project: _selectedProject!,
-      onBack: () {}, // not used anymore
+      onBack: () {},
     );
-  }
-
-  void _toggleMenuVisibility() {
-    bool newState = !_isMenuVisible;
-    _setMenuVisibility(newState);
-
-    if (MediaQuery.of(context).size.width < 600 && newState) {
-      _resetHideMenuTimer();
-    }
-  }
-
-  void _setMenuVisibility(bool isVisible) {
-    setState(() {
-      _isMenuVisible = isVisible;
-
-      if (!isVisible || MediaQuery.of(context).size.width < 600) {
-        _cancelHideMenuTimer();
-      }
-    });
   }
 
   void _setMouseOverMenu(bool isOver) {
@@ -221,7 +203,7 @@ class _MainLayoutState extends State<MainLayout> {
     final hash = html.window.location.hash;
 
     if (hash.isNotEmpty && hash.startsWith('#')) {
-      return hash.substring(1); // remove #
+      return hash.substring(1);
     }
 
     return html.window.location.pathname ?? '/';

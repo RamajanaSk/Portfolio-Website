@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/core/widgets/section_header_text.dart';
 
 class ProjectAboutSection extends StatelessWidget {
   final Project project;
@@ -16,20 +17,12 @@ class ProjectAboutSection extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🔥 LEFT → TEXT
           Expanded(
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "ABOUT",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                ),
+                const SectionHeaderText("ABOUT"),
                 const SizedBox(height: 16),
                 Text(
                   project.projectReason.isNotEmpty
@@ -43,10 +36,7 @@ class ProjectAboutSection extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(width: 40),
-
-          // 🔥 RIGHT → IMAGE
           Expanded(
             flex: 1,
             child: ClipRRect(

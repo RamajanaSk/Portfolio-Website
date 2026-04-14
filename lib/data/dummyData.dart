@@ -46,7 +46,7 @@ final List<Project> dummyProjects = [
       ),
     ],
     technologies: ['Flutter', 'Unity', 'C#', 'OpenStreetMap', 'Geolocation'],
-    githubUrl: null,
+    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: 'images/traveler/traveler_logo.png',
@@ -83,7 +83,6 @@ final List<Project> dummyProjects = [
     },
   ),
 
-  // 🔥 2. FITNESS TRACKER
   Project(
     id: '2',
     typ: ProjectType.mobileApp,
@@ -111,7 +110,7 @@ final List<Project> dummyProjects = [
       ),
     ],
     technologies: ['Flutter', 'Dart'],
-    githubUrl: null,
+    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: '',
@@ -201,7 +200,7 @@ final List<Project> dummyProjects = [
       ),
     ],
     technologies: ['Unity'],
-    githubUrl: null,
+    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: 'images/forest/forest_logo.png',

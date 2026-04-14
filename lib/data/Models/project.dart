@@ -30,7 +30,7 @@ class Project {
   final List<String> technologies; // z.B. ["Flutter", "Dart", "REST"]
 
   // Links
-  final String? githubUrl;
+  final String githubUrl;
   final String? liveDemoUrl;
   final String? apkUrl;
 
@@ -68,7 +68,7 @@ class Project {
     this.universityContext,
     required this.platformLinks,
     required this.technologies,
-    this.githubUrl,
+    required this.githubUrl,
     this.liveDemoUrl,
     this.apkUrl,
     required this.logoPicture,
@@ -102,6 +102,7 @@ class Project {
         "longDescription": longDescription,
         "projectReason": projectReason,
         "hexcolor": hexcolor,
+        "githuburl": githubUrl,
         "logoPicture": logoPicture,
         "previewPicture": previewPicture,
         "mockupPicture": mockupPicture,

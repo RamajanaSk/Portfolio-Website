@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/features/projects/presentation/widget/project_color_year_card.dart';
+
 import 'package:ramajana05/features/projects/presentation/widget/project_header.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_info_card.dart';
 
@@ -31,7 +31,7 @@ class Projectoverviewsection extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 5,
-                      child: ProjectHeaderSection(project: project),
+                      child: ProjectHeader(project: project),
                     ),
                     const SizedBox(height: 24),
                     Expanded(

@@ -9,6 +9,6 @@ class ProjectPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProjectHeaderSection(project: project);
+    return ProjectHeader(project: project);
   }
 }

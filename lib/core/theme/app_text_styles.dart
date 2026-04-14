@@ -70,4 +70,15 @@ class AppTextStyles {
       letterSpacing: 0.5,
     );
   }
+
+  static TextStyle buttonthick(BuildContext context) {
+    final s = AppResponsive.scale(context);
+
+    return TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 14 * s, // slightly smaller, button-like
+      color: Colors.white,
+      letterSpacing: 0.3,
+    );
+  }
 }

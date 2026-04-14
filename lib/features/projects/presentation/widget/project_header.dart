@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProjectHeaderSection extends StatelessWidget {
+class ProjectHeader extends StatelessWidget {
   final Project project;
 
-  const ProjectHeaderSection({
+  const ProjectHeader({
     super.key,
     required this.project,
   });
@@ -28,6 +30,7 @@ class ProjectHeaderSection extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -41,6 +44,37 @@ class ProjectHeaderSection extends StatelessWidget {
               ),
             ),
           ),
+
+          Positioned(
+            top: 16,
+            right: 16,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: const FaIcon(
+                  FontAwesomeIcons.github,
+                  size: 22,
+                ),
+                color: Colors.white,
+                tooltip: "View on GitHub",
+                onPressed: () async {
+                  final url = Uri.parse(project.githubUrl);
+
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(
+                      url,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+
+          // Content
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -50,7 +84,7 @@ class ProjectHeaderSection extends StatelessWidget {
                   project.name.toUpperCase(),
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 36,
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
@@ -60,7 +94,7 @@ class ProjectHeaderSection extends StatelessWidget {
                   project.catchPhrase,
                   style: const TextStyle(
                     color: Colors.white70,
-                    fontSize: 20,
+                    fontSize: 25,
                     height: 1.4,
                   ),
                 ),

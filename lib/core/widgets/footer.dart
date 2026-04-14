@@ -6,7 +6,7 @@ class Footer extends StatelessWidget {
   const Footer({super.key});
 
   Future<void> _openEmail() async {
-    final uri = Uri.parse('mailto:ramajana05@gmail.com');
+    final uri = Uri.parse('mailto:ramajana1205@aol.com');
     await launchUrl(uri);
   }
 

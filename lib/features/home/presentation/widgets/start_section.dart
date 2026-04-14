@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/features/home/widgets/start_header_text.dart';
-import 'package:ramajana05/features/home/widgets/start_header_picture.dart';
+import 'package:ramajana05/features/home/presentation/widgets/start_header_picture.dart';
+import 'package:ramajana05/features/home/presentation/widgets/start_header_text.dart';
 
 class StartSection extends StatelessWidget {
   const StartSection({super.key});
@@ -13,16 +13,16 @@ class StartSection extends StatelessWidget {
         final isMobile = width < 900;
 
         if (isMobile) {
-          return Column(
+          return const Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               GTKMLeftSideWidget(),
               SizedBox(height: 40),
               GTKMRightSideWidget(),
             ],
           );
         } else {
-          return Row(
+          return const Row(
             children: const [
               Expanded(child: GTKMRightSideWidget()),
               Expanded(child: GTKMLeftSideWidget()),

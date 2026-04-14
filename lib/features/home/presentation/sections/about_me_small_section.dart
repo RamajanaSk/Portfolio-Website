@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
-import 'package:ramajana05/features/home/widgets/skill_chart.dart';
-import 'package:ramajana05/features/home/widgets/skill_chip.dart';
+import 'package:ramajana05/features/home/data/skill_data.dart';
+import 'package:ramajana05/features/home/presentation/widgets/skill_chart.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
-  AboutMeSmallSection({super.key});
+  final VoidCallback onAboutMePressed;
 
-  final skills = [
-    SkillStat(
-      name: "Flutter",
-      value: 0.9,
-      color: Colors.cyan,
-    ),
-    SkillStat(
-      name: "UI/UX",
-      value: 0.8,
-      color: Colors.purple,
-    ),
-    SkillStat(
-      name: "Backend",
-      value: 0.65,
-      color: Colors.pink,
-    ),
-  ];
+  const AboutMeSmallSection({
+    super.key,
+    required this.onAboutMePressed,
+  });
+
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
@@ -73,9 +61,7 @@ class AboutMeSmallSection extends StatelessWidget {
             height: 1.4,
           ),
         ),
-
         const SizedBox(height: 16),
-
         const Text(
           "Focused on Flutter development, I create clean, scalable applications with strong UI design and real-world integration. I enjoy combining technical precision with creative problem-solving to build meaningful user experiences.",
           style: TextStyle(
@@ -84,36 +70,31 @@ class AboutMeSmallSection extends StatelessWidget {
             color: Colors.white70,
           ),
         ),
+        const SizedBox(height: 28),
 
-        const SizedBox(height: 20),
-        //const Row(
-        //children: [
-        //SkillChip(label: "Mobile Development"),
-        //SizedBox(width: 12),
-        //SkillChip(label: "UI / UX Design"),
-        //SizedBox(width: 12),
-        //SkillChip(label: "Backend Development"),
-        //],
-        //),
+        // Skill bars
+        SkillBars(
+          skills: skills
+              .map((skill) => SkillStat(
+                    name: skill.name,
+                    value: skill.value,
+                    color: skill.color,
+                  ))
+              .toList(),
+        ),
 
         const SizedBox(height: 28),
-        SkillBars(skills: skills),
-        const SizedBox(height: 28),
+
         TextButton(
-          onPressed: () {},
+          onPressed: onAboutMePressed,
           style: TextButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-            foregroundColor: Colors.purpleAccent,
           ),
           child: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 "Learn more about me",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
               ),
               SizedBox(width: 6),
               Icon(Icons.arrow_forward, size: 18),
@@ -131,7 +112,7 @@ class AboutMeSmallSection extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
-          image: AssetImage("assets/me_cvv.png"),
+          image: AssetImage("assets/me_cv.png"),
           fit: BoxFit.cover,
         ),
       ),

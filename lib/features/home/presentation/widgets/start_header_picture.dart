@@ -14,7 +14,6 @@ class GTKMRightSideWidget extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              // 🔥 GLOW (unten)
               ShaderMask(
                 blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) {
@@ -31,10 +30,9 @@ class GTKMRightSideWidget extends StatelessWidget {
                   ).createShader(bounds);
                 },
                 child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(
-                      sigmaX: 12, sigmaY: 12), // 👈 Glow Stärke
+                  imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                   child: Opacity(
-                    opacity: 0.2, // 👈 Glow Intensität
+                    opacity: 0.2,
                     child: Stack(
                       children: [
                         _outline(offset: Offset(-1, 0)),
@@ -46,7 +44,6 @@ class GTKMRightSideWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
               ShaderMask(
                 blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) {
@@ -63,10 +60,9 @@ class GTKMRightSideWidget extends StatelessWidget {
                   ).createShader(bounds);
                 },
                 child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(
-                      sigmaX: 10, sigmaY: 10), // 👈 Glow Stärke
+                  imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Opacity(
-                    opacity: 1, // 👈 Glow Intensität
+                    opacity: 1,
                     child: Stack(
                       children: [
                         _outlineMain(offset: Offset(-1, 0)),
@@ -78,8 +74,6 @@ class GTKMRightSideWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // ✨ SHARP STROKE (oben)
               ShaderMask(
                 blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) {
@@ -104,12 +98,10 @@ class GTKMRightSideWidget extends StatelessWidget {
                   ],
                 ),
               ),
-
               ClipRect(
                 child: Align(
                   alignment: Alignment.topCenter,
-                  heightFactor:
-                      0.8, // 👈 adjust this (0.7–0.9 depending how much to cut)
+                  heightFactor: 0.8,
                   child: Image.asset(
                     'assets/me_cut.png',
                     fit: BoxFit.cover,

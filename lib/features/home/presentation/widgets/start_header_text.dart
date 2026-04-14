@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/core/widgets/buttons/gradient_button.dart';
+import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
 import 'package:ramajana05/core/widgets/decorative_line.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
 
 class GTKMLeftSideWidget extends StatelessWidget {
   const GTKMLeftSideWidget({super.key});
@@ -36,7 +39,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
                 style: AppTextStyles.name(context),
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             FittedBox(
               fit: BoxFit.scaleDown,
               alignment: Alignment.centerLeft,
@@ -55,7 +58,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             FittedBox(
               fit: BoxFit.scaleDown,
               alignment: Alignment.centerLeft,
@@ -67,85 +70,27 @@ class GTKMLeftSideWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SocialLinksRow(),
-                SizedBox(width: 12), // control gap here
-                _buildButtons(),
+                const SocialLinksRow(),
+                const SizedBox(width: 12),
+                _buildButtons(context),
               ],
             ),
           ],
         ));
   }
 
-  Widget _buildButtons() {
+  Widget _buildButtons(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Gradient Button (Download CV)
-        Container(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFFFF2D95), // pink
-                Color(0xFF8A2BE2), // purple
-              ],
-            ),
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0xFFFF2D95).withOpacity(0.4),
-                blurRadius: 12,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 14,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-            child: const Text(
-              "Download CV",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-
-        const SizedBox(width: 12),
-
-        // Outline Neon Button (Portfolio)
-        OutlinedButton(
+        GradientButton(
+          text: "Download CV",
           onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 14,
-            ),
-            side: const BorderSide(
-              color: Color(0xFF8A2BE2),
-              width: 1.5,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            foregroundColor: const Color(0xFF8A2BE2),
-          ),
-          child: const Text(
-            "View Portfolio →",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+        ),
+        const SizedBox(width: 12),
+        NeonOutlineButton(
+          text: "View Portfolio →",
+          onPressed: () {},
         ),
       ],
     );

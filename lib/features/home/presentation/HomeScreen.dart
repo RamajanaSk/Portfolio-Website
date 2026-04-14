@@ -4,43 +4,26 @@ import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 
 import 'package:ramajana05/core/widgets/full_width_text.dart';
-import 'package:ramajana05/core/widgets/metric_item.dart';
 
-import 'package:ramajana05/features/home/widgets/Sections/about_me_small_section.dart';
-import 'package:ramajana05/features/home/widgets/Sections/featured_project_section.dart';
-import 'package:ramajana05/features/home/widgets/skill_chart.dart';
-
-import 'package:ramajana05/features/home/widgets/start_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/featured_project_section.dart';
+import 'package:ramajana05/features/home/presentation/widgets/start_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key, required this.title});
-
   final String title;
+  final VoidCallback onAboutMePressed;
+  const Homescreen({
+    super.key,
+    required this.title,
+    required this.onAboutMePressed,
+  });
 
   @override
   State<Homescreen> createState() => _HomescreenState();
 }
 
 class _HomescreenState extends State<Homescreen> {
-  final skills = [
-    SkillStat(
-      name: "Flutter",
-      value: 0.9,
-      color: Colors.cyan,
-    ),
-    SkillStat(
-      name: "UI/UX",
-      value: 0.8,
-      color: Colors.purple,
-    ),
-    SkillStat(
-      name: "Backend",
-      value: 0.65,
-      color: Colors.pink,
-    ),
-  ];
-
   final project = Project(
     previewPicture: 'images/traveler/traveler_main.png',
     mockupPicture: 'images/forest/forest_main.png',
@@ -60,7 +43,9 @@ class _HomescreenState extends State<Homescreen> {
               child: const StartSection(),
             ),
             const NeonSectionDivider(),
-            AboutMeSmallSection(),
+            AboutMeSmallSection(
+              onAboutMePressed: widget.onAboutMePressed,
+            ),
             const NormalSectionDivider(),
             const FullWidthText(
                 text:
@@ -76,16 +61,16 @@ class _HomescreenState extends State<Homescreen> {
             // ],
             //),
             const NormalSectionDivider(),
-            Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: [
-                _badge("Flutter"),
-                _badge("Dart"),
-                _badge("Unity"),
-                _badge("Kotlin"),
-              ],
-            ),
+            //Wrap(
+            // spacing: 10,
+            // runSpacing: 10,
+            // children: [
+            //  _badge("Flutter"),
+            //  _badge("Dart"),
+            //  _badge("Unity"),
+            //  _badge("Kotlin"),
+            // ],
+            //),
             const NeonSectionDivider(),
             const FullWidthText(text: "Let’s build something meaningful."),
             const NeonSectionDivider(),
