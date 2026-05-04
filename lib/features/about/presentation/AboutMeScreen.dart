@@ -42,9 +42,9 @@ class AboutMeScreen extends StatelessWidget {
           Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1200),
-              child: Row(
+              child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Expanded(child: ExperienceSection()),
                   SizedBox(width: 80),
                   Expanded(child: EducationSection()),

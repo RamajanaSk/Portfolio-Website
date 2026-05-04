@@ -117,7 +117,6 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
-  // ✅ FIXED: dynamic page building
   Widget _buildCurrentPage() {
     // HOME / ABOUT / CONTACT
     if (_currentIndex != 3) {

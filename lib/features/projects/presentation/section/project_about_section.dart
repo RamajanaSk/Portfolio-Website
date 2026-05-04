@@ -29,7 +29,7 @@ class ProjectAboutSection extends StatelessWidget {
                       ? project.projectReason
                       : project.longDescription,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     height: 1.5,
                   ),
                 ),
@@ -39,17 +39,23 @@ class ProjectAboutSection extends StatelessWidget {
           const SizedBox(width: 40),
           Expanded(
             flex: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: project.previewPicture.isNotEmpty
-                  ? Image.asset(
-                      project.previewPicture,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(
-                      height: 250,
-                      color: Colors.black12,
-                    ),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: project.aboutPicture.isNotEmpty
+                    ? SizedBox(
+                        height: 300,
+                        child: Image.asset(
+                          project.aboutPicture,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Container(
+                        height: 120,
+                        color: Colors.black12,
+                      ),
+              ),
             ),
           ),
         ],

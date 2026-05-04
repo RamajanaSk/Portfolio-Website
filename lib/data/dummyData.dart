@@ -6,7 +6,6 @@ import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final List<Project> dummyProjects = [
-  // 🔥 1. TRAVELER
   Project(
     id: '1',
     typ: ProjectType.mobileApp,
@@ -34,12 +33,12 @@ final List<Project> dummyProjects = [
         url: "",
         tooltip: "Unity",
       ),
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.flutter,
         url: "",
         tooltip: "Flutter",
       ),
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.map,
         url: "",
         tooltip: "OpenStreetMap",
@@ -51,8 +50,14 @@ final List<Project> dummyProjects = [
     apkUrl: null,
     logoPicture: 'images/traveler/traveler_logo.png',
     previewPicture: 'images/traveler/traveler_main.png',
+    aboutPicture: 'images/traveler/traveler_main.png',
     mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: ['images/traveler/3D_unity_map.png'],
+    gallery: [
+      'images/traveler/3D_unity_map.png',
+      'images/traveler/3D_top_view_stuttgart.png',
+      'images/traveler/3D_side_view.png',
+      'images/traveler/3D_player.png',
+    ],
     hexcolor: '#854BED',
     keyFeatures: [
       'Real-time location tracking and visualization',
@@ -82,7 +87,6 @@ final List<Project> dummyProjects = [
       ),
     },
   ),
-
   Project(
     id: '2',
     typ: ProjectType.mobileApp,
@@ -98,12 +102,12 @@ final List<Project> dummyProjects = [
     isSolo: true,
     role: 'Flutter Developer',
     platformLinks: [
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.flutter,
         url: "https://flutter.dev",
         tooltip: "Flutter",
       ),
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.github,
         url: "",
         tooltip: "GitHub",
@@ -114,6 +118,7 @@ final List<Project> dummyProjects = [
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: '',
+    aboutPicture: '',
     previewPicture: '',
     mockupPicture: [],
     gallery: [],
@@ -129,8 +134,6 @@ final List<Project> dummyProjects = [
       ),
     },
   ),
-
-  // 🔥 3. CLOCK LOGIC
   Project(
     id: '3',
     typ: ProjectType.mobileApp,
@@ -145,12 +148,12 @@ final List<Project> dummyProjects = [
     isSolo: true,
     role: 'Software Developer',
     platformLinks: [
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.code,
         url: "https://github.com/Ramajana05/Programming-Challenge",
         tooltip: "Dart",
       ),
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.github,
         url: "https://github.com/Ramajana05/Programming-Challenge",
         tooltip: "GitHub",
@@ -161,6 +164,7 @@ final List<Project> dummyProjects = [
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: '',
+    aboutPicture: '',
     previewPicture: '',
     mockupPicture: [],
     gallery: [],
@@ -176,8 +180,6 @@ final List<Project> dummyProjects = [
       ),
     },
   ),
-
-  // 🔥 Forest
   Project(
     id: '4',
     typ: ProjectType.virtualReality,
@@ -193,7 +195,7 @@ final List<Project> dummyProjects = [
     isSolo: false,
     role: 'Unity Developer',
     platformLinks: [
-      PlatformLink(
+      const PlatformLink(
         icon: FontAwesomeIcons.gamepad,
         url: "",
         tooltip: "Unity",
@@ -204,6 +206,7 @@ final List<Project> dummyProjects = [
     liveDemoUrl: null,
     apkUrl: null,
     logoPicture: 'images/forest/forest_logo.png',
+    aboutPicture: 'images/forest/about_me.png',
     previewPicture: 'images/forest/forest_main.png',
     mockupPicture: ['images/traveler/traveler_logo.png'],
     gallery: ['images/forest/forest_digital.png'],
@@ -215,6 +218,70 @@ final List<Project> dummyProjects = [
       SectionType.about: ProjectSection(
         type: SectionType.about,
         text: '',
+        imageUrl: '',
+      ),
+    },
+  ),
+  Project(
+    id: '5',
+    typ: ProjectType.virtualReality,
+    name: 'Bike Simulator VR',
+    shortDescription: 'Shared VR Experience',
+    catchPhrase: '',
+    longDescription:
+        'The Bike Simulator VR is a shared virtual reality experience designed to strengthen the connection between the physical and digital world. '
+        'The goal is to motivate users to stay active and explore real environments instead of passively consuming virtual content. '
+        'Built with Unity, the application features an immersive 3D environment where users can interact and experience movement-based gameplay together. '
+        'The integration of real-world activity with a social VR layer creates an engaging and interactive experience.',
+    projectReason:
+        'The project was developed to explore how virtual reality can be used to promote physical activity and social interaction instead of isolation.',
+    startDate: DateTime(2022, 04),
+    endDate: DateTime(2022, 07),
+    durationInMonths: 2,
+    isSolo: false,
+    role: 'Unity Developer',
+    platformLinks: [
+      const PlatformLink(
+        icon: FontAwesomeIcons.gamepad,
+        url: "",
+        tooltip: "Unity",
+      ),
+    ],
+    technologies: ['Unity', 'C#', 'VR'],
+    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
+    liveDemoUrl: null,
+    apkUrl: null,
+    logoPicture: 'images/forest/forest_logo.png',
+    previewPicture: 'images/forest/forest_main.png',
+    aboutPicture: '',
+    mockupPicture: ['images/traveler/traveler_logo.png'],
+    gallery: ['images/forest/forest_digital.png'],
+    hexcolor: '#0FFF82',
+    keyFeatures: [
+      'Shared VR environment with multiple users',
+      'Real-time user interaction',
+      'Immersive 3D world',
+      'Movement-based gameplay',
+      'Social VR experience',
+    ],
+    challenges: [
+      'Multiplayer synchronization in VR',
+      'Real-time data handling',
+      'Performance optimization in Unity',
+      'Designing intuitive VR interactions',
+    ],
+    learnings: [
+      'Unity VR development',
+      'Multiplayer concepts',
+      'Performance optimization',
+      'User experience design in VR',
+    ],
+    sections: {
+      SectionType.about: ProjectSection(
+        type: SectionType.about,
+        text:
+            'Bike Simulator VR is a collaborative virtual reality experience that combines physical activity with immersive gameplay. '
+            'It focuses on creating meaningful interaction between users in a shared 3D environment.',
         imageUrl: '',
       ),
     },

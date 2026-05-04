@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/Core/widgets/Footer.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 
@@ -31,8 +32,11 @@ class ProjectDetailScreen extends StatelessWidget {
             const NeonSectionDivider(),
             ProjectAboutSection(project: project),
             ProjectShowcaseSection(project: project),
-            ProjectLearningsSection(project: project),
-            ProjectChallengesSection(key: key, project: project)
+            //ProjectLearningsSection(project: project),
+            //ProjectChallengesSection(key: key, project: project)
+            const SizedBox(height: 50),
+            const NeonSectionDivider(),
+            const Footer(),
           ],
         ),
       ),

@@ -37,8 +37,9 @@ class Project {
   // Media
   final String logoPicture;
   final String previewPicture;
+  final String aboutPicture;
   final List<String> mockupPicture;
-  final List<String> gallery; // 🔥 wichtig für Portfolio
+  final List<String> gallery;
 
   // Design
   String hexcolor;
@@ -72,6 +73,7 @@ class Project {
     this.liveDemoUrl,
     this.apkUrl,
     required this.logoPicture,
+    required this.aboutPicture,
     required this.previewPicture,
     required this.mockupPicture,
     required this.gallery,
@@ -104,6 +106,7 @@ class Project {
         "hexcolor": hexcolor,
         "githuburl": githubUrl,
         "logoPicture": logoPicture,
+        "aboutPicture": aboutPicture,
         "previewPicture": previewPicture,
         "mockupPicture": mockupPicture,
         "sections": sections.map((k, v) => MapEntry(k.name, v.toMap())),
@@ -133,6 +136,7 @@ class Project {
       apkUrl: map["apkUrl"],
       hexcolor: map["hexcolor"],
       logoPicture: map["logoPicture"],
+      aboutPicture: map["aboutPicture"],
       previewPicture: map["previewPicture"],
       mockupPicture: List<String>.from(map["mockupPicture"] ?? []),
       gallery: List<String>.from(map["gallery"] ?? []),
