@@ -57,91 +57,106 @@ class _ProjectCarouselState extends State<ProjectCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // 🔥 PAGEVIEW
-        PageView.builder(
-          controller: _controller,
-          itemCount: widget.projects.length,
-          onPageChanged: (index) {
-            setState(() => currentIndex = index);
-          },
-          itemBuilder: (context, index) {
-            final project = widget.projects[index];
+    return SizedBox(
+      height: 420,
+      child: Stack(
+        children: [
+          // 🔥 PAGEVIEW
+          PageView.builder(
+            controller: _controller,
+            itemCount: widget.projects.length,
+            onPageChanged: (index) {
+              setState(() => currentIndex = index);
+            },
+            itemBuilder: (context, index) {
+              final project = widget.projects[index];
 
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: ProjectCard(
-                title: project.name,
-                description: project.shortDescription,
-                hexColor: project.hexcolor,
-                previewImage: project.previewPicture,
-                platformLinks: project.platformLinks,
-                date: "${project.startDate.year}",
-                githubUrl: project.githubUrl,
-                onTap: () => widget.onProjectTap(project),
-              ),
-            );
-          },
-        ),
-
-        // 🔥 LEFT ARROW
-        Positioned(
-          left: 8,
-          top: 0,
-          bottom: 0,
-          child: Center(
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                int prev = (currentIndex - 1) < 0
-                    ? widget.projects.length - 1
-                    : currentIndex - 1;
-                goToPage(prev);
-              },
-            ),
-          ),
-        ),
-
-        // 🔥 RIGHT ARROW
-        Positioned(
-          right: 8,
-          top: 0,
-          bottom: 0,
-          child: Center(
-            child: IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: () {
-                int next = (currentIndex + 1) % widget.projects.length;
-                goToPage(next);
-              },
-            ),
-          ),
-        ),
-
-        // 🔥 DOTS INDICATOR
-        Positioned(
-          bottom: 8,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(widget.projects.length, (index) {
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: currentIndex == index ? 12 : 8,
-                height: currentIndex == index ? 12 : 8,
-                decoration: BoxDecoration(
-                  color:
-                      currentIndex == index ? Colors.black : Colors.grey[400],
-                  shape: BoxShape.circle,
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 80,
+                  vertical: 20,
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ProjectCard(
+                    title: project.name,
+                    description: project.shortDescription,
+                    hexColor: project.hexcolor,
+                    previewImage: project.previewPicture,
+                    platformLinks: project.platformLinks,
+                    date: "${project.startDate.year}",
+                    githubUrl: project.githubUrl,
+                    onTap: () => widget.onProjectTap(project),
+                  ),
                 ),
               );
-            }),
+            },
           ),
-        ),
-      ],
+
+          // 🔥 LEFT ARROW
+          Positioned(
+            left: 8,
+            top: 0,
+            bottom: 0,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  int prev = (currentIndex - 1) < 0
+                      ? widget.projects.length - 1
+                      : currentIndex - 1;
+
+                  goToPage(prev);
+                },
+              ),
+            ),
+          ),
+
+          // 🔥 RIGHT ARROW
+          Positioned(
+            right: 8,
+            top: 0,
+            bottom: 0,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward_ios),
+                onPressed: () {
+                  int next = (currentIndex + 1) % widget.projects.length;
+
+                  goToPage(next);
+                },
+              ),
+            ),
+          ),
+
+          // 🔥 DOTS
+          Positioned(
+            bottom: 8,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                widget.projects.length,
+                (index) {
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    width: currentIndex == index ? 12 : 8,
+                    height: currentIndex == index ? 12 : 8,
+                    decoration: BoxDecoration(
+                      color: currentIndex == index
+                          ? Colors.black
+                          : Colors.grey[400],
+                      shape: BoxShape.circle,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

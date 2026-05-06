@@ -122,8 +122,7 @@ class GTKMRightSideWidget extends StatelessWidget {
           child: ClipRect(
             child: Align(
               alignment: Alignment.topCenter,
-              heightFactor:
-                  0.8, // 👈 adjust this (0.7–0.9 depending how much to cut)
+              heightFactor: 0.8,
               child: Image.asset(
                 'assets/me_cut.png',
                 fit: BoxFit.cover,

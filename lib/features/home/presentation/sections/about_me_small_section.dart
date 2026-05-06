@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
 import 'package:ramajana05/features/home/data/skill_data.dart';
 import 'package:ramajana05/features/home/presentation/widgets/skill_chart.dart';
@@ -71,8 +72,6 @@ class AboutMeSmallSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 28),
-
-        // Skill bars
         SkillBars(
           skills: skills
               .map((skill) => SkillStat(
@@ -82,24 +81,15 @@ class AboutMeSmallSection extends StatelessWidget {
                   ))
               .toList(),
         ),
-
         const SizedBox(height: 28),
-
-        TextButton(
-          onPressed: onAboutMePressed,
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-          ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Learn more about me",
-              ),
-              SizedBox(width: 6),
-              Icon(Icons.arrow_forward, size: 18),
-            ],
-          ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            NeonOutlineButton(
+              text: "Learn more about me",
+              onPressed: onAboutMePressed,
+            ),
+          ],
         ),
       ],
     );

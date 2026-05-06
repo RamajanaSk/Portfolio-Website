@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/buttons/gradient_button.dart';
 import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
 import 'package:ramajana05/core/widgets/decorative_line.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
-import 'package:ramajana05/core/theme/app_text_styles.dart';
 
 class GTKMLeftSideWidget extends StatelessWidget {
   const GTKMLeftSideWidget({super.key});
@@ -85,12 +85,24 @@ class GTKMLeftSideWidget extends StatelessWidget {
       children: [
         GradientButton(
           text: "Download CV",
-          onPressed: () {},
+          onPressed: () {
+            FileDownloader.downloadAsset(
+              assetPath: 'pdfs/cv.pdf',
+              fileName: 'Ramajana_Skopljak_CV.pdf',
+            );
+            //FileDownloader.openAsset(
+            //assetPath: 'pdfs/cv.pdf',
+            //);
+          },
         ),
         const SizedBox(width: 12),
         NeonOutlineButton(
-          text: "View Portfolio →",
-          onPressed: () {},
+          text: "View Portfolio",
+          onPressed: () {
+            FileDownloader.openAsset(
+              assetPath: 'pdfs/software_portfolio.pdf',
+            );
+          },
         ),
       ],
     );

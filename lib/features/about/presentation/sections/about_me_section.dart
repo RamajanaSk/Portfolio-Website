@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/widgets/social_links_row.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});
@@ -22,10 +23,7 @@ class AboutMeSection extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-
             const SizedBox(width: 40),
-
-            // 📝 TEXT + INFO
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,11 +36,9 @@ class AboutMeSection extends StatelessWidget {
                       color: textColor,
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
                   Text(
-                    "I’m a Fullstack Developer with a focus on mobile applications and interactive experiences. "
+                    "I’m a Mobile Developer with a focus on mobile applications and interactive experiences. "
                     "I have worked in agile customer projects, building frontend solutions and designing database structures. "
                     "Through my experience as a tutor, I’ve developed strong problem-solving and communication skills.",
                     style: TextStyle(
@@ -51,10 +47,7 @@ class AboutMeSection extends StatelessWidget {
                       color: textColor.withOpacity(0.8),
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
-                  // 🔹 INFO ROW
                   Wrap(
                     spacing: 20,
                     runSpacing: 10,
@@ -63,6 +56,8 @@ class AboutMeSection extends StatelessWidget {
                       _infoItem(Icons.cake, "12.05.2000"),
                       _infoItem(Icons.flag, "German"),
                       _infoItem(Icons.directions_car, "Driver’s License B"),
+                      SizedBox(height: 30),
+                      const SocialLinksRow(),
                     ],
                   ),
                 ],

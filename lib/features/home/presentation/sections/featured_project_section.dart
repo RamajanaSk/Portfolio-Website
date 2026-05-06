@@ -37,48 +37,18 @@ class FeaturedProjectSection extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔥 LEFT SIDE (IMAGES)
         Expanded(
-          flex: 3,
-          child: AspectRatio(
-            aspectRatio: 16 / 15, // 🔥 ONE height source
-            child: Row(
-              children: [
-                // LEFT BIG IMAGE
-                Expanded(
-                  flex: 2,
-                  child: _buildMainImage(),
-                ),
-
-                const SizedBox(width: 10),
-
-                // RIGHT STACKED IMAGES
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: _buildSmallImage(
-                          'images/traveler/3D_unity_map.png',
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Expanded(
-                        child: _buildSmallImage(
-                          'images/traveler/2D_unity_map.png',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: _buildMainImage(),
+              ),
+              const SizedBox(width: 10),
+            ],
           ),
         ),
-
         const SizedBox(width: 10),
-
-        // 🔥 RIGHT SIDE (TEXT)
         Expanded(
           flex: 2,
           child: _buildText(projects),
@@ -87,35 +57,17 @@ class FeaturedProjectSection extends StatelessWidget {
     );
   }
 
-  // =========================
-  // 📱 MOBILE
-  // =========================
   Widget _buildMobileLayout(List projects) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildMainImage(),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: _buildSmallImage('images/traveler/3D_unity_map.png'),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildSmallImage('images/traveler/2D_unity_map.png'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
         _buildText(projects),
       ],
     );
   }
 
-  // =========================
-  // 🖼️ MAIN IMAGE
-  // =========================
   Widget _buildMainImage() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -129,25 +81,6 @@ class FeaturedProjectSection extends StatelessWidget {
     );
   }
 
-  // =========================
-  // 🖼️ SMALL IMAGE
-  // =========================
-  Widget _buildSmallImage(String path) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: Image.asset(
-          path,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  // =========================
-  // 📝 TEXT
-  // =========================
   Widget _buildText(List projects) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

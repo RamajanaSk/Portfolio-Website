@@ -7,7 +7,7 @@ import 'package:ramajana05/core/widgets/full_width_text.dart';
 
 import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/featured_project_section.dart';
-import 'package:ramajana05/features/home/presentation/widgets/start_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/start_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 
 class Homescreen extends StatefulWidget {
