@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/widgets/background/neon_gradient_background.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 
@@ -19,12 +20,10 @@ class Footer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
       child: Column(
         children: [
-          // 🔹 TOP ROW (3 columns)
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // 🧠 BRAND / ABOUT
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,10 +47,7 @@ class Footer extends StatelessWidget {
                   ],
                 ),
               ),
-
               const SizedBox(width: 40),
-
-              // 🔗 NAVIGATION
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,16 +57,13 @@ class Footer extends StatelessWidget {
                             fontWeight: FontWeight.bold, color: textColor)),
                     const SizedBox(height: 10),
                     _navItem("Home"),
-                    _navItem("Projects"),
                     _navItem("About"),
+                    _navItem("Projects"),
                     _navItem("Contact"),
                   ],
                 ),
               ),
-
               const SizedBox(width: 40),
-
-              // 📬 CONTACT
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,17 +92,11 @@ class Footer extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 40),
-
-          // 🔗 SOCIALS
           const SocialLinksRow(),
-
           const SizedBox(height: 30),
-
-          // 🧾 COPYRIGHT
           Text(
-            '© 2025 RAMAJANA SKOPLJAK — BUILT WITH FLUTTER',
+            '© 2026 RAMAJANA SKOPLJAK — BUILT WITH FLUTTER',
             style: TextStyle(
               color: textColor.withOpacity(0.6),
               fontSize: 14,

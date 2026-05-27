@@ -8,7 +8,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onAboutMePressed;
   final VoidCallback? onProjectPressed;
   final VoidCallback? onContactPressed;
-  final bool isDropdownVisible; // Added to track dropdown visibility
+  final bool isDropdownVisible;
 
   TopBar({
     Key? key,
@@ -18,7 +18,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
     this.onAboutMePressed,
     this.onProjectPressed,
     this.onContactPressed,
-    required this.isDropdownVisible, // Ensure it's required
+    required this.isDropdownVisible,
   }) : super(key: key);
 
   @override

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
 
 class DecorativeLine extends StatelessWidget {
   final Color leftColor;
-  final Color rightColor;
   final double width;
   final double height;
 
   const DecorativeLine({
     super.key,
     required this.leftColor,
-    required this.rightColor,
     this.width = 150,
     this.height = 15,
   });
 
   @override
   Widget build(BuildContext context) {
-    final scale = AppResponsive.scale(context);
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
 
-    final w = width * scale;
-    final h = height * scale;
+    final w = width * s;
+    final h = height * s;
 
     return Row(
       children: [
@@ -32,15 +31,8 @@ class DecorativeLine extends StatelessWidget {
         Container(
           width: w,
           height: h,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                rightColor,
-                rightColor.withOpacity(0.6),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+          decoration: const BoxDecoration(
+            gradient: AppGradients.primary,
           ),
         ),
       ],

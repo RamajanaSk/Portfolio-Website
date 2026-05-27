@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
-  final String description;
+  final String catchPhrase;
   final String hexColor;
   final String? previewImage;
   final List<PlatformLink> platformLinks;
@@ -17,7 +16,7 @@ class ProjectCard extends StatelessWidget {
   const ProjectCard({
     super.key,
     required this.title,
-    required this.description,
+    required this.catchPhrase,
     required this.hexColor,
     required this.previewImage,
     required this.platformLinks,
@@ -45,7 +44,6 @@ class ProjectCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 🔥 LEFT COLOR BAR
             Container(
               width: 20,
               color: _hexToColor(hexColor),
@@ -53,7 +51,6 @@ class ProjectCard extends StatelessWidget {
 
             const SizedBox(width: 12),
 
-            // 🔥 TEXT CONTENT
             Expanded(
               flex: 4,
               child: Padding(
@@ -62,13 +59,14 @@ class ProjectCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      title.toUpperCase(),
+                      style: AppTextStyles.titleProjectCard(context),
                     ),
 
                     const SizedBox(height: 8),
 
                     Text(
-                      description,
+                      catchPhrase.toUpperCase(),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.description(context),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/features/about/data/sources/experience_data.dart';
-import 'package:ramajana05/features/about/presentation/widget/componets/timeline_item.dart';
+import 'package:ramajana05/features/about/presentation/componets/timeline_item.dart';
 
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
@@ -12,11 +12,10 @@ class ExperienceSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
       child: Column(
-        // ✅ removed Expanded
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "EXPERIENCE", // ✅ fixed title
+            "EXPERIENCE",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w700,

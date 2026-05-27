@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/widgets/background/neon_gradient_background.dart';
 
 class FullWidthText extends StatelessWidget {
   final String text;
@@ -10,16 +11,18 @@ class FullWidthText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(80),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w500,
+    return NeonGradientBackground(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(80),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w800,
+            ),
           ),
         ),
       ),

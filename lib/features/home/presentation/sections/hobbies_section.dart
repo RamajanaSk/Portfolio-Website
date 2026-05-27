@@ -10,16 +10,16 @@ class HobbiesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Hobbies',
+          const Text('Hobbies',
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           HobbyCard(hobbyName: 'Drawing', hobbyIcon: Icons.brush),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           HobbyCard(hobbyName: 'Gym', hobbyIcon: Icons.fitness_center),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           TwitchStreamCard(),
         ],
       ),

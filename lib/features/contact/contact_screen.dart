@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/widgets/section_header_text.dart';
+import 'package:ramajana05/core/widgets/bars/footer.dart';
+import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
+import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
+import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
+import 'package:ramajana05/core/widgets/full_width_text.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 import 'package:ramajana05/features/contact/service/contact_email_service.dart';
 
@@ -28,84 +32,89 @@ class _ContactScreenState extends State<ContactScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 80),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SectionHeaderText("CONTACT"),
-              const SizedBox(height: 20),
-              const Text(
-                'Let’s build something great together.\nFeel free to reach out for collaborations or opportunities.',
-                style: TextStyle(
-                  fontSize: 18,
-                  height: 1.5,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 40),
-              const Row(
-                children: [
-                  Icon(Icons.email_outlined),
-                  SizedBox(width: 10),
-                  Text(
-                    'ramajana1205@aol.com',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Row(
-                children: [
-                  Icon(Icons.location_on_outlined),
-                  SizedBox(width: 10),
-                  Text(
-                    'Stuttgart, Germany',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              const SocialLinksRow(),
-              const SizedBox(height: 50),
-              _ContactForm(
-                nameController: nameController,
-                emailController: emailController,
-                messageController: messageController,
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () async {
-                  await ContactEmailService.sendEmail(
-                    name: nameController.text,
-                    email: emailController.text,
-                    message: messageController.text,
-                  );
-
-                  if (!context.mounted) return;
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Email client opened'),
+      child: Column(
+        children: [
+          const NeonSectionDivider(),
+          const FullWidthText(text: "CONTACT"),
+          const NeonSectionDivider(),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.05,
+            ),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Let’s build something great together. Feel free to reach out for collaborations or opportunities.',
+                      style: TextStyle(
+                        fontSize: 18,
+                        height: 1.5,
+                        color: Colors.grey,
+                      ),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
-                  backgroundColor:
-                      isDark ? const Color(0xFFFF2D95) : Colors.black,
-                ),
-                child: const Text(
-                  'Send Message',
-                  style: TextStyle(fontSize: 16),
+                    const SizedBox(height: 40),
+                    const Row(
+                      children: [
+                        Icon(Icons.email_outlined),
+                        SizedBox(width: 10),
+                        Text(
+                          'ramajana1205@aol.com',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    const Row(
+                      children: [
+                        Icon(Icons.location_on_outlined),
+                        SizedBox(width: 10),
+                        Text(
+                          'Stuttgart, Germany',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    const SocialLinksRow(),
+                    const SizedBox(height: 50),
+                    _ContactForm(
+                      nameController: nameController,
+                      emailController: emailController,
+                      messageController: messageController,
+                    ),
+                    const SizedBox(height: 40),
+                    NeonOutlineButton(
+                      onPressed: () async {
+                        await ContactEmailService.sendEmail(
+                          name: nameController.text,
+                          email: emailController.text,
+                          message: messageController.text,
+                        );
+
+                        if (!context.mounted) return;
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Email client opened'),
+                          ),
+                        );
+                      },
+                      text: 'Send Message',
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          const SizedBox(height: 40),
+          const NeonSectionDivider(),
+          const Footer(),
+        ],
       ),
     );
   }

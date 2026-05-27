@@ -37,9 +37,9 @@ class _NeonSectionDividerState extends State<NeonSectionDivider>
       begin: Alignment(-1 + t, -1),
       end: Alignment(1 - t, 1),
       colors: const [
-        Color(0xFFFF2D95), // pink
-        Color(0xFF8A2BE2), // purple
-        Color(0xFF00CFFF), // blue
+        Color(0xFFFF2D95),
+        Color(0xFF8A2BE2),
+        Color(0xFF00CFFF),
       ],
       stops: const [0.0, 0.5, 1.0],
     );

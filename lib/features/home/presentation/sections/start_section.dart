@@ -12,23 +12,31 @@ class StartSection extends StatelessWidget {
         final width = constraints.maxWidth;
         final isMobile = width < 900;
 
-        if (isMobile) {
-          return const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GTKMLeftSideWidget(),
-              SizedBox(height: 40),
-              GTKMRightSideWidget(),
-            ],
-          );
-        } else {
-          return const Row(
-            children: const [
-              Expanded(child: GTKMRightSideWidget()),
-              Expanded(child: GTKMLeftSideWidget()),
-            ],
-          );
-        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 20,
+          ),
+          child: isMobile
+              ? const Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 40),
+                    GTKMLeftSideWidget(),
+                    SizedBox(height: 40),
+                    GTKMRightSideWidget(),
+                  ],
+                )
+              : const Row(
+                  children: [
+                    Expanded(
+                      child: GTKMRightSideWidget(),
+                    ),
+                    Expanded(
+                      child: GTKMLeftSideWidget(),
+                    ),
+                  ],
+                ),
+        );
       },
     );
   }

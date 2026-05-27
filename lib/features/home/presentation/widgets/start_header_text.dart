@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/theme/app_colors.dart';
+import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/buttons/gradient_button.dart';
@@ -20,7 +20,6 @@ class GTKMLeftSideWidget extends StatelessWidget {
           children: [
             DecorativeLine(
               leftColor: Theme.of(context).colorScheme.onSurface,
-              rightColor: const Color(0xFFFF2D95),
             ),
             const SizedBox(height: 6),
             FittedBox(
@@ -45,10 +44,14 @@ class GTKMLeftSideWidget extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Row(
                 children: [
-                  Text(
-                    'CREATIVE ',
-                    style: AppTextStyles.role(context).copyWith(
-                      color: AppColors.pink,
+                  ShaderMask(
+                    shaderCallback: (bounds) =>
+                        AppGradients.primary.createShader(bounds),
+                    child: Text(
+                      'CREATIVE ',
+                      style: AppTextStyles.role(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Text(

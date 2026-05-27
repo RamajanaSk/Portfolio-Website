@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
 
@@ -18,12 +19,7 @@ class GradientButton extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFFFF2D95),
-            Color(0xFF8A2BE2),
-          ],
-        ),
+        gradient: AppGradients.primary,
         borderRadius: BorderRadius.circular(30 * s),
         boxShadow: [
           BoxShadow(
@@ -39,6 +35,7 @@ class GradientButton extends StatelessWidget {
           minimumSize: Size(0, 42 * s),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
           padding: EdgeInsets.symmetric(
             horizontal: 24 * s,
             vertical: 12 * s,
@@ -46,6 +43,8 @@ class GradientButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30 * s),
           ),
+        ).copyWith(
+          elevation: WidgetStateProperty.all(0),
         ),
         child: Text(
           text,

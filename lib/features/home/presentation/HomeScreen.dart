@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Core/widgets/Footer.dart';
+
+import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 
 import 'package:ramajana05/core/widgets/full_width_text.dart';
 
+import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
+import 'package:ramajana05/features/about/presentation/sections/metric_section.dart';
+
 import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
-import 'package:ramajana05/features/home/presentation/sections/featured_project_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/start_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 
@@ -30,49 +33,41 @@ class _HomescreenState extends State<Homescreen> {
     logoPicture: 'images/traveler/logo.png',
   );
 
+  final scrollController = ScrollController();
+
+  void scrollToTop() {
+    scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeInOutCubic,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: double.infinity,
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height,
+              ),
               child: const StartSection(),
             ),
+            const NeonSectionDivider(),
             const NeonSectionDivider(),
             AboutMeSmallSection(
               onAboutMePressed: widget.onAboutMePressed,
             ),
             const NormalSectionDivider(),
-            const FullWidthText(
-                text:
-                    "I love building things that are not just functional, but feel good to use."),
-            const NormalSectionDivider(),
-            const FeaturedProjectSection(),
-            //Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //children: [
-            //MetricItem(value: "2.5+", label: "Years"),
-            //MetricItem(value: "10+", label: "Projects"),
-            //MetricItem(value: "Flutter", label: "Focus"),
-            // ],
-            //),
-            const NormalSectionDivider(),
-            //Wrap(
-            // spacing: 10,
-            // runSpacing: 10,
-            // children: [
-            //  _badge("Flutter"),
-            //  _badge("Dart"),
-            //  _badge("Unity"),
-            //  _badge("Kotlin"),
-            // ],
-            //),
+            const FeaturedWorkAndTechnologiesSection(),
             const NeonSectionDivider(),
-            const FullWidthText(text: "Let’s build something meaningful."),
+            const MetricsSection(),
+            const NeonSectionDivider(),
+            const FullWidthText(text: "LET’S BUILD SOMETHING MEANINGFUL"),
             const NeonSectionDivider(),
             const Footer(),
           ],

@@ -38,13 +38,15 @@ final List<Project> dummyProjects = [
         url: "",
         tooltip: "Flutter",
       ),
-      const PlatformLink(
-        icon: FontAwesomeIcons.map,
-        url: "",
-        tooltip: "OpenStreetMap",
-      ),
     ],
-    technologies: ['Flutter', 'Unity', 'C#', 'OpenStreetMap', 'Geolocation'],
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Unity',
+      'C#',
+      'OpenStreetMap',
+      'GPS',
+    ],
     githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
@@ -61,7 +63,7 @@ final List<Project> dummyProjects = [
     hexcolor: '#854BED',
     keyFeatures: [
       'Real-time location tracking and visualization',
-      '3D map rendering using Unity',
+      '3D World Generation',
       'Integration of OpenStreetMap data',
       'Social interaction through shared locations',
       'Cross-platform mobile UI built with Flutter',
@@ -113,7 +115,7 @@ final List<Project> dummyProjects = [
         tooltip: "GitHub",
       ),
     ],
-    technologies: ['Flutter', 'Dart'],
+    technologies: ['Flutter', 'Dart', 'Google Maps'],
     githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
@@ -196,12 +198,12 @@ final List<Project> dummyProjects = [
     role: 'Unity Developer',
     platformLinks: [
       const PlatformLink(
-        icon: FontAwesomeIcons.gamepad,
+        icon: FontAwesomeIcons.flutter,
         url: "",
-        tooltip: "Unity",
+        tooltip: "Flutter",
       ),
     ],
-    technologies: ['Unity'],
+    technologies: ['Flutter', 'Dart', 'Google Maps', 'GPS'],
     githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
@@ -226,62 +228,169 @@ final List<Project> dummyProjects = [
     id: '5',
     typ: ProjectType.virtualReality,
     name: 'Bike Simulator VR',
-    shortDescription: 'Shared VR Experience',
-    catchPhrase: '',
+    shortDescription:
+        'A shared VR cycling experience connecting physical movement with immersive gameplay.',
+    catchPhrase: 'Ride Together. Move Together.',
     longDescription:
-        'The Bike Simulator VR is a shared virtual reality experience designed to strengthen the connection between the physical and digital world. '
-        'The goal is to motivate users to stay active and explore real environments instead of passively consuming virtual content. '
-        'Built with Unity, the application features an immersive 3D environment where users can interact and experience movement-based gameplay together. '
-        'The integration of real-world activity with a social VR layer creates an engaging and interactive experience.',
+        'Bike Simulator VR is a collaborative virtual reality experience designed to bridge the gap between physical activity and digital interaction. '
+        'The project encourages users to stay active by transforming real-world movement into an immersive multiplayer VR experience. '
+        'Built with Unity and C#, the application features a shared 3D environment where players can cycle, interact, and explore together in real time. '
+        'The project combines movement-based gameplay, social interaction, and immersive virtual environments to create a more engaging and active VR experience.',
     projectReason:
-        'The project was developed to explore how virtual reality can be used to promote physical activity and social interaction instead of isolation.',
+        'The project was created to explore how virtual reality can encourage physical activity and meaningful social interaction instead of passive digital consumption. '
+        'The focus was on combining real-world movement with immersive multiplayer experiences.',
     startDate: DateTime(2022, 04),
     endDate: DateTime(2022, 07),
-    durationInMonths: 2,
+    durationInMonths: 3,
     isSolo: false,
-    role: 'Unity Developer',
+    role: 'Unity VR Developer',
     platformLinks: [
       const PlatformLink(
-        icon: FontAwesomeIcons.gamepad,
+        icon: FontAwesomeIcons.unity,
         url: "",
         tooltip: "Unity",
       ),
     ],
-    technologies: ['Unity', 'C#', 'VR'],
+    technologies: [
+      'Unity',
+      'C#',
+      'Virtual Reality',
+      'Multiplayer Systems',
+      '3D Development',
+      'Real-Time Interaction',
+      'Motion-Based Gameplay',
+    ],
     githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
     liveDemoUrl: null,
     apkUrl: null,
-    logoPicture: 'images/forest/forest_logo.png',
-    previewPicture: 'images/forest/forest_main.png',
-    aboutPicture: '',
-    mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: ['images/forest/forest_digital.png'],
-    hexcolor: '#0FFF82',
+    logoPicture: 'images/bike_simulator_vr/bike_simulator_logo.png',
+    previewPicture: 'images/bike_simulator_vr/bike_simulator_preview.png',
+    aboutPicture: 'images/bike_simulator_vr/bike_simulator_ui.png',
+    mockupPicture: [
+      'images/traveler/traveler_logo.png',
+    ],
+    gallery: [
+      'images/bike_simulator_vr/bike_simulator_starting_screen.png',
+      'images/bike_simulator_vr/bike_simulator_bike.png',
+      'images/bike_simulator_vr/bike_simulator_audi.png',
+    ],
+    hexcolor: '#ff0f3f',
     keyFeatures: [
-      'Shared VR environment with multiple users',
-      'Real-time user interaction',
-      'Immersive 3D world',
-      'Movement-based gameplay',
+      'Shared multiplayer VR environment',
+      'Real-time player interaction',
+      'Immersive 3D world exploration',
+      'Movement-based gameplay mechanics',
       'Social VR experience',
+      'Interactive cycling simulation',
     ],
     challenges: [
-      'Multiplayer synchronization in VR',
-      'Real-time data handling',
-      'Performance optimization in Unity',
-      'Designing intuitive VR interactions',
+      'Synchronizing multiple users in a shared VR environment',
+      'Optimizing performance for smooth VR experiences',
+      'Designing intuitive VR interactions and controls',
+      'Handling real-time multiplayer communication',
+      'Creating immersive movement-based gameplay',
     ],
     learnings: [
-      'Unity VR development',
-      'Multiplayer concepts',
-      'Performance optimization',
-      'User experience design in VR',
+      'Unity VR development workflows',
+      'Real-time multiplayer concepts',
+      'Performance optimization for VR applications',
+      '3D interaction and UX design',
+      'Collaborative gameplay systems',
+      'Motion-driven game mechanics',
     ],
     sections: {
       SectionType.about: ProjectSection(
         type: SectionType.about,
         text:
-            'Bike Simulator VR is a collaborative virtual reality experience that combines physical activity with immersive gameplay. '
-            'It focuses on creating meaningful interaction between users in a shared 3D environment.',
+            'Bike Simulator VR is a collaborative virtual reality project focused on combining physical movement with immersive multiplayer gameplay. '
+            'Users can interact within a shared 3D environment while experiencing movement-driven mechanics designed to promote activity, exploration, and social interaction.',
+        imageUrl: '',
+      ),
+    },
+  ),
+  Project(
+    id: '6',
+    typ: ProjectType.virtualReality,
+    name: 'Fruit Ninja VR',
+    shortDescription:
+        'A fast-paced VR fruit slicing experience focused on immersive motion-based gameplay.',
+    catchPhrase: 'Slice Fast. React Faster.',
+    longDescription:
+        'Fruit Ninja VR is an immersive virtual reality experience that brings the classic arcade gameplay into a fully interactive 3D environment. '
+        'Built with Unity and C#, the project focuses on fast reaction times, physical movement, and immersive VR interactions. '
+        'Players use motion-controlled swords to slice incoming fruits in real time while avoiding obstacles and maintaining combo streaks. '
+        'The experience combines arcade-style gameplay with responsive VR mechanics, creating an engaging and energetic virtual reality experience.',
+    projectReason:
+        'The project was created to explore immersive VR interaction systems and motion-driven gameplay mechanics. '
+        'The focus was on translating fast-paced arcade gameplay into a physically interactive virtual reality environment.',
+    startDate: DateTime(2022, 01),
+    endDate: DateTime(2022, 03),
+    durationInMonths: 3,
+    isSolo: false,
+    role: 'Unity VR Developer',
+    platformLinks: [
+      const PlatformLink(
+        icon: FontAwesomeIcons.unity,
+        url: "",
+        tooltip: "Unity",
+      ),
+    ],
+    technologies: [
+      'Unity',
+      'C#',
+      'Virtual Reality',
+      '3D Development',
+      'Motion Tracking',
+      'Physics Systems',
+      'Real-Time Interaction',
+      'Game Development',
+      'Particle Effects',
+      'Motion-Based Gameplay',
+    ],
+    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
+    liveDemoUrl: null,
+    apkUrl: null,
+    logoPicture: 'images/fruit_ninja_vr/fruit_ninja_vr_logo.png',
+    previewPicture: 'images/fruit_ninja_vr/fruit_ninja_vr_preview.png',
+    aboutPicture: 'images/fruit_ninja_vr/fruit_ninja_vr_about.png',
+    mockupPicture: [
+      'images/fruit_ninja_vr/fruit_ninja_vr_mockup.png',
+    ],
+    gallery: [
+      'images/fruit_ninja_vr/fruit_ninja_vr_start.png',
+      'images/fruit_ninja_vr/fruit_ninja_vr_gameplay.png',
+      'images/fruit_ninja_vr/fruit_ninja_vr_environment.png',
+    ],
+    hexcolor: '#FFA640',
+    keyFeatures: [
+      'Immersive VR fruit slicing mechanics',
+      'Motion-controlled sword interactions',
+      'Fast-paced arcade gameplay',
+      'Interactive 3D environments',
+      'Combo and score-based gameplay',
+      'Responsive real-time interactions',
+    ],
+    challenges: [
+      'Creating responsive VR sword mechanics',
+      'Optimizing performance for smooth VR gameplay',
+      'Designing intuitive motion-based controls',
+      'Balancing gameplay speed and player comfort',
+      'Implementing satisfying visual and particle effects',
+    ],
+    learnings: [
+      'Unity VR interaction systems',
+      'Motion-driven gameplay mechanics',
+      'VR performance optimization',
+      'Real-time collision and physics handling',
+      '3D game environment design',
+      'Interactive feedback systems',
+    ],
+    sections: {
+      SectionType.about: ProjectSection(
+        type: SectionType.about,
+        text:
+            'Fruit Ninja VR is a fast-paced virtual reality experience focused on immersive interaction and movement-driven gameplay. '
+            'Players physically slice flying fruits using motion-controlled swords inside a stylized 3D VR environment designed to create an energetic and engaging arcade experience.',
         imageUrl: '',
       ),
     },

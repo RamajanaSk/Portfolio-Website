@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/features/about/data/sources/education_data.dart';
-import 'package:ramajana05/features/about/presentation/widget/componets/timeline_item.dart';
+import 'package:ramajana05/features/about/presentation/componets/timeline_item.dart';
 
 class EducationSection extends StatelessWidget {
   const EducationSection({super.key});
@@ -23,12 +23,10 @@ class EducationSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-
-          // ✅ dynamic list
           ...educations.map((e) => TimelineItem(
                 date: e.date,
-                title: e.degree, // 🔧 better than school as title
-                subtitle: e.school, // 🔧 school instead of location
+                title: e.degree,
+                subtitle: e.school,
                 description: e.description,
               )),
         ],

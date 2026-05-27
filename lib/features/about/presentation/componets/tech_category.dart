@@ -17,7 +17,6 @@ class TechCategory extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔹 Title
         Text(
           title,
           style: TextStyle(
@@ -27,10 +26,7 @@ class TechCategory extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-
         const SizedBox(height: 12),
-
-        // 🔹 Items
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -38,7 +34,7 @@ class TechCategory extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: Theme.of(context).dividerColor.withOpacity(0.2),
                 ),

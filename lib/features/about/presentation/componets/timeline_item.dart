@@ -23,9 +23,8 @@ class TimelineItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🟣 LEFT: DATE (fixed width)
           SizedBox(
-            width: 140, // 🔥 important for alignment
+            width: 140,
             child: Text(
               date,
               style: TextStyle(
@@ -34,10 +33,7 @@ class TimelineItem extends StatelessWidget {
               ),
             ),
           ),
-
-          const SizedBox(width: 20),
-
-          // 🔵 RIGHT: CONTENT
+          const SizedBox(width: 5),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

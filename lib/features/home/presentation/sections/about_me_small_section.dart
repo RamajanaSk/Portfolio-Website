@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
+import 'package:ramajana05/core/widgets/info_chip.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
-import 'package:ramajana05/features/home/data/skill_data.dart';
-import 'package:ramajana05/features/home/presentation/widgets/skill_chart.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
   final VoidCallback onAboutMePressed;
@@ -21,12 +20,11 @@ class AboutMeSmallSection extends StatelessWidget {
         left: 40,
         right: 40,
         top: 40,
-        bottom: 60,
+        bottom: 40,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeaderText("About me"),
           const SizedBox(height: 20),
           isMobile
               ? Column(
@@ -55,42 +53,45 @@ class AboutMeSmallSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "I build mobile apps that connect digital and real-world experiences.",
+          "ABOUT ME",
           style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w600,
-            height: 1.4,
+            fontSize: 40,
+            height: 1.5,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+            letterSpacing: 5,
           ),
         ),
-        const SizedBox(height: 16),
-        const Text(
-          "Focused on Flutter development, I create clean, scalable applications with strong UI design and real-world integration. I enjoy combining technical precision with creative problem-solving to build meaningful user experiences.",
+        const SizedBox(height: 32),
+        Text(
+          "I am a developer with a focus on cross-platform mobile applications, combining clean and responsive UI design with scalable architecture and interactive experiences. My background includes Flutter development, fullstack systems and creative technologies such as Unity and VR, allowing me to approach projects from both a technical and creative perspective.",
           style: TextStyle(
-            fontSize: 16,
-            height: 1.6,
-            color: Colors.white70,
+            fontSize: 20,
+            height: 1.9,
+            color: Colors.white.withOpacity(0.72),
           ),
         ),
-        const SizedBox(height: 28),
-        SkillBars(
-          skills: skills
-              .map((skill) => SkillStat(
-                    name: skill.name,
-                    value: skill.value,
-                    color: skill.color,
-                  ))
-              .toList(),
-        ),
-        const SizedBox(height: 28),
-        Row(
-          mainAxisSize: MainAxisSize.min,
+        const SizedBox(height: 20),
+        const Wrap(
+          spacing: 18,
+          runSpacing: 18,
           children: [
-            NeonOutlineButton(
-              text: "Learn more about me",
-              onPressed: onAboutMePressed,
-            ),
+            InfoChip("Mobile Computing"),
+            InfoChip("UI / UX Focused"),
+            InfoChip("Flutter Developer"),
+            InfoChip("Cross Platform"),
           ],
         ),
+
+        //Row(
+        //mainAxisSize: MainAxisSize.min,
+        //children: [
+        //NeonOutlineButton(
+        //text: "Learn more about me",
+        //onPressed: onAboutMePressed,
+        //),
+        //],
+        // ),
       ],
     );
   }
