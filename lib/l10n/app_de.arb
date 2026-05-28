@@ -1,0 +1,79 @@
+
+{
+  "@@locale": "de",
+
+  "home": "START",
+  "about": "ÜBER MICH",
+  "projects": "PROJEKTE",
+  "contact": "KONTAKT",
+
+  "german": "DEUTSCH",
+  "english": "ENGLISCH",
+
+  "name": "RAMAJANA",
+  "surname": "SKOPLJAK",
+
+  "role": "MOBILE ENTWICKLERIN",
+
+  "heroDescription":
+      "FLUTTER • MOBILE • INTERAKTIVE ERLEBNISSE",
+
+  "heroSubDescription":
+      "ENTWICKLUNG PERFORMANTER, BENUTZERORIENTIERTER ANWENDUNGEN.",
+
+  "homeDescription":
+      "ENTWICKLUNG IMMERSIVER MOBILER UND INTERAKTIVER ERLEBNISSE MIT FLUTTER, UNITY UND MODERNEN UI-SYSTEMEN.",
+
+  "featuredProjects": "PROJEKTE & TECHNOLOGIEN",
+
+  "technologies": "TECHNOLOGIEN",
+
+  "aboutMe": "ÜBER MICH",
+
+  "aboutMeDescription":
+      "ICH BIN ENTWICKLERIN MIT FOKUS AUF PLATTFORMÜBERGREIFENDE MOBILE ANWENDUNGEN UND VERBINDE SAUBERES SOWIE RESPONSIVES UI-DESIGN MIT SKALIERBARER ARCHITEKTUR UND INTERAKTIVEN ERLEBNISSEN. MEIN HINTERGRUND UMFASST FLUTTER-ENTWICKLUNG, FULLSTACK-SYSTEME UND KREATIVE TECHNOLOGIEN WIE UNITY UND VR, WODURCH ICH PROJEKTE SOWOHL AUS TECHNISCHER ALS AUCH KREATIVER PERSPEKTIVE ANGEHEN KANN.",
+
+  "mobileComputing": "MOBILE COMPUTING",
+
+  "uiFocused": "UI / UX FOKUS",
+
+  "flutterDeveloper": "FLUTTER ENTWICKLERIN",
+
+  "crossPlatform": "CROSS PLATFORM",
+
+  "techStack": "TECH STACK",
+
+  "programming": "PROGRAMMIERUNG",
+
+  "frameworks": "FRAMEWORKS",
+
+  "databases": "DATENBANKEN",
+
+  "tools": "TOOLS",
+
+  "mobileSpecialization": "MOBILE SPEZIALISIERUNG",
+
+  "applicationsBuilt": "ENTWICKELTE ANWENDUNGEN",
+
+  "creativeSystems": "KREATIVE SYSTEME",
+
+  "letsBuild":
+      "LASS UNS ETWAS BEDEUTUNGSVOLLES ERSCHAFFEN",
+
+  "footerDescription":
+      "KREATIVE ENTWICKLERIN MIT FOKUS AUF FLUTTER, MOBILE APPS UND INTERAKTIVE ERLEBNISSE.",
+
+  "navigation": "NAVIGATION",
+
+  "location": "STUTTGART, DEUTSCHLAND",
+
+  "contactMe": "KONTAKT",
+
+  "downloadCV": "LEBENSLAUF",
+
+  "viewPortfolio": "PORTFOLIO",
+
+  "builtWithFlutter":
+      "ERSTELLT MIT FLUTTER"
+}
+

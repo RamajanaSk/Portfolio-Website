@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
@@ -66,7 +67,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
               fit: BoxFit.scaleDown,
               alignment: Alignment.centerLeft,
               child: Text(
-                  'FLUTTER • MOBILE • INTERACTIVE EXPERIENCES\nBUILDING PERFORMANT, USER-FOCUSED APPLICATIONS.',
+                  '${context.l10n.heroDescription}\n${context.l10n.heroSubDescription}',
                   style: AppTextStyles.description(context)),
             ),
             const SizedBox(height: 20),
@@ -87,7 +88,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         GradientButton(
-          text: "Download CV",
+          text: context.l10n.downloadCV,
           onPressed: () {
             FileDownloader.downloadAsset(
               assetPath: 'pdfs/cv.pdf',
@@ -100,7 +101,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         NeonOutlineButton(
-          text: "View Portfolio",
+          text: context.l10n.viewPortfolio,
           onPressed: () {
             FileDownloader.openAsset(
               assetPath: 'pdfs/software_portfolio.pdf',

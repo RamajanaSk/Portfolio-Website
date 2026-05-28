@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/dummyData.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/project_carousel.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
-import 'package:ramajana05/features/about/presentation/componets/build_tech_category.dart';
+import 'package:ramajana05/features/about/presentation/sections/tech_stack_section.dart';
 import 'package:ramajana05/features/projects/ProjectDetailScreen.dart';
 
 class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
@@ -27,8 +28,8 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeaderText(
-            "FEATURED WORK & TECHNOLOGIES",
+          SectionHeaderText(
+            context.l10n.featuredProjects,
           ),
 
           SizedBox(height: isMobile ? 40 : 60),
@@ -94,7 +95,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
                 SizedBox(width: screenWidth < 1200 ? 30 : 50),
                 Expanded(
                   flex: techFlex,
-                  child: const TechStackSection(),
+                  child: TechStackSection(),
                 ),
               ],
             ),

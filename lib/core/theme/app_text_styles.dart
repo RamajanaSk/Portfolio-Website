@@ -147,4 +147,55 @@ class AppTextStyles {
       letterSpacing: 1,
     );
   }
+
+  static TextStyle topBarTextButton(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface,
+      fontSize: 20 * s,
+      fontWeight: FontWeight.bold,
+      letterSpacing: 1,
+    );
+  }
+
+  static TextStyle underSectionTitle(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface,
+      fontSize: 40 * s,
+      height: 1.5,
+      fontWeight: FontWeight.w900,
+      letterSpacing: 5,
+    );
+  }
+
+  static TextStyle underSectionText(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.72),
+      fontSize: 20 * s,
+      height: 1.9,
+    );
+  }
+
+  static TextStyle footerTitleText(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface,
+      fontSize: 14 * s,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle footerText(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+        fontSize: 14 * s);
+  }
 }

@@ -36,7 +36,8 @@ class NeonOutlineButton extends StatelessWidget {
             shadowColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
             padding: EdgeInsets.symmetric(
-              horizontal: 24 * s,
+              horizontal:
+                  MediaQuery.of(context).size.width < 500 ? 14 * s : 16 * s,
               vertical: 12 * s,
             ),
             side: BorderSide.none,
@@ -52,7 +53,9 @@ class NeonOutlineButton extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             softWrap: false,
-            style: AppTextStyles.buttonthick(context),
+            style: AppTextStyles.buttonthick(context).copyWith(
+              fontSize: MediaQuery.of(context).size.width < 500 ? 13 : null,
+            ),
           ),
         ),
       ),

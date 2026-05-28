@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
@@ -67,7 +68,7 @@ class _HomescreenState extends State<Homescreen> {
             const NeonSectionDivider(),
             const MetricsSection(),
             const NeonSectionDivider(),
-            const FullWidthText(text: "LET’S BUILD SOMETHING MEANINGFUL"),
+            FullWidthText(text: context.l10n.letsBuild),
             const NeonSectionDivider(),
             const Footer(),
           ],
@@ -75,15 +76,4 @@ class _HomescreenState extends State<Homescreen> {
       ),
     );
   }
-}
-
-Widget _badge(String text) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: Colors.black,
-    ),
-    child: Text(text),
-  );
 }

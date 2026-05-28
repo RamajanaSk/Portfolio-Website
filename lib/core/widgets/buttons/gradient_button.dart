@@ -37,7 +37,8 @@ class GradientButton extends StatelessWidget {
           shadowColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           padding: EdgeInsets.symmetric(
-            horizontal: 24 * s,
+            horizontal:
+                MediaQuery.of(context).size.width < 500 ? 14 * s : 16 * s,
             vertical: 12 * s,
           ),
           shape: RoundedRectangleBorder(

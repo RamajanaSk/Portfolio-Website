@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/info_chip.dart';
-import 'package:ramajana05/core/widgets/section_header_text.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
   final VoidCallback onAboutMePressed;
@@ -32,7 +32,7 @@ class AboutMeSmallSection extends StatelessWidget {
                   children: [
                     _buildImage(),
                     const SizedBox(height: 30),
-                    _buildText(),
+                    _buildText(context),
                   ],
                 )
               : Row(
@@ -40,7 +40,7 @@ class AboutMeSmallSection extends StatelessWidget {
                   children: [
                     _buildImage(),
                     const SizedBox(width: 60),
-                    Expanded(child: _buildText()),
+                    Expanded(child: _buildText(context)),
                   ],
                 ),
         ],
@@ -48,50 +48,30 @@ class AboutMeSmallSection extends StatelessWidget {
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "ABOUT ME",
-          style: TextStyle(
-            fontSize: 40,
-            height: 1.5,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            letterSpacing: 5,
-          ),
-        ),
+        Text(context.l10n.aboutMe,
+            style: AppTextStyles.underSectionTitle(
+              context,
+            )),
         const SizedBox(height: 32),
         Text(
-          "I am a developer with a focus on cross-platform mobile applications, combining clean and responsive UI design with scalable architecture and interactive experiences. My background includes Flutter development, fullstack systems and creative technologies such as Unity and VR, allowing me to approach projects from both a technical and creative perspective.",
-          style: TextStyle(
-            fontSize: 20,
-            height: 1.9,
-            color: Colors.white.withOpacity(0.72),
-          ),
+          context.l10n.aboutMeDescription,
+          style: AppTextStyles.underSectionText(context),
         ),
         const SizedBox(height: 20),
-        const Wrap(
+        Wrap(
           spacing: 18,
           runSpacing: 18,
           children: [
-            InfoChip("Mobile Computing"),
-            InfoChip("UI / UX Focused"),
-            InfoChip("Flutter Developer"),
-            InfoChip("Cross Platform"),
+            InfoChip(context.l10n.mobileComputing),
+            InfoChip(context.l10n.uiFocused),
+            InfoChip(context.l10n.flutterDeveloper),
+            InfoChip(context.l10n.crossPlatform),
           ],
         ),
-
-        //Row(
-        //mainAxisSize: MainAxisSize.min,
-        //children: [
-        //NeonOutlineButton(
-        //text: "Learn more about me",
-        //onPressed: onAboutMePressed,
-        //),
-        //],
-        // ),
       ],
     );
   }

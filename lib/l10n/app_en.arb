@@ -1,0 +1,79 @@
+
+{
+  "@@locale": "en",
+
+  "home": "HOME",
+  "about": "ABOUT",
+  "projects": "PROJECTS",
+  "contact": "CONTACT",
+
+  "german": "GERMAN",
+  "english": "ENGLISH",
+
+  "name": "RAMAJANA",
+  "surname": "SKOPLJAK",
+
+  "role": "MOBILE DEVELOPER",
+
+  "heroDescription":
+      "FLUTTER • MOBILE • INTERACTIVE EXPERIENCES",
+
+  "heroSubDescription":
+      "BUILDING PERFORMANT, USER-FOCUSED APPLICATIONS.",
+
+  "homeDescription":
+      "BUILDING IMMERSIVE MOBILE AND INTERACTIVE EXPERIENCES WITH FLUTTER, UNITY AND MODERN UI SYSTEMS.",
+
+  "featuredProjects": "FEATURED WORK & TECHNOLOGIES",
+
+  "technologies": "TECHNOLOGIES",
+
+  "aboutMe": "ABOUT ME",
+
+  "aboutMeDescription":
+      "I AM A DEVELOPER FOCUSED ON CROSS-PLATFORM MOBILE APPLICATIONS, COMBINING CLEAN AND RESPONSIVE UI DESIGN WITH SCALABLE ARCHITECTURE AND INTERACTIVE EXPERIENCES. MY BACKGROUND INCLUDES FLUTTER DEVELOPMENT, FULLSTACK SYSTEMS AND CREATIVE TECHNOLOGIES SUCH AS UNITY AND VR, ALLOWING ME TO APPROACH PROJECTS FROM BOTH A TECHNICAL AND CREATIVE PERSPECTIVE.",
+
+  "mobileComputing": "MOBILE COMPUTING",
+
+  "uiFocused": "UI / UX FOCUSED",
+
+  "flutterDeveloper": "FLUTTER DEVELOPER",
+
+  "crossPlatform": "CROSS PLATFORM",
+
+  "techStack": "TECH STACK",
+
+  "programming": "PROGRAMMING",
+
+  "frameworks": "FRAMEWORKS",
+
+  "databases": "DATABASES",
+
+  "tools": "TOOLS",
+
+  "mobileSpecialization": "MOBILE SPECIALIZATION",
+
+  "applicationsBuilt": "APPLICATIONS BUILT",
+
+  "creativeSystems": "CREATIVE SYSTEMS",
+
+  "letsBuild":
+      "LET’S BUILD SOMETHING MEANINGFUL",
+
+  "footerDescription":
+      "CREATIVE DEVELOPER FOCUSED ON FLUTTER, MOBILE APPS AND INTERACTIVE EXPERIENCES.",
+
+  "navigation": "NAVIGATION",
+
+  "location": "STUTTGART, GERMANY",
+
+  "contactMe": "CONTACT",
+
+  "downloadCV": "DOWNLOAD CV",
+
+  "viewPortfolio": "VIEW PORTFOLIO",
+
+  "builtWithFlutter":
+      "BUILT WITH FLUTTER"
+}
+

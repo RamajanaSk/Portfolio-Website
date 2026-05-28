@@ -4,7 +4,7 @@ import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/Data/dummyData.dart';
-import 'package:ramajana05/core/widgets/bars/top_bar.dart';
+import 'package:ramajana05/core/widgets/bars/topbar/top_bar.dart';
 
 import 'package:ramajana05/core/widgets/custome_drawer_menu.dart';
 import 'package:ramajana05/core/widgets/dropdown/custome_dropdown_menu.dart';
@@ -29,6 +29,7 @@ class _MainLayoutState extends State<MainLayout> {
   bool _isMenuVisible = false;
   bool _isMouseOverMenu = false;
   Timer? _hideMenuTimer;
+  bool isEnglish = true;
 
   @override
   void initState() {
@@ -92,11 +93,22 @@ class _MainLayoutState extends State<MainLayout> {
     return Scaffold(
       appBar: TopBar(
         title: 'RAMAJANA SKOPLJAK',
+        isEnglish: isEnglish,
+        isDropdownVisible: _isMenuVisible,
+        onGermanPressed: () {
+          setState(() {
+            isEnglish = false;
+          });
+        },
+        onEnglishPressed: () {
+          setState(() {
+            isEnglish = true;
+          });
+        },
         onHomePressed: () => _navigateTo('/'),
         onAboutMePressed: () => _navigateTo('/about'),
         onProjectPressed: () => _navigateTo('/projects'),
         onContactPressed: () => _navigateTo('/contact'),
-        isDropdownVisible: _isMenuVisible,
       ),
       body: Stack(
         children: [

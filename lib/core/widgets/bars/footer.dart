@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/background/neon_gradient_background.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
@@ -37,13 +39,8 @@ class Footer extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      "Creative Developer focused on Flutter, mobile apps and interactive experiences.",
-                      style: TextStyle(
-                        color: textColor.withOpacity(0.7),
-                        height: 1.5,
-                      ),
-                    ),
+                    Text(context.l10n.footerDescription,
+                        style: AppTextStyles.footerText(context)),
                   ],
                 ),
               ),
@@ -52,14 +49,13 @@ class Footer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Navigation",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: textColor)),
+                    Text(context.l10n.navigation,
+                        style: AppTextStyles.footerTitleText(context)),
                     const SizedBox(height: 10),
-                    _navItem("Home"),
-                    _navItem("About"),
-                    _navItem("Projects"),
-                    _navItem("Contact"),
+                    _navItem(context, context.l10n.home),
+                    _navItem(context, context.l10n.about),
+                    _navItem(context, context.l10n.projects),
+                    _navItem(context, context.l10n.contact),
                   ],
                 ),
               ),
@@ -68,25 +64,17 @@ class Footer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Contact",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: textColor)),
+                    Text(context.l10n.contact,
+                        style: AppTextStyles.footerTitleText(context)),
                     const SizedBox(height: 10),
                     InkWell(
                       onTap: _openEmail,
-                      child: Text(
-                        'ramajana1205@aol.com',
-                        style: TextStyle(
-                          color: textColor.withOpacity(0.8),
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                      child: Text('ramajana1205@aol.com',
+                          style: AppTextStyles.footerText(context)),
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      "Stuttgart, Germany",
-                      style: TextStyle(color: textColor.withOpacity(0.7)),
-                    ),
+                    Text(context.l10n.location,
+                        style: AppTextStyles.footerText(context)),
                   ],
                 ),
               ),
@@ -96,23 +84,25 @@ class Footer extends StatelessWidget {
           const SocialLinksRow(),
           const SizedBox(height: 30),
           Text(
-            '© 2026 RAMAJANA SKOPLJAK — BUILT WITH FLUTTER',
-            style: TextStyle(
-              color: textColor.withOpacity(0.6),
-              fontSize: 14,
-            ),
+            '© 2026 RAMAJANA SKOPLJAK — ${context.l10n.builtWithFlutter}',
+            style: AppTextStyles.footerText(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _navItem(String title) {
+  Widget _navItem(
+    BuildContext context,
+    String title,
+  ) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(
+        bottom: 6,
+      ),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 14),
+        style: AppTextStyles.footerText(context),
       ),
     );
   }
