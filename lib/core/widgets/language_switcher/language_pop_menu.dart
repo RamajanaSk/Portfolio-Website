@@ -34,13 +34,6 @@ class LanguagePopupMenu extends StatelessWidget {
           horizontal: 10,
           vertical: 6,
         ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: const Color(0xFF00CFFF).withOpacity(0.15),
-          ),
-          color: const Color(0xFF00CFFF).withOpacity(0.03),
-        ),
         child: Text(
           isEnglish ? 'EN' : 'DE',
           style: TextStyle(

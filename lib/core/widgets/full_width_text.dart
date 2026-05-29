@@ -20,7 +20,7 @@ class FullWidthText extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 35,
               fontWeight: FontWeight.w800,
             ),
           ),
