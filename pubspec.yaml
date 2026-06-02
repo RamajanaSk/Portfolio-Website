@@ -75,7 +75,8 @@ flutter:
    - assets/
    - assets/icons/
    - assets/images/
-   
+   - assets/images/traveler/
+   - assets/images/forest/
    
 
   
