@@ -12,17 +12,13 @@ class GTKMRightSideWidget extends StatelessWidget {
 
     final s = AppResponsive.scale(context).clamp(0.85, 1.2);
 
-    // RESPONSIVE WIDTH
     double width;
 
     if (screenWidth < 600) {
-      // mobile
       width = screenWidth * 0.9;
     } else if (screenWidth < 900) {
-      // tablet
       width = screenWidth * 0.7;
     } else {
-      // desktop
       width = screenWidth * 0.45 * s;
     }
 
@@ -33,7 +29,6 @@ class GTKMRightSideWidget extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // SOFT OUTER GLOW
             ShaderMask(
               blendMode: BlendMode.srcATop,
               shaderCallback: (bounds) {
@@ -67,8 +62,6 @@ class GTKMRightSideWidget extends StatelessWidget {
                 ),
               ),
             ),
-
-            // MAIN GLOW
             ShaderMask(
               blendMode: BlendMode.srcATop,
               shaderCallback: (bounds) {
@@ -102,8 +95,6 @@ class GTKMRightSideWidget extends StatelessWidget {
                 ),
               ),
             ),
-
-            // SHARP OUTLINE
             ShaderMask(
               blendMode: BlendMode.srcATop,
               shaderCallback: (bounds) {
@@ -128,8 +119,6 @@ class GTKMRightSideWidget extends StatelessWidget {
                 ],
               ),
             ),
-
-            // MAIN IMAGE
             ClipRect(
               child: Align(
                 alignment: Alignment.topCenter,
@@ -178,7 +167,7 @@ Widget _outlineMain({required Offset offset}) {
         sigmaY: 1,
       ),
       child: Image.asset(
-        'assets/Ramajana05Logo.png',
+        'assets/RamajanaLogo.png',
       ),
     ),
   );
