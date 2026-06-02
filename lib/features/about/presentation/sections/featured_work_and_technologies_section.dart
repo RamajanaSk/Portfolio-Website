@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Data/dummyData.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/project_carousel.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
+import 'package:ramajana05/data/dummyData.dart';
 import 'package:ramajana05/features/about/presentation/sections/tech_stack_section.dart';
 import 'package:ramajana05/features/projects/ProjectDetailScreen.dart';
 
@@ -42,7 +42,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ProjectCarousel(
-                    projects: dummyProjects,
+                    projects: getDummyProjects(context),
                     onProjectTap: (project) {
                       Navigator.push(
                         context,
@@ -77,7 +77,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
                       maxWidth: screenWidth * 0.55,
                     ),
                     child: ProjectCarousel(
-                      projects: dummyProjects,
+                      projects: getDummyProjects(context),
                       onProjectTap: (project) {
                         Navigator.push(
                           context,
@@ -95,7 +95,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
                 SizedBox(width: screenWidth < 1200 ? 30 : 50),
                 Expanded(
                   flex: techFlex,
-                  child: TechStackSection(),
+                  child: const TechStackSection(),
                 ),
               ],
             ),

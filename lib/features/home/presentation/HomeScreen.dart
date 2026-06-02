@@ -8,9 +8,9 @@ import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 import 'package:ramajana05/core/widgets/full_width_text.dart';
 
 import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
-import 'package:ramajana05/features/about/presentation/sections/metric_section.dart';
 
 import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/metric_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/start_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 

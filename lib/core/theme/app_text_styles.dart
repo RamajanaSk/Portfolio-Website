@@ -85,6 +85,17 @@ class AppTextStyles {
     );
   }
 
+  static TextStyle buttonoutlined(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 14 * s,
+      color: Theme.of(context).colorScheme.onSurface,
+      letterSpacing: 0.3,
+    );
+  }
+
   static TextStyle titleProjectCard(BuildContext context) {
     final s = AppResponsive.scale(context).clamp(0.85, 1.2);
 
@@ -115,6 +126,7 @@ class AppTextStyles {
     return TextStyle(
       fontSize: 50 * s,
       fontWeight: FontWeight.w900,
+      color: Theme.of(context).colorScheme.onSurface,
       height: 1,
     );
   }

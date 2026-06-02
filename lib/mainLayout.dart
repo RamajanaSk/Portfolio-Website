@@ -3,11 +3,12 @@ import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/Data/dummyData.dart';
+
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar.dart';
 
 import 'package:ramajana05/core/widgets/custome_drawer_menu.dart';
 import 'package:ramajana05/core/widgets/dropdown/custome_dropdown_menu.dart';
+import 'package:ramajana05/data/dummyData.dart';
 
 import 'package:ramajana05/features/Projects/ProjectListScreen.dart';
 import 'package:ramajana05/features/Projects/ProjectDetailScreen.dart';
@@ -52,9 +53,10 @@ class _MainLayoutState extends State<MainLayout> {
         final slug = path.split('/projects/').last;
 
         try {
-          _selectedProject = dummyProjects.firstWhere(
+          _selectedProject = getDummyProjects(context).firstWhere(
             (p) => p.name.toLowerCase().replaceAll(' ', '-') == slug,
           );
+
           _currentIndex = 3;
         } catch (_) {
           _selectedProject = null;
@@ -99,11 +101,13 @@ class _MainLayoutState extends State<MainLayout> {
           setState(() {
             isEnglish = false;
           });
+          _handleRoute(_getCurrentPath());
         },
         onEnglishPressed: () {
           setState(() {
             isEnglish = true;
           });
+          _handleRoute(_getCurrentPath());
         },
         onHomePressed: () => _navigateTo('/'),
         onAboutMePressed: () => _navigateTo('/about'),

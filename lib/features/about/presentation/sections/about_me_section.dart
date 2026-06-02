@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/info_chip.dart';
 import 'package:ramajana05/core/widgets/minimal_action.dart';
@@ -37,8 +38,8 @@ class AboutMeSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 36),
-                  const Text(
-                    "MOBILE DEVELOPER",
+                  Text(
+                    context.l10n.role,
                     style: TextStyle(
                       fontSize: 58,
                       height: 1.0,
@@ -56,18 +57,7 @@ class AboutMeSection extends StatelessWidget {
                       color: Colors.white.withOpacity(0.72),
                     ),
                   ),
-                  const SizedBox(height: 40),
-                  const Wrap(
-                    spacing: 18,
-                    runSpacing: 18,
-                    children: [
-                      InfoChip("Flutter Developer"),
-                      InfoChip("Unity & VR"),
-                      InfoChip("Fullstack Experience"),
-                      InfoChip("Based in Stuttgart"),
-                    ],
-                  ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 42),
                   Row(
                     children: [
                       Wrap(
@@ -76,7 +66,7 @@ class AboutMeSection extends StatelessWidget {
                         children: [
                           MinimalAction(
                             icon: Icons.download_rounded,
-                            text: "Download CV",
+                            text: context.l10n.downloadCV,
                             onTap: () {
                               FileDownloader.downloadAsset(
                                 assetPath: 'pdfs/cv.pdf',
@@ -89,7 +79,7 @@ class AboutMeSection extends StatelessWidget {
                           ),
                           MinimalAction(
                             icon: Icons.arrow_outward_rounded,
-                            text: "Explore Projects",
+                            text: context.l10n.viewPortfolio,
                             onTap: () {
                               FileDownloader.openAsset(
                                 assetPath: 'pdfs/software_portfolio.pdf',

@@ -1,94 +1,98 @@
+import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/Data/Models/ProjectSection.dart';
 import 'package:ramajana05/Data/Models/ProjectType.dart';
 import 'package:ramajana05/Data/Models/SectionType.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-final List<Project> dummyProjects = [
-  Project(
-    id: '1',
-    typ: ProjectType.mobileApp,
-    name: 'Traveler',
-    shortDescription:
-        'A 3D social travel experience combining real-world movement with interactive map exploration.',
-    catchPhrase: "Where Gaming meets Social Media",
-    longDescription:
-        'Traveler was developed as a response to the growing disconnect between digital and physical experiences. The goal was to create an application that encourages users to explore their real-world environment while still enjoying interactive digital features.\n\n'
-        'The app combines Flutter for a modern, intuitive UI with Unity for real-time 3D rendering. Using OpenStreetMap data, users can visualize their surroundings in a dynamic 3D environment and see both their own position and that of their friends.\n\n'
-        'By merging social interaction, geolocation, and immersive visualization, Traveler transforms movement into a shared experience and motivates users to actively explore their environment instead of passively consuming content.',
-    projectReason:
-        'The motivation behind Traveler was to counterbalance excessive screen time with meaningful real-world interaction. Instead of replacing reality, the app enhances it by making exploration engaging, social, and visually immersive.\n\n'
-        'The project also served as an opportunity to combine multiple technologies (Flutter + Unity + geolocation services) into one cohesive product and to explore how hybrid systems can deliver both performance and usability.',
-    startDate: DateTime(2024, 6),
-    endDate: DateTime(2025, 2),
-    durationInMonths: 8,
-    isSolo: true,
-    role: 'Mobile & Unity Developer',
-    grade: '1.0',
-    universityContext: 'Bachelor Thesis',
-    platformLinks: [
-      const PlatformLink(
-        icon: FontAwesomeIcons.unity,
-        url: "",
-        tooltip: "Unity",
-      ),
-      const PlatformLink(
-        icon: FontAwesomeIcons.flutter,
-        url: "",
-        tooltip: "Flutter",
-      ),
-    ],
-    technologies: [
-      'Flutter',
-      'Dart',
-      'Unity',
-      'C#',
-      'OpenStreetMap',
-      'GPS',
-    ],
-    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
-    liveDemoUrl: null,
-    apkUrl: null,
-    logoPicture: 'images/traveler/traveler_logo.png',
-    previewPicture: 'images/traveler/traveler_main.png',
-    aboutPicture: 'images/traveler/traveler_main.png',
-    mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: [
-      'images/traveler/3D_unity_map.png',
-      'images/traveler/3D_top_view_stuttgart.png',
-      'images/traveler/3D_side_view.png',
-      'images/traveler/3D_player.png',
-    ],
-    hexcolor: '#854BED',
-    keyFeatures: [
-      'Real-time location tracking and visualization',
-      '3D World Generation',
-      'Integration of OpenStreetMap data',
-      'Social interaction through shared locations',
-      'Cross-platform mobile UI built with Flutter',
-    ],
-    challenges: [
-      'Integrating Unity with Flutter in a performant way',
-      'Handling real-time geolocation updates efficiently',
-      'Rendering large map datasets without performance drops',
-      'Synchronizing user positions in real time',
-    ],
-    learnings: [
-      'How to combine multiple frameworks (Flutter + Unity) in one system',
-      'Working with geospatial data and map APIs',
-      'Optimizing performance in real-time applications',
-      'Designing user experiences that bridge digital and physical interaction',
-    ],
-    sections: {
-      SectionType.about: ProjectSection(
-        type: SectionType.about,
-        text:
-            'Traveler is a project focused on bringing digital interaction into the real world. Instead of isolating users, it encourages exploration, movement, and shared experiences through immersive 3D visualization.',
-        imageUrl: 'images/traveler/traveler_main.png',
-      ),
-    },
-  ),
+List<Project> getDummyProjects(BuildContext context) {
+  return [
+    Project(
+      id: '1',
+      typ: ProjectType.mobileApp,
+      name: 'Traveler',
+      shortDescription: context.l10n.travelerShortDescription,
+      catchPhrase: context.l10n.travelerCatchPhrase,
+      longDescription: context.l10n.travelerLongDescription,
+      projectReason: context.l10n.travelerProjectReason,
+      startDate: DateTime(2024, 6),
+      endDate: DateTime(2025, 2),
+      durationInMonths: 8,
+      isSolo: true,
+      role: 'MOBILE & UNITY DEVELOPER',
+      grade: '1.0',
+      universityContext: 'BACHELOR THESIS',
+      platformLinks: [
+        const PlatformLink(
+          icon: FontAwesomeIcons.unity,
+          url: "",
+          tooltip: "Unity",
+        ),
+        const PlatformLink(
+          icon: FontAwesomeIcons.flutter,
+          url: "",
+          tooltip: "Flutter",
+        ),
+      ],
+      technologies: [
+        'Flutter',
+        'Dart',
+        'Unity',
+        'C#',
+        'OpenStreetMap',
+        'GPS',
+      ],
+      githubUrl: "https://github.com/RamajanaSk/OPENSTREETMAP-3D-MAP",
+      liveDemoUrl: null,
+      apkUrl: null,
+      logoPicture: 'images/traveler/traveler_logo.png',
+      previewPicture: 'images/traveler/traveler_main.png',
+      aboutPicture: 'images/traveler/traveler_main.png',
+      mockupPicture: ['images/traveler/traveler_logo.png'],
+      gallery: [
+        'images/traveler/3D_unity_map.png',
+        'images/traveler/3D_top_view_stuttgart.png',
+        'images/traveler/3D_side_view.png',
+        'images/traveler/3D_player.png',
+        'images/traveler/buildings.png',
+        'images/traveler/mockup_1.png',
+        'images/traveler/mockup_2.png',
+        'images/traveler/view.png',
+        'images/traveler/software_arch.png',
+        'images/traveler/datenbank.png',
+      ],
+      hexcolor: '#854BED',
+      keyFeatures: [
+        context.l10n.travelerFeature1,
+        context.l10n.travelerFeature2,
+        context.l10n.travelerFeature3,
+        context.l10n.travelerFeature4,
+        context.l10n.travelerFeature5,
+      ],
+      challenges: [
+        context.l10n.travelerChallenge1,
+        context.l10n.travelerChallenge2,
+        context.l10n.travelerChallenge3,
+        context.l10n.travelerChallenge4,
+      ],
+      learnings: [
+        context.l10n.travelerLearning1,
+        context.l10n.travelerLearning2,
+        context.l10n.travelerLearning3,
+        context.l10n.travelerLearning4,
+      ],
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text:
+              'Traveler is a project focused on bringing digital interaction into the real world. Instead of isolating users, it encourages exploration, movement, and shared experiences through immersive 3D visualization.',
+          imageUrl: 'images/traveler/traveler_main.png',
+        ),
+      },
+    ),
+    /*
   Project(
     id: '2',
     typ: ProjectType.mobileApp,
@@ -136,6 +140,7 @@ final List<Project> dummyProjects = [
       ),
     },
   ),
+  
   Project(
     id: '3',
     typ: ProjectType.mobileApp,
@@ -182,48 +187,74 @@ final List<Project> dummyProjects = [
       ),
     },
   ),
-  Project(
-    id: '4',
-    typ: ProjectType.virtualReality,
-    name: 'Forest',
-    shortDescription: 'VR monitoring system',
-    catchPhrase: "Where Gaming meets Social Media",
-    longDescription:
-        'The app is designed as a response TO STRENGTHEN THE CONNECTION BETWEEN VIRTUAL AND PHYSICAL WORLDS. THE AIM IS TO INSPIRE USERS TO BECOME ACTIVE AND EXPERIENCE PERSONAL ADVENTURES, RATHER THAN LOSING THEMSELVES IN VIRTUAL REALITIES. BUILT WITH FLUTTER FOR A SLEEK AND USER-FRIENDLY UI, AND POWERED BY UNITY FOR HIGH-PERFORMANCE 3D RENDERING, THE APP FEATURES AN IMMERSIVE STREET VIEW-BASED MAP THAT LETS USERS SEE THEIR LOCATION AND THAT OF THEIR FRIENDS IN REAL TIME. THIS SEAMLESS INTEGRATION CREATES AN EASY-TO-USE EXPERIENCE THAT BRINGS EXPLORATION AND CONNECTION TO LIFE.',
-    projectReason: '...',
-    startDate: DateTime(2023, 11),
-    endDate: DateTime(2024, 1),
-    durationInMonths: 2,
-    isSolo: false,
-    role: 'Unity Developer',
-    platformLinks: [
-      const PlatformLink(
-        icon: FontAwesomeIcons.flutter,
-        url: "",
-        tooltip: "Flutter",
-      ),
-    ],
-    technologies: ['Flutter', 'Dart', 'Google Maps', 'GPS'],
-    githubUrl: "https://github.com/RamajanaSk/Portfolio-Website",
-    liveDemoUrl: null,
-    apkUrl: null,
-    logoPicture: 'images/forest/forest_logo.png',
-    aboutPicture: 'images/forest/about_me.png',
-    previewPicture: 'images/forest/forest_main.png',
-    mockupPicture: ['images/traveler/traveler_logo.png'],
-    gallery: ['images/forest/forest_digital.png'],
-    hexcolor: '#0FFF82',
-    keyFeatures: [],
-    challenges: [],
-    learnings: [],
-    sections: {
-      SectionType.about: ProjectSection(
-        type: SectionType.about,
-        text: '',
-        imageUrl: '',
-      ),
-    },
-  ),
+  */
+    Project(
+      id: '4',
+      typ: ProjectType.virtualReality,
+      name: 'FOREST',
+      shortDescription: context.l10n.forestShortDescription,
+      catchPhrase: context.l10n.forestCatchPhrase,
+      longDescription: context.l10n.forestLongDescription,
+      projectReason: context.l10n.forestProjectReason,
+      startDate: DateTime(2023, 11),
+      endDate: DateTime(2024, 1),
+      durationInMonths: 2,
+      isSolo: false,
+      role: 'FLUTTER DEVELOPER',
+      platformLinks: [
+        const PlatformLink(
+          icon: FontAwesomeIcons.flutter,
+          url: "",
+          tooltip: "Flutter",
+        ),
+      ],
+      technologies: ['Flutter', 'Dart', 'Google Maps', 'GPS'],
+      githubUrl: "https://github.com/RamajanaSk/MDMA-APP",
+      liveDemoUrl: null,
+      apkUrl: null,
+      logoPicture: 'images/forest/forest_logo.png',
+      aboutPicture: 'images/forest/about_me.png',
+      previewPicture: 'images/forest/forest_main.png',
+      mockupPicture: ['images/traveler/traveler_logo.png'],
+      gallery: [
+        'images/forest/forest_thumbnail.png',
+        'images/forest/karte.png',
+        'images/forest/sensoren.png',
+        'images/forest/benutzerfreundlich.png',
+        'images/forest/software_arch.png',
+        'images/forest/mockup_1.png',
+        'images/forest/mockup_2.png',
+        'images/forest/herunterladen.png',
+      ],
+      hexcolor: '#0FFF82',
+      keyFeatures: [
+        context.l10n.forestFeature1,
+        context.l10n.forestFeature2,
+        context.l10n.forestFeature3,
+        context.l10n.forestFeature4,
+        context.l10n.forestFeature5
+      ],
+      challenges: [
+        context.l10n.forestChallenge1,
+        context.l10n.forestChallenge2,
+        context.l10n.forestChallenge3,
+        context.l10n.forestChallenge4
+      ],
+      learnings: [
+        context.l10n.forestLearning1,
+        context.l10n.forestLearning2,
+        context.l10n.forestLearning3,
+        context.l10n.forestLearning4
+      ],
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text: '',
+          imageUrl: '',
+        ),
+      },
+    ),
+    /*
   Project(
     id: '5',
     typ: ProjectType.virtualReality,
@@ -394,5 +425,6 @@ final List<Project> dummyProjects = [
         imageUrl: '',
       ),
     },
-  ),
-];
+  ),*/
+  ];
+}

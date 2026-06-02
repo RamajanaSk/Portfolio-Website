@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
-import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 import 'package:ramajana05/core/widgets/full_width_text.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 import 'package:ramajana05/features/contact/service/contact_email_service.dart';
@@ -29,13 +29,11 @@ class _ContactScreenState extends State<ContactScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return SingleChildScrollView(
       child: Column(
         children: [
           const NeonSectionDivider(),
-          const FullWidthText(text: "CONTACT"),
+          FullWidthText(text: context.l10n.contact),
           const NeonSectionDivider(),
           Padding(
             padding: EdgeInsets.symmetric(
@@ -49,8 +47,8 @@ class _ContactScreenState extends State<ContactScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20),
-                    const Text(
-                      'Let’s build something great together. Feel free to reach out for collaborations or opportunities.',
+                    Text(
+                      context.l10n.letsBuildSomething,
                       style: TextStyle(
                         fontSize: 18,
                         height: 1.5,
@@ -69,12 +67,12 @@ class _ContactScreenState extends State<ContactScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const Row(
+                    Row(
                       children: [
-                        Icon(Icons.location_on_outlined),
-                        SizedBox(width: 10),
+                        const Icon(Icons.location_on_outlined),
+                        const SizedBox(width: 10),
                         Text(
-                          'Stuttgart, Germany',
+                          context.l10n.location,
                           style: TextStyle(fontSize: 18),
                         ),
                       ],
@@ -104,7 +102,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           ),
                         );
                       },
-                      text: 'Send Message',
+                      text: context.l10n.sendMessage,
                     ),
                   ],
                 ),
@@ -138,7 +136,7 @@ class _ContactForm extends StatelessWidget {
         TextField(
           controller: nameController,
           decoration: InputDecoration(
-            hintText: 'Your Name',
+            hintText: context.l10n.yourName,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -148,7 +146,7 @@ class _ContactForm extends StatelessWidget {
         TextField(
           controller: emailController,
           decoration: InputDecoration(
-            hintText: 'Your Email',
+            hintText: context.l10n.yourEmail,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -159,7 +157,7 @@ class _ContactForm extends StatelessWidget {
           controller: messageController,
           maxLines: 5,
           decoration: InputDecoration(
-            hintText: 'Your Message',
+            hintText: context.l10n.yourMessage,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),

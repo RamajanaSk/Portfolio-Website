@@ -3,7 +3,7 @@ import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final String title;
   final String catchPhrase;
   final String hexColor;
@@ -26,10 +26,15 @@ class ProjectCard extends StatelessWidget {
   });
 
   @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       hoverColor: Colors.transparent,
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
@@ -46,11 +51,9 @@ class ProjectCard extends StatelessWidget {
           children: [
             Container(
               width: 20,
-              color: _hexToColor(hexColor),
+              color: _hexToColor(widget.hexColor),
             ),
-
             const SizedBox(width: 12),
-
             Expanded(
               flex: 4,
               child: Padding(
@@ -59,24 +62,19 @@ class ProjectCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title.toUpperCase(),
+                      widget.title.toUpperCase(),
                       style: AppTextStyles.titleProjectCard(context),
                     ),
-
                     const SizedBox(height: 8),
-
                     Text(
-                      catchPhrase.toUpperCase(),
+                      widget.catchPhrase.toUpperCase(),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.description(context),
                     ),
-
                     const Spacer(),
-
-                    // 🔥 PLATFORM ICONS
                     Row(
-                      children: platformLinks.map((link) {
+                      children: widget.platformLinks.map((link) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
                           child: _buildIcon(
@@ -91,10 +89,7 @@ class ProjectCard extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(width: 10),
-
-            // 🔥 IMAGE + OVERLAY
             Expanded(
               flex: 5,
               child: Stack(
@@ -102,11 +97,12 @@ class ProjectCard extends StatelessWidget {
                   Container(
                     color: Theme.of(context).colorScheme.onSurface,
                     child: Center(
-                      child: previewImage != null && previewImage!.isNotEmpty
+                      child: widget.previewImage != null &&
+                              widget.previewImage!.isNotEmpty
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.asset(
-                                previewImage!,
+                                widget.previewImage!,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                                 height: double.infinity,
@@ -129,11 +125,10 @@ class ProjectCard extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // 🔥 GITHUB BUTTON
                           Align(
                             alignment: Alignment.topRight,
                             child: InkWell(
-                              onTap: githubUrl != null ? () {} : null,
+                              onTap: widget.githubUrl != null ? () {} : null,
                               child: Container(
                                 padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
@@ -153,7 +148,7 @@ class ProjectCard extends StatelessWidget {
                           Align(
                             alignment: Alignment.bottomLeft,
                             child: Text(
-                              date,
+                              widget.date,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -175,8 +170,6 @@ class ProjectCard extends StatelessWidget {
       ),
     );
   }
-
-  // 🔧 Helpers
 
   Color _hexToColor(String hex) {
     final buffer = StringBuffer();
@@ -208,7 +201,7 @@ class ProjectCard extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           child: Icon(
             icon,
-            size: 16, // smaller than SocialLinksRow (fits card)
+            size: 16,
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/modern_metric.dart';
 
 class MetricsSection extends StatelessWidget {
@@ -16,7 +17,7 @@ class MetricsSection extends StatelessWidget {
           constraints: const BoxConstraints(
             maxWidth: 1700,
           ),
-          child: const Wrap(
+          child: Wrap(
             alignment: WrapAlignment.center,
             runAlignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.start,
@@ -25,18 +26,18 @@ class MetricsSection extends StatelessWidget {
             children: [
               ModernMetric(
                 value: "FLUTTER",
-                title: "Mobile Specialization",
-                subtitle: "Responsive cross-platform apps",
+                title: context.l10n.mobileSpecialization,
+                subtitle: "",
               ),
               ModernMetric(
                 value: "10+",
-                title: "Applications Built",
-                subtitle: "Built with modern technologies",
+                title: context.l10n.applicationsBuilt,
+                subtitle: "",
               ),
               ModernMetric(
                 value: "MAPS & VR",
-                title: "Creative Systems",
-                subtitle: "Interactive 3D & GPS experiences",
+                title: context.l10n.creativeSystems,
+                subtitle: "",
               ),
             ],
           ),

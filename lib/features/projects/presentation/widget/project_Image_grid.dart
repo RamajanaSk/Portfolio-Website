@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// 🔥 Beispiel Project Model (anpassen falls du schon eins hast)
 class Project {
   final String? previewPicture;
   final String? mockupPicture;
@@ -15,7 +14,6 @@ class Project {
   });
 }
 
-/// 🔥 MAIN GRID
 class ProjectImageGrid extends StatelessWidget {
   final Project project;
 
@@ -26,7 +24,6 @@ class ProjectImageGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 🔥 Alle Bilder sammeln
     final images = [
       project.previewPicture,
       project.mockupPicture,
@@ -35,7 +32,7 @@ class ProjectImageGrid extends StatelessWidget {
     ].whereType<String>().toList();
 
     if (images.isEmpty) {
-      return const SizedBox(); // nichts anzeigen wenn leer
+      return const SizedBox();
     }
 
     return GridView.builder(
@@ -44,10 +41,10 @@ class ProjectImageGrid extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       itemCount: images.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4, // 🔥 immer 4 pro Reihe
+        crossAxisCount: 4,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        childAspectRatio: 1, // 🔥 quadratisch
+        childAspectRatio: 1,
       ),
       itemBuilder: (context, index) {
         return _ImageCard(imagePath: images[index]);
@@ -56,7 +53,6 @@ class ProjectImageGrid extends StatelessWidget {
   }
 }
 
-/// 🔥 IMAGE CARD (mit Hover Effekt für Desktop)
 class _ImageCard extends StatefulWidget {
   final String imagePath;
 

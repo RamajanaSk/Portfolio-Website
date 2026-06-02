@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 
 class ProjectFilterSearchBar extends StatefulWidget {
   final List<Project> allProjects;
@@ -51,7 +52,7 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
       children: [
         TextField(
           decoration: InputDecoration(
-            hintText: 'Search projects...',
+            hintText: context.l10n.searchProjects,
             prefixIcon: const Icon(Icons.search),
             filled: true,
             border: OutlineInputBorder(

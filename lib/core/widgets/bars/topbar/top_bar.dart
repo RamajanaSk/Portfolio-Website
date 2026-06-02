@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_button.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_mobile_button.dart';
 import 'package:ramajana05/core/widgets/language_switcher/language_pop_menu.dart';
@@ -46,9 +47,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: onHomePressed,
         child: Text(
           title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.topBarTextButton(context),
         ),
       ),
       actions: [
@@ -85,11 +84,11 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         text: context.l10n.home,
         onPressed: onHomePressed,
       ),
-      const SizedBox(width: 10),
+      /*const SizedBox(width: 10),
       TopBarButton(
         text: context.l10n.about,
         onPressed: onAboutMePressed,
-      ),
+      ),*/
       const SizedBox(width: 10),
       TopBarButton(
         text: context.l10n.projects,
@@ -128,10 +127,10 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
                 text: context.l10n.home,
                 onPressed: onHomePressed,
               ),
-              TopBarMobileButton(
+              /* TopBarMobileButton(
                 text: context.l10n.about,
                 onPressed: onAboutMePressed,
-              ),
+              ), */
               TopBarMobileButton(
                 text: context.l10n.projects,
                 onPressed: onProjectPressed,

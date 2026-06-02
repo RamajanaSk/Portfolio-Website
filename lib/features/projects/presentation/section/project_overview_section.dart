@@ -11,90 +11,111 @@ class Projectoverviewsection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainColor = _hexToColor(project.hexcolor);
+    final isMobile = MediaQuery.of(context).size.width < 800;
 
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: ProjectHeader(project: project),
-                    ),
-                    const SizedBox(height: 24),
-                    Expanded(
-                      flex: 3,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: project.logoPicture.isNotEmpty
-                                  ? Image.asset(
-                                      project.logoPicture,
-                                      fit: BoxFit.contain,
-                                    )
-                                  : Container(color: Colors.black12),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            flex: 3,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: project.mockupPicture.isNotEmpty
-                                  ? Image.asset(
-                                      project.previewPicture,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Container(color: Colors.black12),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            flex: 3,
-                            child: ProjectInfoCard(
-                              technologies: project.technologies.join(", "),
-                              description: project.shortDescription,
-                              role: project.role,
-                              outcome: "",
-                              startDate: project.startDate,
-                              endDate: project.endDate,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 32),
-          ],
-        ),
+        child: isMobile
+            ? _buildMobileLayout(context)
+            : _buildDesktopLayout(context),
       ),
     );
   }
 
-  Color _hexToColor(String hex) {
-    final buffer = StringBuffer();
-    if (hex.length == 6 || hex.length == 7) {
-      buffer.write('ff');
-    }
-    buffer.write(hex.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
+  Widget _buildDesktopLayout(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 5,
+                child: ProjectHeader(project: project),
+              ),
+              const SizedBox(height: 24),
+              Expanded(
+                flex: 3,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildLogo(),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      flex: 3,
+                      child: _buildPreview(),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      flex: 3,
+                      child: _buildInfoCard(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 350,
+            child: ProjectHeader(project: project),
+          ),
+          const SizedBox(height: 24),
+          SizedBox(
+            height: 250,
+            child: _buildPreview(),
+          ),
+          const SizedBox(height: 24),
+          _buildInfoCard(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLogo() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: project.logoPicture.isNotEmpty
+          ? Image.asset(
+              project.logoPicture,
+              fit: BoxFit.contain,
+            )
+          : Container(color: Colors.black12),
+    );
+  }
+
+  Widget _buildPreview() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: project.mockupPicture.isNotEmpty
+          ? Image.asset(
+              project.previewPicture,
+              fit: BoxFit.cover,
+            )
+          : Container(color: Colors.black12),
+    );
+  }
+
+  Widget _buildInfoCard() {
+    return ProjectInfoCard(
+      technologies: project.technologies.join(", "),
+      description: project.shortDescription,
+      role: project.role,
+      outcome: "",
+      startDate: project.startDate,
+      endDate: project.endDate,
+    );
   }
 }

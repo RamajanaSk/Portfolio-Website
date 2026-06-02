@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
@@ -10,7 +11,7 @@ import 'package:ramajana05/features/about/presentation/sections/about_me_section
 import 'package:ramajana05/features/about/presentation/sections/education_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/experience_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
-import 'package:ramajana05/features/about/presentation/sections/metric_section.dart';
+
 import 'package:ramajana05/features/about/presentation/sections/skill_bar_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/skills_overview_section.dart';
 import 'package:ramajana05/features/home/data/skill_data.dart';
@@ -24,19 +25,19 @@ class AboutMeScreen extends StatelessWidget {
       body: ListView(
         children: [
           const NeonSectionDivider(),
-          const FullWidthText(text: "WHAT MAKES ME SPECIAL"),
+          FullWidthText(text: context.l10n.whatMakesMeSpecial),
           const NeonSectionDivider(),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 60),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 60),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AboutMeSection(),
-                SkillBarSection(skills: skills),
-                const NormalSectionDivider(),
-                const SkillsOverviewSection(),
-                const FeaturedWorkAndTechnologiesSection(),
-                const NormalSectionDivider(),
+                AboutMeSection(),
+                //SkillBarSection(skills: skills),
+                NormalSectionDivider(),
+                SkillsOverviewSection(),
+                FeaturedWorkAndTechnologiesSection(),
+                NormalSectionDivider(),
               ],
             ),
           ),

@@ -44,7 +44,6 @@ class NeonOutlineButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30 * s),
             ),
-            foregroundColor: Colors.white,
           ).copyWith(
             elevation: WidgetStateProperty.all(0),
           ),
@@ -53,7 +52,7 @@ class NeonOutlineButton extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             softWrap: false,
-            style: AppTextStyles.buttonthick(context).copyWith(
+            style: AppTextStyles.buttonoutlined(context).copyWith(
               fontSize: MediaQuery.of(context).size.width < 500 ? 13 : null,
             ),
           ),

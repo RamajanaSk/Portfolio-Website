@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
-import 'package:ramajana05/Data/dummyData.dart';
+
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/full_width_text.dart';
-import 'package:ramajana05/core/widgets/section_header_text.dart';
+import 'package:ramajana05/data/dummyData.dart';
+
 import 'package:ramajana05/features/projects/presentation/widget/project_filter_searchbar.dart';
 
 class ProjectListScreen extends StatefulWidget {
@@ -21,7 +22,16 @@ class ProjectListScreen extends StatefulWidget {
 }
 
 class _ProjectListScreenState extends State<ProjectListScreen> {
-  List<Project> filteredProjects = dummyProjects;
+  List<Project> filteredProjects = [];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (filteredProjects.isEmpty) {
+      filteredProjects = getDummyProjects(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +44,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: ProjectFilterSearchBar(
-              allProjects: dummyProjects,
+              allProjects: getDummyProjects(context),
               onFilterChanged: (projects) {
                 setState(() {
                   filteredProjects = projects;
