@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PlatformLink {
   final IconData icon;
@@ -13,7 +14,7 @@ class PlatformLink {
 
   Map<String, dynamic> toMap() {
     return {
-      "icon": icon.codePoint, // store as int
+      "icon": _iconToString(icon),
       "url": url,
       "tooltip": tooltip,
     };
@@ -21,12 +22,41 @@ class PlatformLink {
 
   factory PlatformLink.fromMap(Map<String, dynamic> map) {
     return PlatformLink(
-      icon: IconData(
-        map["icon"],
-        fontFamily: 'FontAwesomeSolid', // ⚠️ important
-      ),
-      url: map["url"],
-      tooltip: map["tooltip"],
+      icon: _iconFromString(map["icon"] as String),
+      url: map["url"] as String,
+      tooltip: map["tooltip"] as String,
     );
+  }
+
+  static String _iconToString(IconData icon) {
+    if (icon == FontAwesomeIcons.github) return "github";
+    if (icon == FontAwesomeIcons.linkedin) return "linkedin";
+    if (icon == FontAwesomeIcons.googlePlay) return "googlePlay";
+    if (icon == FontAwesomeIcons.globe) return "globe";
+    if (icon == Icons.download) return "download";
+
+    return "link";
+  }
+
+  static IconData _iconFromString(String iconName) {
+    switch (iconName) {
+      case "github":
+        return FontAwesomeIcons.github;
+
+      case "linkedin":
+        return FontAwesomeIcons.linkedin;
+
+      case "googlePlay":
+        return FontAwesomeIcons.googlePlay;
+
+      case "globe":
+        return FontAwesomeIcons.globe;
+
+      case "download":
+        return Icons.download;
+
+      default:
+        return Icons.link;
+    }
   }
 }
