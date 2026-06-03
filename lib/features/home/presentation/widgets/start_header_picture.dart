@@ -21,7 +21,6 @@ class GTKMRightSideWidget extends StatelessWidget {
     } else {
       width = screenWidth * 0.45 * s;
     }
-
     return Center(
       child: SizedBox(
         width: width,
