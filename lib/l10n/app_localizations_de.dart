@@ -271,4 +271,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get challenges => 'HERAUSFORDERUNGEN';
+
+  @override
+  String get softwareProjects => 'SOFTWARE PROJECTS';
 }

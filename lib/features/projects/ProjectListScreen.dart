@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
 
 import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/full_width_text.dart';
@@ -39,7 +40,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
       body: ListView(
         children: [
           const NeonSectionDivider(),
-          const FullWidthText(text: "SOFTWARE PROJECTS"),
+          FullWidthText(text: context.l10n.softwareProjects),
           const NeonSectionDivider(),
           Padding(
             padding: const EdgeInsets.all(20),

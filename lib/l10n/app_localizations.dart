@@ -302,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @viewPortfolio.
   ///
   /// In en, this message translates to:
-  /// **'VIEW PORTFOLIO'**
+  /// **'PORTFOLIO'**
   String get viewPortfolio;
 
   /// No description provided for @builtWithFlutter.
@@ -622,6 +622,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'CHALLENGES'**
   String get challenges;
+
+  /// No description provided for @softwareProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'SOFTWARE PROJEKTE'**
+  String get softwareProjects;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

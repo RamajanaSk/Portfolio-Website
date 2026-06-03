@@ -71,7 +71,7 @@
 
   "downloadCV": "DOWNLOAD CV",
 
-  "viewPortfolio": "VIEW PORTFOLIO",
+  "viewPortfolio": "PORTFOLIO",
 
   "builtWithFlutter":
       "BUILT WITH FLUTTER",
@@ -149,9 +149,9 @@
   "outcome": "OUTCOME",
   "timePeriod": "TIME PERIOD",
   "learnings": "LEARNINGS",
-  "challenges": "CHALLENGES"
+  "challenges": "CHALLENGES",
  
-
+  "softwareProjects": "SOFTWARE PROJEKTE"
 
 }
 

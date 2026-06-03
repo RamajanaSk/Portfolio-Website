@@ -1,60 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
-
 import 'package:ramajana05/features/projects/presentation/widget/project_header.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_info_card.dart';
 
 class Projectoverviewsection extends StatelessWidget {
   final Project project;
 
-  const Projectoverviewsection({super.key, required this.project});
+  const Projectoverviewsection({
+    super.key,
+    required this.project,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
 
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: isMobile
-            ? _buildMobileLayout(context)
-            : _buildDesktopLayout(context),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
     );
   }
 
-  Widget _buildDesktopLayout(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+  Widget _buildDesktopLayout() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        SizedBox(
+          height: 400,
+          child: ProjectHeader(
+            project: project,
+          ),
+        ),
+        const SizedBox(height: 24),
+        SizedBox(
+          height: 300,
+          child: Row(
             children: [
-              Expanded(
-                flex: 5,
-                child: ProjectHeader(project: project),
+              SizedBox(
+                width: 200,
+                child: _buildLogo(),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(width: 16),
               Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildLogo(),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      flex: 3,
-                      child: _buildPreview(),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      flex: 3,
-                      child: _buildInfoCard(),
-                    ),
-                  ],
-                ),
+                child: _buildPreview(),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: _buildInfoCard(),
               ),
             ],
           ),
@@ -63,24 +55,24 @@ class Projectoverviewsection extends StatelessWidget {
     );
   }
 
-  Widget _buildMobileLayout(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 350,
-            child: ProjectHeader(project: project),
+  Widget _buildMobileLayout() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(
+          height: 300,
+          child: ProjectHeader(
+            project: project,
           ),
-          const SizedBox(height: 24),
-          SizedBox(
-            height: 250,
-            child: _buildPreview(),
-          ),
-          const SizedBox(height: 24),
-          _buildInfoCard(),
-        ],
-      ),
+        ),
+        const SizedBox(height: 24),
+        SizedBox(
+          height: 220,
+          child: _buildPreview(),
+        ),
+        const SizedBox(height: 24),
+        _buildInfoCard(),
+      ],
     );
   }
 
@@ -92,19 +84,23 @@ class Projectoverviewsection extends StatelessWidget {
               project.logoPicture,
               fit: BoxFit.contain,
             )
-          : Container(color: Colors.black12),
+          : Container(
+              color: Colors.black12,
+            ),
     );
   }
 
   Widget _buildPreview() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: project.mockupPicture.isNotEmpty
+      child: project.previewPicture.isNotEmpty
           ? Image.asset(
               project.previewPicture,
               fit: BoxFit.cover,
             )
-          : Container(color: Colors.black12),
+          : Container(
+              color: Colors.black12,
+            ),
     );
   }
 

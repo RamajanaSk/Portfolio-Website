@@ -41,6 +41,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
               children: [
                 SizedBox(
                   width: double.infinity,
+                  height: 350,
                   child: ProjectCarousel(
                     projects: getDummyProjects(context),
                     onProjectTap: (project) {

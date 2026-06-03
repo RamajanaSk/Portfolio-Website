@@ -150,6 +150,8 @@
   "outcome": "ERGEBNISSE",
   "timePeriod": "PROJEKTZEITRAUM",
   "learnings": "ERKENNTNISSE",
-  "challenges": "HERAUSFORDERUNGEN"
+  "challenges": "HERAUSFORDERUNGEN",
+
+  "softwareProjects": "SOFTWARE PROJECTS"
 }
 

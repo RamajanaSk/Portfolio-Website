@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ramajana05/Core/theme/app_theme.dart';
 import 'package:ramajana05/l10n/app_localizations.dart';
 import 'package:ramajana05/mainLayout.dart';
+import 'package:ramajana05/router/app_router.dart';
 
 Locale currentLocale = const Locale('en');
 
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'RamajanaSK Portfolio',
       debugShowCheckedModeBanner: false,
       theme: getLightTheme(),
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const MainLayout(),
+      routerConfig: appRouter,
     );
   }
 }

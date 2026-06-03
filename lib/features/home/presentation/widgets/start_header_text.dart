@@ -91,7 +91,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
           text: context.l10n.downloadCV,
           onPressed: () {
             FileDownloader.downloadAsset(
-              assetPath: 'pdfs/cv.pdf',
+              assetPath: 'assets/pdfs/cv.pdf',
               fileName: 'Ramajana_Skopljak_CV.pdf',
             );
             //FileDownloader.openAsset(
@@ -104,7 +104,7 @@ class GTKMLeftSideWidget extends StatelessWidget {
           text: context.l10n.viewPortfolio,
           onPressed: () {
             FileDownloader.openAsset(
-              assetPath: 'pdfs/software_portfolio.pdf',
+              assetPath: 'assets/pdfs/software_portfolio.pdf',
             );
           },
         ),

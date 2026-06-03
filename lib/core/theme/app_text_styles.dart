@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
+import 'package:ramajana05/core/widgets/full_width_text.dart';
 
 class AppTextStyles {
   static TextStyle name(BuildContext context) {
@@ -198,7 +199,7 @@ class AppTextStyles {
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface,
-      fontSize: 14 * s,
+      fontSize: 13 * s,
       fontWeight: FontWeight.bold,
     );
   }
@@ -208,6 +209,13 @@ class AppTextStyles {
 
     return TextStyle(
         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-        fontSize: 14 * s);
+        fontSize: 13 * s);
+  }
+
+  static TextStyle fullWidthText(BuildContext context) {
+    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+
+    return TextStyle(
+        fontSize: 35 * s, color: Colors.white, fontWeight: FontWeight.w800);
   }
 }

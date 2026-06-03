@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
-import 'package:ramajana05/core/widgets/background/neon_gradient_background.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 
@@ -15,8 +14,6 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = Theme.of(context).colorScheme.onSurface;
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
@@ -30,14 +27,8 @@ class Footer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "RAMAJANA",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                      ),
-                    ),
+                    Text("RAMAJANA",
+                        style: AppTextStyles.footerTitleText(context)),
                     const SizedBox(height: 10),
                     Text(context.l10n.footerDescription,
                         style: AppTextStyles.footerText(context)),

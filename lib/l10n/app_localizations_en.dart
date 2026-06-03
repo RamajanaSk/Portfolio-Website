@@ -111,7 +111,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get downloadCV => 'DOWNLOAD CV';
 
   @override
-  String get viewPortfolio => 'VIEW PORTFOLIO';
+  String get viewPortfolio => 'PORTFOLIO';
 
   @override
   String get builtWithFlutter => 'BUILT WITH FLUTTER';
@@ -271,4 +271,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challenges => 'CHALLENGES';
+
+  @override
+  String get softwareProjects => 'SOFTWARE PROJEKTE';
 }
