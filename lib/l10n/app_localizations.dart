@@ -449,6 +449,114 @@ abstract class AppLocalizations {
   /// **'DESIGNING EXPERIENCES THAT BRIDGE DIGITAL AND PHYSICAL INTERACTION'**
   String get travelerLearning4;
 
+  /// No description provided for @travelerRemakeShortDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A COMPLETE REBUILD OF TRAVELER WITH MODERN ARCHITECTURE, IMPROVED PERFORMANCE, AND A FOCUS ON DELIVERING A PRODUCTION-READY MOBILE EXPERIENCE.'**
+  String get travelerRemakeShortDescription;
+
+  /// No description provided for @travelerRemakeCatchPhrase.
+  ///
+  /// In en, this message translates to:
+  /// **'REBUILDING THE FUTURE OF EXPLORATION'**
+  String get travelerRemakeCatchPhrase;
+
+  /// No description provided for @travelerRemakeLongDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'TRAVELER REMAKE REPRESENTS THE NEXT EVOLUTION OF MY ORIGINAL BACHELOR THESIS PROJECT. WHILE THE FIRST VERSION PROVED the feasibility of combining geolocation, social interaction, and immersive map visualization, the remake focuses on transforming that concept into a scalable and production-ready application. The entire system is being rebuilt from the ground up using modern Flutter architecture, improved state management, and a significantly enhanced user experience. Special attention is given to maintainability, responsiveness, and creating a polished mobile-first product that can grow beyond its academic origins.'**
+  String get travelerRemakeLongDescription;
+
+  /// No description provided for @travelerRemakeProjectReason.
+  ///
+  /// In en, this message translates to:
+  /// **'THE ORIGINAL TRAVELER PROJECT UTILIZED UNITY FOR ITS 3D VISUALIZATION LAYER. WHILE THIS APPROACH SUCCESSFULLY DEMONSTRATED THE CONCEPT, IT INTRODUCED PERFORMANCE LIMITATIONS ON MOBILE DEVICES AND INCREASED THE COMPLEXITY OF THE APPLICATION. TRAVELER REMAKE IS BEING DEVELOPED AS A COMPLETE REIMPLEMENTATION WITH A STRONG EMPHASIS ON PERFORMANCE, SCALABILITY, AND USER EXPERIENCE. THE GOAL IS TO CREATE A FAST, SMOOTH, AND RELIABLE APPLICATION THAT FEELS LIKE A REAL PRODUCT RATHER THAN A PROTOTYPE.'**
+  String get travelerRemakeProjectReason;
+
+  /// No description provided for @travelerRemakeFeature1.
+  ///
+  /// In en, this message translates to:
+  /// **'COMPLETELY REDESIGNED USER INTERFACE AND USER EXPERIENCE'**
+  String get travelerRemakeFeature1;
+
+  /// No description provided for @travelerRemakeFeature2.
+  ///
+  /// In en, this message translates to:
+  /// **'MODERN AND SCALABLE FLUTTER ARCHITECTURE'**
+  String get travelerRemakeFeature2;
+
+  /// No description provided for @travelerRemakeFeature3.
+  ///
+  /// In en, this message translates to:
+  /// **'OPTIMIZED MAP AND LOCATION VISUALIZATION'**
+  String get travelerRemakeFeature3;
+
+  /// No description provided for @travelerRemakeFeature4.
+  ///
+  /// In en, this message translates to:
+  /// **'SOCIAL FEATURES FOR CONNECTING TRAVELERS'**
+  String get travelerRemakeFeature4;
+
+  /// No description provided for @travelerRemakeFeature5.
+  ///
+  /// In en, this message translates to:
+  /// **'PERFORMANCE-FOCUSED MOBILE DEVELOPMENT'**
+  String get travelerRemakeFeature5;
+
+  /// No description provided for @travelerRemakeChallenge1.
+  ///
+  /// In en, this message translates to:
+  /// **'TRANSFORMING A PROTOTYPE INTO A PRODUCTION-READY APPLICATION'**
+  String get travelerRemakeChallenge1;
+
+  /// No description provided for @travelerRemakeChallenge2.
+  ///
+  /// In en, this message translates to:
+  /// **'OPTIMIZING PERFORMANCE AND RESOURCE USAGE'**
+  String get travelerRemakeChallenge2;
+
+  /// No description provided for @travelerRemakeChallenge3.
+  ///
+  /// In en, this message translates to:
+  /// **'BUILDING A CLEAN AND MAINTAINABLE SOFTWARE ARCHITECTURE'**
+  String get travelerRemakeChallenge3;
+
+  /// No description provided for @travelerRemakeChallenge4.
+  ///
+  /// In en, this message translates to:
+  /// **'REDESIGNING THE USER EXPERIENCE FOR REAL-WORLD USAGE'**
+  String get travelerRemakeChallenge4;
+
+  /// No description provided for @travelerRemakeLearning1.
+  ///
+  /// In en, this message translates to:
+  /// **'ADVANCED FLUTTER ARCHITECTURE AND CLEAN CODE PRACTICES'**
+  String get travelerRemakeLearning1;
+
+  /// No description provided for @travelerRemakeLearning2.
+  ///
+  /// In en, this message translates to:
+  /// **'MOBILE PERFORMANCE OPTIMIZATION'**
+  String get travelerRemakeLearning2;
+
+  /// No description provided for @travelerRemakeLearning3.
+  ///
+  /// In en, this message translates to:
+  /// **'SCALABLE APPLICATION DESIGN AND STATE MANAGEMENT'**
+  String get travelerRemakeLearning3;
+
+  /// No description provided for @travelerRemakeLearning4.
+  ///
+  /// In en, this message translates to:
+  /// **'TRANSFORMING AN ACADEMIC PROJECT INTO A REAL PRODUCT'**
+  String get travelerRemakeLearning4;
+
+  /// No description provided for @travelerRemakeAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'TRAVELER REMAKE IS CURRENTLY A WORK IN PROGRESS. THE OBJECTIVE IS TO EVOLVE THE ORIGINAL BACHELOR THESIS INTO A FULLY FUNCTIONAL APPLICATION THAT IS FAST, SCALABLE, AND SUITABLE FOR EVERYDAY USE. IN CONTRAST TO THE ORIGINAL PROTOTYPE, THE REMAKE MOVES AWAY FROM UNITY-BASED RENDERING TO EXPLORE MORE EFFICIENT APPROACHES THAT BETTER FIT MOBILE DEVICES. THE FOCUS IS ON PERFORMANCE, MODERN UI/UX DESIGN, CLEAN SOFTWARE ARCHITECTURE, AND DELIVERING A HIGH-QUALITY USER EXPERIENCE. THIS PROJECT DOCUMENTS THE JOURNEY OF TRANSFORMING A RESEARCH PROTOTYPE INTO A REAL-WORLD PRODUCT.'**
+  String get travelerRemakeAbout;
+
   /// No description provided for @travelerAbout.
   ///
   /// In en, this message translates to:

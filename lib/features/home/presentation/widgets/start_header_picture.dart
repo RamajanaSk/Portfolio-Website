@@ -9,6 +9,7 @@ class GTKMRightSideWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 800;
 
     final s = AppResponsive.scale(context).clamp(0.85, 1.2);
 
@@ -21,153 +22,84 @@ class GTKMRightSideWidget extends StatelessWidget {
     } else {
       width = screenWidth * 0.45 * s;
     }
-    return Center(
-      child: SizedBox(
-        width: width,
-        height: width * 1.2,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            ShaderMask(
-              blendMode: BlendMode.srcATop,
-              shaderCallback: (bounds) {
-                return const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    Color(0xFFFF2D95),
-                    Color(0xFFFF2D95),
-                    Color(0xFF8A2BE2),
-                    Color(0xFF00CFFF),
-                  ],
-                  stops: [0.0, 0.35, 0.65, 1.0],
-                ).createShader(bounds);
-              },
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(
-                  sigmaX: 12,
-                  sigmaY: 12,
-                ),
-                child: Opacity(
-                  opacity: 0.2,
-                  child: Stack(
-                    children: [
-                      _outline(offset: const Offset(-1, 0)),
-                      _outline(offset: const Offset(1, 0)),
-                      _outline(offset: const Offset(0, -1)),
-                      _outline(offset: const Offset(0, 1)),
-                    ],
+
+    return RepaintBoundary(
+      child: Center(
+        child: SizedBox(
+          width: width,
+          height: width * 1.2,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              _buildGlow(isMobile),
+              _buildOutline(),
+              ClipRect(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  heightFactor: 0.8,
+                  child: Image.asset(
+                    'assets/me_cut.png',
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.low,
+                    cacheWidth: 1200,
                   ),
                 ),
               ),
-            ),
-            ShaderMask(
-              blendMode: BlendMode.srcATop,
-              shaderCallback: (bounds) {
-                return const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    Color(0xFFFF2D95),
-                    Color(0xFFFF2D95),
-                    Color(0xFF8A2BE2),
-                    Color(0xFF00CFFF),
-                  ],
-                  stops: [0.0, 0.35, 0.65, 1.0],
-                ).createShader(bounds);
-              },
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(
-                  sigmaX: 10,
-                  sigmaY: 10,
-                ),
-                child: Opacity(
-                  opacity: 1,
-                  child: Stack(
-                    children: [
-                      _outlineMain(offset: const Offset(-1, 0)),
-                      _outlineMain(offset: const Offset(1, 0)),
-                      _outlineMain(offset: const Offset(0, -1)),
-                      _outlineMain(offset: const Offset(0, 1)),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            ShaderMask(
-              blendMode: BlendMode.srcATop,
-              shaderCallback: (bounds) {
-                return const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    Color(0xFFFF2D95),
-                    Color(0xFFFF2D95),
-                    Color(0xFF8A2BE2),
-                    Color(0xFF00CFFF),
-                  ],
-                  stops: [0.0, 0.35, 0.65, 1.0],
-                ).createShader(bounds);
-              },
-              child: Stack(
-                children: [
-                  _outlineMain(offset: const Offset(-1, 0)),
-                  _outlineMain(offset: const Offset(1, 0)),
-                  _outlineMain(offset: const Offset(0, -1)),
-                  _outlineMain(offset: const Offset(0, 1)),
-                ],
-              ),
-            ),
-            ClipRect(
-              child: Align(
-                alignment: Alignment.topCenter,
-                heightFactor: 0.8,
-                child: Image.asset(
-                  'assets/me_cut.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _outline({required Offset offset}) {
-    return Transform.translate(
-      offset: offset,
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(
-          sigmaX: 0,
-          sigmaY: 0,
-        ),
-        child: ClipRect(
-          child: Align(
-            alignment: Alignment.topCenter,
-            heightFactor: 0.8,
+  Widget _buildGlow(bool isMobile) {
+    return RepaintBoundary(
+      child: ShaderMask(
+        blendMode: BlendMode.srcATop,
+        shaderCallback: _gradientShader,
+        child: ImageFiltered(
+          imageFilter: ImageFilter.blur(
+            sigmaX: isMobile ? 6 : 12,
+            sigmaY: isMobile ? 6 : 12,
+          ),
+          child: Opacity(
+            opacity: 0.45,
             child: Image.asset(
-              'assets/me_cut.png',
-              fit: BoxFit.cover,
+              'assets/RamajanaLogo.png',
+              filterQuality: FilterQuality.low,
+              cacheWidth: 1200,
             ),
           ),
         ),
       ),
     );
   }
-}
 
-Widget _outlineMain({required Offset offset}) {
-  return Transform.translate(
-    offset: offset,
-    child: ImageFiltered(
-      imageFilter: ImageFilter.blur(
-        sigmaX: 1,
-        sigmaY: 1,
+  Widget _buildOutline() {
+    return RepaintBoundary(
+      child: ShaderMask(
+        blendMode: BlendMode.srcATop,
+        shaderCallback: _gradientShader,
+        child: Image.asset(
+          'assets/RamajanaLogo.png',
+          filterQuality: FilterQuality.low,
+          cacheWidth: 1200,
+        ),
       ),
-      child: Image.asset(
-        'assets/RamajanaLogo.png',
-      ),
-    ),
-  );
+    );
+  }
+
+  Shader _gradientShader(Rect bounds) {
+    return const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.topRight,
+      colors: [
+        Color(0xFFFF2D95),
+        Color(0xFFFF2D95),
+        Color(0xFF8A2BE2),
+        Color(0xFF00CFFF),
+      ],
+      stops: [0.0, 0.35, 0.65, 1.0],
+    ).createShader(bounds);
+  }
 }

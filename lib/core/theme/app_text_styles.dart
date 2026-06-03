@@ -199,7 +199,7 @@ class AppTextStyles {
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface,
-      fontSize: 13 * s,
+      fontSize: 14 * s,
       fontWeight: FontWeight.bold,
     );
   }
@@ -209,7 +209,7 @@ class AppTextStyles {
 
     return TextStyle(
         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-        fontSize: 13 * s);
+        fontSize: 14 * s);
   }
 
   static TextStyle fullWidthText(BuildContext context) {
