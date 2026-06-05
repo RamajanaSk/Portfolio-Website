@@ -327,5 +327,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get challenges => 'CHALLENGES';
 
   @override
-  String get softwareProjects => 'SOFTWARE PROJEKTE';
+  String get softwareProjects => 'SOFTWARE PROJECTS';
 }

@@ -7,20 +7,18 @@ class Project {
   final String id;
   final ProjectType typ;
 
-  // Basic
   String name;
   String catchPhrase;
   String shortDescription;
   String longDescription;
   String projectReason;
 
-  // Meta
   final DateTime startDate;
   final DateTime endDate;
   final int durationInMonths;
 
   final bool isSolo;
-  final String role; // z.B. "Fullstack Developer", "VR Developer"
+  final String role;
 
   final String? grade; // z.B. "1.3"
   final String? universityContext; // z.B. "Bachelor Project"
@@ -37,6 +35,7 @@ class Project {
   // Media
   final String logoPicture;
   final String previewPicture;
+  final String bannerPreviewPicture;
   final String aboutPicture;
   final List<String> mockupPicture;
   final List<String> gallery;
@@ -75,6 +74,7 @@ class Project {
     required this.logoPicture,
     required this.aboutPicture,
     required this.previewPicture,
+    required this.bannerPreviewPicture,
     required this.mockupPicture,
     required this.gallery,
     required this.hexcolor,
@@ -108,6 +108,7 @@ class Project {
         "logoPicture": logoPicture,
         "aboutPicture": aboutPicture,
         "previewPicture": previewPicture,
+        "bannerPreviewPicture": bannerPreviewPicture,
         "mockupPicture": mockupPicture,
         "sections": sections.map((k, v) => MapEntry(k.name, v.toMap())),
         "platformLinks": platformLinks.map((e) => e.toMap()).toList(),
@@ -138,6 +139,7 @@ class Project {
       logoPicture: map["logoPicture"],
       aboutPicture: map["aboutPicture"],
       previewPicture: map["previewPicture"],
+      bannerPreviewPicture: map["bannerPreviewPicture"],
       mockupPicture: List<String>.from(map["mockupPicture"] ?? []),
       gallery: List<String>.from(map["gallery"] ?? []),
       sections: (map["sections"] as Map<String, dynamic>).map(

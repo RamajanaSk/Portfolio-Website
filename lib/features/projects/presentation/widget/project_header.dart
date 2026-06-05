@@ -13,9 +13,11 @@ class ProjectHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 800;
+
     return Container(
       width: double.infinity,
-      height: 300,
+      height: isMobile ? 250 : 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -24,13 +26,12 @@ class ProjectHeader extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
-              project.gallery.first,
+              project.bannerPreviewPicture,
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
-
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -44,7 +45,6 @@ class ProjectHeader extends StatelessWidget {
               ),
             ),
           ),
-
           Positioned(
             top: 16,
             right: 16,
@@ -73,48 +73,57 @@ class ProjectHeader extends StatelessWidget {
               ),
             ),
           ),
-
-          // Content
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  project.name.toUpperCase(),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
+                FittedBox(
+                  alignment: Alignment.centerLeft,
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    project.name.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: isMobile ? 32 : 50,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  project.catchPhrase,
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 25,
-                    height: 1.4,
+                Expanded(
+                  child: Text(
+                    project.catchPhrase,
+                    maxLines: isMobile ? 3 : 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: isMobile ? 16 : 25,
+                      height: 1.4,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 Row(
                   children: [
                     if (project.role != null)
-                      Text(
-                        project.role!,
-                        style: const TextStyle(
-                          color: Colors.white54,
-                          fontSize: 14,
+                      Expanded(
+                        child: Text(
+                          project.role!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.white54,
+                            fontSize: isMobile ? 12 : 14,
+                          ),
                         ),
                       ),
-                    const Spacer(),
+                    const SizedBox(width: 12),
                     Text(
                       project.startDate.year.toString(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: isMobile ? 16 : 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -128,3 +137,4 @@ class ProjectHeader extends StatelessWidget {
     );
   }
 }
+

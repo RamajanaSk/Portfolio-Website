@@ -46,12 +46,14 @@ List<Project> getDummyProjects(BuildContext context) {
       apkUrl: null,
       logoPicture: 'assets/images/traveler_remake/waiting.png',
       previewPicture: 'assets/images/traveler_remake/traveler_main.png',
+      bannerPreviewPicture: 'assets/images/traveler_remake/waiting.png',
       aboutPicture: 'assets/images/traveler_remake/waiting.png',
       mockupPicture: [
         'assets/images/traveler_remake/waiting.png',
       ],
       gallery: [
-        'assets/images/traveler_remake/waiting.png',
+        'assets/images/traveler_remake/stuttgart_map_small.png',
+        'assets/images/traveler_remake/stuttgart_map_big.png'
       ],
       hexcolor: '#2196F3',
       keyFeatures: [
@@ -122,6 +124,7 @@ List<Project> getDummyProjects(BuildContext context) {
       apkUrl: null,
       logoPicture: 'assets/images/traveler/traveler_logo.png',
       previewPicture: 'assets/images/traveler/traveler_main.png',
+      bannerPreviewPicture: 'assets/images/traveler/3D_unity_map.png',
       aboutPicture: 'assets/images/traveler/traveler_main.png',
       mockupPicture: ['assets/images/traveler/traveler_logo.png'],
       gallery: [
@@ -288,6 +291,7 @@ List<Project> getDummyProjects(BuildContext context) {
       logoPicture: 'assets/images/forest/forest_logo.png',
       aboutPicture: 'assets/images/forest/about_me.png',
       previewPicture: 'assets/images/forest/forest_main.png',
+      bannerPreviewPicture: 'assets/images/forest/forest_thumbnail.png',
       mockupPicture: ['assets/images/traveler/traveler_logo.png'],
       gallery: [
         'assets/images/forest/forest_thumbnail.png',

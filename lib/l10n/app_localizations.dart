@@ -734,7 +734,7 @@ abstract class AppLocalizations {
   /// No description provided for @softwareProjects.
   ///
   /// In en, this message translates to:
-  /// **'SOFTWARE PROJEKTE'**
+  /// **'SOFTWARE PROJECTS'**
   String get softwareProjects;
 }
 
