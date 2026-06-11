@@ -52,6 +52,7 @@ List<Project> getDummyProjects(BuildContext context) {
         'assets/images/traveler_remake/waiting.png',
       ],
       gallery: [
+        'assets/images/traveler_remake/map_discovery.png',
         'assets/images/traveler_remake/stuttgart_map_small.png',
         'assets/images/traveler_remake/stuttgart_map_big.png'
       ],
