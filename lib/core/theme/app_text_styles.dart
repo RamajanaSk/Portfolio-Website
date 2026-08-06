@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:ramajana05/core/utils/app_responsive.dart';
 
 class AppTextStyles {
+  static double _scale(
+    BuildContext context, {
+    double min = 0.7,
+    double max = 1.2,
+  }) {
+    return AppResponsive.scale(context).clamp(min, max).toDouble();
+  }
+
   static TextStyle name(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 90 * s,
@@ -15,7 +24,7 @@ class AppTextStyles {
   }
 
   static TextStyle sectionHeader(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 42 * s,
@@ -25,7 +34,7 @@ class AppTextStyles {
   }
 
   static TextStyle role(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 36 * s,
@@ -35,7 +44,7 @@ class AppTextStyles {
   }
 
   static TextStyle description(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 18 * s,
@@ -45,7 +54,7 @@ class AppTextStyles {
   }
 
   static TextStyle small(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 16 * s,
@@ -54,7 +63,7 @@ class AppTextStyles {
   }
 
   static TextStyle smalldescription(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 18 * s,
@@ -64,7 +73,7 @@ class AppTextStyles {
   }
 
   static TextStyle projectoverviewtopic(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontWeight: FontWeight.bold,
@@ -75,7 +84,7 @@ class AppTextStyles {
   }
 
   static TextStyle buttonthick(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontWeight: FontWeight.w600,
@@ -86,7 +95,7 @@ class AppTextStyles {
   }
 
   static TextStyle buttonoutlined(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontWeight: FontWeight.w600,
@@ -97,7 +106,7 @@ class AppTextStyles {
   }
 
   static TextStyle titleProjectCard(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 22 * s,
@@ -109,7 +118,7 @@ class AppTextStyles {
   }
 
   static TextStyle descriptionProjectCard(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 22 * s,
@@ -121,7 +130,7 @@ class AppTextStyles {
   }
 
   static TextStyle metricValue(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 50 * s,
@@ -132,7 +141,7 @@ class AppTextStyles {
   }
 
   static TextStyle metricTitle(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       fontSize: 16 * s,
@@ -172,7 +181,7 @@ class AppTextStyles {
   }
 
   static TextStyle underSectionTitle(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface,
@@ -184,7 +193,7 @@ class AppTextStyles {
   }
 
   static TextStyle underSectionText(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface.withOpacity(0.72),
@@ -194,7 +203,7 @@ class AppTextStyles {
   }
 
   static TextStyle footerTitleText(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface,
@@ -204,7 +213,7 @@ class AppTextStyles {
   }
 
   static TextStyle footerText(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.7, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
         color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
@@ -212,9 +221,21 @@ class AppTextStyles {
   }
 
   static TextStyle fullWidthText(BuildContext context) {
-    final s = AppResponsive.scale(context).clamp(0.85, 1.2);
+    final s = _scale(context);
 
     return TextStyle(
         fontSize: 35 * s, color: Colors.white, fontWeight: FontWeight.w800);
+  }
+
+  static TextStyle projectName(
+    BuildContext context, {
+    required Color color,
+  }) {
+    return TextStyle(
+      fontSize: 69 * _scale(context, min: 0.85),
+      color: color,
+      fontWeight: FontWeight.w700,
+      height: 1,
+    );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/extensions/hexcolor.dart';
+import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/features/projects/presentation/widget/technology_chip.dart';
 
 class HeroSection extends StatelessWidget {
   final Project project;
@@ -15,7 +17,7 @@ class HeroSection extends StatelessWidget {
     final isMobile = MediaQuery.of(context).size.width < 900;
 
     return SizedBox(
-      height: isMobile ? 850 : 720,
+      height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [
           // Background
@@ -102,19 +104,17 @@ class _HeroInformation extends StatelessWidget {
       children: [
         Text(
           project.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 58,
-            fontWeight: FontWeight.bold,
-            height: 1,
+          style: AppTextStyles.projectName(
+            context,
+            color: project.hexcolor.toColor(),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 20),
         Text(
           project.subtitle,
           style: const TextStyle(
-            color: Colors.white70,
-            fontSize: 24,
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontSize: 28,
             height: 1.3,
           ),
         ),
@@ -125,7 +125,7 @@ class _HeroInformation extends StatelessWidget {
             project.shortDescription,
             style: const TextStyle(
               color: Colors.white60,
-              fontSize: 17,
+              fontSize: 20,
               height: 1.8,
             ),
           ),
@@ -137,7 +137,7 @@ class _HeroInformation extends StatelessWidget {
           children: project.technologies
               .take(3)
               .map(
-                (tech) => _TechnologyChip(
+                (tech) => TechnologyChip(
                   technology: tech,
                 ),
               )
@@ -204,92 +204,6 @@ class _HeroInformation extends StatelessWidget {
   }
 }
 
-class _TechnologyChip extends StatelessWidget {
-  final String technology;
-
-  const _TechnologyChip({
-    required this.technology,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 10,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.white12,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            _iconForTechnology(technology),
-            size: 18,
-            color: Colors.white70,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            technology,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  IconData _iconForTechnology(String tech) {
-    switch (tech.toLowerCase()) {
-      case "flutter":
-        return Icons.flutter_dash;
-
-      case "dart":
-        return Icons.code;
-
-      case "sqlite":
-        return Icons.storage;
-
-      case "firebase":
-        return Icons.local_fire_department;
-
-      case "rest api":
-        return Icons.api;
-
-      case "openstreetmap":
-        return Icons.map;
-
-      case "android":
-        return Icons.android;
-
-      case "ios":
-        return Icons.phone_iphone;
-
-      case "material 3":
-        return Icons.palette;
-
-      case "provider":
-        return Icons.account_tree;
-
-      case "bloc":
-        return Icons.hub;
-
-      case "git":
-        return Icons.commit;
-
-      default:
-        return Icons.code;
-    }
-  }
-}
-
 class _HeroPreview extends StatelessWidget {
   final Project project;
 
@@ -297,19 +211,76 @@ class _HeroPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Hintergrundbild
-        if (project.previewPicture.isNotEmpty)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-              project.previewPicture,
-              fit: BoxFit.contain,
+    final size = MediaQuery.sizeOf(context);
+    final isMobile = size.width < 900;
+
+    if (project.phoneMockup.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    // Desktop: Portrait
+    final double phoneHeight =
+        isMobile ? size.width * 0.82 : size.height * 0.78;
+
+    final double phoneWidth = phoneHeight * 0.485;
+
+    final phone = Container(
+      width: phoneWidth,
+      height: phoneHeight,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: const Color(0xFF111111),
+        borderRadius: BorderRadius.circular(42),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.15),
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 40,
+            spreadRadius: 4,
+            offset: const Offset(0, 20),
+          ),
+        ],
+      ),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          // APP SCREEN
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(34),
+              child: Image.asset(
+                project.phoneMockup,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-      ],
+
+          // CAMERA
+          Positioned(
+            top: 10,
+            child: Container(
+              width: 85,
+              height: 24,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return Center(
+      child: isMobile
+          ? RotatedBox(
+              quarterTurns: 1,
+              child: phone,
+            )
+          : phone,
     );
   }
 }
