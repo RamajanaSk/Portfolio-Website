@@ -328,4 +328,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get softwareProjects => 'SOFTWARE PROJEKTE';
+
+  @override
+  String get travelerSubtitle => 'VERWANDLE JEDEN SPAZIERGANG IN EIN ABENTEUER.';
 }

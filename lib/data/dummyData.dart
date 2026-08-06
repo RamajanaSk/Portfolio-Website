@@ -84,6 +84,12 @@ List<Project> getDummyProjects(BuildContext context) {
           imageUrl: 'assets/images/traveler/traveler_main.png',
         ),
       },
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: context.l10n.travelerSubtitle,
+      githubUrl1: '',
+      demoUrl: '',
+      playStoreUrl: '',
     ),
     Project(
       id: '2',
@@ -168,6 +174,12 @@ List<Project> getDummyProjects(BuildContext context) {
           imageUrl: 'assets/images/traveler/traveler_main.png',
         ),
       },
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: '',
+      githubUrl1: '',
+      demoUrl: '',
+      playStoreUrl: '',
     ),
     /*
   Project(
@@ -331,6 +343,12 @@ List<Project> getDummyProjects(BuildContext context) {
           imageUrl: '',
         ),
       },
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: '',
+      githubUrl1: '',
+      demoUrl: '',
+      playStoreUrl: '',
     ),
     /*
   Project(

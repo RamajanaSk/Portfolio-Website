@@ -328,4 +328,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get softwareProjects => 'SOFTWARE PROJECTS';
+
+  @override
+  String get travelerSubtitle => 'TURN EVERY WALK INTO AN ADVENTURE.';
 }

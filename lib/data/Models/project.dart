@@ -51,6 +51,13 @@ class Project {
   final List<String> challenges;
   final List<String> learnings;
 
+  final String heroBackground;
+  final String phoneMockup;
+  final String subtitle;
+  final String githubUrl1;
+  final String demoUrl;
+  final String playStoreUrl;
+
   Project({
     required this.id,
     required this.typ,
@@ -82,6 +89,12 @@ class Project {
     required this.keyFeatures,
     required this.challenges,
     required this.learnings,
+    required this.heroBackground,
+    required this.phoneMockup,
+    required this.subtitle,
+    required this.githubUrl1,
+    required this.demoUrl,
+    required this.playStoreUrl,
   });
 
   /// Update text of a specific section
@@ -112,6 +125,8 @@ class Project {
         "mockupPicture": mockupPicture,
         "sections": sections.map((k, v) => MapEntry(k.name, v.toMap())),
         "platformLinks": platformLinks.map((e) => e.toMap()).toList(),
+        "heroBackground": heroBackground,
+        "phoneMockup": phoneMockup,
       };
 
   /// Rebuild Project from DB
@@ -154,6 +169,12 @@ class Project {
       keyFeatures: List<String>.from(map["keyFeatures"] ?? []),
       challenges: List<String>.from(map["challenges"] ?? []),
       learnings: List<String>.from(map["learnings"] ?? []),
+      heroBackground: map["heroBackground"],
+      phoneMockup: map["phoneMockup"],
+      subtitle: '',
+      githubUrl1: '',
+      demoUrl: '',
+      playStoreUrl: '',
     );
   }
 }

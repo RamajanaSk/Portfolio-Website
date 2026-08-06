@@ -736,6 +736,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SOFTWARE PROJECTS'**
   String get softwareProjects;
+
+  /// No description provided for @travelerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'TURN EVERY WALK INTO AN ADVENTURE.'**
+  String get travelerSubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
