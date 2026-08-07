@@ -12,7 +12,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get home => 'START';
 
   @override
-  String get about => 'ÜBER MICH';
+  String get about => 'ÜBER';
 
   @override
   String get projects => 'PROJEKTE';
@@ -331,4 +331,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get travelerSubtitle => 'VERWANDLE JEDEN SPAZIERGANG IN EIN ABENTEUER.';
+
+  @override
+  String get github => 'Besuche Github';
+
+  @override
+  String get demo => 'Live Demo';
 }

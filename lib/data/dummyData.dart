@@ -90,6 +90,8 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problem: '',
+      solution: '',
     ),
     Project(
       id: '2',
@@ -180,6 +182,8 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problem: '',
+      solution: '',
     ),
     /*
   Project(
@@ -349,6 +353,8 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problem: '',
+      solution: '',
     ),
     /*
   Project(

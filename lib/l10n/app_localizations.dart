@@ -742,6 +742,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'TURN EVERY WALK INTO AN ADVENTURE.'**
   String get travelerSubtitle;
+
+  /// No description provided for @github.
+  ///
+  /// In en, this message translates to:
+  /// **'View Github'**
+  String get github;
+
+  /// No description provided for @demo.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Demo'**
+  String get demo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

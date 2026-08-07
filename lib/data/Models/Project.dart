@@ -58,6 +58,9 @@ class Project {
   final String demoUrl;
   final String playStoreUrl;
 
+  final String problem;
+  final String solution;
+
   Project({
     required this.id,
     required this.typ,
@@ -95,6 +98,8 @@ class Project {
     required this.githubUrl1,
     required this.demoUrl,
     required this.playStoreUrl,
+    required this.problem,
+    required this.solution,
   });
 
   /// Update text of a specific section
@@ -127,6 +132,8 @@ class Project {
         "platformLinks": platformLinks.map((e) => e.toMap()).toList(),
         "heroBackground": heroBackground,
         "phoneMockup": phoneMockup,
+        "problem": problem,
+        "solution": solution,
       };
 
   /// Rebuild Project from DB
@@ -175,6 +182,8 @@ class Project {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problem: map["problem"],
+      solution: map["solution"],
     );
   }
 }

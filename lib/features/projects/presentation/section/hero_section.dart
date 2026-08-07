@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Data/Models/Project.dart';
 import 'package:ramajana05/core/extensions/hexcolor.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/features/projects/presentation/widget/technology_chip.dart';
 
@@ -22,25 +23,28 @@ class HeroSection extends StatelessWidget {
         children: [
           // Background
           Positioned.fill(
-            child: project.heroBackground.isNotEmpty
-                ? Image.asset(
-                    project.heroBackground,
-                    fit: BoxFit.cover,
-                  )
-                : Container(color: const Color(0xff111111)),
+            child: Container(
+              color: project.hexcolor.toColor(),
+            ),
           ),
 
           // Dark overlay
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Color(0xff050505),
-                    Color(0xdd050505),
-                    Color(0xaa050505),
+                    Theme.of(context).colorScheme.surface,
+                    Theme.of(context)
+                        .colorScheme
+                        .surface
+                        .withValues(alpha: 0.97),
+                    Theme.of(context)
+                        .colorScheme
+                        .surface
+                        .withValues(alpha: 0.37),
                     Colors.transparent,
                   ],
                 ),
@@ -112,22 +116,14 @@ class _HeroInformation extends StatelessWidget {
         const SizedBox(height: 20),
         Text(
           project.subtitle,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-            fontSize: 28,
-            height: 1.3,
-          ),
+          style: AppTextStyles.projectSubtitle(context),
         ),
         const SizedBox(height: 24),
         SizedBox(
           width: 500,
           child: Text(
             project.shortDescription,
-            style: const TextStyle(
-              color: Colors.white60,
-              fontSize: 20,
-              height: 1.8,
-            ),
+            style: AppTextStyles.projectShortDescription(context),
           ),
         ),
         const SizedBox(height: 36),
@@ -161,9 +157,9 @@ class _HeroInformation extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {},
-                child: const Text(
-                  "View Github",
-                  style: TextStyle(
+                child: Text(
+                  context.l10n.github,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
                   ),
@@ -188,8 +184,8 @@ class _HeroInformation extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {},
-                child: const Text(
-                  "Live Demo",
+                child: Text(
+                  context.l10n.demo,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,

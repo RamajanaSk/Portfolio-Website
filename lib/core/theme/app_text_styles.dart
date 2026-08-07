@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ramajana05/core/utils/app_responsive.dart';
+import 'package:ramajana05/core/widgets/section_label.dart';
 
 class AppTextStyles {
   static double _scale(
@@ -236,6 +237,37 @@ class AppTextStyles {
       color: color,
       fontWeight: FontWeight.w700,
       height: 1,
+    );
+  }
+
+  static TextStyle projectSubtitle(
+    BuildContext context,
+  ) {
+    return TextStyle(
+      fontSize: 28 * _scale(context, min: 0.85),
+      color: Theme.of(context).colorScheme.onSurface,
+      height: 1.3,
+    );
+  }
+
+  static TextStyle projectShortDescription(
+    BuildContext context,
+  ) {
+    return TextStyle(
+      fontSize: 20 * _scale(context, min: 0.85),
+      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+      height: 1.8,
+    );
+  }
+
+  static TextStyle sectionLabel(
+    BuildContext context, {
+    required Color color,
+  }) {
+    return TextStyle(
+      fontSize: 20 * _scale(context, min: 0.85),
+      color: color,
+      fontWeight: FontWeight.w700,
     );
   }
 }

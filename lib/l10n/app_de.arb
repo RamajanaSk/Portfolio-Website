@@ -3,7 +3,7 @@
   "@@locale": "de",
 
   "home": "START",
-  "about": "ÜBER MICH",
+  "about": "ÜBER",
   "projects": "PROJEKTE",
   "contact": "KONTAKT",
 
@@ -180,6 +180,9 @@
 
   "softwareProjects": "SOFTWARE PROJEKTE",
 
-  "travelerSubtitle": "VERWANDLE JEDEN SPAZIERGANG IN EIN ABENTEUER."
+  "travelerSubtitle": "VERWANDLE JEDEN SPAZIERGANG IN EIN ABENTEUER.",
+
+  "github": "Besuche Github",
+  "demo": "Live Demo"
 }
 

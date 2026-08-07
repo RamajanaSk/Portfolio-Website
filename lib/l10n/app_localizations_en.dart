@@ -331,4 +331,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get travelerSubtitle => 'TURN EVERY WALK INTO AN ADVENTURE.';
+
+  @override
+  String get github => 'View Github';
+
+  @override
+  String get demo => 'Live Demo';
 }

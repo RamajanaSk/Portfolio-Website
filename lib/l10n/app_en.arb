@@ -180,7 +180,10 @@
  
   "softwareProjects": "SOFTWARE PROJECTS",
 
-  "travelerSubtitle": "TURN EVERY WALK INTO AN ADVENTURE."
+  "travelerSubtitle": "TURN EVERY WALK INTO AN ADVENTURE.",
+
+  "github": "View Github",
+  "demo": "Live Demo"
 
 }
 
