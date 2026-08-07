@@ -28,9 +28,6 @@ class ExperienceSection extends StatelessWidget {
                 children: [
                   PhoneMockup(
                     imagePath: 'assets/images/traveler/buildings.png',
-                    phoneWidth: 450,
-                    phoneHeight: 920,
-                    visibleHeight: 650,
                   ),
                   SizedBox(height: 50),
                   ExperienceText(),
@@ -44,9 +41,6 @@ class ExperienceSection extends StatelessWidget {
                       flex: 4,
                       child: PhoneMockup(
                         imagePath: 'assets/images/traveler/buildings.png',
-                        phoneWidth: 450,
-                        phoneHeight: 920,
-                        visibleHeight: 650,
                       )),
                   SizedBox(width: 90),
                   Expanded(

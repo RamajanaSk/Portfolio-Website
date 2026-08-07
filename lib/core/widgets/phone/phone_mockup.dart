@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 class PhoneMockup extends StatelessWidget {
   final String imagePath;
 
-  final double visibleHeight;
+  /// Width of the phone.
+  /// Everything else scales automatically from this.
+  final double width;
 
-  final double phoneWidth;
-  final double phoneHeight;
+  /// How much of the phone should be visible.
+  /// 1.0 = full phone
+  /// 0.7 = top 70%
+  /// 0.5 = top half
+  final double visibleFraction;
 
   final BoxFit imageFit;
   final Alignment imageAlignment;
@@ -16,9 +21,8 @@ class PhoneMockup extends StatelessWidget {
   const PhoneMockup({
     super.key,
     required this.imagePath,
-    this.visibleHeight = 600,
-    this.phoneWidth = 450,
-    this.phoneHeight = 920,
+    this.width = 300,
+    this.visibleFraction = 1.0,
     this.imageFit = BoxFit.cover,
     this.imageAlignment = Alignment.topCenter,
     this.showDynamicIsland = true,
@@ -26,12 +30,29 @@ class PhoneMockup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Typical modern smartphone ratio
+    const aspectRatio = 9 / 19.5;
+
+    final phoneWidth = width;
+    final phoneHeight = phoneWidth / aspectRatio;
+
+    final visibleHeight = phoneHeight * visibleFraction.clamp(0.0, 1.0);
+
+    // Everything scales based on phone width
+    final scale = phoneWidth / 450;
+
+    final outerRadius = 60 * scale;
+    final innerRadius = 48 * scale;
+    final phonePadding = 12 * scale;
+    final borderWidth = 3 * scale;
+
+    final islandWidth = 110 * scale;
+    final islandHeight = 30 * scale;
+    final islandTop = 14 * scale;
+
     return SizedBox(
       width: phoneWidth,
       height: visibleHeight,
-
-      // This cleanly cuts everything below visibleHeight,
-      // including border, rounded corners and shadow.
       child: ClipRect(
         child: OverflowBox(
           alignment: Alignment.topCenter,
@@ -42,24 +63,33 @@ class PhoneMockup extends StatelessWidget {
           child: Container(
             width: phoneWidth,
             height: phoneHeight,
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(phonePadding),
             decoration: BoxDecoration(
               color: const Color(0xFF101010),
-              borderRadius: BorderRadius.circular(60),
+              borderRadius: BorderRadius.circular(
+                outerRadius,
+              ),
               border: Border.all(
                 color: const Color(0xFF3A3A3A),
-                width: 3,
+                width: borderWidth,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.25),
-                  blurRadius: 40,
-                  offset: const Offset(0, 15),
+                  color: Colors.black.withValues(
+                    alpha: 0.25,
+                  ),
+                  blurRadius: 40 * scale,
+                  offset: Offset(
+                    0,
+                    15 * scale,
+                  ),
                 ),
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(48),
+              borderRadius: BorderRadius.circular(
+                innerRadius,
+              ),
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -72,12 +102,16 @@ class PhoneMockup extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Container(
-                        margin: const EdgeInsets.only(top: 14),
-                        width: 110,
-                        height: 30,
+                        margin: EdgeInsets.only(
+                          top: islandTop,
+                        ),
+                        width: islandWidth,
+                        height: islandHeight,
                         decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(
+                            islandHeight,
+                          ),
                         ),
                       ),
                     ),
