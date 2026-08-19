@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/hexcolor.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';

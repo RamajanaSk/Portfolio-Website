@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/features/projects/presentation/widget/about_content.dart';
 import 'package:ramajana05/features/projects/presentation/widget/card/key_stats_card.dart';
 

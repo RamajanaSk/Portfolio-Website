@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Data/Models/Project.dart';
-import 'package:ramajana05/Data/Models/ProjectSection.dart';
-import 'package:ramajana05/Data/Models/ProjectType.dart';
-import 'package:ramajana05/Data/Models/SectionType.dart';
+import 'package:ramajana05/data/models/project.dart';
+import 'package:ramajana05/data/models/project_feature.dart';
+import 'package:ramajana05/data/models/project_section.dart';
+import 'package:ramajana05/data/models/project_type.dart';
+
+import 'package:ramajana05/data/models/section_type.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ramajana05/data/Models/ProjectFeature.dart';
-import 'package:ramajana05/data/Models/ProjectStat.dart';
+
+import 'package:ramajana05/data/models/project_stat.dart';
 
 List<Project> getDummyProjects(BuildContext context) {
   return [
@@ -204,18 +206,23 @@ List<Project> getDummyProjects(BuildContext context) {
       // CASE STUDY
       // ─────────────────────────────────────────────
 
+      problemTitle: 'We collect quotes without collecting our thoughts.',
+
       problem:
-          'Most quote apps prioritize endless content consumption. Quotes are '
-          'shown without context and are quickly forgotten, while users have '
-          'little opportunity to reflect on whether they actually agree with '
-          'the ideas they are reading.',
+          'We encounter ideas every day, but rarely stop to ask whether we '
+          'agree with them. Over time, those thoughts disappear instead of '
+          'becoming part of how we understand ourselves.',
+
+      problemImage: 'assets/images/quotey/problem.png',
+
+      solutionTitle: 'Turn passing thoughts into a personal philosophy.',
 
       solution:
-          'Quotey replaces the endless feed with a deliberate daily interaction. '
-          'Users receive a quote, react to it, and permanently add it to their '
-          'collection. Those reactions can then be connected to authors and '
-          'philosophical worldviews, transforming individual quotes into a '
-          'personal record of ideas and beliefs.',
+          'Quotey gives you one idea at a time and asks you to engage with it. '
+          'Your reactions build a collection of quotes, thinkers, and worldviews '
+          'that reflects how you see the world.',
+
+      solutionImage: 'assets/images/quotey/solution.png',
 
       features: [
         const ProjectFeature(
@@ -363,8 +370,12 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problemTitle: '',
       problem: '',
+      problemImage: '',
+      solutionTitle: '',
       solution: '',
+      solutionImage: '',
       features: [
         const ProjectFeature(
           icon: Icons.explore_outlined,
@@ -519,8 +530,12 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problemTitle: '',
       problem: '',
+      problemImage: '',
+      solutionTitle: '',
       solution: '',
+      solutionImage: '',
       features: [
         const ProjectFeature(
           icon: Icons.location_searching_outlined,
@@ -754,8 +769,12 @@ List<Project> getDummyProjects(BuildContext context) {
       githubUrl1: '',
       demoUrl: '',
       playStoreUrl: '',
+      problemTitle: '',
       problem: '',
+      problemImage: '',
+      solutionTitle: '',
       solution: '',
+      solutionImage: '',
       stats: [],
       features: [],
     ),

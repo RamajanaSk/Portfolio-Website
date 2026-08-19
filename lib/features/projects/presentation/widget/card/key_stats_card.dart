@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/utils/color_utils.dart';
-import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/features/projects/presentation/widget/item/stat_item.dart';
 
 class KeyStatsCard extends StatelessWidget {

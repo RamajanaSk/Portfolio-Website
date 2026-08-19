@@ -5,15 +5,17 @@ import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
-import 'package:ramajana05/data/models/Project.dart';
-import 'package:ramajana05/data/models/ProjectVersion.dart';
+
 import 'package:ramajana05/features/projects/presentation/section/about_project_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/core_feature_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/hero_section.dart';
 
-import 'package:ramajana05/features/projects/presentation/section/project_problem_and_experience_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_problem_and_solution_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/project_showcase_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/version_history_section.dart';
+
+import '../../data/models/project.dart';
+import '../../data/models/project_version.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
   final Project project;
@@ -177,9 +179,11 @@ class ProjectDetailScreen extends StatelessWidget {
             NormalSectionDivider(color: project.hexcolor.toColor()),
             AboutProjectSection(project: project),
             NormalSectionDivider(color: project.hexcolor.toColor()),
-            const ProjectProblemAndExperienceSection(),
+            ProjectProblemAndSolutionSection(
+              project: project,
+            ),
             NormalSectionDivider(color: project.hexcolor.toColor()),
-            CoreFeaturesSection(
+            const CoreFeaturesSection(
               features: quoteyCoreFeatures,
             ),
             NormalSectionDivider(color: project.hexcolor.toColor()),

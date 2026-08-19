@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/utils/color_utils.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
 import 'package:ramajana05/features/projects/presentation/widget/item/featured_item.dart';

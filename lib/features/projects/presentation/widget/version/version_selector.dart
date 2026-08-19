@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/Models/ProjectVersion.dart';
+import 'package:ramajana05/data/models/project_version.dart';
 
 class VersionSelector extends StatelessWidget {
   final List<ProjectVersion> versions;

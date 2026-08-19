@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
 
-import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
@@ -30,7 +30,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     super.didChangeDependencies();
 
     if (filteredProjects.isEmpty) {
-      filteredProjects = getDummyProjects(context);
+      filteredProjects = getDummyProjects(context).cast<Project>();
     }
   }
 

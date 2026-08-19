@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
 
-import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/data/models/project.dart';
 
 class ProjectCarousel extends StatefulWidget {
   final List<Project> projects;

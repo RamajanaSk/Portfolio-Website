@@ -1,4 +1,4 @@
-import 'SectionType.dart';
+import 'package:ramajana05/data/models/section_type.dart';
 
 class ProjectSection {
   final SectionType type;

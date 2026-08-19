@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
-import 'package:ramajana05/core/widgets/info_chip.dart';
 import 'package:ramajana05/core/widgets/minimal_action.dart';
 
 class AboutMeSection extends StatelessWidget {
