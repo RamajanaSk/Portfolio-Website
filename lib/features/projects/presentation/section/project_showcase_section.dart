@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/data/models/Project.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
 

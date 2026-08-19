@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/Models/ProjectVersion.dart';
+import 'package:ramajana05/data/models/ProjectVersion.dart';
 import 'package:ramajana05/features/projects/presentation/widget/version/version_selector.dart';
 
 class VersionHistorySection extends StatefulWidget {

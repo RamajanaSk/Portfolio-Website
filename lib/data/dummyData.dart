@@ -6,9 +6,282 @@ import 'package:ramajana05/Data/Models/SectionType.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ramajana05/data/Models/ProjectFeature.dart';
+import 'package:ramajana05/data/Models/ProjectStat.dart';
 
 List<Project> getDummyProjects(BuildContext context) {
   return [
+    Project(
+      id: 'quotey',
+      typ: ProjectType.mobileApp,
+      name: 'QUOTEY',
+
+      shortDescription:
+          'A daily philosophy app that turns quotes into a personal collection of ideas.',
+
+      catchPhrase: 'One quote a day. Discover what you believe.',
+
+      longDescription:
+          'Quotey is a mobile philosophy app built around one simple idea: '
+          'discover one meaningful quote every day and gradually build a personal '
+          'collection of thoughts, authors, and philosophical worldviews. '
+          'Users can react to quotes, save favorites, discover philosophers, '
+          'and explore how their reactions relate to different philosophical perspectives. '
+          'The app is designed as a calm, minimal daily experience rather than '
+          'an endless feed of content.',
+
+      projectReason:
+          'I created Quotey because quote apps often focus on displaying large '
+          'amounts of motivational content without giving those quotes any context. '
+          'I wanted to build something slower and more intentional: one quote per day, '
+          'a deliberate reaction, and a collection that becomes more meaningful over time. '
+          'The project also gave me the opportunity to design and build a complete '
+          'mobile product independently, from the local database architecture and '
+          'state management to UI/UX and release preparation.',
+
+      startDate: DateTime(2026, 8),
+      endDate: DateTime(2026, 6),
+
+      durationInMonths: 1,
+
+      isSolo: true,
+
+      role: 'MOBILE APP DEVELOPER',
+
+      grade: '',
+
+      universityContext: 'INDEPENDENT PROJECT',
+
+      // ─────────────────────────────────────────────
+      // PLATFORM
+      // ─────────────────────────────────────────────
+
+      platformLinks: [
+        const PlatformLink(
+          icon: FontAwesomeIcons.flutter,
+          url: '',
+          tooltip: 'Flutter',
+        ),
+        const PlatformLink(
+          icon: FontAwesomeIcons.android,
+          url: '',
+          tooltip: 'Android',
+        ),
+      ],
+
+      // ─────────────────────────────────────────────
+      // TECHNOLOGIES
+      // ─────────────────────────────────────────────
+
+      technologies: [
+        'Flutter',
+        'Dart',
+        'SQLite',
+        'Android',
+        'Provider',
+        'Local Persistence',
+        'Database Migrations',
+        'Localization',
+        'Responsive Design',
+        'Git',
+        'GitHub',
+      ],
+
+      githubUrl: '', // Add repository URL if public
+
+      liveDemoUrl: null,
+
+      apkUrl: null,
+
+      // ─────────────────────────────────────────────
+      // IMAGES
+      // ─────────────────────────────────────────────
+
+      logoPicture: 'assets/images/quotey/quotey_logo.png',
+
+      previewPicture: 'assets/images/quotey/quotey_main.png',
+
+      bannerPreviewPicture: 'assets/images/quotey/quotey_banner.png',
+
+      aboutPicture: 'assets/images/quotey/quotey_collection.png',
+
+      mockupPicture: [
+        'assets/images/quotey/quotey_mockup.png',
+      ],
+
+      gallery: [
+        'assets/images/quotey/quote_screen.png',
+        'assets/images/quotey/collection_screen.png',
+        'assets/images/quotey/authors_screen.png',
+        'assets/images/quotey/worldview_screen.png',
+      ],
+
+      // Replace this with your actual Quotey accent color.
+      hexcolor: '#D4AF37',
+
+      // ─────────────────────────────────────────────
+      // FEATURES
+      // ─────────────────────────────────────────────
+
+      keyFeatures: [
+        'One new philosophical quote every day',
+        'Agree, neutral and disagree reactions',
+        'Persistent quote history and collections',
+        'Favorite quotes',
+        'Discoverable philosopher profiles',
+        'Philosophical worldview classification',
+        'Personal worldview progression based on reactions',
+        'Daily quote seen and collected timestamps',
+        'English and German localization',
+        'Offline-first local SQLite database',
+      ],
+
+      // ─────────────────────────────────────────────
+      // CHALLENGES
+      // ─────────────────────────────────────────────
+
+      challenges: [
+        'Designing a reliable daily quote system with a fixed 09:00 reset',
+        'Persisting quote state across app restarts',
+        'Separating seen, reacted and favorite states in the local database',
+        'Designing migration-safe SQLite database updates',
+        'Keeping collections and favorites synchronized across screens',
+        'Designing a philosophical classification system for quotes',
+        'Creating a minimal interface without making the experience feel empty',
+      ],
+
+      // ─────────────────────────────────────────────
+      // LEARNINGS
+      // ─────────────────────────────────────────────
+
+      learnings: [
+        'Designing and evolving a production-oriented SQLite schema',
+        'Implementing safe local database migrations',
+        'Managing persistent application state in Flutter',
+        'Synchronizing UI state with locally stored user data',
+        'Designing reusable Flutter widgets and feature-based architecture',
+        'Building localization-ready interfaces',
+        'Designing a complete mobile product from concept to release',
+        'Preparing an Android application for Google Play distribution',
+      ],
+
+      // ─────────────────────────────────────────────
+      // SECTIONS
+      // ─────────────────────────────────────────────
+
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text:
+              'Quotey is a daily philosophy app designed to turn individual quotes '
+              'into a personal journey through philosophical ideas. Instead of '
+              'presenting an endless feed, Quotey gives users one quote at a time '
+              'and lets them consciously agree, disagree, or remain neutral. '
+              'Over time, these interactions create a personal collection of '
+              'quotes, thinkers, and philosophical perspectives.',
+          imageUrl: 'assets/images/quotey/quotey_collection.png',
+        ),
+      },
+
+      // ─────────────────────────────────────────────
+      // HERO
+      // ─────────────────────────────────────────────
+
+      heroBackground: 'assets/images/quotey/quotey_hero.png',
+
+      phoneMockup: 'assets/images/quotey/phone_mockup.png',
+
+      subtitle: 'One quote a day. Discover what you believe.',
+
+      githubUrl1: '',
+
+      demoUrl: '',
+
+      // Add after the Play Store release.
+      playStoreUrl: '',
+
+      // ─────────────────────────────────────────────
+      // CASE STUDY
+      // ─────────────────────────────────────────────
+
+      problem:
+          'Most quote apps prioritize endless content consumption. Quotes are '
+          'shown without context and are quickly forgotten, while users have '
+          'little opportunity to reflect on whether they actually agree with '
+          'the ideas they are reading.',
+
+      solution:
+          'Quotey replaces the endless feed with a deliberate daily interaction. '
+          'Users receive a quote, react to it, and permanently add it to their '
+          'collection. Those reactions can then be connected to authors and '
+          'philosophical worldviews, transforming individual quotes into a '
+          'personal record of ideas and beliefs.',
+
+      features: [
+        const ProjectFeature(
+          icon: Icons.auto_awesome_outlined,
+          title: 'Daily Quotes',
+          description: 'Discover one new quote every day at 09:00',
+        ),
+        const ProjectFeature(
+          icon: Icons.how_to_vote_outlined,
+          title: 'React',
+          description: 'Agree, disagree or stay neutral on each idea',
+        ),
+        const ProjectFeature(
+          icon: Icons.public_outlined,
+          title: 'Worldviews',
+          description: 'Explore the philosophy behind each quote',
+        ),
+        const ProjectFeature(
+          icon: Icons.person_outline,
+          title: 'Thinkers',
+          description: 'Discover philosophers through collected quotes',
+        ),
+        const ProjectFeature(
+          icon: Icons.collections_bookmark_outlined,
+          title: 'Collection',
+          description: 'Build your personal philosophy library',
+        ),
+        const ProjectFeature(
+          icon: Icons.offline_bolt_outlined,
+          title: 'Offline First',
+          description: 'Keep your collection available locally',
+        ),
+      ],
+      stats: [
+        const ProjectStat(
+          icon: Icons.flutter_dash,
+          value: 'Flutter',
+          label: 'Framework',
+        ),
+        const ProjectStat(
+          icon: Icons.storage_rounded,
+          value: 'SQLite',
+          label: 'Database',
+        ),
+        const ProjectStat(
+          icon: Icons.translate_rounded,
+          value: '2',
+          label: 'Languages',
+        ),
+        const ProjectStat(
+          icon: Icons.schedule_rounded,
+          value: '09:00',
+          label: 'Daily Cycle',
+        ),
+        const ProjectStat(
+          icon: Icons.android_rounded,
+          value: 'Android',
+          label: 'Platform',
+        ),
+        const ProjectStat(
+          icon: Icons.person_outline_rounded,
+          value: 'Solo',
+          label: 'Development',
+        ),
+      ],
+    ),
     Project(
       id: '1',
       typ: ProjectType.mobileApp,
@@ -92,6 +365,70 @@ List<Project> getDummyProjects(BuildContext context) {
       playStoreUrl: '',
       problem: '',
       solution: '',
+      features: [
+        const ProjectFeature(
+          icon: Icons.explore_outlined,
+          title: 'Exploration',
+          description: 'Discover real-world places through exploration',
+        ),
+        const ProjectFeature(
+          icon: Icons.map_outlined,
+          title: 'OpenStreetMap',
+          description: 'Generate discoveries from real-world map data',
+        ),
+        const ProjectFeature(
+          icon: Icons.location_on_outlined,
+          title: 'Live Location',
+          description: 'Track your position while exploring the world',
+        ),
+        const ProjectFeature(
+          icon: Icons.place_outlined,
+          title: 'POI Discovery',
+          description: 'Find nearby points of interest automatically',
+        ),
+        const ProjectFeature(
+          icon: Icons.stars_outlined,
+          title: 'Progression',
+          description: 'Earn XP and level up through exploration',
+        ),
+        const ProjectFeature(
+          icon: Icons.collections_bookmark_outlined,
+          title: 'Collection',
+          description: 'Build a collection of discovered places',
+        ),
+      ],
+      stats: [
+        const ProjectStat(
+          icon: Icons.flutter_dash,
+          value: 'Flutter',
+          label: 'Framework',
+        ),
+        const ProjectStat(
+          icon: Icons.map_outlined,
+          value: 'OSM',
+          label: 'Map Data',
+        ),
+        const ProjectStat(
+          icon: Icons.radar_outlined,
+          value: '550 m',
+          label: 'Discovery Radius',
+        ),
+        const ProjectStat(
+          icon: Icons.location_on_outlined,
+          value: 'Real-Time',
+          label: 'Location Tracking',
+        ),
+        const ProjectStat(
+          icon: Icons.cloud_outlined,
+          value: 'Overpass',
+          label: 'API',
+        ),
+        const ProjectStat(
+          icon: Icons.person_outline_rounded,
+          value: 'Solo',
+          label: 'Development',
+        ),
+      ],
     ),
     Project(
       id: '2',
@@ -184,6 +521,70 @@ List<Project> getDummyProjects(BuildContext context) {
       playStoreUrl: '',
       problem: '',
       solution: '',
+      features: [
+        const ProjectFeature(
+          icon: Icons.location_searching_outlined,
+          title: 'Location-Based',
+          description: 'Exploration driven by the user’s real-world position',
+        ),
+        const ProjectFeature(
+          icon: Icons.travel_explore_outlined,
+          title: 'Dynamic Discovery',
+          description: 'Nearby places are generated from real-world map data',
+        ),
+        const ProjectFeature(
+          icon: Icons.stars_outlined,
+          title: 'Gamification',
+          description: 'XP and progression turn exploration into a game',
+        ),
+        const ProjectFeature(
+          icon: Icons.cached_outlined,
+          title: 'Resilient API',
+          description: 'Retry and cooldown handling for external map requests',
+        ),
+        const ProjectFeature(
+          icon: Icons.layers_outlined,
+          title: 'Modern Architecture',
+          description: 'Complete rebuild with a maintainable Flutter structure',
+        ),
+        const ProjectFeature(
+          icon: Icons.save_outlined,
+          title: 'Persistent Progress',
+          description: 'Discovered locations and progression are retained',
+        ),
+      ],
+      stats: [
+        const ProjectStat(
+          icon: Icons.flutter_dash,
+          value: 'Flutter',
+          label: 'Framework',
+        ),
+        const ProjectStat(
+          icon: Icons.map_outlined,
+          value: 'OSM',
+          label: 'Map Data',
+        ),
+        const ProjectStat(
+          icon: Icons.cloud_outlined,
+          value: 'Overpass',
+          label: 'API',
+        ),
+        const ProjectStat(
+          icon: Icons.radar_outlined,
+          value: '550 m',
+          label: 'Discovery Radius',
+        ),
+        const ProjectStat(
+          icon: Icons.phone_android_outlined,
+          value: 'Android',
+          label: 'Platform',
+        ),
+        const ProjectStat(
+          icon: Icons.person_outline_rounded,
+          value: 'Solo',
+          label: 'Development',
+        ),
+      ],
     ),
     /*
   Project(
@@ -355,7 +756,10 @@ List<Project> getDummyProjects(BuildContext context) {
       playStoreUrl: '',
       problem: '',
       solution: '',
+      stats: [],
+      features: [],
     ),
+
     /*
   Project(
     id: '5',

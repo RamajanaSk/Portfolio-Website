@@ -12,9 +12,7 @@ import 'package:ramajana05/features/about/presentation/sections/education_sectio
 import 'package:ramajana05/features/about/presentation/sections/experience_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
 
-import 'package:ramajana05/features/about/presentation/sections/skill_bar_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/skills_overview_section.dart';
-import 'package:ramajana05/features/home/data/skill_data.dart';
 
 class AboutMeScreen extends StatelessWidget {
   const AboutMeScreen({super.key});

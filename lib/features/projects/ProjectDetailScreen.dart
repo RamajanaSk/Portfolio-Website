@@ -3,10 +3,10 @@ import 'package:ramajana05/core/extensions/hexcolor.dart';
 
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
-import 'package:ramajana05/Data/Models/Project.dart';
+
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
-import 'package:ramajana05/core/widgets/phone/phone_mockup_stack.dart';
-import 'package:ramajana05/data/Models/ProjectVersion.dart';
+import 'package:ramajana05/data/models/Project.dart';
+import 'package:ramajana05/data/models/ProjectVersion.dart';
 import 'package:ramajana05/features/projects/presentation/section/about_project_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/core_feature_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/hero_section.dart';

@@ -2,6 +2,8 @@ import 'package:ramajana05/Data/Models/ProjectSection.dart' show ProjectSection;
 import 'package:ramajana05/Data/Models/ProjectType.dart';
 import 'package:ramajana05/Data/Models/SectionType.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
+import 'package:ramajana05/data/Models/ProjectFeature.dart';
+import 'package:ramajana05/data/Models/ProjectStat.dart';
 
 class Project {
   final String id;
@@ -61,6 +63,9 @@ class Project {
   final String problem;
   final String solution;
 
+  final List<ProjectStat> stats;
+  final List<ProjectFeature> features;
+
   Project({
     required this.id,
     required this.typ,
@@ -100,6 +105,8 @@ class Project {
     required this.playStoreUrl,
     required this.problem,
     required this.solution,
+    required this.stats,
+    required this.features,
   });
 
   /// Update text of a specific section
@@ -134,6 +141,8 @@ class Project {
         "phoneMockup": phoneMockup,
         "problem": problem,
         "solution": solution,
+        "stats": stats,
+        "features": features,
       };
 
   /// Rebuild Project from DB
@@ -184,6 +193,8 @@ class Project {
       playStoreUrl: '',
       problem: map["problem"],
       solution: map["solution"],
+      stats: List<ProjectStat>.from(map["stats"] ?? []),
+      features: List<ProjectFeature>.from(map["features"] ?? []),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/Data/Models/Project.dart';
+import 'package:ramajana05/data/models/Project.dart';
 
 class ProjectFeaturesSection extends StatelessWidget {
   final Project project;
