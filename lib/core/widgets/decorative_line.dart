@@ -10,8 +10,8 @@ class DecorativeLine extends StatelessWidget {
   const DecorativeLine({
     super.key,
     required this.leftColor,
-    this.width = 150,
-    this.height = 15,
+    this.width = 120,
+    this.height = 10,
   });
 
   @override

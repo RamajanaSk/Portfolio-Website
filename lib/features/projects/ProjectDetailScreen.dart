@@ -13,6 +13,7 @@ import 'package:ramajana05/features/projects/presentation/section/hero_section.d
 import 'package:ramajana05/features/projects/presentation/section/project_problem_and_solution_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/project_showcase_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/version_history_section.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_cta_section.dart';
 
 import '../../data/models/project.dart';
 import '../../data/models/project_version.dart';
@@ -187,15 +188,26 @@ class ProjectDetailScreen extends StatelessWidget {
               features: quoteyCoreFeatures,
             ),
             NormalSectionDivider(color: project.hexcolor.toColor()),
+            /*
             const VersionHistorySection(
               versions: quoteyVersions,
             ),
             NormalSectionDivider(color: project.hexcolor.toColor()),
+            */
             ProjectShowcaseSection(
               project: project,
             ),
             const SizedBox(height: 50),
-            const NeonSectionDivider(),
+
+            ProjectCTASection(
+              project: project,
+              onGithubPressed: () {
+                // Open project.githubUrl
+              },
+              onDemoPressed: () {
+                // Open project.liveDemoUrl
+              },
+            ),
             const Footer(),
           ],
         ),

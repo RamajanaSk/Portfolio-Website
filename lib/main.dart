@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:ramajana05/Core/theme/app_theme.dart';
 import 'package:ramajana05/l10n/app_localizations.dart';
-import 'package:ramajana05/mainLayout.dart';
 import 'package:ramajana05/router/app_router.dart';
 
 Locale currentLocale = const Locale('en');

@@ -5,7 +5,7 @@ import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
-import 'package:ramajana05/core/widgets/full_width_text.dart';
+import 'package:ramajana05/core/widgets/text/full_width_text.dart';
 import 'package:ramajana05/data/dummyData.dart';
 
 import 'package:ramajana05/features/projects/presentation/widget/project_filter_searchbar.dart';
@@ -39,9 +39,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          const NeonSectionDivider(),
           FullWidthText(text: context.l10n.softwareProjects),
-          const NeonSectionDivider(),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ProjectFilterSearchBar(

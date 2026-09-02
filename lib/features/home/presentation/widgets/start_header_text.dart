@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_gradients.dart';
@@ -5,82 +7,127 @@ import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/buttons/gradient_button.dart';
 import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
-import 'package:ramajana05/core/widgets/decorative_line.dart';
+import 'package:ramajana05/core/widgets/colored_dot.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
+import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
+import 'package:ramajana05/core/widgets/text/glitch_text.dart';
+import 'package:ramajana05/features/home/presentation/widgets/text/animated_role_text.dart';
+import 'package:ramajana05/features/home/presentation/widgets/text/tech_stack_text.dart';
 
-class GTKMLeftSideWidget extends StatelessWidget {
-  const GTKMLeftSideWidget({super.key});
+class StartHeaderText extends StatefulWidget {
+  const StartHeaderText({super.key});
+
+  @override
+  State<StartHeaderText> createState() => _StartHeaderTextState();
+}
+
+class _StartHeaderTextState extends State<StartHeaderText> {
+  bool _showCreative = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startCreativeAnimation();
+  }
+
+  Future<void> _startCreativeAnimation() async {
+    while (mounted) {
+      // Keep hero clean for a moment
+      await Future.delayed(const Duration(seconds: 3));
+
+      if (!mounted) return;
+
+      setState(() {
+        _showCreative = true;
+      });
+
+      // CREATIVE stays visible
+      await Future.delayed(const Duration(milliseconds: 2400));
+
+      if (!mounted) return;
+
+      setState(() {
+        _showCreative = false;
+      });
+
+      // Small pause before the loop starts again
+      await Future.delayed(const Duration(milliseconds: 600));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DecorativeLine(
-              leftColor: Theme.of(context).colorScheme.onSurface,
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const EyebrowText(
+            number: '01',
+            text: "HELLO, I'M",
+          ),
+          const SizedBox(height: 14),
+
+          const SizedBox(height: 6),
+
+          // ============================================================
+          // NAME
+          // ============================================================
+
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'RAMAJANA',
+              style: AppTextStyles.name(context),
             ),
-            const SizedBox(height: 6),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'RAMAJANA',
-                style: AppTextStyles.name(context),
-              ),
+          ),
+
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'SKOPLJAK',
+              style: AppTextStyles.name(context),
             ),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'SKOPLJAK',
-                style: AppTextStyles.name(context),
-              ),
-            ),
-            const SizedBox(height: 12),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  ShaderMask(
-                    shaderCallback: (bounds) =>
-                        AppGradients.primary.createShader(bounds),
-                    child: Text(
-                      'CREATIVE ',
-                      style: AppTextStyles.role(context).copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'DEVELOPER',
-                    style: AppTextStyles.role(context),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                  '${context.l10n.heroDescription}\n${context.l10n.heroSubDescription}',
-                  style: AppTextStyles.description(context)),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SocialLinksRow(),
-                const SizedBox(width: 12),
-                _buildButtons(context),
-              ],
-            ),
-          ],
-        ));
+          ),
+
+          const SizedBox(height: 20),
+
+          AnimatedRoleText(
+            showCreative: _showCreative,
+          ),
+
+          const SizedBox(height: 24),
+
+          const TechStackText(),
+
+          const SizedBox(height: 22),
+
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(context.l10n.heroSubDescription,
+                style: AppTextStyles.description(context)),
+          ),
+
+          const SizedBox(height: 22),
+          // ============================================================
+          // SOCIALS + BUTTONS
+          // ============================================================
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SocialLinksRow(),
+              const SizedBox(width: 12),
+              _buildButtons(context),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildButtons(BuildContext context) {
@@ -94,9 +141,6 @@ class GTKMLeftSideWidget extends StatelessWidget {
               assetPath: 'assets/pdfs/cv.pdf',
               fileName: 'Ramajana_Skopljak_CV.pdf',
             );
-            //FileDownloader.openAsset(
-            //assetPath: 'pdfs/cv.pdf',
-            //);
           },
         ),
         const SizedBox(width: 12),

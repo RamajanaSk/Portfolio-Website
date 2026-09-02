@@ -191,7 +191,7 @@ List<Project> getDummyProjects(BuildContext context) {
 
       heroBackground: 'assets/images/quotey/quotey_hero.png',
 
-      phoneMockup: 'assets/images/quotey/phone_mockup.png',
+      phoneMockup: 'assets/images/quotey/phone_mockup.jpg',
 
       subtitle: 'One quote a day. Discover what you believe.',
 

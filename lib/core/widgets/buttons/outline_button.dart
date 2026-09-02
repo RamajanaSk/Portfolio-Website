@@ -3,57 +3,113 @@ import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
 
-class NeonOutlineButton extends StatelessWidget {
+class NeonOutlineButton extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
+  final IconData? icon;
 
   const NeonOutlineButton({
     super.key,
     required this.text,
     required this.onPressed,
+    this.icon,
   });
+
+  @override
+  State<NeonOutlineButton> createState() => _NeonOutlineButtonState();
+}
+
+class _NeonOutlineButtonState extends State<NeonOutlineButton> {
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     final s = AppResponsive.scale(context).clamp(0.8, 1.2);
+    final radius = 12.0 * s;
 
-    return Container(
-      decoration: BoxDecoration(
-        gradient: AppGradients.primary,
-        borderRadius: BorderRadius.circular(30 * s),
-      ),
-      padding: EdgeInsets.all(1.5 * s),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(30 * s),
-        ),
-        child: OutlinedButton(
-          onPressed: onPressed,
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(0, 42 * s),
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            padding: EdgeInsets.symmetric(
-              horizontal:
-                  MediaQuery.of(context).size.width < 500 ? 14 * s : 16 * s,
-              vertical: 12 * s,
-            ),
-            side: BorderSide.none,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30 * s),
-            ),
-          ).copyWith(
-            elevation: WidgetStateProperty.all(0),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedScale(
+        scale: _isHovered ? 1.025 : 1,
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOutCubic,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOutCubic,
+          padding: EdgeInsets.all(
+            (_isHovered ? 1.5 : 1.0) * s,
           ),
-          child: Text(
-            text,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            softWrap: false,
-            style: AppTextStyles.buttonoutlined(context).copyWith(
-              fontSize: MediaQuery.of(context).size.width < 500 ? 13 : null,
+          decoration: BoxDecoration(
+            gradient: AppGradients.primary,
+            borderRadius: BorderRadius.circular(radius),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF31D6FF).withValues(
+                  alpha: _isHovered ? 0.16 : 0,
+                ),
+                blurRadius: 18 * s,
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: const Color(0xFFFF2D95).withValues(
+                  alpha: _isHovered ? 0.12 : 0,
+                ),
+                blurRadius: 18 * s,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Material(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(radius - 1),
+            child: InkWell(
+              onTap: widget.onPressed,
+              borderRadius: BorderRadius.circular(radius - 1),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20 * s,
+                  vertical: 12 * s,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (widget.icon != null) ...[
+                      Icon(
+                        widget.icon,
+                        size: 17 * s,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withValues(alpha: 0.75),
+                      ),
+                      SizedBox(width: 9 * s),
+                    ],
+                    Text(
+                      widget.text,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      style: AppTextStyles.buttonoutlined(context),
+                    ),
+                    SizedBox(width: 10 * s),
+                    AnimatedSlide(
+                      duration: const Duration(milliseconds: 180),
+                      curve: Curves.easeOutCubic,
+                      offset: _isHovered ? const Offset(0.15, 0) : Offset.zero,
+                      child: Icon(
+                        Icons.arrow_outward_rounded,
+                        size: 16 * s,
+                        color:
+                            Theme.of(context).colorScheme.onSurface.withValues(
+                                  alpha: _isHovered ? 0.9 : 0.55,
+                                ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

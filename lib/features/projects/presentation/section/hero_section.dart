@@ -214,7 +214,6 @@ class _HeroPreview extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    // Desktop: Portrait
     final double phoneHeight =
         isMobile ? size.width * 0.82 : size.height * 0.78;
 
@@ -228,12 +227,12 @@ class _HeroPreview extends StatelessWidget {
         color: const Color(0xFF111111),
         borderRadius: BorderRadius.circular(42),
         border: Border.all(
-          color: Colors.white.withOpacity(0.15),
+          color: Colors.white.withValues(alpha: 0.15),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 40,
             spreadRadius: 4,
             offset: const Offset(0, 20),
@@ -243,18 +242,33 @@ class _HeroPreview extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
+          // ============================================================
           // APP SCREEN
+          // ============================================================
+
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(34),
-              child: Image.asset(
-                project.phoneMockup,
-                fit: BoxFit.cover,
-              ),
+              child: isMobile
+                  ? RotatedBox(
+                      // Counter-rotate the screenshot
+                      quarterTurns: 3,
+                      child: Image.asset(
+                        project.phoneMockup,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Image.asset(
+                      project.phoneMockup,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
 
+          // ============================================================
           // CAMERA
+          // ============================================================
+
           Positioned(
             top: 10,
             child: Container(
@@ -273,6 +287,7 @@ class _HeroPreview extends StatelessWidget {
     return Center(
       child: isMobile
           ? RotatedBox(
+              // Rotate physical phone into landscape
               quarterTurns: 1,
               child: phone,
             )

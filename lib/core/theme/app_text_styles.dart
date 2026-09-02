@@ -270,4 +270,14 @@ class AppTextStyles {
       fontWeight: FontWeight.w700,
     );
   }
+
+  static TextStyle techStack(BuildContext context) {
+    return TextStyle(
+      fontSize: 17 * _scale(context, min: 0.85),
+      fontWeight: FontWeight.w700,
+      letterSpacing: 2,
+      height: 1,
+      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.85),
+    );
+  }
 }

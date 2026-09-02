@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/data/models/project.dart';
 
 class ProjectFilterSearchBar extends StatefulWidget {
   final List<Project> allProjects;
@@ -21,23 +21,29 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
   Set<String> selectedTech = {};
 
   List<String> get allTechnologies {
-    final tech = <String>{};
-    for (var p in widget.allProjects) {
-      tech.addAll(p.technologies);
+    final technologies = <String>{};
+
+    for (final project in widget.allProjects) {
+      technologies.addAll(project.technologies);
     }
-    return tech.toList()..sort();
+
+    return technologies.toList()..sort();
   }
 
+  bool get hasActiveFilters =>
+      searchText.trim().isNotEmpty || selectedTech.isNotEmpty;
+
   void applyFilter() {
+    final query = searchText.trim().toLowerCase();
+
     final filtered = widget.allProjects.where((project) {
-      final matchesSearch =
-          project.name.toLowerCase().contains(searchText.toLowerCase()) ||
-              project.shortDescription
-                  .toLowerCase()
-                  .contains(searchText.toLowerCase());
+      final matchesSearch = project.name.toLowerCase().contains(query) ||
+          project.shortDescription.toLowerCase().contains(query);
 
       final matchesTech = selectedTech.isEmpty ||
-          selectedTech.every((tech) => project.technologies.contains(tech));
+          selectedTech.every(
+            (tech) => project.technologies.contains(tech),
+          );
 
       return matchesSearch && matchesTech;
     }).toList();
@@ -45,57 +51,329 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
     widget.onFilterChanged(filtered);
   }
 
+  void clearFilters() {
+    setState(() {
+      searchText = '';
+      selectedTech.clear();
+    });
+
+    applyFilter();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final foreground = Theme.of(context).colorScheme.onSurface;
+    final isMobile = MediaQuery.sizeOf(context).width < 700;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextField(
-          decoration: InputDecoration(
-            hintText: context.l10n.searchProjects,
-            prefixIcon: const Icon(Icons.search),
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-          ),
+        // ============================================================
+        // SEARCH
+        // ============================================================
+
+        _ProjectSearchField(
+          hintText: context.l10n.searchProjects,
           onChanged: (value) {
-            searchText = value;
+            setState(() {
+              searchText = value;
+            });
+
             applyFilter();
           },
         ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: allTechnologies.map((tech) {
-            final isSelected = selectedTech.contains(tech);
 
-            return FilterChip(
-              label: Text(tech),
-              selected: isSelected,
-              onSelected: (selected) {
+        SizedBox(height: isMobile ? 20 : 28),
+
+        // ============================================================
+        // FILTERS
+        // ============================================================
+
+        Wrap(
+          spacing: 9,
+          runSpacing: 9,
+          children: allTechnologies.map((tech) {
+            return _TechnologyChip(
+              label: tech,
+              selected: selectedTech.contains(tech),
+              onPressed: () {
                 setState(() {
-                  if (selected) {
-                    selectedTech.add(tech);
-                  } else {
+                  if (selectedTech.contains(tech)) {
                     selectedTech.remove(tech);
+                  } else {
+                    selectedTech.add(tech);
                   }
-                  applyFilter();
                 });
+
+                applyFilter();
               },
-              selectedColor: Theme.of(context).colorScheme.onPrimary,
-              checkmarkColor: Theme.of(context).colorScheme.onSurface,
-              labelStyle: TextStyle(
-                color: isSelected
-                    ? Theme.of(context).colorScheme.onSurface
-                    : Theme.of(context).colorScheme.onSurface,
-              ),
             );
           }).toList(),
         ),
+
+        const SizedBox(height: 10),
       ],
+    );
+  }
+}
+
+class _ProjectSearchField extends StatefulWidget {
+  final String hintText;
+  final ValueChanged<String> onChanged;
+
+  const _ProjectSearchField({
+    required this.hintText,
+    required this.onChanged,
+  });
+
+  @override
+  State<_ProjectSearchField> createState() => _ProjectSearchFieldState();
+}
+
+class _ProjectSearchFieldState extends State<_ProjectSearchField> {
+  final FocusNode _focusNode = FocusNode();
+  bool _focused = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _focusNode.addListener(() {
+      setState(() {
+        _focused = _focusNode.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground = Theme.of(context).colorScheme.onSurface;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOutCubic,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: _focused
+            ? [
+                BoxShadow(
+                  color: const Color(0xFFFF2D95).withValues(alpha: .08),
+                  blurRadius: 24,
+                  spreadRadius: 1,
+                ),
+              ]
+            : [],
+      ),
+      child: TextField(
+        focusNode: _focusNode,
+        onChanged: widget.onChanged,
+        cursorColor: const Color(0xFFFF2D95),
+        style: TextStyle(
+          color: foreground.withValues(alpha: .9),
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          hintStyle: TextStyle(
+            color: foreground.withValues(alpha: .25),
+            fontSize: 14,
+          ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(
+              left: 6,
+              right: 2,
+            ),
+            child: Icon(
+              Icons.search_rounded,
+              size: 20,
+              color: _focused
+                  ? const Color(0xFFFF2D95)
+                  : foreground.withValues(alpha: .35),
+            ),
+          ),
+          prefixIconConstraints: const BoxConstraints(
+            minWidth: 46,
+          ),
+          filled: true,
+          fillColor: foreground.withValues(alpha: .025),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 18,
+            vertical: 18,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: foreground.withValues(alpha: .07),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Color(0xFFFF2D95),
+              width: 1.2,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TechnologyChip extends StatefulWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onPressed;
+
+  const _TechnologyChip({
+    required this.label,
+    required this.selected,
+    required this.onPressed,
+  });
+
+  @override
+  State<_TechnologyChip> createState() => _TechnologyChipState();
+}
+
+class _TechnologyChipState extends State<_TechnologyChip> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground = Theme.of(context).colorScheme.onSurface;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 160),
+        curve: Curves.easeOutCubic,
+        scale: _hovered ? 1.025 : 1,
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 220),
+            curve: Curves.easeOutCubic,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 10,
+            ),
+            decoration: BoxDecoration(
+              color: widget.selected
+                  ? const Color(0xFFFF2D95).withValues(alpha: .09)
+                  : foreground.withValues(
+                      alpha: _hovered ? .045 : .025,
+                    ),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: widget.selected
+                    ? const Color(0xFFFF2D95).withValues(alpha: .65)
+                    : foreground.withValues(
+                        alpha: _hovered ? .16 : .07,
+                      ),
+              ),
+              boxShadow: widget.selected
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFFFF2D95).withValues(alpha: .08),
+                        blurRadius: 16,
+                      ),
+                    ]
+                  : [],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 220),
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: widget.selected
+                        ? const Color(0xFFFF2D95)
+                        : foreground.withValues(alpha: .2),
+                  ),
+                ),
+                const SizedBox(width: 9),
+                Text(
+                  widget.label.toUpperCase(),
+                  style: TextStyle(
+                    color: widget.selected
+                        ? foreground.withValues(alpha: .95)
+                        : foreground.withValues(alpha: .5),
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: .8,
+                  ),
+                ),
+                if (widget.selected) ...[
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.close_rounded,
+                    size: 13,
+                    color: Color(0xFFFF2D95),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ClearFiltersButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const _ClearFiltersButton({
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground = Theme.of(context).colorScheme.onSurface;
+
+    return InkWell(
+      onTap: onPressed,
+      borderRadius: BorderRadius.circular(6),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 5,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.refresh_rounded,
+              size: 13,
+              color: foreground.withValues(alpha: .35),
+            ),
+            const SizedBox(width: 5),
+            Text(
+              'CLEAR',
+              style: TextStyle(
+                color: foreground.withValues(alpha: .35),
+                fontSize: 9,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.2,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

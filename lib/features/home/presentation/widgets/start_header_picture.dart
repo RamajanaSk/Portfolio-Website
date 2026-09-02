@@ -76,15 +76,85 @@ class GTKMRightSideWidget extends StatelessWidget {
   }
 
   Widget _buildOutline() {
+    const logoPath = 'assets/RamajanaLogo.png';
+
     return RepaintBoundary(
-      child: ShaderMask(
-        blendMode: BlendMode.srcATop,
-        shaderCallback: _gradientShader,
-        child: Image.asset(
-          'assets/RamajanaLogo.png',
-          filterQuality: FilterQuality.low,
-          cacheWidth: 1200,
-        ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // ============================================================
+          // SHADOW
+          // ============================================================
+
+          Transform.translate(
+            offset: const Offset(12, 14),
+            child: Opacity(
+              opacity: 0.25,
+              child: Image.asset(
+                logoPath,
+                filterQuality: FilterQuality.low,
+                cacheWidth: 1200,
+                color: Colors.black,
+                colorBlendMode: BlendMode.srcIn,
+              ),
+            ),
+          ),
+
+          // ============================================================
+          // 3D DEPTH / EXTRUSION
+          // ============================================================
+
+          for (int i = 10; i >= 1; i--)
+            Transform.translate(
+              offset: Offset(
+                i * 0.9,
+                i * 0.9,
+              ),
+              child: Image.asset(
+                logoPath,
+                filterQuality: FilterQuality.low,
+                cacheWidth: 1200,
+                color: Color.lerp(
+                  const Color(0xFF151522),
+                  const Color.fromARGB(255, 0, 0, 0),
+                  i / 10,
+                ),
+                colorBlendMode: BlendMode.srcIn,
+              ),
+            ),
+
+          // ============================================================
+          // MAIN GRADIENT FACE
+          // ============================================================
+
+          ShaderMask(
+            blendMode: BlendMode.srcATop,
+            shaderCallback: _gradientShader,
+            child: Image.asset(
+              logoPath,
+              filterQuality: FilterQuality.high,
+              cacheWidth: 1200,
+            ),
+          ),
+
+          // ============================================================
+          // SUBTLE HIGHLIGHT
+          // ============================================================
+
+          Transform.translate(
+            offset: const Offset(-1.2, -1.2),
+            child: Opacity(
+              opacity: 0.16,
+              child: Image.asset(
+                logoPath,
+                filterQuality: FilterQuality.low,
+                cacheWidth: 1200,
+                color: Colors.white,
+                colorBlendMode: BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
