@@ -39,7 +39,6 @@ class HeroSection extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Large decorative project number
           if (!isMobile)
             Positioned(
               right: 55,
@@ -57,8 +56,6 @@ class HeroSection extends StatelessWidget {
                 ),
               ),
             ),
-
-          // Small accent line
           Positioned(
             top: 0,
             left: 0,
@@ -75,7 +72,6 @@ class HeroSection extends StatelessWidget {
               ),
             ),
           ),
-
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
