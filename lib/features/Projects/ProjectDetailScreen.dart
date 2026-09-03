@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/hexcolor.dart';
 
 import 'package:ramajana05/core/widgets/bars/footer.dart';
-import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 
 import 'package:ramajana05/core/widgets/divider/normal_section_divider.dart';
 
@@ -10,10 +9,9 @@ import 'package:ramajana05/features/projects/presentation/section/about_project_
 import 'package:ramajana05/features/projects/presentation/section/core_feature_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/hero_section.dart';
 
-import 'package:ramajana05/features/projects/presentation/section/project_problem_and_solution_section.dart';
 import 'package:ramajana05/features/projects/presentation/section/project_showcase_section.dart';
-import 'package:ramajana05/features/projects/presentation/section/version_history_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_cta_section.dart';
+import 'package:ramajana05/features/projects/presentation/widget/project_meta_data.dart';
 
 import '../../data/models/project.dart';
 import '../../data/models/project_version.dart';
@@ -177,15 +175,14 @@ class ProjectDetailScreen extends StatelessWidget {
             //backOffsetY: 60,
             //),
             HeroSection(project: project),
+            ProjectMetaData(project: project),
             NormalSectionDivider(color: project.hexcolor.toColor()),
             AboutProjectSection(project: project),
+
             NormalSectionDivider(color: project.hexcolor.toColor()),
-            ProjectProblemAndSolutionSection(
-              project: project,
-            ),
-            NormalSectionDivider(color: project.hexcolor.toColor()),
-            const CoreFeaturesSection(
-              features: quoteyCoreFeatures,
+            CoreFeaturesSection(
+              features: project.features,
+              accentColor: project.hexcolor.toColor(),
             ),
             NormalSectionDivider(color: project.hexcolor.toColor()),
             /*

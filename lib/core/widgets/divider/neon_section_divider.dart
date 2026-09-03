@@ -1,63 +1,42 @@
 import 'package:flutter/material.dart';
 
-class NeonSectionDivider extends StatefulWidget {
+class NeonSectionDivider extends StatelessWidget {
   final double height;
 
   const NeonSectionDivider({
     super.key,
-    this.height = 5,
+    this.height = 2,
   });
 
   @override
-  State<NeonSectionDivider> createState() => _NeonSectionDividerState();
-}
-
-class _NeonSectionDividerState extends State<NeonSectionDivider>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 8),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  LinearGradient _buildGradient(double t) {
-    return LinearGradient(
-      begin: Alignment(-1 + t, -1),
-      end: Alignment(1 - t, 1),
-      colors: const [
-        Color(0xFFFF2D95),
-        Color(0xFF8A2BE2),
-        Color(0xFF00CFFF),
-      ],
-      stops: const [0.0, 0.5, 1.0],
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, _) {
-        return Container(
-          height: widget.height,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: _buildGradient(_controller.value),
+    return Container(
+      width: double.infinity,
+      height: height,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.transparent,
+            const Color(0xFFFF2D95).withValues(alpha: .65),
+            const Color(0xFF8A2BE2).withValues(alpha: .85),
+            const Color(0xFF00CFFF).withValues(alpha: .65),
+            Colors.transparent,
+          ],
+          stops: const [
+            0.0,
+            0.12,
+            0.50,
+            0.88,
+            1.0,
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF8A2BE2).withValues(alpha: .12),
+            blurRadius: 3,
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

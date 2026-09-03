@@ -15,37 +15,61 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 900;
+    final size = MediaQuery.sizeOf(context);
+    final isMobile = size.width < 900;
+    final accent = project.hexcolor.toColor();
+    final surface = Theme.of(context).colorScheme.surface;
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
+    return Container(
+      constraints: BoxConstraints(
+        minHeight: size.height,
+      ),
+      decoration: BoxDecoration(
+        color: surface,
+        gradient: RadialGradient(
+          center: const Alignment(0.8, 0.1),
+          radius: 1.1,
+          colors: [
+            accent.withValues(alpha: 0.16),
+            surface.withValues(alpha: 0.98),
+            surface,
+          ],
+          stops: const [0, 0.48, 1],
+        ),
+      ),
       child: Stack(
         children: [
-          // Background
-          Positioned.fill(
-            child: Container(
-              color: project.hexcolor.toColor(),
+          // Large decorative project number
+          if (!isMobile)
+            Positioned(
+              right: 55,
+              top: 25,
+              child: IgnorePointer(
+                child: Text(
+                  '01',
+                  style: TextStyle(
+                    fontSize: 190,
+                    height: 1,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -12,
+                    color: Colors.white.withValues(alpha: 0.025),
+                  ),
+                ),
+              ),
             ),
-          ),
 
-          // Dark overlay
-          Positioned.fill(
+          // Small accent line
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
             child: Container(
+              height: 3,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
                   colors: [
-                    Theme.of(context).colorScheme.surface,
-                    Theme.of(context)
-                        .colorScheme
-                        .surface
-                        .withValues(alpha: 0.97),
-                    Theme.of(context)
-                        .colorScheme
-                        .surface
-                        .withValues(alpha: 0.37),
-                    Colors.transparent,
+                    accent,
+                    accent.withValues(alpha: 0.0),
                   ],
                 ),
               ),
@@ -54,40 +78,43 @@ class HeroSection extends StatelessWidget {
 
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 80,
-                vertical: 60,
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 24 : 80,
+                vertical: isMobile ? 40 : 60,
               ),
-              child: isMobile ? _buildMobile() : _buildDesktop(),
+              child: isMobile ? _buildMobile(context) : _buildDesktop(context),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildDesktop() {
+  Widget _buildDesktop(BuildContext context) {
     return Row(
       children: [
         Expanded(
           flex: 5,
           child: _HeroInformation(project),
         ),
-        const SizedBox(width: 40),
+        const SizedBox(width: 60),
         Expanded(
-          flex: 6,
+          flex: 5,
           child: _HeroPreview(project),
         ),
       ],
     );
   }
 
-  Widget _buildMobile() {
+  Widget _buildMobile(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _HeroInformation(project),
-        const SizedBox(height: 40),
-        Expanded(
+        const SizedBox(height: 56),
+        SizedBox(
+          height: 520,
+          width: double.infinity,
           child: _HeroPreview(project),
         ),
       ],
@@ -102,36 +129,94 @@ class _HeroInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final accent = project.hexcolor.toColor();
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // -------------------------------------------------------------
+        // EYEBROW
+        // -------------------------------------------------------------
+
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 28,
+              height: 2,
+              color: accent,
+            ),
+            const SizedBox(width: 12),
+            Text(
+              'FEATURED PROJECT',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.55),
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 2.2,
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 24),
+
+        // -------------------------------------------------------------
+        // PROJECT NAME
+        // -------------------------------------------------------------
+
         Text(
           project.name,
           style: AppTextStyles.projectName(
             context,
-            color: project.hexcolor.toColor(),
+            color: accent,
           ),
         ),
-        const SizedBox(height: 20),
-        Text(
-          project.subtitle,
-          style: AppTextStyles.projectSubtitle(context),
+
+        const SizedBox(height: 14),
+
+        // -------------------------------------------------------------
+        // SUBTITLE
+        // -------------------------------------------------------------
+
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 580,
+          ),
+          child: Text(
+            project.subtitle,
+            style: AppTextStyles.projectSubtitle(context),
+          ),
         ),
-        const SizedBox(height: 24),
-        SizedBox(
-          width: 500,
+
+        const SizedBox(height: 28),
+
+        // -------------------------------------------------------------
+        // DESCRIPTION
+        // -------------------------------------------------------------
+
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 520,
+          ),
           child: Text(
             project.shortDescription,
             style: AppTextStyles.projectShortDescription(context),
           ),
         ),
-        const SizedBox(height: 36),
+
+        const SizedBox(height: 32),
+
+        // -------------------------------------------------------------
+        // TECHNOLOGIES
+        // -------------------------------------------------------------
+
         Wrap(
-          spacing: 12,
-          runSpacing: 12,
+          spacing: 10,
+          runSpacing: 10,
           children: project.technologies
-              .take(3)
+              .take(4)
               .map(
                 (tech) => TechnologyChip(
                   technology: tech,
@@ -139,57 +224,84 @@ class _HeroInformation extends StatelessWidget {
               )
               .toList(),
         ),
-        const SizedBox(height: 40),
-        Row(
+
+        const SizedBox(height: 42),
+
+        // -------------------------------------------------------------
+        // ACTIONS
+        // -------------------------------------------------------------
+
+        Wrap(
+          spacing: 14,
+          runSpacing: 14,
           children: [
             SizedBox(
-              height: 52,
+              height: 50,
               child: FilledButton(
                 style: FilledButton.styleFrom(
-                  backgroundColor: project.hexcolor.toColor(),
+                  backgroundColor: accent,
                   foregroundColor: Colors.black,
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 28,
+                    horizontal: 26,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8), // instead of 20+
+                    borderRadius: BorderRadius.circular(7),
                   ),
                 ),
                 onPressed: () {},
-                child: Text(
-                  context.l10n.github,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      context.l10n.github,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Icon(
+                      Icons.arrow_outward_rounded,
+                      size: 17,
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(width: 16),
             SizedBox(
-              height: 52,
+              height: 50,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   side: BorderSide(
-                    color: Colors.white.withOpacity(.25),
-                    width: 1.2,
+                    color: Colors.white.withValues(alpha: 0.18),
                   ),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 28,
+                    horizontal: 26,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(7),
                   ),
                 ),
                 onPressed: () {},
-                child: Text(
-                  context.l10n.demo,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      context.l10n.demo,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Icon(
+                      Icons.play_arrow_rounded,
+                      size: 18,
+                      color: accent,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -209,89 +321,143 @@ class _HeroPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final isMobile = size.width < 900;
+    final accent = project.hexcolor.toColor();
 
     if (project.phoneMockup.isEmpty) {
       return const SizedBox.shrink();
     }
 
     final double phoneHeight =
-        isMobile ? size.width * 0.82 : size.height * 0.78;
+        isMobile ? 480 : (size.height * 0.72).clamp(500.0, 720.0);
 
     final double phoneWidth = phoneHeight * 0.485;
 
-    final phone = Container(
-      width: phoneWidth,
-      height: phoneHeight,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF111111),
-        borderRadius: BorderRadius.circular(42),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.15),
-          width: 2,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.5),
-            blurRadius: 40,
-            spreadRadius: 4,
-            offset: const Offset(0, 20),
-          ),
-        ],
-      ),
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          // ============================================================
-          // APP SCREEN
-          // ============================================================
+    return Center(
+      child: SizedBox(
+        width: isMobile ? phoneWidth + 80 : double.infinity,
+        height: phoneHeight + 80,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // ---------------------------------------------------------
+            // SUBTLE GLOW
+            // ---------------------------------------------------------
 
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(34),
-              child: isMobile
-                  ? RotatedBox(
-                      // Counter-rotate the screenshot
-                      quarterTurns: 3,
+            Container(
+              width: phoneWidth * 1.2,
+              height: phoneHeight * 0.82,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: [
+                  BoxShadow(
+                    color: accent.withValues(alpha: 0.18),
+                    blurRadius: 100,
+                    spreadRadius: 20,
+                  ),
+                ],
+              ),
+            ),
+
+            // ---------------------------------------------------------
+            // DECORATIVE LINES
+            // ---------------------------------------------------------
+
+            Positioned(
+              right: 0,
+              top: 80,
+              child: Container(
+                width: isMobile ? 60 : 140,
+                height: 1,
+                color: Colors.white.withValues(alpha: 0.08),
+              ),
+            ),
+
+            Positioned(
+              left: 0,
+              bottom: 110,
+              child: Container(
+                width: isMobile ? 50 : 110,
+                height: 1,
+                color: accent.withValues(alpha: 0.4),
+              ),
+            ),
+
+            // ---------------------------------------------------------
+            // PHONE
+            // ---------------------------------------------------------
+
+            Container(
+              width: phoneWidth,
+              height: phoneHeight,
+              padding: const EdgeInsets.all(7),
+              decoration: BoxDecoration(
+                color: const Color(0xFF101010),
+                borderRadius: BorderRadius.circular(42),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.14),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    blurRadius: 45,
+                    offset: const Offset(0, 25),
+                  ),
+                ],
+              ),
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Positioned.fill(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(35),
                       child: Image.asset(
                         project.phoneMockup,
                         fit: BoxFit.cover,
                       ),
-                    )
-                  : Image.asset(
-                      project.phoneMockup,
-                      fit: BoxFit.cover,
                     ),
-            ),
-          ),
+                  ),
 
-          // ============================================================
-          // CAMERA
-          // ============================================================
-
-          Positioned(
-            top: 10,
-            child: Container(
-              width: 85,
-              height: 24,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
+                  // Dynamic Island
+                  Positioned(
+                    top: 11,
+                    child: Container(
+                      width: 82,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
 
-    return Center(
-      child: isMobile
-          ? RotatedBox(
-              // Rotate physical phone into landscape
-              quarterTurns: 1,
-              child: phone,
-            )
-          : phone,
+            // ---------------------------------------------------------
+            // MICRO LABEL
+            // ---------------------------------------------------------
+
+            if (!isMobile)
+              Positioned(
+                right: 5,
+                bottom: 70,
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: Text(
+                    'MOBILE EXPERIENCE  /  2026',
+                    style: TextStyle(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 2.1,
+                      color: Colors.white.withValues(alpha: 0.28),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

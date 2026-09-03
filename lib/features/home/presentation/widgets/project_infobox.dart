@@ -4,56 +4,122 @@ import 'package:ramajana05/data/models/project.dart';
 class ProjectInfoBox extends StatelessWidget {
   final Project project;
 
-  const ProjectInfoBox({super.key, required this.project});
+  const ProjectInfoBox({
+    super.key,
+    required this.project,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.75),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: Colors.white.withOpacity(0.2),
-          ),
+    final colorScheme = Theme.of(context).colorScheme;
+
+    final technologies = project.technologies.take(5).toList();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 18,
+      ),
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: .45),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: colorScheme.onSurface.withValues(alpha: .07),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              project.typ.name.toUpperCase(),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // =====================================================
+          // PROJECT TYPE
+          // =====================================================
+
+          Row(
+            children: [
+              Container(
+                width: 24,
+                height: 2,
+                decoration: BoxDecoration(
+                  color: colorScheme.primary,
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
+              const SizedBox(width: 10),
+              Flexible(
+                child: Text(
+                  project.typ.name.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: colorScheme.primary,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          if (technologies.isNotEmpty) ...[
+            const SizedBox(height: 16),
+
+            // ===================================================
+            // TECHNOLOGIES
+            // ===================================================
+
             Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: project.technologies.take(5).map((tech) {
-                return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    tech,
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 11,
-                    ),
-                  ),
+              spacing: 8,
+              runSpacing: 8,
+              children: technologies.map((tech) {
+                return _TechnologyChip(
+                  technology: tech,
                 );
               }).toList(),
             ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+// =============================================================
+// TECHNOLOGY CHIP
+// =============================================================
+
+class _TechnologyChip extends StatelessWidget {
+  final String technology;
+
+  const _TechnologyChip({
+    required this.technology,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 6,
+      ),
+      decoration: BoxDecoration(
+        color: colorScheme.onSurface.withValues(alpha: .035),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: colorScheme.onSurface.withValues(alpha: .09),
+        ),
+      ),
+      child: Text(
+        technology,
+        style: TextStyle(
+          color: colorScheme.onSurface.withValues(alpha: .70),
+          fontSize: 11,
+          fontWeight: FontWeight.w500,
+          letterSpacing: .2,
         ),
       ),
     );

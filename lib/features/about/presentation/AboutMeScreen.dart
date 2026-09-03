@@ -32,10 +32,14 @@ class AboutMeScreen extends StatelessWidget {
               children: [
                 AboutMeSection(),
                 //SkillBarSection(skills: skills),
-                NormalSectionDivider(),
+                const NormalSectionDivider(
+                  color: Color(0xFFD4AF37),
+                ),
                 SkillsOverviewSection(),
                 FeaturedWorkAndTechnologiesSection(),
-                NormalSectionDivider(),
+                const NormalSectionDivider(
+                  color: Color(0xFFD4AF37),
+                ),
               ],
             ),
           ),

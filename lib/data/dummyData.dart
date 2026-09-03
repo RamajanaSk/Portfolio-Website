@@ -195,13 +195,6 @@ List<Project> getDummyProjects(BuildContext context) {
 
       subtitle: 'One quote a day. Discover what you believe.',
 
-      githubUrl1: '',
-
-      demoUrl: '',
-
-      // Add after the Play Store release.
-      playStoreUrl: '',
-
       // ─────────────────────────────────────────────
       // CASE STUDY
       // ─────────────────────────────────────────────
@@ -229,16 +222,19 @@ List<Project> getDummyProjects(BuildContext context) {
           icon: Icons.auto_awesome_outlined,
           title: 'Daily Quotes',
           description: 'Discover one new quote every day at 09:00',
+          image: 'assets/images/quotey/phone_mockup.jpg',
         ),
         const ProjectFeature(
           icon: Icons.how_to_vote_outlined,
           title: 'React',
           description: 'Agree, disagree or stay neutral on each idea',
+          image: 'assets/images/quotey/phone_mockup.jpg',
         ),
         const ProjectFeature(
           icon: Icons.public_outlined,
           title: 'Worldviews',
           description: 'Explore the philosophy behind each quote',
+          image: 'assets/images/quotey/phone_mockup.jpg',
         ),
         const ProjectFeature(
           icon: Icons.person_outline,
@@ -367,8 +363,6 @@ List<Project> getDummyProjects(BuildContext context) {
       heroBackground: 'assets/images/traveler_remake/hero_image.png',
       phoneMockup: 'assets/images/traveler_remake/phone_mockup.png',
       subtitle: context.l10n.travelerSubtitle,
-      githubUrl1: '',
-      demoUrl: '',
       playStoreUrl: '',
       problemTitle: '',
       problem: '',
@@ -527,8 +521,6 @@ List<Project> getDummyProjects(BuildContext context) {
       heroBackground: 'assets/images/traveler_remake/hero_image.png',
       phoneMockup: 'assets/images/traveler_remake/phone_mockup.png',
       subtitle: context.l10n.travelerSubtitle,
-      githubUrl1: '',
-      demoUrl: '',
       playStoreUrl: '',
       problemTitle: '',
       problem: '',
@@ -766,8 +758,6 @@ List<Project> getDummyProjects(BuildContext context) {
       heroBackground: '',
       phoneMockup: 'assets/images/traveler_remake/phone_mockup.png',
       subtitle: '',
-      githubUrl1: '',
-      demoUrl: '',
       playStoreUrl: '',
       problemTitle: '',
       problem: '',

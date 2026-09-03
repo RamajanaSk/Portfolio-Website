@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ramajana05/core/controller/home_scroll_controller.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 
 import 'package:ramajana05/core/widgets/bars/footer.dart';
@@ -36,16 +37,6 @@ class _HomescreenState extends State<Homescreen> {
     logoPicture: 'images/traveler/logo.png',
   );
 
-  final scrollController = ScrollController();
-
-  void scrollToTop() {
-    scrollController.animateTo(
-      0,
-      duration: const Duration(milliseconds: 700),
-      curve: Curves.easeInOutCubic,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -79,7 +70,7 @@ class _HomescreenState extends State<Homescreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
-        controller: scrollController,
+        controller: HomeScrollController.controller,
         child: Column(
           children: [
             startSection,
@@ -87,7 +78,6 @@ class _HomescreenState extends State<Homescreen> {
             AboutMeSmallSection(
               onAboutMePressed: widget.onAboutMePressed,
             ),
-            const NormalSectionDivider(),
             const FeaturedWorkAndTechnologiesSection(),
             HomeCTASection(
               onContactPressed: () => context.go('/contact'),

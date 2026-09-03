@@ -1,10 +1,12 @@
+import 'dart:async';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_button.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_mobile_button.dart';
 import 'package:ramajana05/core/widgets/language_switcher/language_pop_menu.dart';
-import 'package:ramajana05/core/widgets/smoky_animated_bar.dart';
 
 class TopBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -21,7 +23,6 @@ class TopBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDropdownVisible;
   final bool isEnglish;
 
-  // Pass the ScrollController of your page here
   final ScrollController? scrollController;
 
   const TopBar({
@@ -43,7 +44,7 @@ class TopBar extends StatefulWidget implements PreferredSizeWidget {
   State<TopBar> createState() => _TopBarState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(68);
+  Size get preferredSize => const Size.fromHeight(72);
 }
 
 class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
@@ -54,21 +55,41 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
 
   bool _isScrolled = false;
 
+  Timer? _colorTimer;
+
+  int _colorIndex = 0;
+
+  static const List<Color> _nameColors = [
+    Color(0xFFFF2D95), // Pink
+    Color(0xFF8A2BE2), // Purple
+    Color(0xFF00CFFF), // Blue
+  ];
+
+  // ============================================================
+  // INIT
+  // ============================================================
+
   @override
   void initState() {
     super.initState();
 
-    // =========================================================
-    // INTRO ANIMATION
-    // =========================================================
-
     _introController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 850),
+      duration: const Duration(milliseconds: 750),
+    );
+    _colorTimer = Timer.periodic(
+      const Duration(seconds: 5),
+      (_) {
+        if (!mounted) return;
+
+        setState(() {
+          _colorIndex = (_colorIndex + 1) % _nameColors.length;
+        });
+      },
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: const Offset(-0.6, 0),
+      begin: const Offset(-0.35, 0),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(
@@ -80,7 +101,7 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     _fadeAnimation = CurvedAnimation(
       parent: _introController,
       curve: const Interval(
-        0.15,
+        0.1,
         1,
         curve: Curves.easeOut,
       ),
@@ -88,9 +109,8 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
 
     widget.scrollController?.addListener(_onScroll);
 
-    // Small delay makes the entrance more intentional
     Future.delayed(
-      const Duration(milliseconds: 150),
+      const Duration(milliseconds: 100),
       () {
         if (mounted) {
           _introController.forward();
@@ -99,9 +119,9 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  // =========================================================
+  // ============================================================
   // SCROLL
-  // =========================================================
+  // ============================================================
 
   void _onScroll() {
     final controller = widget.scrollController;
@@ -110,13 +130,15 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
       return;
     }
 
-    final shouldBeScrolled = controller.offset > 80;
+    final shouldBeScrolled = controller.offset > 70;
 
-    if (shouldBeScrolled != _isScrolled) {
-      setState(() {
-        _isScrolled = shouldBeScrolled;
-      });
+    if (shouldBeScrolled == _isScrolled) {
+      return;
     }
+
+    setState(() {
+      _isScrolled = shouldBeScrolled;
+    });
   }
 
   @override
@@ -137,177 +159,584 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  // =========================================================
+  // ============================================================
   // BUILD
-  // =========================================================
+  // ============================================================
 
   @override
   Widget build(BuildContext context) {
-    final isScreenSmall = MediaQuery.of(context).size.width < 650;
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 700;
 
-    return AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      elevation: 0,
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
-      // =======================================================
-      // ANIMATED NAME
-      // =======================================================
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: _isScrolled ? 14 : 0,
+          sigmaY: _isScrolled ? 14 : 0,
+        ),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          decoration: BoxDecoration(
+            color: theme.scaffoldBackgroundColor.withValues(
+              alpha: _isScrolled ? .92 : 1,
+            ),
+            border: Border(
+              bottom: BorderSide(
+                color: _isScrolled
+                    ? colorScheme.onSurface.withValues(alpha: .08)
+                    : Colors.transparent,
+                width: 1,
+              ),
+            ),
+          ),
+          child: SafeArea(
+            bottom: false,
+            child: SizedBox(
+              height: 72,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: isMobile ? 20 : 40,
+                ),
+                child: Row(
+                  children: [
+                    // =============================================
+                    // LOGO / NAME
+                    // =============================================
 
-      title: GestureDetector(
-        onTap: widget.onHomePressed,
-        child: SlideTransition(
-          position: _slideAnimation,
-          child: FadeTransition(
-            opacity: _fadeAnimation,
-            child: _buildAnimatedName(context),
+                    GestureDetector(
+                      onTap: widget.onHomePressed,
+                      behavior: HitTestBehavior.opaque,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: FadeTransition(
+                          opacity: _fadeAnimation,
+                          child: _buildName(context),
+                        ),
+                      ),
+                    ),
+
+                    const Spacer(),
+
+                    // =============================================
+                    // DESKTOP NAVIGATION
+                    // =============================================
+
+                    if (!isMobile) ..._buildDesktopActions(context),
+
+                    // =============================================
+                    // MOBILE MENU
+                    // =============================================
+
+                    if (isMobile) _buildMobileMenuButton(context),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
+    );
+  }
 
-      actions: [
-        if (!isScreenSmall) ..._buildAppBarActions(context),
-        if (isScreenSmall)
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                size: 30,
-              ),
-              onPressed: () => _showMenu(context),
-            ),
-          ),
-      ],
+  // ============================================================
+  // NAME
+  // ============================================================
+  Widget _buildName(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
 
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(4),
-        child: Column(
+    final baseStyle = AppTextStyles.topBarTextButton(context).copyWith(
+      fontWeight: FontWeight.w700,
+      letterSpacing: 1.2,
+      height: 1,
+    );
+
+    final currentColor = _nameColors[_colorIndex];
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: SizedBox(
+        height: 44,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SmokyAnimatedBar(height: 8),
+            // =====================================================
+            // RAMAJANA
+            // =====================================================
+
+            AnimatedDefaultTextStyle(
+              duration: const Duration(milliseconds: 900),
+              curve: Curves.easeInOutCubic,
+              style: baseStyle.copyWith(
+                color: colorScheme.onSurface,
+              ),
+              child: const Text(
+                'RAMAJANA',
+                maxLines: 1,
+                softWrap: false,
+              ),
+            ),
+
+            // =====================================================
+            // SKOPLJAK
+            // =====================================================
+
+            ClipRect(
+              child: AnimatedAlign(
+                duration: const Duration(milliseconds: 350),
+                curve: Curves.easeOutCubic,
+                alignment: Alignment.centerLeft,
+                widthFactor: _isScrolled ? 0 : 1,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: _isScrolled ? 0 : 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 7),
+                    child: AnimatedDefaultTextStyle(
+                      duration: const Duration(milliseconds: 900),
+                      curve: Curves.easeInOutCubic,
+                      style: baseStyle.copyWith(
+                        color: currentColor,
+                      ),
+                      child: const Text(
+                        'SKOPLJAK',
+                        maxLines: 1,
+                        softWrap: false,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // =====================================================
+            // DOT
+            // =====================================================
+
+            AnimatedPadding(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeOutCubic,
+              padding: EdgeInsets.only(
+                left: _isScrolled ? 5 : 7,
+              ),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 900),
+                curve: Curves.easeInOutCubic,
+                width: 5,
+                height: 5,
+                decoration: BoxDecoration(
+                  color: currentColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  // =========================================================
-  // ANIMATED NAME
-  // =========================================================
+  // ============================================================
+  // DESKTOP NAVIGATION
+  // ============================================================
 
-  Widget _buildAnimatedName(BuildContext context) {
-    final style = AppTextStyles.topBarTextButton(context);
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          'RAMAJANA',
-          style: style,
-        ),
-
-        // SKOPLJAK smoothly disappears when scrolling
-        AnimatedSize(
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeOutCubic,
-          alignment: Alignment.centerLeft,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            switchInCurve: Curves.easeOutCubic,
-            switchOutCurve: Curves.easeInCubic,
-            transitionBuilder: (child, animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(-0.25, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                ),
-              );
-            },
-            child: _isScrolled
-                ? const SizedBox(
-                    key: ValueKey('hidden'),
-                  )
-                : Text(
-                    ' SKOPLJAK',
-                    key: const ValueKey('surname'),
-                    style: style,
-                  ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  // =========================================================
-  // DESKTOP ACTIONS
-  // =========================================================
-
-  List<Widget> _buildAppBarActions(BuildContext context) {
+  List<Widget> _buildDesktopActions(BuildContext context) {
     return [
       TopBarButton(
         text: context.l10n.home,
         onPressed: widget.onHomePressed,
       ),
-      const SizedBox(width: 10),
+
+      const SizedBox(width: 6),
+
       TopBarButton(
         text: context.l10n.projects,
         onPressed: widget.onProjectPressed,
       ),
-      const SizedBox(width: 10),
+
+      const SizedBox(width: 6),
+
       TopBarButton(
         text: context.l10n.contact,
         onPressed: widget.onContactPressed,
       ),
-      const SizedBox(width: 10),
+
+      const SizedBox(width: 18),
+
+      // Small divider between navigation and language
+      Container(
+        width: 1,
+        height: 22,
+        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .10),
+      ),
+
+      const SizedBox(width: 18),
+
       const LanguagePopupMenu(),
-      const SizedBox(width: 20),
     ];
   }
 
-  // =========================================================
-  // MOBILE MENU
-  // =========================================================
+  // ============================================================
+  // MOBILE MENU BUTTON
+  // ============================================================
 
-  void _showMenu(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(24),
+  Widget _buildMobileMenuButton(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _showMenu(context),
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: colorScheme.onSurface.withValues(
+                alpha: .10,
+              ),
+            ),
+          ),
+          child: Icon(
+            Icons.menu_rounded,
+            size: 23,
+            color: colorScheme.onSurface,
+          ),
         ),
       ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 24,
+    );
+  }
+
+  // ============================================================
+  // MOBILE MENU
+  // ============================================================
+
+  void _showMenu(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withValues(alpha: .55),
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return Container(
+          decoration: BoxDecoration(
+            color: theme.scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(24),
+            ),
+            border: Border(
+              top: BorderSide(
+                color: colorScheme.onSurface.withValues(
+                  alpha: .08,
+                ),
+              ),
+            ),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TopBarMobileButton(
-                text: context.l10n.home,
-                onPressed: widget.onHomePressed,
+          child: SafeArea(
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                24,
+                12,
+                24,
+                28,
               ),
-              TopBarMobileButton(
-                text: context.l10n.projects,
-                onPressed: widget.onProjectPressed,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // =============================================
+                  // HANDLE
+                  // =============================================
+
+                  Center(
+                    child: Container(
+                      width: 42,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: colorScheme.onSurface.withValues(
+                          alpha: .18,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 28),
+
+                  // =============================================
+                  // SMALL LABEL
+                  // =============================================
+
+                  Text(
+                    'NAVIGATION',
+                    style: TextStyle(
+                      color: colorScheme.primary,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 2,
+                    ),
+                  ),
+
+                  const SizedBox(height: 18),
+
+                  // =============================================
+                  // LINKS
+                  // =============================================
+
+                  TopBarMobileButton(
+                    text: context.l10n.home,
+                    icon: Icons.home_outlined,
+                    onPressed: widget.onHomePressed,
+                  ),
+
+                  TopBarMobileButton(
+                    text: context.l10n.projects,
+                    icon: Icons.grid_view_rounded,
+                    onPressed: widget.onProjectPressed,
+                  ),
+
+                  TopBarMobileButton(
+                    text: context.l10n.contact,
+                    icon: Icons.mail_outline_rounded,
+                    onPressed: widget.onContactPressed,
+                  ),
+
+                  const SizedBox(height: 22),
+
+                  Divider(
+                    color: colorScheme.onSurface.withValues(
+                      alpha: .08,
+                    ),
+                    height: 1,
+                  ),
+
+                  const SizedBox(height: 22),
+
+                  // =============================================
+                  // LANGUAGE
+                  // =============================================
+
+                  Row(
+                    children: [
+                      Text(
+                        'LANGUAGE',
+                        style: TextStyle(
+                          color: colorScheme.onSurface.withValues(
+                            alpha: .45,
+                          ),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.6,
+                        ),
+                      ),
+                      const Spacer(),
+                      const LanguagePopupMenu(),
+                    ],
+                  ),
+                  const SizedBox(height: 22),
+
+                  Divider(
+                    color: colorScheme.onSurface.withValues(alpha: .08),
+                    height: 1,
+                  ),
+
+                  const SizedBox(height: 22),
+
+                  Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: colorScheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        'AVAILABLE FOR OPPORTUNITIES',
+                        style: TextStyle(
+                          color: colorScheme.onSurface.withValues(alpha: .55),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.3,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Text(
+                    'Stuttgart, Germany',
+                    style: TextStyle(
+                      color: colorScheme.onSurface.withValues(alpha: .35),
+                      fontSize: 12,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  Row(
+                    children: [
+                      _MobileSocialLink(
+                        label: 'GITHUB',
+                        onTap: () {
+                          // open GitHub
+                        },
+                      ),
+                      const SizedBox(width: 24),
+                      _MobileSocialLink(
+                        label: 'LINKEDIN',
+                        onTap: () {
+                          // open LinkedIn
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              TopBarMobileButton(
-                text: context.l10n.contact,
-                onPressed: widget.onContactPressed,
-              ),
-              const SizedBox(height: 24),
-              const LanguagePopupMenu(),
-            ],
+            ),
           ),
         );
       },
+    );
+  }
+}
+
+class _MobileSocialLink extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+  final IconData? icon;
+
+  const _MobileSocialLink({
+    required this.label,
+    required this.onTap,
+    this.icon,
+  });
+
+  @override
+  State<_MobileSocialLink> createState() => _MobileSocialLinkState();
+}
+
+class _MobileSocialLinkState extends State<_MobileSocialLink> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) {
+        setState(() => _isHovered = true);
+      },
+      onExit: (_) {
+        setState(() => _isHovered = false);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOutCubic,
+        decoration: BoxDecoration(
+          color: _isHovered
+              ? colorScheme.primary.withValues(alpha: .06)
+              : colorScheme.onSurface.withValues(alpha: .025),
+          borderRadius: BorderRadius.circular(9),
+          border: Border.all(
+            color: _isHovered
+                ? colorScheme.primary.withValues(alpha: .28)
+                : colorScheme.onSurface.withValues(alpha: .08),
+          ),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: widget.onTap,
+            borderRadius: BorderRadius.circular(9),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 13,
+                vertical: 10,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // ===============================================
+                  // OPTIONAL ICON
+                  // ===============================================
+
+                  if (widget.icon != null) ...[
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 180),
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary.withValues(
+                          alpha: _isHovered ? .12 : .07,
+                        ),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      alignment: Alignment.center,
+                      child: Icon(
+                        widget.icon,
+                        size: 14,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+
+                  // ===============================================
+                  // LABEL
+                  // ===============================================
+
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 180),
+                    style: TextStyle(
+                      color: _isHovered
+                          ? colorScheme.onSurface
+                          : colorScheme.onSurface.withValues(alpha: .60),
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.2,
+                    ),
+                    child: Text(widget.label),
+                  ),
+
+                  const SizedBox(width: 9),
+
+                  // ===============================================
+                  // EXTERNAL LINK ARROW
+                  // ===============================================
+
+                  AnimatedSlide(
+                    duration: const Duration(milliseconds: 180),
+                    curve: Curves.easeOutCubic,
+                    offset: _isHovered ? const Offset(.12, -.12) : Offset.zero,
+                    child: Icon(
+                      Icons.north_east_rounded,
+                      size: 14,
+                      color: _isHovered
+                          ? colorScheme.primary
+                          : colorScheme.onSurface.withValues(alpha: .30),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

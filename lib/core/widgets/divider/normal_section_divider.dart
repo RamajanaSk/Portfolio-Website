@@ -1,23 +1,47 @@
 import 'package:flutter/material.dart';
 
 class NormalSectionDivider extends StatelessWidget {
-  final double height;
-  final Color? color;
+  final Color color;
+  final double width;
+  final double spacing;
 
   const NormalSectionDivider({
     super.key,
-    this.height = 8,
-    this.color,
+    required this.color,
+    this.width = 80,
+    this.spacing = 48,
   });
 
   @override
   Widget build(BuildContext context) {
-    final dividerColor = color ?? Theme.of(context).dividerColor;
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: spacing),
+      child: Row(
+        children: [
+          // Colored accent
+          Container(
+            width: width,
+            height: 2,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
 
-    return Container(
-      height: height,
-      width: double.infinity,
-      color: dividerColor,
+          const SizedBox(width: 16),
+
+          // Subtle continuation
+          Expanded(
+            child: Container(
+              height: 1,
+              color: Theme.of(context)
+                  .colorScheme
+                  .onSurface
+                  .withValues(alpha: 0.08),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
