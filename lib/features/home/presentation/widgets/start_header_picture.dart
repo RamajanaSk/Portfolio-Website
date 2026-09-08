@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
 
-class GTKMRightSideWidget extends StatelessWidget {
-  const GTKMRightSideWidget({super.key});
+class StartHeaderPicture extends StatelessWidget {
+  const StartHeaderPicture({super.key});
 
   @override
   Widget build(BuildContext context) {

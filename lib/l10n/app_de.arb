@@ -65,7 +65,7 @@
 
   "navigation": "NAVIGATION",
 
-  "location": "STUTTGART, DEUTSCHLAND",
+  "stuttgartGermany": "STUTTGART, DEUTSCHLAND",
 
   "contactMe": "KONTAKT",
 
@@ -76,7 +76,7 @@
   "builtWithFlutter":
       "ERSTELLT MIT FLUTTER", 
 
-  "letsBuildSomething": "LASS UNS GEMEINSAM IDEEN ZUM LEBEN ERWECKEN. KONTAKTIERE MICH GERNE FÜR SPANNENDE PROJEKTE, ZUSAMMENARBEITEN ODER NEUE HERAUSFORDERUNGEN.",
+  "letsBuildSomethingGreat": "LASS UNS GEMEINSAM IDEEN ZUM LEBEN ERWECKEN. KONTAKTIERE MICH GERNE FÜR SPANNENDE PROJEKTE, ZUSAMMENARBEITEN ODER NEUE HERAUSFORDERUNGEN.",
 
   "yourName": "DEIN NAME",
 
@@ -183,6 +183,29 @@
   "travelerSubtitle": "VERWANDLE JEDEN SPAZIERGANG IN EIN ABENTEUER.",
 
   "github": "Besuche Github",
-  "demo": "Live Demo"
+  "demo": "Live Demo",
+
+  "letsBuild": "Lass uns etwas",
+  "something": "Erschaffen",
+  "location": "Standort",
+  "asSoonAsICan": "Ich melde mich so schnell wie möglich bei dir.",
+  "message": "Nachricht",
+  "getInTouch": "Kontakt aufnehmen",
+
+  "helloIm": "Hallo, ich bin",
+  "getToKnowMe": "Lerne mich kennen",
+  "moreAboutMe": "Mehr über mich",
+  "beautiful": "Schön",
+  "yours": "Deins",
+  "memorable": "Unvergesslich",
+  "useful": "Nützlich",
+  "haveAProjectIdea": "Hast du ein Projekt, eine Idee oder möchtest einfach etwas Interessantes erschaffen?",
+
+  "letsTalk": "Lass uns reden",
+  "emailClientOpened": "Email client geöffnet",
+
+  "haveAnIdea": "Eine Idee?",
+
+  "letsBuildSomething": "Lass uns etwas Sinnvolles schaffen"
 }
 

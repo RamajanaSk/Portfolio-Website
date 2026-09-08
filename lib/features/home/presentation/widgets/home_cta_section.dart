@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/theme/app_gradients.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 
 class HomeCTASection extends StatefulWidget {
   final VoidCallback onContactPressed;
@@ -19,37 +19,39 @@ class _HomeCTASectionState extends State<HomeCTASection> {
   int _currentIndex = 0;
   Timer? _timer;
 
-  static const _slides = [
-    _CTASlide(
-      word: 'MEMORABLE.',
-      colors: [
-        Color(0xFFFF2D95),
-        Color(0xFF8A2BE2),
-      ],
-    ),
-    _CTASlide(
-      word: 'BEAUTIFUL.',
-      colors: [
-        Color(0xFF8A2BE2),
-        Color(0xFF00CFFF),
-      ],
-    ),
-    _CTASlide(
-      word: 'USEFUL.',
-      colors: [
-        Color(0xFF00CFFF),
-        Color(0xFF35E6A5),
-      ],
-    ),
-    _CTASlide(
-      word: 'YOURS.',
-      colors: [
-        Color(0xFFFF2D95),
-        Color(0xFF8A2BE2),
-        Color(0xFF00CFFF),
-      ],
-    ),
-  ];
+  List<_CTASlide> _slides(BuildContext context) {
+    return [
+      _CTASlide(
+        word: context.l10n.memorable.toUpperCase(),
+        colors: const [
+          Color(0xFFFF2D95),
+          Color(0xFF8A2BE2),
+        ],
+      ),
+      _CTASlide(
+        word: context.l10n.beautiful.toUpperCase(),
+        colors: const [
+          Color(0xFF8A2BE2),
+          Color(0xFF00CFFF),
+        ],
+      ),
+      _CTASlide(
+        word: context.l10n.useful.toUpperCase(),
+        colors: const [
+          Color(0xFF00CFFF),
+          Color(0xFF35E6A5),
+        ],
+      ),
+      _CTASlide(
+        word: context.l10n.yours.toUpperCase(),
+        colors: const [
+          Color(0xFFFF2D95),
+          Color(0xFF8A2BE2),
+          Color(0xFF00CFFF),
+        ],
+      ),
+    ];
+  }
 
   @override
   void initState() {
@@ -60,8 +62,10 @@ class _HomeCTASectionState extends State<HomeCTASection> {
       (_) {
         if (!mounted) return;
 
+        final slides = _slides(context);
+
         setState(() {
-          _currentIndex = (_currentIndex + 1) % _slides.length;
+          _currentIndex = (_currentIndex + 1) % slides.length;
         });
       },
     );
@@ -78,7 +82,8 @@ class _HomeCTASectionState extends State<HomeCTASection> {
     final size = MediaQuery.sizeOf(context);
     final isMobile = size.width < 700;
 
-    final slide = _slides[_currentIndex];
+    final slides = _slides(context);
+    final slide = slides[_currentIndex];
 
     return Container(
       width: double.infinity,
@@ -199,7 +204,7 @@ class _HomeCTASectionState extends State<HomeCTASection> {
                     // ==================================================
 
                     Text(
-                      'LET\'S BUILD SOMETHING',
+                      context.l10n.letsBuildSomething.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
@@ -263,8 +268,7 @@ class _HomeCTASectionState extends State<HomeCTASection> {
                         maxWidth: 570,
                       ),
                       child: Text(
-                        'Have a project, an idea, or just want to '
-                        'create something interesting? Let\'s talk.',
+                        context.l10n.haveAProjectIdea,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Theme.of(context)
@@ -297,7 +301,7 @@ class _HomeCTASectionState extends State<HomeCTASection> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: List.generate(
-                        _slides.length,
+                        slides.length,
                         (index) {
                           final active = index == _currentIndex;
 
@@ -352,7 +356,7 @@ class _HomeCTASectionState extends State<HomeCTASection> {
         ),
         const SizedBox(width: 12),
         Text(
-          'HAVE AN IDEA?',
+          context.l10n.haveAnIdea.toUpperCase(),
           style: TextStyle(
             color:
                 Theme.of(context).colorScheme.onSurface.withValues(alpha: .45),
@@ -476,9 +480,9 @@ class _ContactButtonState extends State<_ContactButton> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
-                      'LET\'S TALK',
-                      style: TextStyle(
+                    Text(
+                      context.l10n.letsTalk.toUpperCase(),
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,
                         fontWeight: FontWeight.w900,

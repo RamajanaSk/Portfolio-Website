@@ -65,7 +65,7 @@
 
   "navigation": "NAVIGATION",
 
-  "location": "STUTTGART, GERMANY",
+  "stuttgartGermany": "STUTTGART, GERMANY",
 
   "contactMe": "CONTACT",
 
@@ -76,7 +76,7 @@
   "builtWithFlutter":
       "BUILT WITH FLUTTER",
 
-  "letsBuildSomething": "LET’S BUILD SOMETHING GREAT TOGETHER. FEEL FREE TO REACH OUT FOR COLLABORATIONS OR OPPORTUNITIES.",
+  "letsBuildSomethingGreat": "LET’S BUILD SOMETHING GREAT TOGETHER. FEEL FREE TO REACH OUT FOR COLLABORATIONS OR OPPORTUNITIES.",
 
   "yourName": "YOUR NAME",
 
@@ -183,7 +183,32 @@
   "travelerSubtitle": "TURN EVERY WALK INTO AN ADVENTURE.",
 
   "github": "View Github",
-  "demo": "Live Demo"
+  "demo": "Live Demo",
 
+  "letsBuild": "Let's build",
+  "something": "something",
+  "location": "location",
+  "asSoonAsICan": "I'll get to you as soon as I can.",
+  "message": "Message",
+  "getInTouch": "Get in touch",
+  
+  "helloIm": "Hello, I'm",
+  "getToKnowMe": "Get to know me",
+  "moreAboutMe": "More about me",
+  "beautiful": "Beautiful",
+  "yours": "Yours",
+  "memorable": "Memorable",
+  "useful": "Useful",
+  "haveAProjectIdea": "Have a project, an idea or just want to create something interesting?",
+
+  "letsTalk": "Let's talk",
+
+  "emailClientOpened": "Email client opened",
+
+  "haveAnIdea": "Have an idea?",
+
+  "letsBuildSomething": "Let's build something"
+  
+  
 }
 

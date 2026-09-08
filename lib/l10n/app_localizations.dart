@@ -266,7 +266,7 @@ abstract class AppLocalizations {
   /// No description provided for @letsBuild.
   ///
   /// In en, this message translates to:
-  /// **'LET’S BUILD SOMETHING MEANINGFUL'**
+  /// **'Let\'s build'**
   String get letsBuild;
 
   /// No description provided for @footerDescription.
@@ -281,11 +281,11 @@ abstract class AppLocalizations {
   /// **'NAVIGATION'**
   String get navigation;
 
-  /// No description provided for @location.
+  /// No description provided for @stuttgartGermany.
   ///
   /// In en, this message translates to:
   /// **'STUTTGART, GERMANY'**
-  String get location;
+  String get stuttgartGermany;
 
   /// No description provided for @contactMe.
   ///
@@ -311,11 +311,11 @@ abstract class AppLocalizations {
   /// **'BUILT WITH FLUTTER'**
   String get builtWithFlutter;
 
-  /// No description provided for @letsBuildSomething.
+  /// No description provided for @letsBuildSomethingGreat.
   ///
   /// In en, this message translates to:
   /// **'LET’S BUILD SOMETHING GREAT TOGETHER. FEEL FREE TO REACH OUT FOR COLLABORATIONS OR OPPORTUNITIES.'**
-  String get letsBuildSomething;
+  String get letsBuildSomethingGreat;
 
   /// No description provided for @yourName.
   ///
@@ -754,6 +754,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Live Demo'**
   String get demo;
+
+  /// No description provided for @something.
+  ///
+  /// In en, this message translates to:
+  /// **'something'**
+  String get something;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'location'**
+  String get location;
+
+  /// No description provided for @asSoonAsICan.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ll get to you as soon as I can.'**
+  String get asSoonAsICan;
+
+  /// No description provided for @message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// No description provided for @getInTouch.
+  ///
+  /// In en, this message translates to:
+  /// **'Get in touch'**
+  String get getInTouch;
+
+  /// No description provided for @helloIm.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I\'m'**
+  String get helloIm;
+
+  /// No description provided for @getToKnowMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Get to know me'**
+  String get getToKnowMe;
+
+  /// No description provided for @moreAboutMe.
+  ///
+  /// In en, this message translates to:
+  /// **'More about me'**
+  String get moreAboutMe;
+
+  /// No description provided for @beautiful.
+  ///
+  /// In en, this message translates to:
+  /// **'Beautiful'**
+  String get beautiful;
+
+  /// No description provided for @yours.
+  ///
+  /// In en, this message translates to:
+  /// **'Yours'**
+  String get yours;
+
+  /// No description provided for @memorable.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorable'**
+  String get memorable;
+
+  /// No description provided for @useful.
+  ///
+  /// In en, this message translates to:
+  /// **'Useful'**
+  String get useful;
+
+  /// No description provided for @haveAProjectIdea.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a project, an idea or just want to create something interesting?'**
+  String get haveAProjectIdea;
+
+  /// No description provided for @letsTalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s talk'**
+  String get letsTalk;
+
+  /// No description provided for @emailClientOpened.
+  ///
+  /// In en, this message translates to:
+  /// **'Email client opened'**
+  String get emailClientOpened;
+
+  /// No description provided for @haveAnIdea.
+  ///
+  /// In en, this message translates to:
+  /// **'Have an idea?'**
+  String get haveAnIdea;
+
+  /// No description provided for @letsBuildSomething.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s build something'**
+  String get letsBuildSomething;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

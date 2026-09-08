@@ -93,7 +93,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get creativeSystems => 'CREATIVE SYSTEMS';
 
   @override
-  String get letsBuild => 'LET’S BUILD SOMETHING MEANINGFUL';
+  String get letsBuild => 'Let\'s build';
 
   @override
   String get footerDescription => 'CREATIVE DEVELOPER FOCUSED ON FLUTTER, MOBILE APPS AND INTERACTIVE EXPERIENCES.';
@@ -102,7 +102,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navigation => 'NAVIGATION';
 
   @override
-  String get location => 'STUTTGART, GERMANY';
+  String get stuttgartGermany => 'STUTTGART, GERMANY';
 
   @override
   String get contactMe => 'CONTACT';
@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get builtWithFlutter => 'BUILT WITH FLUTTER';
 
   @override
-  String get letsBuildSomething => 'LET’S BUILD SOMETHING GREAT TOGETHER. FEEL FREE TO REACH OUT FOR COLLABORATIONS OR OPPORTUNITIES.';
+  String get letsBuildSomethingGreat => 'LET’S BUILD SOMETHING GREAT TOGETHER. FEEL FREE TO REACH OUT FOR COLLABORATIONS OR OPPORTUNITIES.';
 
   @override
   String get yourName => 'YOUR NAME';
@@ -337,4 +337,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demo => 'Live Demo';
+
+  @override
+  String get something => 'something';
+
+  @override
+  String get location => 'location';
+
+  @override
+  String get asSoonAsICan => 'I\'ll get to you as soon as I can.';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get getInTouch => 'Get in touch';
+
+  @override
+  String get helloIm => 'Hello, I\'m';
+
+  @override
+  String get getToKnowMe => 'Get to know me';
+
+  @override
+  String get moreAboutMe => 'More about me';
+
+  @override
+  String get beautiful => 'Beautiful';
+
+  @override
+  String get yours => 'Yours';
+
+  @override
+  String get memorable => 'Memorable';
+
+  @override
+  String get useful => 'Useful';
+
+  @override
+  String get haveAProjectIdea => 'Have a project, an idea or just want to create something interesting?';
+
+  @override
+  String get letsTalk => 'Let\'s talk';
+
+  @override
+  String get emailClientOpened => 'Email client opened';
+
+  @override
+  String get haveAnIdea => 'Have an idea?';
+
+  @override
+  String get letsBuildSomething => 'Let\'s build something';
 }

@@ -93,7 +93,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get creativeSystems => 'KREATIVE SYSTEME';
 
   @override
-  String get letsBuild => 'LASS UNS ETWAS BEDEUTUNGSVOLLES ERSCHAFFEN';
+  String get letsBuild => 'Lass uns etwas';
 
   @override
   String get footerDescription => 'KREATIVE ENTWICKLERIN MIT FOKUS AUF FLUTTER, MOBILE APPS UND INTERAKTIVE ERLEBNISSE.';
@@ -102,7 +102,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navigation => 'NAVIGATION';
 
   @override
-  String get location => 'STUTTGART, DEUTSCHLAND';
+  String get stuttgartGermany => 'STUTTGART, DEUTSCHLAND';
 
   @override
   String get contactMe => 'KONTAKT';
@@ -117,7 +117,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get builtWithFlutter => 'ERSTELLT MIT FLUTTER';
 
   @override
-  String get letsBuildSomething => 'LASS UNS GEMEINSAM IDEEN ZUM LEBEN ERWECKEN. KONTAKTIERE MICH GERNE FÜR SPANNENDE PROJEKTE, ZUSAMMENARBEITEN ODER NEUE HERAUSFORDERUNGEN.';
+  String get letsBuildSomethingGreat => 'LASS UNS GEMEINSAM IDEEN ZUM LEBEN ERWECKEN. KONTAKTIERE MICH GERNE FÜR SPANNENDE PROJEKTE, ZUSAMMENARBEITEN ODER NEUE HERAUSFORDERUNGEN.';
 
   @override
   String get yourName => 'DEIN NAME';
@@ -337,4 +337,55 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get demo => 'Live Demo';
+
+  @override
+  String get something => 'Erschaffen';
+
+  @override
+  String get location => 'Standort';
+
+  @override
+  String get asSoonAsICan => 'Ich melde mich so schnell wie möglich bei dir.';
+
+  @override
+  String get message => 'Nachricht';
+
+  @override
+  String get getInTouch => 'Kontakt aufnehmen';
+
+  @override
+  String get helloIm => 'Hallo, ich bin';
+
+  @override
+  String get getToKnowMe => 'Lerne mich kennen';
+
+  @override
+  String get moreAboutMe => 'Mehr über mich';
+
+  @override
+  String get beautiful => 'Schön';
+
+  @override
+  String get yours => 'Deins';
+
+  @override
+  String get memorable => 'Unvergesslich';
+
+  @override
+  String get useful => 'Nützlich';
+
+  @override
+  String get haveAProjectIdea => 'Hast du ein Projekt, eine Idee oder möchtest einfach etwas Interessantes erschaffen?';
+
+  @override
+  String get letsTalk => 'Lass uns reden';
+
+  @override
+  String get emailClientOpened => 'Email client geöffnet';
+
+  @override
+  String get haveAnIdea => 'Eine Idee?';
+
+  @override
+  String get letsBuildSomething => 'Lass uns etwas Sinnvolles schaffen';
 }

@@ -233,7 +233,7 @@ class _ContactInformation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'LET\'S BUILD',
+          context.l10n.letsBuild.toUpperCase(),
           style: TextStyle(
             color: foreground,
             fontSize: isMobile ? 42 : 62,
@@ -255,7 +255,7 @@ class _ContactInformation extends StatelessWidget {
             ).createShader(bounds);
           },
           child: Text(
-            'SOMETHING.',
+            context.l10n.something.toUpperCase(),
             style: TextStyle(
               color: Colors.white,
               fontSize: isMobile ? 42 : 62,
@@ -271,7 +271,7 @@ class _ContactInformation extends StatelessWidget {
             maxWidth: 480,
           ),
           child: Text(
-            context.l10n.letsBuildSomething,
+            context.l10n.letsBuildSomethingGreat,
             style: TextStyle(
               color: foreground.withValues(alpha: .48),
               fontSize: 16,
@@ -287,10 +287,9 @@ class _ContactInformation extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         _ContactItem(
-          icon: Icons.location_on_outlined,
-          label: 'LOCATION',
-          value: context.l10n.location,
-        ),
+            icon: Icons.location_on_outlined,
+            label: context.l10n.location.toUpperCase(),
+            value: context.l10n.stuttgartGermany),
         const SizedBox(height: 40),
         Container(
           width: 50,
@@ -405,7 +404,7 @@ class _ContactFormCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'SEND A MESSAGE',
+            context.l10n.sendMessage.toUpperCase(),
             style: TextStyle(
               color: foreground,
               fontSize: 14,
@@ -415,7 +414,7 @@ class _ContactFormCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'I\'ll get back to you as soon as I can.',
+            context.l10n.asSoonAsICan,
             style: TextStyle(
               color: foreground.withValues(alpha: .4),
               fontSize: 13,
@@ -437,7 +436,7 @@ class _ContactFormCard extends StatelessWidget {
           const SizedBox(height: 20),
           _ContactField(
             controller: messageController,
-            label: 'MESSAGE',
+            label: context.l10n.message.toUpperCase(),
             hint: context.l10n.yourMessage,
             maxLines: 5,
           ),

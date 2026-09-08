@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/extensions/responsive_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/info_chip.dart';
+import 'package:ramajana05/core/widgets/responsive.dart/responsive_two_column_layout.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
   final VoidCallback onAboutMePressed;
@@ -13,83 +16,26 @@ class AboutMeSmallSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
-    final isMobile = width < 800;
-    final isTablet = width >= 800 && width < 1100;
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 24 : 40,
-        vertical: isMobile ? 60 : 80,
+        horizontal: context.isMobile ? 24 : 40,
+        vertical: context.isMobile ? 60 : 80,
       ),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
             maxWidth: 1200,
           ),
-          child: isMobile
-              ? _buildMobileLayout(context)
-              : _buildDesktopLayout(
-                  context,
-                  isTablet: isTablet,
-                ),
+          child: ResponsiveTwoColumnLayout(
+            first: _buildImage(
+              context,
+              isMobile: context.isMobile,
+            ),
+            second: _buildText(context),
+          ),
         ),
       ),
-    );
-  }
-
-  // ============================================================
-  // DESKTOP
-  // ============================================================
-
-  Widget _buildDesktopLayout(
-    BuildContext context, {
-    required bool isTablet,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: isTablet ? 320 : 380,
-          child: _buildImage(
-            context,
-            isMobile: false,
-          ),
-        ),
-        SizedBox(
-          width: isTablet ? 60 : 90,
-        ),
-        Expanded(
-          child: _buildText(context),
-        ),
-      ],
-    );
-  }
-
-  // ============================================================
-  // MOBILE
-  // ============================================================
-
-  Widget _buildMobileLayout(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 400,
-            ),
-            child: _buildImage(
-              context,
-              isMobile: true,
-            ),
-          ),
-        ),
-        const SizedBox(height: 55),
-        _buildText(context),
-      ],
     );
   }
 
@@ -150,41 +96,14 @@ class AboutMeSmallSection extends StatelessWidget {
   }
 
   // ============================================================
-  // TEXT
+  // TEXT CONTENT
   // ============================================================
 
   Widget _buildText(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // --------------------------------------------------------
-        // EYEBROW
-        // --------------------------------------------------------
-
-        Row(
-          children: [
-            Container(
-              width: 34,
-              height: 2,
-              decoration: BoxDecoration(
-                color: colorScheme.primary,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            const SizedBox(width: 13),
-            Text(
-              'GET TO KNOW ME',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 2.2,
-                color: colorScheme.primary,
-              ),
-            ),
-          ],
-        ),
+        _buildEyebrow(context),
 
         const SizedBox(height: 24),
 
@@ -247,6 +166,37 @@ class AboutMeSmallSection extends StatelessWidget {
   }
 
   // ============================================================
+  // EYEBROW
+  // ============================================================
+
+  Widget _buildEyebrow(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Container(
+          width: 34,
+          height: 2,
+          decoration: BoxDecoration(
+            color: colorScheme.primary,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        const SizedBox(width: 13),
+        Text(
+          context.l10n.getToKnowMe.toUpperCase(),
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 2.2,
+            color: colorScheme.primary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // ============================================================
   // MORE ABOUT ME BUTTON
   // ============================================================
 
@@ -267,7 +217,7 @@ class AboutMeSmallSection extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'MORE ABOUT ME',
+                context.l10n.moreAboutMe.toUpperCase(),
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
