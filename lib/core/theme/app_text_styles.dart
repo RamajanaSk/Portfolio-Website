@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:ramajana05/core/utils/app_responsive.dart';
-import 'package:ramajana05/core/widgets/section_label.dart';
 
 class AppTextStyles {
   static double _scale(
@@ -278,6 +277,67 @@ class AppTextStyles {
       letterSpacing: 2,
       height: 1,
       color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.85),
+    );
+  }
+
+  static TextStyle projectCtaTitle(BuildContext context) {
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface,
+      fontSize: AppResponsive.fluidFontSize(
+        context,
+        min: 34,
+        max: 54,
+      ),
+      height: 1.05,
+      fontWeight: FontWeight.w800,
+      letterSpacing: -1.5,
+    );
+  }
+
+  static TextStyle projectCtaAccentTitle(
+    BuildContext context, {
+    required Color color,
+  }) {
+    return projectCtaTitle(context).copyWith(
+      color: color,
+    );
+  }
+
+  static TextStyle projectCtaDescription(BuildContext context) {
+    final fontSize = AppResponsive.fluidFontSize(
+      context,
+      min: 14,
+      max: 16,
+    );
+
+    return TextStyle(
+      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .5),
+      fontSize: fontSize,
+      height: 1.7,
+    );
+  }
+
+  static TextStyle projectCtaLabel(
+    BuildContext context, {
+    required Color color,
+  }) {
+    final fontSize = AppResponsive.fluidFontSize(
+      context,
+      min: 10,
+      max: 11,
+    );
+
+    final letterSpacing = AppResponsive.fluidFontSize(
+      context,
+      min: 2,
+      max: 3,
+    );
+
+    return TextStyle(
+      color: color,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w800,
+      letterSpacing: letterSpacing,
     );
   }
 }

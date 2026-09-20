@@ -10,7 +10,7 @@ import 'package:ramajana05/features/projects/presentation/section/core_feature_s
 import 'package:ramajana05/features/projects/presentation/section/hero_section.dart';
 
 import 'package:ramajana05/features/projects/presentation/section/project_showcase_section.dart';
-import 'package:ramajana05/features/projects/presentation/widget/project_cta_section.dart';
+import 'package:ramajana05/features/projects/presentation/section/project_cta_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_meta_data.dart';
 
 import '../../data/models/project.dart';
