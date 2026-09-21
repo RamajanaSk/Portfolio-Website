@@ -98,14 +98,6 @@ class _NeonOutlineButtonState extends State<NeonOutlineButton> {
                       duration: const Duration(milliseconds: 180),
                       curve: Curves.easeOutCubic,
                       offset: _isHovered ? const Offset(0.15, 0) : Offset.zero,
-                      child: Icon(
-                        Icons.arrow_outward_rounded,
-                        size: 16 * s,
-                        color:
-                            Theme.of(context).colorScheme.onSurface.withValues(
-                                  alpha: _isHovered ? 0.9 : 0.55,
-                                ),
-                      ),
                     ),
                   ],
                 ),

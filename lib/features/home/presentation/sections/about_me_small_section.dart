@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/extensions/responsive_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
+import 'package:ramajana05/core/widgets/buttons/text_with_icon_button.dart';
 import 'package:ramajana05/core/widgets/info_chip.dart';
 import 'package:ramajana05/core/widgets/responsive.dart/responsive_two_column_layout.dart';
+import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 
 class AboutMeSmallSection extends StatelessWidget {
   final VoidCallback onAboutMePressed;
@@ -103,20 +105,12 @@ class AboutMeSmallSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildEyebrow(context),
-
-        const SizedBox(height: 24),
-
-        // --------------------------------------------------------
-        // TITLE
-        // --------------------------------------------------------
-
-        Text(
-          context.l10n.aboutMe,
-          style: AppTextStyles.underSectionTitle(context),
+        EyebrowText(
+          number: '02',
+          text: context.l10n.aboutMe,
         ),
 
-        const SizedBox(height: 28),
+        const SizedBox(height: 24),
 
         // --------------------------------------------------------
         // DESCRIPTION
@@ -140,101 +134,27 @@ class AboutMeSmallSection extends StatelessWidget {
           runSpacing: 12,
           children: [
             InfoChip(
-              context.l10n.mobileComputing,
+              text: context.l10n.mobileComputing,
             ),
             InfoChip(
-              context.l10n.uiFocused,
+              text: context.l10n.uiFocused,
             ),
             InfoChip(
-              context.l10n.flutterDeveloper,
+              text: context.l10n.flutterDeveloper,
             ),
             InfoChip(
-              context.l10n.crossPlatform,
+              text: context.l10n.crossPlatform,
             ),
           ],
         ),
 
         const SizedBox(height: 34),
 
-        // --------------------------------------------------------
-        // MORE ABOUT ME
-        // --------------------------------------------------------
-
-        _buildAboutButton(context),
-      ],
-    );
-  }
-
-  // ============================================================
-  // EYEBROW
-  // ============================================================
-
-  Widget _buildEyebrow(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Row(
-      children: [
-        Container(
-          width: 34,
-          height: 2,
-          decoration: BoxDecoration(
-            color: colorScheme.primary,
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        const SizedBox(width: 13),
-        Text(
-          context.l10n.getToKnowMe.toUpperCase(),
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 2.2,
-            color: colorScheme.primary,
-          ),
+        TextWithIconButton(
+          text: context.l10n.moreAboutMe,
+          onPressed: onAboutMePressed,
         ),
       ],
-    );
-  }
-
-  // ============================================================
-  // MORE ABOUT ME BUTTON
-  // ============================================================
-
-  Widget _buildAboutButton(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onAboutMePressed,
-        borderRadius: BorderRadius.circular(8),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 2,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                context.l10n.moreAboutMe.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.2,
-                  color: colorScheme.onSurface,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Icon(
-                Icons.arrow_forward_rounded,
-                size: 19,
-                color: colorScheme.primary,
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

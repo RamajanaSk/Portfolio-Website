@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/Core/widgets/Cards/project_card.dart';
+import 'package:ramajana05/core/utils/format_date.dart';
 
 import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
@@ -72,7 +73,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                   hexColor: project.hexcolor,
                   previewImage: project.previewPicture,
                   platformLinks: project.platformLinks,
-                  date: formatDate(project),
+                  date: AppDateFormatter.monthAndYear(project.startDate),
                   githubUrl: project.githubUrl,
                   onTap: () => widget.onProjectSelected(project),
                 );
@@ -92,23 +93,5 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     if (width > 1200) return 3;
     if (width > 800) return 2;
     return 1;
-  }
-
-  String formatDate(Project project) {
-    const months = [
-      'JAN',
-      'FEB',
-      'MAR',
-      'APR',
-      'MAY',
-      'JUN',
-      'JUL',
-      'AUG',
-      'SEP',
-      'OCT',
-      'NOV',
-      'DEC'
-    ];
-    return '${months[project.startDate.month - 1]} ${project.startDate.year}';
   }
 }

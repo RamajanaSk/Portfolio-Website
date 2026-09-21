@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
-import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
+import 'package:ramajana05/core/widgets/buttons/neon_outline_button.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
+import 'package:ramajana05/core/widgets/text/background_section_text.dart';
+import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 import 'package:ramajana05/features/contact/service/contact_email_service.dart';
 
 class ContactScreen extends StatefulWidget {
@@ -87,34 +91,13 @@ class _ContactSection extends StatelessWidget {
       constraints: BoxConstraints(
         minHeight: MediaQuery.sizeOf(context).height,
       ),
-      color: Theme.of(context).colorScheme.surface,
       child: Stack(
         clipBehavior: Clip.hardEdge,
         children: [
-          // ============================================================
-          // BACKGROUND TEXT
-          // ============================================================
-
-          Positioned(
-            left: -20,
-            bottom: -35,
-            child: IgnorePointer(
-              child: Text(
-                'CONTACT',
-                style: TextStyle(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withValues(alpha: .018),
-                  fontSize: isMobile ? 110 : 220,
-                  height: 1,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: -8,
-                ),
-              ),
-            ),
+          BackgroundSectionText(
+            text: context.l10n.contact.toUpperCase(),
+            isMobile: isMobile,
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: isMobile ? 24 : 80,
@@ -128,7 +111,10 @@ class _ContactSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const _ContactEyebrow(),
+                    EyebrowText(
+                      number: '04',
+                      text: context.l10n.getInTouch.toUpperCase(),
+                    ),
                     SizedBox(height: isMobile ? 45 : 65),
                     if (isMobile)
                       Column(
@@ -175,52 +161,6 @@ class _ContactSection extends StatelessWidget {
   }
 }
 
-class _ContactEyebrow extends StatelessWidget {
-  const _ContactEyebrow();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text(
-          '04',
-          style: TextStyle(
-            color: Color(0xFFFF2D95),
-            fontSize: 11,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 2,
-          ),
-        ),
-        const SizedBox(width: 12),
-        Container(
-          width: 28,
-          height: 1,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFFFF2D95),
-                Color(0xFF8A2BE2),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        Text(
-          'GET IN TOUCH',
-          style: TextStyle(
-            color:
-                Theme.of(context).colorScheme.onSurface.withValues(alpha: .4),
-            fontSize: 11,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 2.5,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _ContactInformation extends StatelessWidget {
   const _ContactInformation();
 
@@ -235,7 +175,6 @@ class _ContactInformation extends StatelessWidget {
         Text(
           context.l10n.letsBuild.toUpperCase(),
           style: TextStyle(
-            color: foreground,
             fontSize: isMobile ? 42 : 62,
             height: .95,
             fontWeight: FontWeight.w900,
@@ -257,7 +196,6 @@ class _ContactInformation extends StatelessWidget {
           child: Text(
             context.l10n.something.toUpperCase(),
             style: TextStyle(
-              color: Colors.white,
               fontSize: isMobile ? 42 : 62,
               height: .95,
               fontWeight: FontWeight.w900,
@@ -381,24 +319,13 @@ class _ContactFormCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = Theme.of(context).colorScheme.onSurface;
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: foreground.withValues(alpha: .025),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: foreground.withValues(alpha: .08),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: .18),
-            blurRadius: 40,
-            offset: const Offset(0, 18),
-          ),
-        ],
+        border: Border.all(),
+        boxShadow: [],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -406,7 +333,6 @@ class _ContactFormCard extends StatelessWidget {
           Text(
             context.l10n.sendMessage.toUpperCase(),
             style: TextStyle(
-              color: foreground,
               fontSize: 14,
               fontWeight: FontWeight.w800,
               letterSpacing: 1.5,
@@ -416,7 +342,6 @@ class _ContactFormCard extends StatelessWidget {
           Text(
             context.l10n.asSoonAsICan,
             style: TextStyle(
-              color: foreground.withValues(alpha: .4),
               fontSize: 13,
             ),
           ),
@@ -479,7 +404,6 @@ class _ContactField extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: foreground.withValues(alpha: .35),
             fontSize: 9,
             fontWeight: FontWeight.w800,
             letterSpacing: 2,
@@ -526,34 +450,6 @@ class _ContactField extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _Glow extends StatelessWidget {
-  final Color color;
-  final double size;
-
-  const _Glow({
-    required this.color,
-    required this.size,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: .08),
-            blurRadius: 150,
-            spreadRadius: 40,
-          ),
-        ],
-      ),
     );
   }
 }

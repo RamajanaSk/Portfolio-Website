@@ -85,10 +85,6 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
 
         SizedBox(height: isMobile ? 20 : 28),
 
-        // ============================================================
-        // FILTERS
-        // ============================================================
-
         Wrap(
           spacing: 9,
           runSpacing: 9,

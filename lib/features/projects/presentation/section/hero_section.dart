@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/widgets/text/line_and_text.dart';
 import 'package:ramajana05/data/models/project.dart';
 import 'package:ramajana05/core/extensions/hexcolor.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
@@ -131,36 +132,11 @@ class _HeroInformation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // -------------------------------------------------------------
-        // EYEBROW
-        // -------------------------------------------------------------
-
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 28,
-              height: 2,
-              color: accent,
-            ),
-            const SizedBox(width: 12),
-            Text(
-              'FEATURED PROJECT',
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.55),
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 2.2,
-              ),
-            ),
-          ],
+        LineAndText(
+          project: project,
+          accent: accent,
         ),
-
         const SizedBox(height: 24),
-
-        // -------------------------------------------------------------
-        // PROJECT NAME
-        // -------------------------------------------------------------
 
         Text(
           project.name,
@@ -171,10 +147,6 @@ class _HeroInformation extends StatelessWidget {
         ),
 
         const SizedBox(height: 14),
-
-        // -------------------------------------------------------------
-        // SUBTITLE
-        // -------------------------------------------------------------
 
         ConstrainedBox(
           constraints: const BoxConstraints(
@@ -187,10 +159,6 @@ class _HeroInformation extends StatelessWidget {
         ),
 
         const SizedBox(height: 28),
-
-        // -------------------------------------------------------------
-        // DESCRIPTION
-        // -------------------------------------------------------------
 
         ConstrainedBox(
           constraints: const BoxConstraints(

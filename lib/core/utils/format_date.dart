@@ -1,7 +1,7 @@
-import 'package:intl/intl.dart';
+class AppDateFormatter {
+  AppDateFormatter._();
 
-String formatDate(DateTime date) {
-  const months = [
+  static const List<String> _months = [
     'JAN',
     'FEB',
     'MAR',
@@ -13,8 +13,12 @@ String formatDate(DateTime date) {
     'SEP',
     'OCT',
     'NOV',
-    'DEC'
+    'DEC',
   ];
 
-  return '${months[date.month - 1]} ${date.year}';
+  static String monthAndYear(DateTime date) {
+    final month = _months[date.month - 1];
+
+    return '$month ${date.year}';
+  }
 }

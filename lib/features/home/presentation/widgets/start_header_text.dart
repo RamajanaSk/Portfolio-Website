@@ -2,15 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
-import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/buttons/gradient_button.dart';
-import 'package:ramajana05/core/widgets/buttons/outline_button.dart';
-import 'package:ramajana05/core/widgets/colored_dot.dart';
+import 'package:ramajana05/core/widgets/buttons/neon_outline_button.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
-import 'package:ramajana05/core/widgets/text/glitch_text.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/animated_role_text.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/tech_stack_text.dart';
 
@@ -69,8 +66,6 @@ class _StartHeaderTextState extends State<StartHeaderText> {
           ),
           const SizedBox(height: 14),
 
-          const SizedBox(height: 6),
-
           // ============================================================
           // NAME
           // ============================================================
@@ -117,12 +112,15 @@ class _StartHeaderTextState extends State<StartHeaderText> {
           // SOCIALS + BUTTONS
           // ============================================================
 
+          const SizedBox(height: 22),
+
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SocialLinksRow(),
               const SizedBox(width: 12),
-              _buildButtons(context),
+              Expanded(
+                child: _buildButtons(context),
+              ),
             ],
           ),
         ],
@@ -131,28 +129,32 @@ class _StartHeaderTextState extends State<StartHeaderText> {
   }
 
   Widget _buildButtons(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        GradientButton(
-          text: context.l10n.downloadCV,
-          onPressed: () {
-            FileDownloader.downloadAsset(
-              assetPath: 'assets/pdfs/cv.pdf',
-              fileName: 'Ramajana_Skopljak_CV.pdf',
-            );
-          },
-        ),
-        const SizedBox(width: 12),
-        NeonOutlineButton(
-          text: context.l10n.viewPortfolio,
-          onPressed: () {
-            FileDownloader.openAsset(
-              assetPath: 'assets/pdfs/software_portfolio.pdf',
-            );
-          },
-        ),
-      ],
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GradientButton(
+            text: context.l10n.downloadCV,
+            onPressed: () {
+              FileDownloader.downloadAsset(
+                assetPath: 'assets/pdfs/cv.pdf',
+                fileName: 'Ramajana_Skopljak_CV.pdf',
+              );
+            },
+          ),
+          const SizedBox(width: 12),
+          NeonOutlineButton(
+            text: context.l10n.viewPortfolio,
+            onPressed: () {
+              FileDownloader.openAsset(
+                assetPath: 'assets/pdfs/software_portfolio.pdf',
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

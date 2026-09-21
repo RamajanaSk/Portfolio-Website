@@ -95,63 +95,6 @@ class _HomeCTASectionState extends State<HomeCTASection> {
         clipBehavior: Clip.hardEdge,
         children: [
           // ============================================================
-          // ANIMATED BACKGROUND GLOW
-          // ============================================================
-
-          Positioned.fill(
-            child: IgnorePointer(
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 900),
-                curve: Curves.easeInOutCubic,
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    center: const Alignment(0, 1.35),
-                    radius: 1,
-                    colors: [
-                      slide.colors.first.withValues(alpha: .13),
-                      slide.colors.last.withValues(alpha: .05),
-                      Colors.transparent,
-                    ],
-                    stops: const [
-                      0,
-                      .45,
-                      1,
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // ============================================================
-          // HUGE BACKGROUND WORD
-          // ============================================================
-
-          Positioned(
-            left: -30,
-            right: -30,
-            bottom: -35,
-            child: IgnorePointer(
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 700),
-                child: Text(
-                  slide.word,
-                  key: ValueKey(slide.word),
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: slide.colors.first.withValues(alpha: .025),
-                    fontSize: isMobile ? 100 : 190,
-                    height: 1,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: -7,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // ============================================================
           // TOP GRADIENT LINE
           // ============================================================
 
