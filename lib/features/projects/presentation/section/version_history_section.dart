@@ -21,7 +21,6 @@ class _VersionHistorySectionState extends State<VersionHistorySection> {
   void initState() {
     super.initState();
 
-    // Latest version selected by default
     selectedVersion = widget.versions.last;
   }
 
@@ -45,21 +44,14 @@ class _VersionHistorySectionState extends State<VersionHistorySection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
               _buildHeader(context),
-
               const SizedBox(height: 50),
-
-              // Version selector
               VersionSelector(
                 versions: widget.versions,
                 selectedVersion: selectedVersion,
                 onSelected: _selectVersion,
               ),
-
               const SizedBox(height: 55),
-
-              // Selected version
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 350),
                 child: _VersionContent(
@@ -178,7 +170,6 @@ class _VersionInformation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Version + date
         Row(
           children: [
             Container(
@@ -211,9 +202,7 @@ class _VersionInformation extends StatelessWidget {
             ),
           ],
         ),
-
         const SizedBox(height: 24),
-
         Text(
           version.title,
           style: const TextStyle(
@@ -222,9 +211,7 @@ class _VersionInformation extends StatelessWidget {
             height: 1.15,
           ),
         ),
-
         const SizedBox(height: 18),
-
         Text(
           version.description,
           style: TextStyle(
@@ -235,9 +222,7 @@ class _VersionInformation extends StatelessWidget {
             ),
           ),
         ),
-
         const SizedBox(height: 32),
-
         const Text(
           'What changed',
           style: TextStyle(
@@ -245,9 +230,7 @@ class _VersionInformation extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-
         const SizedBox(height: 14),
-
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -273,9 +256,7 @@ class _VersionInformation extends StatelessWidget {
             );
           }).toList(),
         ),
-
         const SizedBox(height: 40),
-
         _VersionMetaData(version: version),
       ],
     );

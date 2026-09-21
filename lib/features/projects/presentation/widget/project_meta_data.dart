@@ -17,7 +17,6 @@ class ProjectMetaData extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Release status
         if (project.isPublished)
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -48,9 +47,7 @@ class ProjectMetaData extends StatelessWidget {
               ),
             ],
           ),
-
         const SizedBox(height: 24),
-
         Wrap(
           spacing: 42,
           runSpacing: 22,

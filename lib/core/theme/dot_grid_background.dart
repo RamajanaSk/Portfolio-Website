@@ -57,8 +57,6 @@ class _DotGridPainter extends CustomPainter {
 
         final normalizedDistance = (distance / maxDistance).clamp(0.0, 1.0);
 
-        // More visible:
-        // center ≈ 45%, edges ≈ 10%
         final opacity = (0.45 - (normalizedDistance * 0.35)).clamp(0.10, 0.45);
 
         final paint = Paint()

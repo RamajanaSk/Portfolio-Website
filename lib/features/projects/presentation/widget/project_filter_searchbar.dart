@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/data/models/project.dart';
 
 class ProjectFilterSearchBar extends StatefulWidget {
@@ -62,16 +63,11 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = Theme.of(context).colorScheme.onSurface;
     final isMobile = MediaQuery.sizeOf(context).width < 700;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // ============================================================
-        // SEARCH
-        // ============================================================
-
         _ProjectSearchField(
           hintText: context.l10n.searchProjects,
           onChanged: (value) {
@@ -82,9 +78,7 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
             applyFilter();
           },
         ),
-
         SizedBox(height: isMobile ? 20 : 28),
-
         Wrap(
           spacing: 9,
           runSpacing: 9,
@@ -106,7 +100,6 @@ class _ProjectFilterSearchBarState extends State<ProjectFilterSearchBar> {
             );
           }).toList(),
         ),
-
         const SizedBox(height: 10),
       ],
     );
@@ -159,7 +152,7 @@ class _ProjectSearchFieldState extends State<_ProjectSearchField> {
         boxShadow: _focused
             ? [
                 BoxShadow(
-                  color: const Color(0xFFFF2D95).withValues(alpha: .08),
+                  color: AppColors.vibrantPink.withValues(alpha: .08),
                   blurRadius: 24,
                   spreadRadius: 1,
                 ),
@@ -169,7 +162,7 @@ class _ProjectSearchFieldState extends State<_ProjectSearchField> {
       child: TextField(
         focusNode: _focusNode,
         onChanged: widget.onChanged,
-        cursorColor: const Color(0xFFFF2D95),
+        cursorColor: AppColors.vibrantPink,
         style: TextStyle(
           color: foreground.withValues(alpha: .9),
           fontSize: 14,
@@ -190,7 +183,7 @@ class _ProjectSearchFieldState extends State<_ProjectSearchField> {
               Icons.search_rounded,
               size: 20,
               color: _focused
-                  ? const Color(0xFFFF2D95)
+                  ? AppColors.vibrantPink
                   : foreground.withValues(alpha: .35),
             ),
           ),
@@ -212,7 +205,7 @@ class _ProjectSearchFieldState extends State<_ProjectSearchField> {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
-              color: Color(0xFFFF2D95),
+              color: AppColors.vibrantPink,
               width: 1.2,
             ),
           ),
@@ -266,14 +259,14 @@ class _TechnologyChipState extends State<_TechnologyChip> {
             ),
             decoration: BoxDecoration(
               color: widget.selected
-                  ? const Color(0xFFFF2D95).withValues(alpha: .09)
+                  ? AppColors.vibrantPink.withValues(alpha: .09)
                   : foreground.withValues(
                       alpha: _hovered ? .045 : .025,
                     ),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: widget.selected
-                    ? const Color(0xFFFF2D95).withValues(alpha: .65)
+                    ? AppColors.vibrantPink.withValues(alpha: .65)
                     : foreground.withValues(
                         alpha: _hovered ? .16 : .07,
                       ),
@@ -281,7 +274,7 @@ class _TechnologyChipState extends State<_TechnologyChip> {
               boxShadow: widget.selected
                   ? [
                       BoxShadow(
-                        color: const Color(0xFFFF2D95).withValues(alpha: .08),
+                        color: AppColors.vibrantPink.withValues(alpha: .08),
                         blurRadius: 16,
                       ),
                     ]
@@ -297,7 +290,7 @@ class _TechnologyChipState extends State<_TechnologyChip> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: widget.selected
-                        ? const Color(0xFFFF2D95)
+                        ? AppColors.vibrantPink
                         : foreground.withValues(alpha: .2),
                   ),
                 ),
@@ -318,56 +311,12 @@ class _TechnologyChipState extends State<_TechnologyChip> {
                   const Icon(
                     Icons.close_rounded,
                     size: 13,
-                    color: Color(0xFFFF2D95),
+                    color: AppColors.vibrantPink,
                   ),
                 ],
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ClearFiltersButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _ClearFiltersButton({
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final foreground = Theme.of(context).colorScheme.onSurface;
-
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(6),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 5,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.refresh_rounded,
-              size: 13,
-              color: foreground.withValues(alpha: .35),
-            ),
-            const SizedBox(width: 5),
-            Text(
-              'CLEAR',
-              style: TextStyle(
-                color: foreground.withValues(alpha: .35),
-                fontSize: 9,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.2,
-              ),
-            ),
-          ],
         ),
       ),
     );

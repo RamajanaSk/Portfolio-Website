@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_gradients.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/app_responsive.dart';
@@ -53,7 +54,7 @@ class _NeonOutlineButtonState extends State<NeonOutlineButton> {
                 spreadRadius: 0,
               ),
               BoxShadow(
-                color: const Color(0xFFFF2D95).withValues(
+                color: AppColors.vibrantPink.withValues(
                   alpha: _isHovered ? 0.12 : 0,
                 ),
                 blurRadius: 18 * s,

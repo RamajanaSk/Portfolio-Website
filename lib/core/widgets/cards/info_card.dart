@@ -43,7 +43,6 @@ class _InfoCardState extends State<InfoCard> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔥 ACCENT BAR
             AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               width: 4,
@@ -59,10 +58,7 @@ class _InfoCardState extends State<InfoCard> {
                 ),
               ),
             ),
-
             const SizedBox(width: 20),
-
-            // 🔥 LEFT SIDE (TEXT)
             Expanded(
               flex: 3,
               child: Column(
@@ -89,10 +85,7 @@ class _InfoCardState extends State<InfoCard> {
                 ],
               ),
             ),
-
             const SizedBox(width: 20),
-
-            // 🔥 RIGHT SIDE (ICON AREA)
             Expanded(
               flex: 1,
               child: AnimatedContainer(

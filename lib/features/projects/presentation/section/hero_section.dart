@@ -137,7 +137,6 @@ class _HeroInformation extends StatelessWidget {
           accent: accent,
         ),
         const SizedBox(height: 24),
-
         Text(
           project.name,
           style: AppTextStyles.projectName(
@@ -145,9 +144,7 @@ class _HeroInformation extends StatelessWidget {
             color: accent,
           ),
         ),
-
         const SizedBox(height: 14),
-
         ConstrainedBox(
           constraints: const BoxConstraints(
             maxWidth: 580,
@@ -157,9 +154,7 @@ class _HeroInformation extends StatelessWidget {
             style: AppTextStyles.projectSubtitle(context),
           ),
         ),
-
         const SizedBox(height: 28),
-
         ConstrainedBox(
           constraints: const BoxConstraints(
             maxWidth: 520,
@@ -169,13 +164,7 @@ class _HeroInformation extends StatelessWidget {
             style: AppTextStyles.projectShortDescription(context),
           ),
         ),
-
         const SizedBox(height: 32),
-
-        // -------------------------------------------------------------
-        // TECHNOLOGIES
-        // -------------------------------------------------------------
-
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -188,13 +177,7 @@ class _HeroInformation extends StatelessWidget {
               )
               .toList(),
         ),
-
         const SizedBox(height: 42),
-
-        // -------------------------------------------------------------
-        // ACTIONS
-        // -------------------------------------------------------------
-
         Wrap(
           spacing: 14,
           runSpacing: 14,
@@ -322,10 +305,6 @@ class _HeroPreview extends StatelessWidget {
               ),
             ),
 
-            // ---------------------------------------------------------
-            // DECORATIVE LINES
-            // ---------------------------------------------------------
-
             Positioned(
               right: 0,
               top: 80,
@@ -345,10 +324,6 @@ class _HeroPreview extends StatelessWidget {
                 color: accent.withValues(alpha: 0.4),
               ),
             ),
-
-            // ---------------------------------------------------------
-            // PHONE
-            // ---------------------------------------------------------
 
             Container(
               width: phoneWidth,
@@ -381,8 +356,6 @@ class _HeroPreview extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Dynamic Island
                   Positioned(
                     top: 11,
                     child: Container(
@@ -397,10 +370,6 @@ class _HeroPreview extends StatelessWidget {
                 ],
               ),
             ),
-
-            // ---------------------------------------------------------
-            // MICRO LABEL
-            // ---------------------------------------------------------
 
             if (!isMobile)
               Positioned(

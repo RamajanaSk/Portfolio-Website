@@ -65,10 +65,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     Color(0xFF00CFFF), // Blue
   ];
 
-  // ============================================================
-  // INIT
-  // ============================================================
-
   @override
   void initState() {
     super.initState();
@@ -119,10 +115,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  // ============================================================
-  // SCROLL
-  // ============================================================
-
   void _onScroll() {
     final controller = widget.scrollController;
 
@@ -158,10 +150,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
 
     super.dispose();
   }
-
-  // ============================================================
-  // BUILD
-  // ============================================================
 
   @override
   Widget build(BuildContext context) {
@@ -202,10 +190,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                 ),
                 child: Row(
                   children: [
-                    // =============================================
-                    // LOGO / NAME
-                    // =============================================
-
                     GestureDetector(
                       onTap: widget.onHomePressed,
                       behavior: HitTestBehavior.opaque,
@@ -217,19 +201,8 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                         ),
                       ),
                     ),
-
                     const Spacer(),
-
-                    // =============================================
-                    // DESKTOP NAVIGATION
-                    // =============================================
-
                     if (!isMobile) ..._buildDesktopActions(context),
-
-                    // =============================================
-                    // MOBILE MENU
-                    // =============================================
-
                     if (isMobile) _buildMobileMenuButton(context),
                   ],
                 ),
@@ -241,9 +214,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  // ============================================================
-  // NAME
-  // ============================================================
   Widget _buildName(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -263,10 +233,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // =====================================================
-            // RAMAJANA
-            // =====================================================
-
             AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 900),
               curve: Curves.easeInOutCubic,
@@ -279,11 +245,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                 softWrap: false,
               ),
             ),
-
-            // =====================================================
-            // SKOPLJAK
-            // =====================================================
-
             ClipRect(
               child: AnimatedAlign(
                 duration: const Duration(milliseconds: 350),
@@ -311,11 +272,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-
-            // =====================================================
-            // DOT
-            // =====================================================
-
             AnimatedPadding(
               duration: const Duration(milliseconds: 350),
               curve: Curves.easeOutCubic,
@@ -339,49 +295,32 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  // ============================================================
-  // DESKTOP NAVIGATION
-  // ============================================================
-
   List<Widget> _buildDesktopActions(BuildContext context) {
     return [
       TopBarButton(
         text: context.l10n.home,
         onPressed: widget.onHomePressed,
       ),
-
       const SizedBox(width: 6),
-
       TopBarButton(
         text: context.l10n.projects,
         onPressed: widget.onProjectPressed,
       ),
-
       const SizedBox(width: 6),
-
       TopBarButton(
         text: context.l10n.contact,
         onPressed: widget.onContactPressed,
       ),
-
       const SizedBox(width: 18),
-
-      // Small divider between navigation and language
       Container(
         width: 1,
         height: 22,
         color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .10),
       ),
-
       const SizedBox(width: 18),
-
       const LanguagePopupMenu(),
     ];
   }
-
-  // ============================================================
-  // MOBILE MENU BUTTON
-  // ============================================================
 
   Widget _buildMobileMenuButton(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -412,10 +351,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
       ),
     );
   }
-
-  // ============================================================
-  // MOBILE MENU
-  // ============================================================
 
   void _showMenu(BuildContext context) {
     final theme = Theme.of(context);
@@ -454,10 +389,6 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // =============================================
-                  // HANDLE
-                  // =============================================
-
                   Center(
                     child: Container(
                       width: 42,
@@ -470,13 +401,7 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 28),
-
-                  // =============================================
-                  // SMALL LABEL
-                  // =============================================
-
                   Text(
                     'NAVIGATION',
                     style: TextStyle(
@@ -486,46 +411,30 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                       letterSpacing: 2,
                     ),
                   ),
-
                   const SizedBox(height: 18),
-
-                  // =============================================
-                  // LINKS
-                  // =============================================
-
                   TopBarMobileButton(
                     text: context.l10n.home,
                     icon: Icons.home_outlined,
                     onPressed: widget.onHomePressed,
                   ),
-
                   TopBarMobileButton(
                     text: context.l10n.projects,
                     icon: Icons.grid_view_rounded,
                     onPressed: widget.onProjectPressed,
                   ),
-
                   TopBarMobileButton(
                     text: context.l10n.contact,
                     icon: Icons.mail_outline_rounded,
                     onPressed: widget.onContactPressed,
                   ),
-
                   const SizedBox(height: 22),
-
                   Divider(
                     color: colorScheme.onSurface.withValues(
                       alpha: .08,
                     ),
                     height: 1,
                   ),
-
                   const SizedBox(height: 22),
-
-                  // =============================================
-                  // LANGUAGE
-                  // =============================================
-
                   Row(
                     children: [
                       Text(
@@ -544,14 +453,11 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                     ],
                   ),
                   const SizedBox(height: 22),
-
                   Divider(
                     color: colorScheme.onSurface.withValues(alpha: .08),
                     height: 1,
                   ),
-
                   const SizedBox(height: 22),
-
                   Row(
                     children: [
                       Container(
@@ -574,9 +480,7 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 8),
-
                   Text(
                     'Stuttgart, Germany',
                     style: TextStyle(
@@ -584,22 +488,20 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                       fontSize: 12,
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
                   Row(
                     children: [
                       _MobileSocialLink(
                         label: 'GITHUB',
                         onTap: () {
-                          // open GitHub
+                          // TODO: open GitHub
                         },
                       ),
                       const SizedBox(width: 24),
                       _MobileSocialLink(
                         label: 'LINKEDIN',
                         onTap: () {
-                          // open LinkedIn
+                          // TODO: open LinkedIn
                         },
                       ),
                     ],
@@ -671,10 +573,6 @@ class _MobileSocialLinkState extends State<_MobileSocialLink> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // ===============================================
-                  // OPTIONAL ICON
-                  // ===============================================
-
                   if (widget.icon != null) ...[
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 180),
@@ -695,11 +593,6 @@ class _MobileSocialLinkState extends State<_MobileSocialLink> {
                     ),
                     const SizedBox(width: 10),
                   ],
-
-                  // ===============================================
-                  // LABEL
-                  // ===============================================
-
                   AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 180),
                     style: TextStyle(
@@ -712,13 +605,7 @@ class _MobileSocialLinkState extends State<_MobileSocialLink> {
                     ),
                     child: Text(widget.label),
                   ),
-
                   const SizedBox(width: 9),
-
-                  // ===============================================
-                  // EXTERNAL LINK ARROW
-                  // ===============================================
-
                   AnimatedSlide(
                     duration: const Duration(milliseconds: 180),
                     curve: Curves.easeOutCubic,

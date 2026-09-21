@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 
 class AnimatedGradientBackground extends StatefulWidget {
   final Widget child;
@@ -74,12 +75,12 @@ class _AnimatedGradientBackgroundState extends State<AnimatedGradientBackground>
         final x = sin(t + index) * 0.5;
         final y = cos(t * 0.6 + index) * 0.5;
 
-        final isPink = index == 0; // 👈 nur EIN pink blob dominant
+        final isPink = index == 0;
 
         return Align(
           alignment: Alignment(x, y),
           child: Container(
-            width: 500, // größer
+            width: 500,
             height: 500,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -135,46 +136,34 @@ class _AnimatedGradientBackgroundState extends State<AnimatedGradientBackground>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // 🌈 BASE GRADIENT (matches your image)
         Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
-                Color.fromARGB(255, 0, 0, 0), // dark purple (left)
-                Color.fromARGB(255, 0, 0, 0), // dark blue (right)
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 0, 0),
               ],
             ),
           ),
         ),
-
-        // 🔥 moving blobs
         ...List.generate(blobCount, (index) => _buildBlob(index)),
-
-        // 💡 left pink glow
         _buildSideGlow(
-          controller: _leftGlow,
-          base: const Alignment(0.5, 0),
-          color: const Color.fromARGB(255, 255, 15, 159),
-        ),
-
-        // 💡 right blue glow
+            controller: _leftGlow,
+            base: const Alignment(0.5, 0),
+            color: AppColors.vibrantPink),
         _buildSideGlow(
           controller: _rightGlow,
           base: const Alignment(0.7, 0),
           color: const Color.fromARGB(255, 11, 154, 255),
         ),
-
-        // 🌫️ blur layer (creates glow effect)
         RepaintBoundary(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 180, sigmaY: 180),
             child: Container(color: const Color.fromARGB(0, 0, 0, 0)),
           ),
         ),
-
-        // 👇 your content
         widget.child,
       ],
     );

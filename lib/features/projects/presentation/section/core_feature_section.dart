@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/widgets/phone/phone_mockup.dart';
 import 'package:ramajana05/core/widgets/section_header_text.dart';
 import 'package:ramajana05/data/models/project_feature.dart';
 
@@ -72,86 +71,6 @@ class CoreFeaturesSection extends StatelessWidget {
   }
 }
 
-// =====================================================================
-// HEADER
-// =====================================================================
-
-class _SectionHeader extends StatelessWidget {
-  final Color accentColor;
-  final bool isMobile;
-
-  const _SectionHeader({
-    required this.accentColor,
-    required this.isMobile,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 720,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Eyebrow
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 28,
-                height: 2,
-                color: accentColor,
-              ),
-              const SizedBox(width: 12),
-              Text(
-                'THE EXPERIENCE',
-                style: TextStyle(
-                  color: colors.onSurface.withValues(alpha: 0.45),
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 2.2,
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 22),
-
-          Text(
-            'Core Features',
-            style: TextStyle(
-              fontSize: isMobile ? 34 : 46,
-              height: 1.05,
-              fontWeight: FontWeight.w700,
-              letterSpacing: -1.4,
-              color: colors.onSurface,
-            ),
-          ),
-
-          const SizedBox(height: 18),
-
-          Text(
-            'A closer look at the interactions and features '
-            'that shape the experience.',
-            style: TextStyle(
-              fontSize: isMobile ? 15 : 17,
-              height: 1.65,
-              color: colors.onSurface.withValues(alpha: 0.5),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// =====================================================================
-// GRID
-// =====================================================================
-
 class _FeatureGrid extends StatelessWidget {
   final List<ProjectFeature> features;
   final Color accentColor;
@@ -173,8 +92,6 @@ class _FeatureGrid extends StatelessWidget {
         crossAxisCount: columns,
         crossAxisSpacing: 40,
         mainAxisSpacing: 72,
-
-        // Phones need vertical room.
         childAspectRatio: columns == 1 ? 0.72 : 0.56,
       ),
       itemBuilder: (context, index) {
@@ -187,10 +104,6 @@ class _FeatureGrid extends StatelessWidget {
     );
   }
 }
-
-// =====================================================================
-// FEATURE
-// =====================================================================
 
 class _FeatureItem extends StatelessWidget {
   final ProjectFeature feature;
@@ -221,10 +134,6 @@ class _FeatureItem extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // =========================================================
-          // BACKGROUND IMAGE
-          // =========================================================
-
           if (hasImage)
             Image.asset(
               feature.image!,
@@ -234,11 +143,6 @@ class _FeatureItem extends StatelessWidget {
             Container(
               color: colors.onSurface.withValues(alpha: 0.025),
             ),
-
-          // =========================================================
-          // DARK OVERLAY
-          // =========================================================
-
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -263,11 +167,6 @@ class _FeatureItem extends StatelessWidget {
               ),
             ),
           ),
-
-          // =========================================================
-          // SUBTLE ACCENT GLOW
-          // =========================================================
-
           Positioned(
             top: -50,
             left: -50,
@@ -286,20 +185,11 @@ class _FeatureItem extends StatelessWidget {
               ),
             ),
           ),
-
-          // =========================================================
-          // CONTENT
-          // =========================================================
-
           Padding(
             padding: const EdgeInsets.all(28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ---------------------------------------------------
-                // ICON + NUMBER
-                // ---------------------------------------------------
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -331,13 +221,7 @@ class _FeatureItem extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const Spacer(),
-
-                // ---------------------------------------------------
-                // TITLE
-                // ---------------------------------------------------
-
                 Text(
                   feature.title,
                   style: TextStyle(
@@ -348,13 +232,7 @@ class _FeatureItem extends StatelessWidget {
                     letterSpacing: -0.4,
                   ),
                 ),
-
                 const SizedBox(height: 10),
-
-                // ---------------------------------------------------
-                // DESCRIPTION
-                // ---------------------------------------------------
-
                 Text(
                   feature.description,
                   style: TextStyle(
@@ -363,13 +241,7 @@ class _FeatureItem extends StatelessWidget {
                     color: colors.onSurface.withValues(alpha: 0.62),
                   ),
                 ),
-
                 const SizedBox(height: 22),
-
-                // ---------------------------------------------------
-                // ACCENT LINE
-                // ---------------------------------------------------
-
                 Row(
                   children: [
                     Container(
@@ -397,5 +269,3 @@ class _FeatureItem extends StatelessWidget {
     );
   }
 }
-
-//asdasdda

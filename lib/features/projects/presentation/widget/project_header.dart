@@ -106,18 +106,17 @@ class ProjectHeader extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    if (project.role != null)
-                      Expanded(
-                        child: Text(
-                          project.role!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.white54,
-                            fontSize: isMobile ? 12 : 14,
-                          ),
+                    Expanded(
+                      child: Text(
+                        project.role,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: isMobile ? 12 : 14,
                         ),
                       ),
+                    ),
                     const SizedBox(width: 12),
                     Text(
                       project.startDate.year.toString(),

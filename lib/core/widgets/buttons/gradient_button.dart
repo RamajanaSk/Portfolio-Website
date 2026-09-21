@@ -41,8 +41,6 @@ class _GradientButtonState extends State<GradientButton> {
           decoration: BoxDecoration(
             gradient: AppGradients.primary,
             borderRadius: BorderRadius.circular(radius),
-
-            // Much cleaner than the large permanent glow
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFFFF2D95).withValues(
