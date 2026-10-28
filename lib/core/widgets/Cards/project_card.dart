@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/platform_link.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -187,24 +188,26 @@ class _ProjectCardState extends State<ProjectCard> {
     }
   }
 
-  Widget _buildIcon({
-    required IconData icon,
-    required String url,
-    required String tooltip,
-  }) {
-    return Tooltip(
-      message: tooltip,
-      child: InkWell(
-        onTap: () => _openLink(url),
-        borderRadius: BorderRadius.circular(20),
-        child: Padding(
-          padding: const EdgeInsets.all(6),
-          child: Icon(
-            icon,
-            size: 16,
-          ),
+ 
+Widget _buildIcon({
+  required Object icon,
+  required String url,
+  required String tooltip,
+}) {
+  return Tooltip(
+    message: tooltip,
+    child: InkWell(
+      onTap: url.isNotEmpty ? () => _openLink(url) : null,
+      borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: PlatformLink.buildIcon(
+          icon,
+          size: 16,
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }

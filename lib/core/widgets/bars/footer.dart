@@ -64,7 +64,7 @@ class Footer extends StatelessWidget {
                           style: AppTextStyles.footerText(context)),
                     ),
                     const SizedBox(height: 8),
-                    Text(context.l10n.location,
+                    Text(context.l10n.stuttgartGermany,
                         style: AppTextStyles.footerText(context)),
                   ],
                 ),

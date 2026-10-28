@@ -856,6 +856,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Let\'s build something'**
   String get letsBuildSomething;
+
+  /// No description provided for @availableForOpportunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Available for opportunities'**
+  String get availableForOpportunities;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

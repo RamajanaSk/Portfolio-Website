@@ -388,4 +388,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get letsBuildSomething => 'Let\'s build something';
+
+  @override
+  String get availableForOpportunities => 'Available for opportunities';
 }

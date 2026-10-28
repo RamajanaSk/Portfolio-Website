@@ -174,7 +174,7 @@ class AppTextStyles {
 
     return TextStyle(
       color: Theme.of(context).colorScheme.onSurface,
-      fontSize: 20 * s,
+      fontSize: 16 * s,
       fontWeight: FontWeight.bold,
       letterSpacing: 1,
     );

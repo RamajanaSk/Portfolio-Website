@@ -388,4 +388,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get letsBuildSomething => 'Lass uns etwas Sinnvolles schaffen';
+
+  @override
+  String get availableForOpportunities => 'Offen für neue Möglichkeiten';
 }

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_button.dart';
 import 'package:ramajana05/core/widgets/bars/topbar/top_bar_mobile_button.dart';
@@ -156,6 +157,9 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
     final width = MediaQuery.of(context).size.width;
     final isMobile = width < 700;
 
+    final spacing = (width * 0.005).clamp(2.0, 8.0);
+    final sectionSpacing = (width * 0.012).clamp(8.0, 20.0);
+
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -283,10 +287,7 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                 curve: Curves.easeInOutCubic,
                 width: 5,
                 height: 5,
-                decoration: BoxDecoration(
-                  color: currentColor,
-                  shape: BoxShape.circle,
-                ),
+                
               ),
             ),
           ],
@@ -301,23 +302,23 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
         text: context.l10n.home,
         onPressed: widget.onHomePressed,
       ),
-      const SizedBox(width: 6),
+      const SizedBox(width: 3),
       TopBarButton(
         text: context.l10n.projects,
         onPressed: widget.onProjectPressed,
       ),
-      const SizedBox(width: 6),
+      const SizedBox(width: 3),
       TopBarButton(
         text: context.l10n.contact,
         onPressed: widget.onContactPressed,
       ),
-      const SizedBox(width: 18),
+      const SizedBox(width: 10),
       Container(
         width: 1,
         height: 22,
         color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .10),
       ),
-      const SizedBox(width: 18),
+      const SizedBox(width: 10),
       const LanguagePopupMenu(),
     ];
   }
@@ -418,6 +419,11 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                     onPressed: widget.onHomePressed,
                   ),
                   TopBarMobileButton(
+                   text: context.l10n.aboutMe,
+  icon: Icons.person_outline_rounded,
+  onPressed: widget.onAboutMePressed,
+),
+                  TopBarMobileButton(
                     text: context.l10n.projects,
                     icon: Icons.grid_view_rounded,
                     onPressed: widget.onProjectPressed,
@@ -463,14 +469,14 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
                       Container(
                         width: 6,
                         height: 6,
-                        decoration: BoxDecoration(
-                          color: colorScheme.primary,
+                        decoration: const BoxDecoration(
+                          color: AppColors.pink,
                           shape: BoxShape.circle,
                         ),
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        'AVAILABLE FOR OPPORTUNITIES',
+                        context.l10n.availableForOpportunities,
                         style: TextStyle(
                           color: colorScheme.onSurface.withValues(alpha: .55),
                           fontSize: 10,

@@ -13,7 +13,7 @@ class SocialLinksRow extends StatelessWidget {
   }
 
   Widget _buildIcon({
-    required IconData icon,
+    required FaIconData icon,
     required String url,
     required String tooltip,
   }) {
@@ -24,7 +24,7 @@ class SocialLinksRow extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Icon(
+          child: FaIcon(
             icon,
             size: 26,
           ),

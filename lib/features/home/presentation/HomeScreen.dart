@@ -8,8 +8,9 @@ import 'package:ramajana05/core/widgets/responsive.dart/responsive_layout.dart';
 
 import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/home_expertise_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/start_section.dart';
-import 'package:ramajana05/features/home/presentation/widgets/home_cta_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/home_cta_section.dart';
 import 'package:ramajana05/features/projects/presentation/widget/project_Image_grid.dart';
 
 class Homescreen extends StatefulWidget {
@@ -65,10 +66,10 @@ class _HomescreenState extends State<Homescreen> {
             AboutMeSmallSection(
               onAboutMePressed: widget.onAboutMePressed,
             ),
+            const HomeExpertiseSection(),
             const FeaturedWorkAndTechnologiesSection(),
-            HomeCTASection(
-              onContactPressed: () => context.go('/contact'),
-            ),
+            const HomeCTASection(),
+            const NeonSectionDivider(),
             const Footer(),
           ],
         ),
