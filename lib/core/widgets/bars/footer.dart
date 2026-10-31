@@ -44,7 +44,7 @@ class Footer extends StatelessWidget {
                         style: AppTextStyles.footerTitleText(context)),
                     const SizedBox(height: 10),
                     _navItem(context, context.l10n.home),
-                    _navItem(context, context.l10n.about),
+                    //_navItem(context, context.l10n.about),
                     _navItem(context, context.l10n.projects),
                     _navItem(context, context.l10n.contact),
                   ],

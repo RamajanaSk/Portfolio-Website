@@ -32,10 +32,13 @@ class EyebrowText extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Container(
-          width: 28,
-          height: 1,
-          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .25),
-        ),
+  width: 1,
+  height: 18,
+  color: Theme.of(context)
+      .colorScheme
+      .onSurface
+      .withValues(alpha: .25),
+),
         const SizedBox(width: 10),
         Text(
           text,
