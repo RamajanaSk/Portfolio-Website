@@ -27,7 +27,7 @@ class AboutMeSmallSection extends StatelessWidget {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
-            maxWidth: 1200,
+            maxWidth: 1440,
           ),
           child: ResponsiveTwoColumnLayout(
             first: _buildImage(

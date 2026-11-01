@@ -1,76 +1,116 @@
-
 import 'package:flutter/material.dart';
 
 class HomeExpertiseSection extends StatelessWidget {
-  const HomeExpertiseSection({super.key});
+  final int? projectCount;
+
+  const HomeExpertiseSection({
+    super.key,
+    this.projectCount,
+  }) : assert(projectCount == null || projectCount >= 0);
+
+  static const _gradient = LinearGradient(
+    colors: [
+      Color(0xFFFF299D),
+      Color(0xFF942BEA),
+      Color(0xFF08BCEB),
+    ],
+  );
+
+  static const _items = [
+    _ExpertiseData(
+      number: '01',
+      title: 'MOBILE',
+      tagline: 'MADE FOR EVERYDAY LIFE',
+      description: 'I build mobile apps with intuitive interfaces, '
+          'local storage and practical everyday features.',
+      skills: ['Flutter', 'Dart', 'Kotlin', 'Android'],
+      focus: 'From interface to app logic',
+      icon: Icons.phone_android_rounded,
+      accent: Color(0xFFFF299D),
+    ),
+    _ExpertiseData(
+      number: '02',
+      title: 'DEVELOPMENT',
+      tagline: 'CONNECTING THE PIECES',
+      description: 'I connect interfaces, APIs and databases '
+          'to turn ideas into structured, working applications.',
+      skills: ['Java', 'JavaScript', 'SQL', 'REST'],
+      focus: 'Frontend meets backend',
+      icon: Icons.data_object_rounded,
+      accent: Color(0xFFAE57F5),
+    ),
+    _ExpertiseData(
+      number: '03',
+      title: 'CREATIVE',
+      tagline: 'DESIGNED TO FEEL RIGHT',
+      description: 'I explore responsive interfaces and interactive '
+          'experiences through visual design, code and prototyping.',
+      skills: ['UI Design', 'Responsive UI', 'Unity'],
+      focus: 'Where design meets interaction',
+      icon: Icons.auto_awesome_rounded,
+      accent: Color(0xFF08BCEB),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+    final foreground = theme.colorScheme.onSurface;
+    final purple = dark ? const Color(0xFFAE57F5) : const Color(0xFF7923B6);
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        final isMobile = constraints.maxWidth < 700;
-
-        const cards = [
-          _ExpertiseCard(
-            number: '01',
-            title: 'MOBILE',
-            subtitle: 'Flutter · Android',
-            description: 'Apps built for everyday experiences.',
-            icon: Icons.smartphone_rounded,
-            accent: Color(0xFF8A2BE2),
-            lightBackground: Color(0xFFF3EEFC),
-            iconBackground: Color(0xFFE5D6FA),
-          ),
-          _ExpertiseCard(
-            number: '02',
-            title: 'DEVELOPMENT',
-            subtitle: 'Dart · Kotlin · Java',
-            description: 'Thoughtful code. Reliable solutions.',
-            icon: Icons.code_rounded,
-            accent: Color(0xFF009FC2),
-            lightBackground: Color(0xFFEAF7FA),
-            iconBackground: Color(0xFFD1EEF5),
-          ),
-          _ExpertiseCard(
-            number: '03',
-            title: 'CREATIVE',
-            subtitle: 'UI · Interactive',
-            description: 'Making digital experiences feel alive.',
-            icon: Icons.palette_outlined,
-            accent: Color(0xFF19B78A),
-            lightBackground: Color(0xFFEAF8F1),
-            iconBackground: Color(0xFFD1F0E0),
-          ),
-        ];
+        final mobile = constraints.maxWidth < 600;
 
         return Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: isMobile ? 20 : 64,
-            vertical: isMobile ? 24 : 40,
+            horizontal: mobile ? 20 : 32,
+            vertical: mobile ? 36 : 64,
           ),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: isMobile
-                  ? Column(
-                      children: [
-                        cards[0],
-                        SizedBox(height: 14),
-                        cards[1],
-                        SizedBox(height: 14),
-                        cards[2],
-                      ],
-                    )
-                  : Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: cards[0]),
-                        const SizedBox(width: 16),
-                        Expanded(child: cards[1]),
-                        const SizedBox(width: 16),
-                        Expanded(child: cards[2]),
-                      ],
-                    ),
+              constraints: const BoxConstraints(maxWidth: 1440),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  LayoutBuilder(
+                    builder: (context, inner) {
+                      const gap = 18.0;
+
+                      if (inner.maxWidth < 900) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (var i = 0; i < _items.length; i++) ...[
+                              if (i > 0) const SizedBox(height: gap),
+                              _ExpertiseCard(data: _items[i]),
+                            ],
+                          ],
+                        );
+                      }
+
+                      // Match card heights to the longest content.
+                      return IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (var i = 0; i < _items.length; i++) ...[
+                              if (i > 0) const SizedBox(width: gap),
+                              Expanded(
+                                child: _ExpertiseCard(
+                                  data: _items[i],
+                                  equalHeight: true,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -79,168 +119,245 @@ class HomeExpertiseSection extends StatelessWidget {
   }
 }
 
-class _ExpertiseCard extends StatefulWidget {
-  final String number;
-  final String title;
-  final String subtitle;
-  final String description;
-  final IconData icon;
-  final Color accent;
-  final Color lightBackground;
-  final Color iconBackground;
+class _ProjectBadge extends StatelessWidget {
+  final int count;
 
-  const _ExpertiseCard({
-    required this.number,
-    required this.title,
-    required this.subtitle,
-    required this.description,
-    required this.icon,
-    required this.accent,
-    required this.lightBackground,
-    required this.iconBackground,
-  });
-
-  @override
-  State<_ExpertiseCard> createState() => _ExpertiseCardState();
-}
-
-class _ExpertiseCardState extends State<_ExpertiseCard> {
-  bool _hovered = false;
+  const _ProjectBadge({required this.count});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final reduceMotion = MediaQuery.disableAnimationsOf(context);
-
-    final duration = reduceMotion
-        ? Duration.zero
-        : const Duration(milliseconds: 200);
-
-    final background = isDark
-        ? Color.lerp(
-            const Color(0xFF202024),
-            widget.accent,
-            _hovered ? 0.14 : 0.07,
-          )!
-        : widget.lightBackground;
-
+    final dark = theme.brightness == Brightness.dark;
     final foreground = theme.colorScheme.onSurface;
+    final accent = dark ? const Color(0xFF08BCEB) : const Color(0xFF007D9E);
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
-      child: AnimatedSlide(
-        duration: duration,
-        curve: Curves.easeOutCubic,
-        offset: _hovered ? const Offset(0, -0.025) : Offset.zero,
-        child: AnimatedContainer(
-          duration: duration,
-          curve: Curves.easeOutCubic,
-          width: double.infinity,
-          constraints: const BoxConstraints(minHeight: 260),
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: background,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: widget.accent.withValues(
-                alpha: _hovered ? 0.35 : 0.08,
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 14,
+        vertical: 10,
+      ),
+      decoration: BoxDecoration(
+        color: foreground.withValues(alpha: 0.035),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: foreground.withValues(alpha: 0.12),
+        ),
+      ),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: count.toString().padLeft(2, '0'),
+              style: TextStyle(
+                color: accent,
+                fontSize: 23,
+                fontWeight: FontWeight.w900,
               ),
             ),
-            boxShadow: _hovered
-                ? [
-                    BoxShadow(
-                      color: widget.accent.withValues(alpha: 0.10),
-                      blurRadius: 22,
-                      offset: const Offset(0, 10),
-                    ),
-                  ]
-                : [],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${widget.number} / EXPERTISE',
+            TextSpan(
+              text: count == 1 ? '  PROJECT BUILT' : '  PROJECTS BUILT',
+              style: TextStyle(
+                color: foreground.withValues(alpha: 0.75),
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ExpertiseData {
+  final String number;
+  final String title;
+  final String tagline;
+  final String description;
+  final List<String> skills;
+  final String focus;
+  final IconData icon;
+  final Color accent;
+
+  const _ExpertiseData({
+    required this.number,
+    required this.title,
+    required this.tagline,
+    required this.description,
+    required this.skills,
+    required this.focus,
+    required this.icon,
+    required this.accent,
+  });
+}
+
+class _ExpertiseCard extends StatelessWidget {
+  final _ExpertiseData data;
+  final bool equalHeight;
+
+  const _ExpertiseCard({
+    required this.data,
+    this.equalHeight = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+    final foreground = theme.colorScheme.onSurface;
+
+    final accent =
+        dark ? data.accent : Color.lerp(data.accent, Colors.black, 0.3)!;
+
+    final background = dark
+        ? const Color(0xFF111114)
+        : Color.alphaBlend(
+            data.accent.withValues(alpha: 0.025),
+            theme.colorScheme.surface,
+          );
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: foreground.withValues(alpha: 0.10),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: equalHeight ? MainAxisSize.max : MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${data.number} /',
                     style: TextStyle(
-                      color: foreground.withValues(alpha: 0.48),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1,
+                      color: foreground.withValues(alpha: 0.4),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.5,
                     ),
                   ),
-                  AnimatedSlide(
-                    duration: duration,
-                    offset: _hovered
-                        ? const Offset(0.15, -0.15)
-                        : Offset.zero,
+                ),
+                ExcludeSemantics(
+                  child: Container(
+                    width: 58,
+                    height: 58,
+                    decoration: BoxDecoration(
+                      color: accent.withValues(alpha: 0.08),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: accent.withValues(alpha: 0.3),
+                      ),
+                    ),
                     child: Icon(
-                      Icons.arrow_outward_rounded,
-                      size: 18,
-                      color: widget.accent,
+                      data.icon,
+                      color: accent,
+                      size: 29,
                     ),
                   ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30),
+            Text(
+              data.title,
+              style: TextStyle(
+                color: foreground,
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0.5,
+                height: 1.2,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              width: 36,
+              height: 3,
+              color: accent,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              data.tagline,
+              style: TextStyle(
+                color: accent,
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.1,
+                height: 1.6,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              data.description,
+              style: TextStyle(
+                color: foreground.withValues(alpha: 0.66),
+                fontSize: 13,
+                height: 1.8,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final skill in data.skills)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 7,
+                    ),
+                    decoration: BoxDecoration(
+                      color: foreground.withValues(alpha: 0.035),
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: foreground.withValues(alpha: 0.09),
+                      ),
+                    ),
+                    child: Text(
+                      skill,
+                      style: TextStyle(
+                        color: foreground.withValues(alpha: 0.8),
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 28),
+            if (equalHeight) const Spacer(),
+            Divider(
+              height: 1,
+              color: foreground.withValues(alpha: 0.10),
+            ),
+            const SizedBox(height: 16),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '+  ',
+                    style: TextStyle(
+                      color: accent,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  TextSpan(text: data.focus),
                 ],
               ),
-              const SizedBox(height: 24),
-              Center(
-                child: Container(
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? widget.accent.withValues(alpha: 0.16)
-                        : widget.iconBackground,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Icon(
-                    widget.icon,
-                    size: 36,
-                    color: widget.accent,
-                  ),
-                ),
+              style: TextStyle(
+                color: foreground.withValues(alpha: 0.55),
+                fontSize: 11,
+                height: 1.6,
               ),
-              const SizedBox(height: 24),
-              Text(
-                widget.title,
-                style: TextStyle(
-                  color: foreground,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0.4,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.subtitle,
-                style: TextStyle(
-                  color: foreground.withValues(alpha: 0.65),
-                  fontSize: 13,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                widget.description,
-                style: TextStyle(
-                  color: foreground.withValues(alpha: 0.50),
-                  fontSize: 12,
-                  height: 1.5,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                height: 3,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: widget.accent,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
