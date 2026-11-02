@@ -41,16 +41,14 @@ class ProjectPreview extends StatelessWidget {
                 color: accent,
               ),
               const SizedBox(height: 12),
-              Flexible(
-                child: Text(
-                  'PROJECT PREVIEW',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: foreground.withValues(alpha: 0.5),
-                    fontSize: 9,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 2,
-                  ),
+              Text(
+                'PROJECT PREVIEW',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: foreground.withValues(alpha: 0.5),
+                  fontSize: 9,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 2,
                 ),
               ),
             ],
@@ -64,10 +62,12 @@ class ProjectPreview extends StatelessWidget {
       width: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(9),
-        child: project.previewAsset == null
+        child: project.previewAsset == null || project.previewAsset!.isEmpty
             ? placeholder
             : Image.asset(
                 project.previewAsset!,
+                width: double.infinity,
+                height: 150,
                 fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => placeholder,
               ),

@@ -280,7 +280,24 @@ class _HomescreenState extends State<Homescreen> {
                       GitHubCurrentlySection(
                         projects: [
                           CurrentProject(
+                            title: securityProject.name,
+                            startedAt: securityProject.startDate,
+                            previewAsset: securityProject.bannerPreviewPicture,
+                            category: securityProject.universityContext ??
+                                'Independent venture',
+                            description: securityProject.shortDescription,
+                            icon: Icons.hub_outlined,
+                            accent: _projectColor(
+                                securityProject.hexcolor, AppColors.pink),
+                            repositoryUrl:
+                                (securityProject.githubUrl ?? '').trim().isEmpty
+                                    ? null
+                                    : securityProject.githubUrl,
+                          ),
+                          CurrentProject(
                             title: edgeProject.name,
+                            startedAt: edgeProject.startDate,
+                            previewAsset: edgeProject.bannerPreviewPicture,
                             category: edgeProject.universityContext ??
                                 'Research project',
                             description: edgeProject.shortDescription,
@@ -293,19 +310,6 @@ class _HomescreenState extends State<Homescreen> {
                                 (edgeProject.githubUrl ?? '').trim().isEmpty
                                     ? null
                                     : edgeProject.githubUrl,
-                          ),
-                          CurrentProject(
-                            title: securityProject.name,
-                            category: securityProject.universityContext ??
-                                'Independent venture',
-                            description: securityProject.shortDescription,
-                            icon: Icons.hub_outlined,
-                            accent: _projectColor(
-                                securityProject.hexcolor, AppColors.pink),
-                            repositoryUrl:
-                                (securityProject.githubUrl ?? '').trim().isEmpty
-                                    ? null
-                                    : securityProject.githubUrl,
                           ),
                         ],
                       ),

@@ -14,6 +14,175 @@ import 'package:ramajana05/data/models/project_stat.dart';
 List<Project> getDummyProjects(BuildContext context) {
   return [
     Project(
+      id: 'security-platform',
+      typ: ProjectType.webApp,
+      name: 'VERSIONGUARD',
+
+      shortDescription:
+          'Developing a structured overview of software components, '
+          'vulnerabilities and security documentation.',
+
+      catchPhrase: 'Know your components. Understand your risks.',
+
+      longDescription:
+          'VersionGuard is an early-stage security platform concept '
+          'for helping small manufacturers organize information about '
+          'their software products. '
+          'The planned platform brings software components, known '
+          'vulnerabilities and related security documentation into '
+          'a clearer, more manageable overview. '
+          'The focus is on making security information easier to '
+          'understand, maintain and act on.',
+
+      projectReason:
+          'Software component information and security documentation '
+          'can become scattered across different tools and files. '
+          'We are exploring how a focused platform could help small '
+          'teams organize this information and establish a more '
+          'transparent workflow for handling vulnerabilities.',
+
+      startDate: DateTime(2026, 10),
+      endDate: DateTime(2026, 10), // Placeholder: project is ongoing
+      durationInMonths: 0, // Placeholder until duration handling is updated
+
+      isSolo: false,
+      role: 'CO-CREATOR & SOFTWARE DEVELOPER',
+      grade: '',
+      universityContext: 'INDEPENDENT VENTURE',
+
+      platformLinks: [],
+
+      // Concept areas; implementation stack is not yet specified.
+      technologies: [
+        'Software Component Management',
+        'Vulnerability Management',
+        'SBOM',
+        'Security Documentation',
+        'UI/UX Design',
+        'Data Modeling',
+      ],
+
+      githubUrl: 'https://github.com/RamajanaSk/Portfolio-Website',
+      liveDemoUrl: null,
+      apkUrl: null,
+      playStoreUrl: '',
+
+      logoPicture: 'images/version_guard/versionguard_logo_name.png',
+      previewPicture:
+          'images/version_guard/versionGuard_sicherheitsdashboard.png',
+      bannerPreviewPicture: 'images/version_guard/versionguard_banner.png',
+      aboutPicture: '',
+      mockupPicture: [],
+      gallery: [],
+
+      hexcolor: '#7457F8',
+
+      // Planned capabilities.
+      keyFeatures: [
+        'Structured software product overview',
+        'Software component and version inventory',
+        'SBOM organization',
+        'Vulnerability overview linked to components',
+        'Tracking assessment and remediation progress',
+        'Centralized security documentation',
+        'Clear workflows for small teams',
+      ],
+
+      challenges: [
+        'Understanding the needs of small manufacturers',
+        'Defining a focused and useful initial product',
+        'Structuring relationships between products and components',
+        'Presenting vulnerability information clearly',
+        'Keeping component and documentation records maintainable',
+        'Turning complex security workflows into usable interfaces',
+      ],
+
+      // Development objectives; replace with findings as work progresses.
+      learnings: [
+        'Translating security workflows into product requirements',
+        'Modeling software products and their dependencies',
+        'Designing understandable security interfaces',
+        'Defining the scope of an early-stage platform',
+        'Collaborating on product and technical decisions',
+      ],
+
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text: 'VersionGuard is an independent venture in its early '
+              'concept and development stage. We are exploring how '
+              'small manufacturers can manage software components, '
+              'vulnerabilities and security documentation through '
+              'a clearer, more structured workflow.',
+          imageUrl: '',
+        ),
+      },
+
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: 'Software security. Clearly organized.',
+
+      problemTitle: 'Security information is difficult to keep connected.',
+      problem: 'Component lists, vulnerability findings and security '
+          'documents often live in separate places. This makes '
+          'it harder to understand which products are affected '
+          'and which actions still need attention.',
+      problemImage: '',
+
+      solutionTitle: 'A connected overview of software security.',
+      solution: 'The planned platform connects products, software '
+          'components, vulnerabilities and documentation in '
+          'one structured workspace, helping teams understand '
+          'their current state and track their next steps.',
+      solutionImage: '',
+
+      features: [
+        const ProjectFeature(
+          icon: Icons.layers_outlined,
+          title: 'Components',
+          description: 'Organize software components and their versions',
+        ),
+        const ProjectFeature(
+          icon: Icons.shield_outlined,
+          title: 'Vulnerabilities',
+          description: 'Connect security findings to affected components',
+        ),
+        const ProjectFeature(
+          icon: Icons.description_outlined,
+          title: 'Documentation',
+          description: 'Keep related security information organized',
+        ),
+        const ProjectFeature(
+          icon: Icons.checklist_rounded,
+          title: 'Progress',
+          description: 'Track assessments, decisions and follow-up actions',
+        ),
+      ],
+
+      stats: [
+        const ProjectStat(
+          icon: Icons.lightbulb_outline_rounded,
+          value: 'Early Stage',
+          label: 'Status',
+        ),
+        const ProjectStat(
+          icon: Icons.groups_outlined,
+          value: 'Team',
+          label: 'Development',
+        ),
+        const ProjectStat(
+          icon: Icons.security_rounded,
+          value: 'Security',
+          label: 'Focus',
+        ),
+        const ProjectStat(
+          icon: Icons.inventory_2_outlined,
+          value: 'SBOM',
+          label: 'Component Inventory',
+        ),
+      ],
+    ),
+    Project(
       id: 'edge-traffic-analysis',
       typ: ProjectType.research,
       name: 'EDGE TRAFFIC ANALYSIS',
@@ -70,7 +239,8 @@ List<Project> getDummyProjects(BuildContext context) {
 
       logoPicture: '',
       previewPicture: '',
-      bannerPreviewPicture: '',
+      bannerPreviewPicture:
+          'images/edge_traffic_analysis/egde_based_banner.png',
       aboutPicture: '',
       mockupPicture: [],
       gallery: [],
@@ -184,55 +354,54 @@ List<Project> getDummyProjects(BuildContext context) {
       ],
     ),
     Project(
-      id: 'security-platform',
+      id: 'tutoring-website',
       typ: ProjectType.webApp,
-      name: 'VERSIONGUARD',
+      name: 'PERSONAL TUTORING',
 
-      shortDescription:
-          'Developing a structured overview of software components, '
-          'vulnerabilities and security documentation.',
+      shortDescription: 'Designing and developing a personal tutoring website '
+          'to help students and parents discover learning support '
+          'and easily get in touch.',
 
-      catchPhrase: 'Know your components. Understand your risks.',
+      catchPhrase: 'Learning made personal.',
 
       longDescription:
-          'VersionGuard is an early-stage security platform concept '
-          'for helping small manufacturers organize information about '
-          'their software products. '
-          'The planned platform brings software components, known '
-          'vulnerabilities and related security documentation into '
-          'a clearer, more manageable overview. '
-          'The focus is on making security information easier to '
-          'understand, maintain and act on.',
+          'Personal Tutoring is an independent web development project '
+          'focused on creating a welcoming and accessible online '
+          'presence for my private tutoring services. '
+          'The website will introduce my teaching approach, '
+          'available subjects and tutoring options while providing '
+          'a simple way for students and parents to contact me. '
+          'The goal is to combine thoughtful design with an '
+          'intuitive and responsive user experience.',
 
-      projectReason:
-          'Software component information and security documentation '
-          'can become scattered across different tools and files. '
-          'We are exploring how a focused platform could help small '
-          'teams organize this information and establish a more '
-          'transparent workflow for handling vulnerabilities.',
+      projectReason: 'Finding suitable tutoring support should be simple '
+          'and transparent. I want to create a central place '
+          'where students and parents can learn about my services, '
+          'understand my teaching approach and reach out '
+          'without unnecessary complexity.',
 
-      startDate: DateTime(2026, 10),
-      endDate: DateTime(2026, 10), // Placeholder: project is ongoing
-      durationInMonths: 0, // Placeholder until duration handling is updated
+      startDate: DateTime(2026, 11),
+      endDate: DateTime(2026, 11),
+      durationInMonths: 0,
 
-      isSolo: false,
-      role: 'CO-CREATOR & SOFTWARE DEVELOPER',
+      isSolo: true,
+      role: 'FOUNDER, TUTOR & WEB DEVELOPER',
       grade: '',
-      universityContext: 'INDEPENDENT VENTURE',
+      universityContext: 'INDEPENDENT PROJECT',
 
       platformLinks: [],
 
-      // Concept areas; implementation stack is not yet specified.
+      // Planned technologies; adjust during development.
       technologies: [
-        'Software Component Management',
-        'Vulnerability Management',
-        'SBOM',
-        'Security Documentation',
+        'Flutter Web',
+        'Dart',
+        'Responsive Design',
         'UI/UX Design',
-        'Data Modeling',
+        'Localization',
+        'Web Development',
       ],
 
-      githubUrl: 'https://github.com/RamajanaSk/Portfolio-Website',
+      githubUrl: '',
       liveDemoUrl: null,
       apkUrl: null,
       playStoreUrl: '',
@@ -244,110 +413,121 @@ List<Project> getDummyProjects(BuildContext context) {
       mockupPicture: [],
       gallery: [],
 
-      hexcolor: '#FF299D',
+      hexcolor: '#10B981',
 
       // Planned capabilities.
       keyFeatures: [
-        'Structured software product overview',
-        'Software component and version inventory',
-        'SBOM organization',
-        'Vulnerability overview linked to components',
-        'Tracking assessment and remediation progress',
-        'Centralized security documentation',
-        'Clear workflows for small teams',
+        'Personal introduction and teaching philosophy',
+        'Overview of available tutoring subjects',
+        'Individual and online tutoring information',
+        'Clear explanation of tutoring services',
+        'Simple contact and inquiry form',
+        'Responsive layouts for mobile and desktop',
+        'Modern and accessible user interface',
+        'Multilingual content support',
       ],
 
       challenges: [
-        'Understanding the needs of small manufacturers',
-        'Defining a focused and useful initial product',
-        'Structuring relationships between products and components',
-        'Presenting vulnerability information clearly',
-        'Keeping component and documentation records maintainable',
-        'Turning complex security workflows into usable interfaces',
+        'Creating a trustworthy and approachable design',
+        'Presenting tutoring services clearly',
+        'Designing intuitive navigation for parents and students',
+        'Building responsive layouts across devices',
+        'Making the contact process straightforward',
+        'Balancing visual appeal with accessibility',
       ],
 
-      // Development objectives; replace with findings as work progresses.
+      // Development objectives.
       learnings: [
-        'Translating security workflows into product requirements',
-        'Modeling software products and their dependencies',
-        'Designing understandable security interfaces',
-        'Defining the scope of an early-stage platform',
-        'Collaborating on product and technical decisions',
+        'Designing a service-oriented website',
+        'Improving responsive Flutter Web development',
+        'Creating accessible and intuitive interfaces',
+        'Structuring reusable UI components',
+        'Presenting personal services professionally',
+        'Translating real-world business needs into web features',
       ],
 
       sections: {
         SectionType.about: ProjectSection(
           type: SectionType.about,
-          text: 'VersionGuard is an independent venture in its early '
-              'concept and development stage. We are exploring how '
-              'small manufacturers can manage software components, '
-              'vulnerabilities and security documentation through '
-              'a clearer, more structured workflow.',
+          text: 'Personal Tutoring is a website project '
+              'for my independent tutoring services. '
+              'It aims to provide students and parents '
+              'with a clear overview of my teaching approach, '
+              'available subjects and learning opportunities. '
+              'The website is currently in the planning '
+              'and design stage.',
           imageUrl: '',
         ),
       },
 
       heroBackground: '',
       phoneMockup: '',
-      subtitle: 'Software security. Clearly organized.',
+      subtitle: 'Personalized learning. Real progress.',
 
-      problemTitle: 'Security information is difficult to keep connected.',
-      problem: 'Component lists, vulnerability findings and security '
-          'documents often live in separate places. This makes '
-          'it harder to understand which products are affected '
-          'and which actions still need attention.',
+      problemTitle: 'Finding the right learning support can be complicated.',
+
+      problem: 'Students and parents often need clear information '
+          'about tutoring subjects, teaching methods and '
+          'availability before making a decision. '
+          'Scattered communication and unclear service '
+          'descriptions can make this process unnecessarily difficult.',
+
       problemImage: '',
 
-      solutionTitle: 'A connected overview of software security.',
-      solution: 'The planned platform connects products, software '
-          'components, vulnerabilities and documentation in '
-          'one structured workspace, helping teams understand '
-          'their current state and track their next steps.',
+      solutionTitle: 'A welcoming space for personalized learning.',
+
+      solution: 'The website will bring together tutoring information, '
+          'my teaching philosophy and direct contact options '
+          'in one accessible platform. '
+          'A clear and responsive interface will help students '
+          'and parents explore their options and take the '
+          'first step toward individual learning support.',
+
       solutionImage: '',
 
       features: [
         const ProjectFeature(
-          icon: Icons.layers_outlined,
-          title: 'Components',
-          description: 'Organize software components and their versions',
+          icon: Icons.school_outlined,
+          title: 'Subjects',
+          description: 'Explore available subjects and learning support',
         ),
         const ProjectFeature(
-          icon: Icons.shield_outlined,
-          title: 'Vulnerabilities',
-          description: 'Connect security findings to affected components',
+          icon: Icons.person_outline_rounded,
+          title: 'Personal Approach',
+          description: 'Learn about my individual teaching philosophy',
         ),
         const ProjectFeature(
-          icon: Icons.description_outlined,
-          title: 'Documentation',
-          description: 'Keep related security information organized',
+          icon: Icons.calendar_month_outlined,
+          title: 'Tutoring Options',
+          description: 'Discover flexible online and in-person lessons',
         ),
         const ProjectFeature(
-          icon: Icons.checklist_rounded,
-          title: 'Progress',
-          description: 'Track assessments, decisions and follow-up actions',
+          icon: Icons.mail_outline_rounded,
+          title: 'Get in Touch',
+          description: 'Contact me directly for tutoring inquiries',
         ),
       ],
 
       stats: [
         const ProjectStat(
-          icon: Icons.lightbulb_outline_rounded,
-          value: 'Early Stage',
+          icon: Icons.construction_outlined,
+          value: 'Planned',
           label: 'Status',
         ),
         const ProjectStat(
-          icon: Icons.groups_outlined,
-          value: 'Team',
+          icon: Icons.person_outline_rounded,
+          value: 'Solo',
           label: 'Development',
         ),
         const ProjectStat(
-          icon: Icons.security_rounded,
-          value: 'Security',
+          icon: Icons.school_outlined,
+          value: 'Education',
           label: 'Focus',
         ),
         const ProjectStat(
-          icon: Icons.inventory_2_outlined,
-          value: 'SBOM',
-          label: 'Component Inventory',
+          icon: Icons.web_outlined,
+          value: 'Web',
+          label: 'Platform',
         ),
       ],
     ),
