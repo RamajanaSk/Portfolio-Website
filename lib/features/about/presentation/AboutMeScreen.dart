@@ -10,7 +10,7 @@ import 'package:ramajana05/core/widgets/text/full_width_text.dart';
 import 'package:ramajana05/features/about/presentation/sections/about_me_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/education_section.dart';
 import 'package:ramajana05/features/about/presentation/sections/experience_section.dart';
-import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/featured_work_and_technologies_section.dart';
 
 import 'package:ramajana05/features/about/presentation/sections/skills_overview_section.dart';
 

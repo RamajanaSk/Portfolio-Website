@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 import 'package:ramajana05/features/home/data/domain/current_project.dart';
 
 import 'package:ramajana05/features/home/presentation/widgets/currently/current_project_card.dart';

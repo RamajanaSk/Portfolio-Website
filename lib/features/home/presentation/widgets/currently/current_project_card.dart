@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:ramajana05/features/home/data/domain/current_project.dart';
 import 'package:ramajana05/features/home/presentation/widgets/currently/project_activity.dart';
 import 'package:ramajana05/features/home/presentation/widgets/currently/project_preview.dart';
@@ -11,6 +13,26 @@ class CurrentProjectCard extends StatelessWidget {
     required this.project,
   });
 
+  // ============================================================
+  // NAVIGATION
+  // ============================================================
+
+  void _openProject(BuildContext context) {
+    if (project.onOpen != null) {
+      project.onOpen!();
+      return;
+    }
+
+    final slug =
+        project.title.toLowerCase().trim().replaceAll(RegExp(r'\s+'), '-');
+
+    context.go('/projects/$slug');
+  }
+
+  // ============================================================
+  // DATE FORMAT
+  // ============================================================
+
   String _date(DateTime? value) {
     if (value == null) return 'Not added';
 
@@ -18,6 +40,10 @@ class CurrentProjectCard extends StatelessWidget {
         '${value.month.toString().padLeft(2, '0')}.'
         '${value.year}';
   }
+
+  // ============================================================
+  // BUILD
+  // ============================================================
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +71,16 @@ class CurrentProjectCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // ==================================================
               // PROJECT HEADER
+              // ==================================================
+
               Padding(
                 padding: EdgeInsets.all(padding),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // PROJECT ICON
                     Container(
                       width: mobile ? 44 : 58,
                       height: mobile ? 44 : 58,
@@ -67,11 +97,14 @@ class CurrentProjectCard extends StatelessWidget {
                         size: mobile ? 24 : 30,
                       ),
                     ),
+
                     const SizedBox(width: 16),
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // CATEGORY
                           Text(
                             project.category.toUpperCase(),
                             style: TextStyle(
@@ -82,15 +115,41 @@ class CurrentProjectCard extends StatelessWidget {
                               height: 1.5,
                             ),
                           ),
+
                           const SizedBox(height: 7),
-                          Text(
-                            project.title,
-                            style: TextStyle(
-                              color: foreground,
-                              fontSize: mobile ? 25 : 38,
-                              fontWeight: FontWeight.w900,
-                              height: 1.15,
-                              letterSpacing: -0.5,
+
+                          // CLICKABLE PROJECT TITLE
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => _openProject(context),
+                              mouseCursor: SystemMouseCursors.click,
+                              borderRadius: BorderRadius.circular(6),
+                              hoverColor: accent.withValues(alpha: 0.05),
+                              splashColor: accent.withValues(alpha: 0.08),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      project.title,
+                                      style: TextStyle(
+                                        color: foreground,
+                                        fontSize: mobile ? 25 : 38,
+                                        fontWeight: FontWeight.w900,
+                                        height: 1.15,
+                                        letterSpacing: -0.5,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Icon(
+                                    Icons.arrow_outward_rounded,
+                                    color: accent,
+                                    size: mobile ? 20 : 26,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -100,15 +159,22 @@ class CurrentProjectCard extends StatelessWidget {
                 ),
               ),
 
-              // LARGE PREVIEW — NO SIDE PADDING
+              // ==================================================
+              // LARGE PROJECT PREVIEW
+              // ==================================================
+
               ProjectPreview(project: project),
 
+              // ==================================================
               // PROJECT DETAILS
+              // ==================================================
+
               Padding(
                 padding: EdgeInsets.all(padding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    // DESCRIPTION
                     Text(
                       project.description,
                       style: TextStyle(
@@ -117,7 +183,10 @@ class CurrentProjectCard extends StatelessWidget {
                         height: 1.75,
                       ),
                     ),
+
                     const SizedBox(height: 24),
+
+                    // DATES
                     Wrap(
                       spacing: 40,
                       runSpacing: 16,
@@ -132,18 +201,28 @@ class CurrentProjectCard extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 28),
+
                     Divider(
                       height: 1,
                       color: foreground.withValues(alpha: 0.10),
                     ),
+
                     const SizedBox(height: 24),
 
-                    // HEATMAP + CLICKABLE COMMITS
+                    // ==================================================
+                    // GITHUB ACTIVITY / COMMITS
+                    // ==================================================
+
                     ProjectActivity(
                       project: project,
                       accent: accent,
                     ),
+
+                    // ==================================================
+                    // COMPLETED MILESTONES
+                    // ==================================================
 
                     if (project.completedMilestones.isNotEmpty) ...[
                       const SizedBox(height: 24),
@@ -176,6 +255,10 @@ class CurrentProjectCard extends StatelessWidget {
                         ),
                     ],
 
+                    // ==================================================
+                    // NEXT STEP
+                    // ==================================================
+
                     if (project.nextStep != null) ...[
                       const SizedBox(height: 16),
                       Text.rich(
@@ -188,37 +271,17 @@ class CurrentProjectCard extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                               ),
                             ),
-                            TextSpan(text: project.nextStep),
+                            TextSpan(
+                              text: project.nextStep,
+                            ),
                           ],
                         ),
                         style: TextStyle(
-                          color: foreground.withValues(alpha: 0.65),
+                          color: foreground.withValues(
+                            alpha: 0.65,
+                          ),
                           fontSize: 13,
                           height: 1.7,
-                        ),
-                      ),
-                    ],
-
-                    if (project.onOpen != null) ...[
-                      const SizedBox(height: 20),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: TextButton(
-                          onPressed: project.onOpen,
-                          style: TextButton.styleFrom(
-                            foregroundColor: accent,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 16,
-                            ),
-                          ),
-                          child: const Text(
-                            'EXPLORE PROJECT ↗',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1,
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -232,6 +295,10 @@ class CurrentProjectCard extends StatelessWidget {
     );
   }
 }
+
+// ============================================================
+// DATE LABEL
+// ============================================================
 
 class _DateLabel extends StatelessWidget {
   final String label;

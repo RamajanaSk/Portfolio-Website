@@ -6,45 +6,48 @@ import 'package:ramajana05/features/home/presentation/widgets/start_header_pictu
 import 'package:ramajana05/features/home/presentation/widgets/start_header_text.dart';
 
 class StartSection extends StatelessWidget {
-  const StartSection({super.key});
+  final VoidCallback onAboutMePressed;
+
+  const StartSection({
+    super.key,
+    required this.onAboutMePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return const Stack(
-          fit: StackFit.passthrough,
-          children: [
-            ResponsiveDotGridBackground(),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 20,
-              ),
-              child: ResponsiveLayout(
-                mobile: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40),
-                    StartHeaderText(),
-                    SizedBox(height: 40),
-                    StartHeaderPicture(),
-                  ],
+    return Stack(
+      fit: StackFit.passthrough,
+      children: [
+        const ResponsiveDotGridBackground(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: ResponsiveLayout(
+            mobile: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(height: 40),
+                StartHeaderText(
+                  onAboutMePressed: onAboutMePressed,
                 ),
-                desktop: Row(
-                  children: [
-                    Expanded(
-                      child: StartHeaderPicture(),
-                    ),
-                    Expanded(
-                      child: StartHeaderText(),
-                    ),
-                  ],
-                ),
-              ),
+                const SizedBox(height: 40),
+                const StartHeaderPicture(),
+              ],
             ),
-          ],
-        );
-      },
+            desktop: Row(
+              children: [
+                const Expanded(
+                  child: StartHeaderPicture(),
+                ),
+                Expanded(
+                  child: StartHeaderText(
+                    onAboutMePressed: onAboutMePressed,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

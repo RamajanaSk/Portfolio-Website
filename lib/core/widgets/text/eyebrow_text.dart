@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 
 class EyebrowText extends StatefulWidget {
@@ -25,9 +26,9 @@ class _EyebrowTextState extends State<EyebrowText>
   Color get _accent {
     switch (int.tryParse(widget.number)) {
       case 1:
-        return const Color(0xFFED81B0); // Pink
+        return AppColors.pink; // Pink
       case 2:
-        return const Color(0xFF6B9EFF); // Blau
+        return AppColors.blue; // Blau
       case 3:
         return const Color(0xFFAD8BF5); // Lila
       case 4:
@@ -112,7 +113,7 @@ class _EyebrowTextState extends State<EyebrowText>
   @override
   Widget build(BuildContext context) {
     final foreground = Theme.of(context).colorScheme.onSurface;
-    final style = AppTextStyles.description(context);
+    final style = AppTextStyles.eyebrowText(context);
 
     return Semantics(
       label: '${widget.number}, ${widget.text}',

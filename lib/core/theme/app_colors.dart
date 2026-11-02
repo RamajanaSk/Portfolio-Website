@@ -18,6 +18,8 @@ class AppColors {
   Color get backgroundPure => isDark ? const Color(0xFF020203) : Colors.white;
 
   static const pink = Color(0xFFFF2D95);
+  static const blue = Color(0xFF31D6FF);
+  static const softBlue = Color(0xFF6B9EFF);
 
   static const backgroundLight = Color(0xFFFFFFFF);
   static const backgroundDark = Color.fromARGB(255, 12, 12, 12);

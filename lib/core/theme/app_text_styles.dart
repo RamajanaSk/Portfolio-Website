@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ramajana05/core/utils/app_responsive.dart';
+import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 
 class AppTextStyles {
   static double _scale(
@@ -15,7 +16,7 @@ class AppTextStyles {
     final s = _scale(context);
 
     return TextStyle(
-      fontSize: 90 * s,
+      fontSize: 75 * s,
       fontWeight: FontWeight.w700,
       letterSpacing: 6 * s,
       height: 1.2,
@@ -37,9 +38,19 @@ class AppTextStyles {
     final s = _scale(context);
 
     return TextStyle(
-      fontSize: 36 * s,
-      fontWeight: FontWeight.w700,
+      fontSize: 30 * s,
+      fontWeight: FontWeight.w600,
       letterSpacing: 4 * s,
+    );
+  }
+
+  static TextStyle eyebrowText(BuildContext context) {
+    final s = _scale(context);
+
+    return TextStyle(
+      fontSize: 18 * s,
+      height: 1.5,
+      color: Colors.grey,
     );
   }
 
@@ -47,7 +58,7 @@ class AppTextStyles {
     final s = _scale(context);
 
     return TextStyle(
-      fontSize: 18 * s,
+      fontSize: 12 * s,
       height: 1.5,
       color: Colors.grey,
     );
@@ -267,6 +278,16 @@ class AppTextStyles {
       fontSize: 20 * _scale(context, min: 0.85),
       color: color,
       fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle techStackHeader(BuildContext context) {
+    return TextStyle(
+      fontSize: 15 * _scale(context, min: 0.85),
+      fontWeight: FontWeight.w700,
+      letterSpacing: 2,
+      height: 1,
+      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.85),
     );
   }
 
