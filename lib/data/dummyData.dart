@@ -14,6 +14,344 @@ import 'package:ramajana05/data/models/project_stat.dart';
 List<Project> getDummyProjects(BuildContext context) {
   return [
     Project(
+      id: 'edge-traffic-analysis',
+      typ: ProjectType.research,
+      name: 'EDGE TRAFFIC ANALYSIS',
+
+      shortDescription: 'Detecting and tracking vehicles and pedestrians on an '
+          'energy-efficient edge device.',
+
+      catchPhrase: 'Understand traffic. Process locally.',
+
+      longDescription:
+          'Edge Traffic Analysis is an ongoing research project exploring '
+          'how traffic sensor data can be processed directly on an '
+          'energy-efficient edge device. '
+          'The project focuses on detecting, classifying and tracking '
+          'vehicles and pedestrians, and deriving useful traffic metrics '
+          'from their movements. '
+          'The resulting data is intended to support further analysis '
+          'and integration with traffic simulations such as SUMO.',
+
+      projectReason:
+          'Responsive traffic control requires reliable information about '
+          'the current traffic situation. '
+          'This project investigates how that information can be generated '
+          'locally while balancing detection quality, processing speed '
+          'and energy consumption.',
+
+      startDate: DateTime(2026, 10),
+      endDate: DateTime(2027, 2), // Planned completion
+      durationInMonths: 4,
+
+      isSolo: true,
+      role: 'RESEARCH & SOFTWARE DEVELOPMENT',
+      grade: '',
+      universityContext: 'MASTER RESEARCH PROJECT',
+
+      platformLinks: [],
+
+      // Planned technologies / areas of investigation.
+      technologies: [
+        'Python',
+        'Computer Vision',
+        'Edge Computing',
+        'Object Detection',
+        'Multi-Object Tracking',
+        'Sensor Data Processing',
+        'SUMO',
+        'Git',
+      ],
+
+      githubUrl: 'https://github.com/keim-hs-esslingen/traffic-sensor-box',
+      liveDemoUrl: null,
+      apkUrl: null,
+      playStoreUrl: '',
+
+      logoPicture: '',
+      previewPicture: '',
+      bannerPreviewPicture: '',
+      aboutPicture: '',
+      mockupPicture: [],
+      gallery: [],
+
+      hexcolor: '#08BCEB',
+
+      // Project goals, rather than completed features.
+      keyFeatures: [
+        'Vehicle and pedestrian detection',
+        'Classification by road user type',
+        'Tracking across consecutive sensor measurements',
+        'Counting road users within defined areas',
+        'Dwell time and waiting time analysis',
+        'Traffic flow measurement across counting lines',
+        'Local processing on an edge device',
+        'Structured data export for traffic simulation',
+      ],
+
+      challenges: [
+        'Balancing detection quality and energy consumption',
+        'Maintaining stable tracking IDs during occlusions',
+        'Handling changes in movement direction',
+        'Defining reliable counting lines and waiting zones',
+        'Evaluating processing speed on constrained hardware',
+        'Preparing sensor-derived data for simulation',
+      ],
+
+      // Research objectives; update with actual findings later.
+      learnings: [
+        'Evaluating detection and tracking methods',
+        'Designing pipelines for local sensor processing',
+        'Deriving traffic metrics from object trajectories',
+        'Measuring performance and energy trade-offs',
+        'Preparing traffic data for SUMO',
+      ],
+
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text: 'An ongoing master research project investigating local '
+              'traffic analysis on an energy-efficient edge device. '
+              'The goal is to transform sensor measurements into '
+              'structured information about vehicles, pedestrians '
+              'and traffic flow.',
+          imageUrl: '',
+        ),
+      },
+
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: 'Local intelligence for traffic analysis.',
+
+      problemTitle: 'Sensor data needs to become useful traffic information.',
+      problem: 'Raw sensor measurements do not directly describe how many '
+          'road users are present, how long they wait or how traffic '
+          'moves through an intersection. Generating these metrics '
+          'on limited hardware introduces additional constraints.',
+      problemImage: '',
+
+      solutionTitle: 'From detections to traffic metrics.',
+      solution: 'The planned pipeline combines detection, classification '
+          'and tracking with spatial analysis. Counting lines and '
+          'defined zones will turn object trajectories into traffic '
+          'metrics that can be exported for further use.',
+      solutionImage: '',
+
+      features: [
+        const ProjectFeature(
+          icon: Icons.radar_rounded,
+          title: 'Detection',
+          description: 'Identify vehicles and pedestrians in sensor data',
+        ),
+        const ProjectFeature(
+          icon: Icons.route_rounded,
+          title: 'Tracking',
+          description: 'Follow road users across consecutive measurements',
+        ),
+        const ProjectFeature(
+          icon: Icons.query_stats_rounded,
+          title: 'Traffic Metrics',
+          description: 'Analyze counts, waiting times and traffic flow',
+        ),
+        const ProjectFeature(
+          icon: Icons.battery_saver_rounded,
+          title: 'Edge Processing',
+          description: 'Investigate efficient processing on local hardware',
+        ),
+      ],
+
+      stats: [
+        const ProjectStat(
+          icon: Icons.science_outlined,
+          value: 'Research',
+          label: 'Project Type',
+        ),
+        const ProjectStat(
+          icon: Icons.memory_rounded,
+          value: 'Edge',
+          label: 'Processing Focus',
+        ),
+        const ProjectStat(
+          icon: Icons.directions_car_outlined,
+          value: 'Traffic',
+          label: 'Application',
+        ),
+        const ProjectStat(
+          icon: Icons.construction_rounded,
+          value: 'Ongoing',
+          label: 'Status',
+        ),
+      ],
+    ),
+    Project(
+      id: 'security-platform',
+      typ: ProjectType.webApp,
+      name: 'VERSIONGUARD',
+
+      shortDescription:
+          'Developing a structured overview of software components, '
+          'vulnerabilities and security documentation.',
+
+      catchPhrase: 'Know your components. Understand your risks.',
+
+      longDescription:
+          'VersionGuard is an early-stage security platform concept '
+          'for helping small manufacturers organize information about '
+          'their software products. '
+          'The planned platform brings software components, known '
+          'vulnerabilities and related security documentation into '
+          'a clearer, more manageable overview. '
+          'The focus is on making security information easier to '
+          'understand, maintain and act on.',
+
+      projectReason:
+          'Software component information and security documentation '
+          'can become scattered across different tools and files. '
+          'We are exploring how a focused platform could help small '
+          'teams organize this information and establish a more '
+          'transparent workflow for handling vulnerabilities.',
+
+      startDate: DateTime(2026, 10),
+      endDate: DateTime(2026, 10), // Placeholder: project is ongoing
+      durationInMonths: 0, // Placeholder until duration handling is updated
+
+      isSolo: false,
+      role: 'CO-CREATOR & SOFTWARE DEVELOPER',
+      grade: '',
+      universityContext: 'INDEPENDENT VENTURE',
+
+      platformLinks: [],
+
+      // Concept areas; implementation stack is not yet specified.
+      technologies: [
+        'Software Component Management',
+        'Vulnerability Management',
+        'SBOM',
+        'Security Documentation',
+        'UI/UX Design',
+        'Data Modeling',
+      ],
+
+      githubUrl: 'https://github.com/RamajanaSk/Portfolio-Website',
+      liveDemoUrl: null,
+      apkUrl: null,
+      playStoreUrl: '',
+
+      logoPicture: '',
+      previewPicture: '',
+      bannerPreviewPicture: '',
+      aboutPicture: '',
+      mockupPicture: [],
+      gallery: [],
+
+      hexcolor: '#FF299D',
+
+      // Planned capabilities.
+      keyFeatures: [
+        'Structured software product overview',
+        'Software component and version inventory',
+        'SBOM organization',
+        'Vulnerability overview linked to components',
+        'Tracking assessment and remediation progress',
+        'Centralized security documentation',
+        'Clear workflows for small teams',
+      ],
+
+      challenges: [
+        'Understanding the needs of small manufacturers',
+        'Defining a focused and useful initial product',
+        'Structuring relationships between products and components',
+        'Presenting vulnerability information clearly',
+        'Keeping component and documentation records maintainable',
+        'Turning complex security workflows into usable interfaces',
+      ],
+
+      // Development objectives; replace with findings as work progresses.
+      learnings: [
+        'Translating security workflows into product requirements',
+        'Modeling software products and their dependencies',
+        'Designing understandable security interfaces',
+        'Defining the scope of an early-stage platform',
+        'Collaborating on product and technical decisions',
+      ],
+
+      sections: {
+        SectionType.about: ProjectSection(
+          type: SectionType.about,
+          text: 'VersionGuard is an independent venture in its early '
+              'concept and development stage. We are exploring how '
+              'small manufacturers can manage software components, '
+              'vulnerabilities and security documentation through '
+              'a clearer, more structured workflow.',
+          imageUrl: '',
+        ),
+      },
+
+      heroBackground: '',
+      phoneMockup: '',
+      subtitle: 'Software security. Clearly organized.',
+
+      problemTitle: 'Security information is difficult to keep connected.',
+      problem: 'Component lists, vulnerability findings and security '
+          'documents often live in separate places. This makes '
+          'it harder to understand which products are affected '
+          'and which actions still need attention.',
+      problemImage: '',
+
+      solutionTitle: 'A connected overview of software security.',
+      solution: 'The planned platform connects products, software '
+          'components, vulnerabilities and documentation in '
+          'one structured workspace, helping teams understand '
+          'their current state and track their next steps.',
+      solutionImage: '',
+
+      features: [
+        const ProjectFeature(
+          icon: Icons.layers_outlined,
+          title: 'Components',
+          description: 'Organize software components and their versions',
+        ),
+        const ProjectFeature(
+          icon: Icons.shield_outlined,
+          title: 'Vulnerabilities',
+          description: 'Connect security findings to affected components',
+        ),
+        const ProjectFeature(
+          icon: Icons.description_outlined,
+          title: 'Documentation',
+          description: 'Keep related security information organized',
+        ),
+        const ProjectFeature(
+          icon: Icons.checklist_rounded,
+          title: 'Progress',
+          description: 'Track assessments, decisions and follow-up actions',
+        ),
+      ],
+
+      stats: [
+        const ProjectStat(
+          icon: Icons.lightbulb_outline_rounded,
+          value: 'Early Stage',
+          label: 'Status',
+        ),
+        const ProjectStat(
+          icon: Icons.groups_outlined,
+          value: 'Team',
+          label: 'Development',
+        ),
+        const ProjectStat(
+          icon: Icons.security_rounded,
+          value: 'Security',
+          label: 'Focus',
+        ),
+        const ProjectStat(
+          icon: Icons.inventory_2_outlined,
+          value: 'SBOM',
+          label: 'Component Inventory',
+        ),
+      ],
+    ),
+    Project(
       id: 'quotey',
       typ: ProjectType.mobileApp,
       name: 'QUOTEY',
@@ -89,7 +427,7 @@ List<Project> getDummyProjects(BuildContext context) {
         'GitHub',
       ],
 
-      githubUrl: '', // Add repository URL if public
+      githubUrl: 'https://github.com/RamajanaSk/Quotey',
 
       liveDemoUrl: null,
 

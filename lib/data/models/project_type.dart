@@ -3,4 +3,6 @@ enum ProjectType {
   virtualReality,
   game,
   website,
+  webApp,
+  research,
 }

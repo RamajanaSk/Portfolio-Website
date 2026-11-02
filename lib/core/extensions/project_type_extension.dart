@@ -14,6 +14,12 @@ extension ProjectTypeExtension on ProjectType {
 
       case ProjectType.website:
         return 'WEBSITE';
+
+      case ProjectType.webApp:
+        return 'WEBAPP';
+
+      case ProjectType.research:
+        return 'RESEARCH';
     }
   }
 }

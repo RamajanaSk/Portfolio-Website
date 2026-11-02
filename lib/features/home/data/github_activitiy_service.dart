@@ -14,7 +14,7 @@ class GitHubActivityService {
   static const _blockedKey = 'github_activity_blocked_until_v1';
 
   Future<GitHubActivity> load(String repositoryUrl) async {
-    final uri = Uri.parse(repositoryUrl);
+    final uri = Uri.parse(repositoryUrl.trim());
 
     final parts = uri.pathSegments.where((part) => part.isNotEmpty).toList();
 
@@ -28,9 +28,13 @@ class GitHubActivityService {
 
     final owner = parts[0];
     final repo = parts[1].replaceFirst(RegExp(r'\.git$'), '');
+
+    if (repo.isEmpty) {
+      throw ArgumentError('Repository name must not be empty.');
+    }
+
     final key = '$owner/$repo'.toLowerCase();
 
-    // Share an already running request within this app.
     final existing = _pending[key];
 
     if (existing != null) {
@@ -57,14 +61,14 @@ class GitHubActivityService {
     required String repo,
     required String key,
   }) async {
-    final cacheKey = 'github_activity_v3_$key';
+    // Version 6: all branches + issue creations.
+    final cacheKey = 'github_activity_v6_$key';
     final failureKey = '${cacheKey}_retry_after';
 
     final now = DateTime.now().toUtc();
 
     GitHubActivity? cachedActivity;
 
-    // Read persistent browser cache.
     final raw = await _read(cacheKey);
 
     if (raw != null) {
@@ -83,11 +87,11 @@ class GitHubActivityService {
           return cachedActivity;
         }
       } catch (_) {
-        // Ignore invalid or outdated cache formats.
+        // Ignore invalid cache entries.
       }
     }
 
-    // A recorded rate limit applies across repositories.
+    // A recorded GitHub rate limit applies across repositories.
     final blockedRaw = await _read(_blockedKey);
 
     final blockedUntil =
@@ -104,7 +108,7 @@ class GitHubActivityService {
       );
     }
 
-    // Prevent repeated requests after other failures.
+    // Avoid repeated requests after other failures.
     final failureRaw = await _read(failureKey);
 
     final retryAfter =
@@ -115,8 +119,9 @@ class GitHubActivityService {
         return cachedActivity;
       }
 
-      throw const GitHubActivityException(
+      throw GitHubActivityException(
         ActivityStatus.error,
+        retryAt: retryAfter,
       );
     }
 
@@ -167,7 +172,7 @@ class GitHubActivityService {
         );
       }
 
-      // Keep displaying real cached data if refreshing fails.
+      // Continue displaying cached data if refreshing fails.
       if (cachedActivity != null) {
         return cachedActivity;
       }
@@ -190,19 +195,23 @@ class GitHubActivityService {
 
     final start = today.subtract(const Duration(days: 83));
 
+    // Combined daily activity: unique commits + issue creations.
     final days = List<int>.filled(84, 0);
+
     final loadedCommits = <GitHubCommit>[];
-    final seen = <String>{};
+    final seenCommits = <String>{};
+    final seenIssues = <int>{};
 
     final client = http.Client();
 
     Future<List<dynamic>> fetchPage(
-      Map<String, String> query,
-    ) async {
+      Map<String, String> query, {
+      String endpoint = 'commits',
+    }) async {
       final response = await client.get(
         Uri.https(
           'api.github.com',
-          '/repos/$owner/$repo/commits',
+          '/repos/$owner/$repo/$endpoint',
           query,
         ),
         headers: {
@@ -210,8 +219,8 @@ class GitHubActivityService {
         },
       ).timeout(const Duration(seconds: 20));
 
-      // GitHub returns 409 for an empty repository.
-      if (response.statusCode == 409) {
+      // An empty repository can still contain issues.
+      if (response.statusCode == 409 && endpoint == 'commits') {
         return [];
       }
 
@@ -236,10 +245,11 @@ class GitHubActivityService {
         final rateLimited = response.statusCode == 429 ||
             (response.statusCode == 403 &&
                 (remaining == '0' ||
+                    retryAfter != null ||
                     response.body.toLowerCase().contains('rate limit')));
 
         if (rateLimited) {
-          final candidates = [
+          final candidates = <DateTime>[
             if (remaining == '0' && resetTime != null) resetTime,
             if (retryAfter != null) retryAfter,
           ];
@@ -250,20 +260,37 @@ class GitHubActivityService {
             ActivityStatus.rateLimited,
             retryAt: candidates.isEmpty
                 ? DateTime.now().toUtc().add(const Duration(hours: 1))
-                : candidates.last.add(
-                    const Duration(seconds: 5),
-                  ),
+                : candidates.last.add(const Duration(seconds: 5)),
           );
         }
 
-        // 404 can mean inaccessible, private or nonexistent.
-        // Do not assume that the repository is private.
+        // Inaccessible or missing repositories are not automatically private.
         throw const GitHubActivityException(
           ActivityStatus.error,
         );
       }
 
       return jsonDecode(response.body) as List<dynamic>;
+    }
+
+    void addActivity(DateTime date) {
+      final utcDate = date.toUtc();
+
+      if (utcDate.isBefore(start) || utcDate.isAfter(now)) {
+        return;
+      }
+
+      final day = DateTime.utc(
+        utcDate.year,
+        utcDate.month,
+        utcDate.day,
+      );
+
+      final index = day.difference(start).inDays;
+
+      if (index >= 0 && index < days.length) {
+        days[index]++;
+      }
     }
 
     GitHubCommit parseCommit(dynamic item) {
@@ -281,66 +308,146 @@ class GitHubActivityService {
     }
 
     try {
-      var page = 1;
+      // BRANCHES
+      // Use HEAD SHAs to keep each branch's history stable while loading.
+      final branchHeads = <String>{};
+      var branchPage = 1;
 
-      // Fetch every page to avoid displaying partial totals.
       while (true) {
-        final items = await fetchPage({
-          'since': start.toIso8601String(),
-          'until': now.toIso8601String(),
-          'per_page': '100',
-          'page': '$page',
-        });
+        final branches = await fetchPage(
+          {
+            'per_page': '100',
+            'page': '$branchPage',
+          },
+          endpoint: 'branches',
+        );
 
-        for (final item in items) {
-          final commit = parseCommit(item);
+        for (final raw in branches) {
+          final branch = raw as Map<String, dynamic>;
+          final head = branch['commit'] as Map<String, dynamic>;
 
-          if (!seen.add(commit.sha)) {
-            continue;
-          }
-
-          loadedCommits.add(commit);
-
-          final date = commit.date;
-
-          final day = DateTime.utc(
-            date.year,
-            date.month,
-            date.day,
-          );
-
-          final index = day.difference(start).inDays;
-
-          if (index >= 0 && index < days.length) {
-            days[index]++;
-          }
+          // Identical branch heads only need to be fetched once.
+          branchHeads.add(head['sha'] as String);
         }
 
-        if (items.length < 100) {
+        if (branches.length < 100) {
           break;
         }
 
-        page++;
+        branchPage++;
       }
 
-      // Include recent commits even for inactive repositories.
-      if (loadedCommits.length < 3) {
-        final recent = await fetchPage({
-          'per_page': '3',
-        });
+      // COMMITS FROM ALL BRANCHES
+      for (final headSha in branchHeads) {
+        var commitPage = 1;
+        final branchCommits = <String>{};
 
-        for (final item in recent) {
-          final commit = parseCommit(item);
+        while (true) {
+          final items = await fetchPage({
+            'sha': headSha,
+            'since': start.toIso8601String(),
+            'until': now.toIso8601String(),
+            'per_page': '100',
+            'page': '$commitPage',
+          });
 
-          if (seen.add(commit.sha)) {
+          for (final item in items) {
+            final commit = parseCommit(item);
+
+            branchCommits.add(commit.sha);
+
+            // A commit shared by multiple branches counts only once.
+            if (!seenCommits.add(commit.sha)) {
+              continue;
+            }
+
             loadedCommits.add(commit);
+            addActivity(commit.date);
+          }
+
+          if (items.length < 100) {
+            break;
+          }
+
+          commitPage++;
+        }
+
+        // Include recent commits from inactive branches too.
+        if (branchCommits.length < 3) {
+          final recent = await fetchPage({
+            'sha': headSha,
+            'per_page': '3',
+          });
+
+          for (final item in recent) {
+            final commit = parseCommit(item);
+
+            if (!seenCommits.add(commit.sha)) {
+              continue;
+            }
+
+            loadedCommits.add(commit);
+            addActivity(commit.date);
           }
         }
       }
 
+      // Latest commits across all branches.
       loadedCommits.sort(
         (a, b) => b.date.compareTo(a.date),
       );
+
+      // ISSUE CREATIONS
+      var issuePage = 1;
+
+      while (true) {
+        final items = await fetchPage(
+          {
+            'state': 'all',
+            'sort': 'created',
+            'direction': 'desc',
+            'since': start.toIso8601String(),
+            'per_page': '100',
+            'page': '$issuePage',
+          },
+          endpoint: 'issues',
+        );
+
+        var reachedOlderIssues = false;
+
+        for (final raw in items) {
+          final item = raw as Map<String, dynamic>;
+
+          final createdAt = DateTime.parse(
+            item['created_at'] as String,
+          ).toUtc();
+
+          // Results are sorted by creation date, newest first.
+          if (createdAt.isBefore(start)) {
+            reachedOlderIssues = true;
+            break;
+          }
+
+          // The issues endpoint also returns pull requests.
+          if (item.containsKey('pull_request')) {
+            continue;
+          }
+
+          final issueId = (item['id'] as num).toInt();
+
+          if (!seenIssues.add(issueId)) {
+            continue;
+          }
+
+          addActivity(createdAt);
+        }
+
+        if (reachedOlderIssues || items.length < 100) {
+          break;
+        }
+
+        issuePage++;
+      }
 
       return _FetchedActivity(
         windowStart: start,
@@ -364,9 +471,7 @@ class GitHubActivityService {
         (json['days'] as List).map((value) => (value as num).toInt()).toList();
 
     if (savedDays.length != 84 || savedDays.any((count) => count < 0)) {
-      throw const FormatException(
-        'Invalid activity cache',
-      );
+      throw const FormatException('Invalid activity cache');
     }
 
     final savedStart = DateTime.parse(
@@ -387,7 +492,7 @@ class GitHubActivityService {
 
     final shift = currentStart.difference(savedStart).inDays;
 
-    // Keep the graph aligned with the current UTC day.
+    // Align cached values with the current UTC day.
     // New days remain zero until the next successful refresh.
     final days = List<int>.generate(84, (index) {
       final savedIndex = index + shift;
@@ -451,8 +556,7 @@ class GitHubActivityService {
     try {
       await _storage.setString(key, value);
     } catch (_) {
-      // Storage may be blocked or unavailable.
-      // Fetched data can still be displayed.
+      // Results can still be displayed if storage is unavailable.
     }
   }
 

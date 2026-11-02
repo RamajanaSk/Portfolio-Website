@@ -4,6 +4,7 @@ import 'package:ramajana05/core/controller/home_scroll_controller.dart';
 import 'package:ramajana05/core/widgets/bars/footer.dart';
 import 'package:ramajana05/core/widgets/divider/neon_section_divider.dart';
 import 'package:ramajana05/core/widgets/responsive.dart/responsive_layout.dart';
+import 'package:ramajana05/data/dummyData.dart';
 
 import 'package:ramajana05/features/about/presentation/sections/featured_work_and_technologies_section.dart';
 import 'package:ramajana05/features/home/data/domain/current_project.dart';
@@ -39,6 +40,15 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
+    final projects = getDummyProjects(context);
+
+    final edgeProject = projects.firstWhere(
+      (project) => project.id == 'edge-traffic-analysis',
+    );
+
+    final securityProject = projects.firstWhere(
+      (project) => project.id == 'security-platform',
+    );
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -65,40 +75,44 @@ class _HomescreenState extends State<Homescreen> {
             GitHubCurrentlySection(
               projects: [
                 CurrentProject(
-                  title: 'Flutter – Activity Test',
-                  category: 'External test repository',
-                  description:
-                      'Testing repository activity with the Flutter project.',
-                  icon: Icons.code_rounded,
-                  accent: Color(0xFF08BCEB),
-                  repositoryUrl: 'https://github.com/flutter/flutter',
-                ),
-              ],
-            ),
-            // 02 — Aktuelle Projekte.
-            const HomeCurrentlySection(
-              projects: [
-                CurrentProject(
-                  title: 'Edge Traffic Analysis',
-                  category: 'Research project',
-                  description:
-                      'Exploring how vehicles and pedestrians can be detected '
-                      'and tracked on an energy-efficient edge device.',
+                  title: edgeProject.name,
+                  category: edgeProject.universityContext ?? 'Research project',
+                  description: edgeProject.shortDescription,
                   icon: Icons.radar_rounded,
-                  accent: Color(0xFF08BCEB),
+                  accent: Color(
+                    int.parse(
+                          (edgeProject.hexcolor ?? '#08BCEB')
+                              .replaceFirst('#', ''),
+                          radix: 16,
+                        ) |
+                        0xFF000000,
+                  ),
+                  repositoryUrl: (edgeProject.githubUrl ?? '').trim().isEmpty
+                      ? null
+                      : edgeProject.githubUrl,
                 ),
                 CurrentProject(
-                  title: 'Security Platform',
-                  category: 'Independent venture',
-                  description:
-                      'Developing a clearer overview of software components, '
-                      'vulnerabilities and security documentation.',
+                  title: securityProject.name,
+                  category: securityProject.universityContext ??
+                      'Independent venture',
+                  description: securityProject.shortDescription,
                   icon: Icons.hub_outlined,
-                  accent: Color(0xFFFF299D),
-                  repositoryUrl: 'https://github.com/flutter/flutter',
+                  accent: Color(
+                    int.parse(
+                          (securityProject.hexcolor ?? '#FF299D')
+                              .replaceFirst('#', ''),
+                          radix: 16,
+                        ) |
+                        0xFF000000,
+                  ),
+                  repositoryUrl:
+                      (securityProject.githubUrl ?? '').trim().isEmpty
+                          ? null
+                          : securityProject.githubUrl,
                 ),
               ],
             ),
+            const NeonSectionDivider(),
 
             // 03 — Ausgewählte Projekte und Technologien.
             const FeaturedWorkAndTechnologiesSection(),
