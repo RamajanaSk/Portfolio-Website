@@ -44,44 +44,7 @@ class FeaturedWorkAndTechnologiesSection extends StatelessWidget {
                     number: '03',
                     text: context.l10n.featuredProjects.toUpperCase(),
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'IDEAS INTO REALITY.',
-                    textAlign: TextAlign.left,
-                    style: headingStyle.copyWith(
-                      fontSize: mobile ? 29 : 44,
-                      letterSpacing: mobile ? 0.3 : 1,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'ONE PROJECT AT A TIME.',
-                    textAlign: TextAlign.right,
-                    style: headingStyle.copyWith(
-                      fontSize: mobile ? 29 : 44,
-                      letterSpacing: mobile ? 0.3 : 1,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'A selection of things I have built '
-                    'and the technologies behind them.',
-                    style: TextStyle(
-                      color: foreground.withValues(alpha: 0.6),
-                      fontSize: 13,
-                      height: 1.7,
-                    ),
-                  ),
                   const SizedBox(height: 28),
-                  Container(
-                    height: 2,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [_pink, _purple, _cyan],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
                   LayoutBuilder(
                     builder: (context, inner) {
                       final stacked = inner.maxWidth < 1000;

@@ -60,7 +60,7 @@ class _StartHeaderTextState extends State<StartHeaderText> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const EyebrowText(
+          EyebrowText(
             number: '01',
             text: "HELLO, I'M",
           ),

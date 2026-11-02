@@ -3,6 +3,7 @@ import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 import 'package:ramajana05/features/home/data/domain/current_project.dart';
 
 import 'package:ramajana05/features/home/presentation/widgets/currently/current_project_card.dart';
+import 'package:ramajana05/features/home/presentation/widgets/currently_building_header.dart';
 
 class HomeCurrentlySection extends StatelessWidget {
   final List<CurrentProject> projects;
@@ -31,31 +32,8 @@ class HomeCurrentlySection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const EyebrowText(
-                    number: '02',
-                    text: 'CURRENTLY BUILDING',
-                  ),
-                  const SizedBox(height: 14),
-                  Text(
-                    'IN PROGRESS. WITH PURPOSE.',
-                    style: TextStyle(
-                      color: foreground,
-                      fontSize: mobile ? 26 : 34,
-                      height: 1.2,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'A small look at what I am working on right now.',
-                    style: TextStyle(
-                      color: foreground.withValues(alpha: 0.6),
-                      fontSize: 13,
-                      height: 1.7,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
+                  const CurrentlyBuildingHeader(),
+                  const SizedBox(height: 28),
                   LayoutBuilder(
                     builder: (context, inner) {
                       const gap = 16.0;
