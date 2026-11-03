@@ -11,7 +11,7 @@ import 'package:ramajana05/data/dummyData.dart';
 
 import 'package:ramajana05/features/home/data/domain/current_project.dart';
 import 'package:ramajana05/features/home/presentation/sections/featured_work_and_technologies_section.dart';
-import 'package:ramajana05/features/home/presentation/sections/about_me_small_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/featured_work_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/github_currently_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/home_expertise_section.dart';
 import 'package:ramajana05/features/home/presentation/sections/start_section.dart';
@@ -37,7 +37,7 @@ class _HomescreenState extends State<Homescreen> {
   static const _orange = Color(0xFFE5AD66);
 
   final List<GlobalKey> _sectionKeys = List.generate(
-    6,
+    5,
     (_) => GlobalKey(),
   );
 
@@ -76,12 +76,6 @@ class _HomescreenState extends State<Homescreen> {
           label: 'About',
           key: _sectionKeys[4],
           color: _orange,
-        ),
-        SectionNavigationItem(
-          number: '06',
-          label: 'Contact',
-          key: _sectionKeys[5],
-          color: AppColors.blue,
         ),
       ];
 
@@ -254,19 +248,7 @@ class _HomescreenState extends State<Homescreen> {
                           width: double.infinity,
                           height: screenHeight,
                           child: StartSection(
-                            onAboutMePressed: () {
-                              final aboutContext =
-                                  _sectionKeys[4].currentContext;
-
-                              if (aboutContext == null) return;
-
-                              Scrollable.ensureVisible(
-                                aboutContext,
-                                duration: const Duration(milliseconds: 650),
-                                curve: Curves.easeInOutCubic,
-                                alignment: 0.05,
-                              );
-                            },
+                            onAboutMePressed: widget.onAboutMePressed,
                           ),
                         ),
                       ),
@@ -274,9 +256,17 @@ class _HomescreenState extends State<Homescreen> {
 
                     const NeonSectionDivider(),
 
-                    // 02 — CURRENTLY BUILDING
+                    // 02 — Featured Work
                     _section(
                       1,
+                      const FeaturedWorkSection(),
+                    ),
+
+                    const NeonSectionDivider(),
+
+                    // 03 — Currently Building
+                    _section(
+                      2,
                       GitHubCurrentlySection(
                         projects: [
                           CurrentProject(
@@ -317,31 +307,8 @@ class _HomescreenState extends State<Homescreen> {
 
                     const NeonSectionDivider(),
 
-                    // 03 — FEATURED WORK
-                    _section(
-                      2,
-                      const FeaturedWorkAndTechnologiesSection(),
-                    ),
-
-                    // 04 — EXPERTISE
                     _section(
                       3,
-                      const HomeExpertiseSection(),
-                    ),
-
-                    // 05 — ABOUT ME
-                    _section(
-                      4,
-                      AboutMeSmallSection(
-                        onAboutMePressed: widget.onAboutMePressed,
-                      ),
-                    ),
-
-                    const NeonSectionDivider(),
-
-                    // 06 — CONTACT
-                    _section(
-                      5,
                       const HomeCTASection(),
                     ),
 

@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:ramajana05/core/extensions/localization_extension.dart';
+import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
 import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
+import 'package:ramajana05/core/widgets/text/section_header.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/animated_role_text.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/tech_stack_text.dart';
+import 'package:ramajana05/l10n/app_localizations.dart';
 
 class StartHeaderText extends StatefulWidget {
   final VoidCallback onAboutMePressed;
@@ -70,9 +73,10 @@ class _StartHeaderTextState extends State<StartHeaderText> {
               // INTRO
               // ----------------------------------------
 
-              const EyebrowText(
+              SectionHeader(
                 number: '01',
-                text: "HELLO, I'M",
+                title: context.l10n.helloIm.toUpperCase(),
+                accentColor: AppColors.pink,
               ),
 
               const SizedBox(height: 14),
@@ -181,14 +185,14 @@ class _StartHeaderTextState extends State<StartHeaderText> {
             ),
           ),
           style: FilledButton.styleFrom(
-            backgroundColor: colors.primary,
+            backgroundColor: AppColors.pink,
             foregroundColor: colors.onPrimary,
             padding: const EdgeInsets.symmetric(
               horizontal: 22,
               vertical: 20,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ),
@@ -205,17 +209,17 @@ class _StartHeaderTextState extends State<StartHeaderText> {
             );
           },
           style: _documentButtonStyle(colors),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.description_outlined,
                 size: 19,
               ),
-              SizedBox(width: 8),
-              Text('CV'),
-              SizedBox(width: 8),
-              Icon(
+              const SizedBox(width: 8),
+              Text(AppLocalizations.of(context)!.downloadCV),
+              const SizedBox(width: 8),
+              const Icon(
                 Icons.download_rounded,
                 size: 15,
               ),
@@ -234,17 +238,17 @@ class _StartHeaderTextState extends State<StartHeaderText> {
             );
           },
           style: _documentButtonStyle(colors),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.folder_open_outlined,
                 size: 19,
               ),
-              SizedBox(width: 8),
-              Text('Portfolio'),
-              SizedBox(width: 8),
-              Icon(
+              const SizedBox(width: 8),
+              Text(AppLocalizations.of(context)!.viewPortfolio),
+              const SizedBox(width: 8),
+              const Icon(
                 Icons.arrow_outward_rounded,
                 size: 15,
               ),

@@ -13,6 +13,7 @@ import 'package:ramajana05/features/about/presentation/sections/experience_secti
 import 'package:ramajana05/features/home/presentation/sections/featured_work_and_technologies_section.dart';
 
 import 'package:ramajana05/features/about/presentation/sections/skills_overview_section.dart';
+import 'package:ramajana05/features/home/presentation/sections/home_expertise_section.dart';
 
 class AboutMeScreen extends StatelessWidget {
   const AboutMeScreen({super.key});
@@ -31,11 +32,9 @@ class AboutMeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AboutMeSection(),
-                //SkillBarSection(skills: skills),
-                const NormalSectionDivider(
-                  color: Color(0xFFD4AF37),
-                ),
-                SkillsOverviewSection(),
+
+                //SkillsOverviewSection(),
+                const HomeExpertiseSection(),
                 FeaturedWorkAndTechnologiesSection(),
                 const NormalSectionDivider(
                   color: Color(0xFFD4AF37),
