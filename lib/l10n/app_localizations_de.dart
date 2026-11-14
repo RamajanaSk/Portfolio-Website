@@ -9,31 +9,37 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get home => 'START';
+  String get home => 'Start';
 
   @override
-  String get about => 'ÜBER';
+  String get about => 'Über';
 
   @override
-  String get projects => 'PROJEKTE';
+  String get projects => 'Projekte';
 
   @override
-  String get contact => 'KONTAKT';
+  String get contact => 'Kontakt';
 
   @override
-  String get german => 'DEUTSCH';
+  String get german => 'Deutsch';
 
   @override
-  String get english => 'ENGLISCH';
+  String get english => 'Englisch';
 
   @override
-  String get name => 'RAMAJANA';
+  String get name => 'Ramajana';
 
   @override
-  String get surname => 'SKOPLJAK';
+  String get surname => 'Skopljak';
 
   @override
   String get role => 'MOBILE ENTWICKLERIN';
+
+  @override
+  String get mobile => 'Mobile';
+
+  @override
+  String get developer => 'Entwicklerin';
 
   @override
   String get heroDescription => 'FLUTTER • MOBILE • INTERAKTIVE ERLEBNISSE';
@@ -354,7 +360,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get getInTouch => 'Kontakt aufnehmen';
 
   @override
-  String get helloIm => 'Hallo, ich bin';
+  String get helloIm => 'Hallo, ich bin eine';
 
   @override
   String get getToKnowMe => 'Lerne mich kennen';
@@ -391,4 +397,49 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get availableForOpportunities => 'Offen für neue Möglichkeiten';
+
+  @override
+  String get language => 'Sprache';
+
+  @override
+  String get ideasTakingShape => 'Ideen die geformt werden';
+
+  @override
+  String get oneCommitAtATime => 'Ein commit nach dem anderen';
+
+  @override
+  String get masterResearchProject => 'Master Forschungsprojekt';
+
+  @override
+  String get independetVenture => 'Independet venture';
+
+  @override
+  String get started => 'Angefangen';
+
+  @override
+  String get lastUpdated => 'Letztes Änderung';
+
+  @override
+  String get notAdded => 'Nicht hinzugefügt';
+
+  @override
+  String get last => 'Letzter';
+
+  @override
+  String get days => 'Tag';
+
+  @override
+  String get repositoryActivity => 'Repository Aktivität';
+
+  @override
+  String get latestCommits => 'Neueste commits';
+
+  @override
+  String get activityUnavailable => 'Aktivität nicht erreichtbar';
+
+  @override
+  String get couldntLoadActivityError1 => 'Konnte keine Aktivität laden. Das Repository ist nicht erreichbar oder der Zugang ist verwehrt.';
+
+  @override
+  String get selectedWork => 'Ausgewälte Projekte';
 }

@@ -7,7 +7,6 @@ import 'package:ramajana05/core/theme/app_colors.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/utils/file_downloader.dart';
 import 'package:ramajana05/core/widgets/social_links_row.dart';
-import 'package:ramajana05/core/widgets/text/eyebrow_text.dart';
 import 'package:ramajana05/core/widgets/text/section_header.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/animated_role_text.dart';
 import 'package:ramajana05/features/home/presentation/widgets/text/tech_stack_text.dart';
@@ -85,8 +84,8 @@ class _StartHeaderTextState extends State<StartHeaderText> {
               // NAME
               // ----------------------------------------
 
-              _buildName(context, 'RAMAJANA'),
-              _buildName(context, 'SKOPLJAK'),
+              _buildName(context, context.l10n.mobile.toUpperCase()),
+              _buildName(context, context.l10n.developer.toUpperCase()),
 
               const SizedBox(height: 20),
 

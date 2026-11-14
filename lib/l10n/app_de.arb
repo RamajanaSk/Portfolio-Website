@@ -2,18 +2,20 @@
 {
   "@@locale": "de",
 
-  "home": "START",
-  "about": "ÜBER",
-  "projects": "PROJEKTE",
-  "contact": "KONTAKT",
+  "home": "Start",
+  "about": "Über",
+  "projects": "Projekte",
+  "contact": "Kontakt",
 
-  "german": "DEUTSCH",
-  "english": "ENGLISCH",
+  "german": "Deutsch",
+  "english": "Englisch",
 
-  "name": "RAMAJANA",
-  "surname": "SKOPLJAK",
+  "name": "Ramajana",
+  "surname": "Skopljak",
 
   "role": "MOBILE ENTWICKLERIN",
+  "mobile": "Mobile",
+  "developer": "Entwicklerin",
 
   "heroDescription":
       "FLUTTER • MOBILE • INTERAKTIVE ERLEBNISSE",
@@ -212,26 +214,24 @@
 
   "language": "Sprache",
   
-  "helloIm": "Hallo, ich bin",
-  "ideasTakingShape": "Ideas taking shape.",
-  "oneCommitAtATime": "One commit at a time.",
+  "helloIm": "Hallo, ich bin eine",
+  "ideasTakingShape": "Ideen die geformt werden",
+  "oneCommitAtATime": "Ein commit nach dem anderen",
 
-  "masterResearchProject": "Master research project",
+  "masterResearchProject": "Master Forschungsprojekt",
   "independetVenture": "Independet venture",
   
-  "started": "Started",
-  "lastUpdated": "Last Update",
-  "notAdded": "Not added",
-  "last": "Last",
-  "days": "Days",
-  "repositoryActivity": "Repository activity",
-  "latestCommits": "Latest commits",
-  "activityUnavailable": Activity Unavailable",
-  "CouldntLoadActivityError1": "Could not load activity. The repository may be unreachable or require access.",
-  
+  "started": "Angefangen",
+  "lastUpdated": "Letztes Änderung",
+  "notAdded": "Nicht hinzugefügt",
+  "last": "Letzter",
+  "days": "Tag",
+  "repositoryActivity": "Repository Aktivität",
+  "latestCommits": "Neueste commits",
+  "activityUnavailable": "Aktivität nicht erreichtbar",
+  "couldntLoadActivityError1": "Konnte keine Aktivität laden. Das Repository ist nicht erreichbar oder der Zugang ist verwehrt.",
 
-
-  "selectedWork": 
+  "selectedWork": "Ausgewälte Projekte"
 
 }
 

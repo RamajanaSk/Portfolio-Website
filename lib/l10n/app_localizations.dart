@@ -98,61 +98,73 @@ abstract class AppLocalizations {
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
-  /// **'HOME'**
+  /// **'Home'**
   String get home;
 
   /// No description provided for @about.
   ///
   /// In en, this message translates to:
-  /// **'ABOUT'**
+  /// **'About'**
   String get about;
 
   /// No description provided for @projects.
   ///
   /// In en, this message translates to:
-  /// **'PROJECTS'**
+  /// **'Projects'**
   String get projects;
 
   /// No description provided for @contact.
   ///
   /// In en, this message translates to:
-  /// **'CONTACT'**
+  /// **'Contact'**
   String get contact;
 
   /// No description provided for @german.
   ///
   /// In en, this message translates to:
-  /// **'GERMAN'**
+  /// **'German'**
   String get german;
 
   /// No description provided for @english.
   ///
   /// In en, this message translates to:
-  /// **'ENGLISH'**
+  /// **'English'**
   String get english;
 
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'RAMAJANA'**
+  /// **'Ramajana'**
   String get name;
 
   /// No description provided for @surname.
   ///
   /// In en, this message translates to:
-  /// **'SKOPLJAK'**
+  /// **'Skopljak'**
   String get surname;
 
   /// No description provided for @role.
   ///
   /// In en, this message translates to:
-  /// **'MOBILE DEVELOPER'**
+  /// **'Mobile Developer'**
   String get role;
+
+  /// No description provided for @mobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile'**
+  String get mobile;
+
+  /// No description provided for @developer.
+  ///
+  /// In en, this message translates to:
+  /// **'Developer'**
+  String get developer;
 
   /// No description provided for @heroDescription.
   ///
   /// In en, this message translates to:
-  /// **'FLUTTER • MOBILE • INTERACTIVE EXPERIENCES'**
+  /// **'Flutter • Mobile • Interactive Experience'**
   String get heroDescription;
 
   /// No description provided for @heroSubDescription.
@@ -788,7 +800,7 @@ abstract class AppLocalizations {
   /// No description provided for @helloIm.
   ///
   /// In en, this message translates to:
-  /// **'Hello, I\'m'**
+  /// **'Hello, Im a'**
   String get helloIm;
 
   /// No description provided for @getToKnowMe.
@@ -862,6 +874,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Available for opportunities'**
   String get availableForOpportunities;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @ideasTakingShape.
+  ///
+  /// In en, this message translates to:
+  /// **'Ideas taking shape.'**
+  String get ideasTakingShape;
+
+  /// No description provided for @oneCommitAtATime.
+  ///
+  /// In en, this message translates to:
+  /// **'One commit at a time.'**
+  String get oneCommitAtATime;
+
+  /// No description provided for @masterResearchProject.
+  ///
+  /// In en, this message translates to:
+  /// **'Master research project'**
+  String get masterResearchProject;
+
+  /// No description provided for @independetVenture.
+  ///
+  /// In en, this message translates to:
+  /// **'Independet venture'**
+  String get independetVenture;
+
+  /// No description provided for @started.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get started;
+
+  /// No description provided for @lastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Update'**
+  String get lastUpdated;
+
+  /// No description provided for @notAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not added'**
+  String get notAdded;
+
+  /// No description provided for @last.
+  ///
+  /// In en, this message translates to:
+  /// **'Last'**
+  String get last;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days;
+
+  /// No description provided for @repositoryActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Repository activity'**
+  String get repositoryActivity;
+
+  /// No description provided for @latestCommits.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest commits'**
+  String get latestCommits;
+
+  /// No description provided for @activityUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Unavailable'**
+  String get activityUnavailable;
+
+  /// No description provided for @couldntLoadActivityError1.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load activity. The repository may be unreachable or require access.'**
+  String get couldntLoadActivityError1;
+
+  /// No description provided for @selectedWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Work'**
+  String get selectedWork;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

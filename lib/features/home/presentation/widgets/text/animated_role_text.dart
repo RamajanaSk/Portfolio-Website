@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ramajana05/core/extensions/localization_extension.dart';
 import 'package:ramajana05/core/theme/app_text_styles.dart';
 import 'package:ramajana05/core/widgets/text/glitch_text.dart';
 
@@ -22,7 +23,7 @@ class AnimatedRoleText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'MOBILE DEVELOPER',
+            context.l10n.name.toUpperCase() + context.l10n.surname.toUpperCase(),
             style: style,
           ),
           const SizedBox(width: 20),
@@ -66,7 +67,7 @@ class AnimatedRoleText extends StatelessWidget {
                 ? GlitchText(
                     key: const ValueKey('creative'),
                     style: style,
-                    text: 'CREATIVE',
+                    text: '', //Creative
                   )
                 : const SizedBox(
                     key: ValueKey('creative-hidden'),

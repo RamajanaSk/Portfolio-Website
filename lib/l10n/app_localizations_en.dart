@@ -9,34 +9,40 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get home => 'HOME';
+  String get home => 'Home';
 
   @override
-  String get about => 'ABOUT';
+  String get about => 'About';
 
   @override
-  String get projects => 'PROJECTS';
+  String get projects => 'Projects';
 
   @override
-  String get contact => 'CONTACT';
+  String get contact => 'Contact';
 
   @override
-  String get german => 'GERMAN';
+  String get german => 'German';
 
   @override
-  String get english => 'ENGLISH';
+  String get english => 'English';
 
   @override
-  String get name => 'RAMAJANA';
+  String get name => 'Ramajana';
 
   @override
-  String get surname => 'SKOPLJAK';
+  String get surname => 'Skopljak';
 
   @override
-  String get role => 'MOBILE DEVELOPER';
+  String get role => 'Mobile Developer';
 
   @override
-  String get heroDescription => 'FLUTTER • MOBILE • INTERACTIVE EXPERIENCES';
+  String get mobile => 'Mobile';
+
+  @override
+  String get developer => 'Developer';
+
+  @override
+  String get heroDescription => 'Flutter • Mobile • Interactive Experience';
 
   @override
   String get heroSubDescription => 'BUILDING PERFORMANT, USER-FOCUSED APPLICATIONS.';
@@ -354,7 +360,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getInTouch => 'Get in touch';
 
   @override
-  String get helloIm => 'Hello, I\'m';
+  String get helloIm => 'Hello, Im a';
 
   @override
   String get getToKnowMe => 'Get to know me';
@@ -391,4 +397,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get availableForOpportunities => 'Available for opportunities';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get ideasTakingShape => 'Ideas taking shape.';
+
+  @override
+  String get oneCommitAtATime => 'One commit at a time.';
+
+  @override
+  String get masterResearchProject => 'Master research project';
+
+  @override
+  String get independetVenture => 'Independet venture';
+
+  @override
+  String get started => 'Started';
+
+  @override
+  String get lastUpdated => 'Last Update';
+
+  @override
+  String get notAdded => 'Not added';
+
+  @override
+  String get last => 'Last';
+
+  @override
+  String get days => 'Days';
+
+  @override
+  String get repositoryActivity => 'Repository activity';
+
+  @override
+  String get latestCommits => 'Latest commits';
+
+  @override
+  String get activityUnavailable => 'Activity Unavailable';
+
+  @override
+  String get couldntLoadActivityError1 => 'Could not load activity. The repository may be unreachable or require access.';
+
+  @override
+  String get selectedWork => 'Selected Work';
 }

@@ -2,21 +2,24 @@
 {
   "@@locale": "en",
 
-  "home": "HOME",
-  "about": "ABOUT",
-  "projects": "PROJECTS",
-  "contact": "CONTACT",
+  "home": "Home",
+  "about": "About",
+  "projects": "Projects",
+  "contact": "Contact",
 
-  "german": "GERMAN",
-  "english": "ENGLISH",
+  "german": "German",
+  "english": "English",
 
-  "name": "RAMAJANA",
-  "surname": "SKOPLJAK",
+  "name": "Ramajana",
+  "surname": "Skopljak",
 
-  "role": "MOBILE DEVELOPER",
+  "role": "Mobile Developer",
+  "mobile": "Mobile",
+  "developer": "Developer",
+
 
   "heroDescription":
-      "FLUTTER • MOBILE • INTERACTIVE EXPERIENCES",
+      "Flutter • Mobile • Interactive Experience",
 
   "heroSubDescription":
       "BUILDING PERFORMANT, USER-FOCUSED APPLICATIONS.",
@@ -211,7 +214,28 @@
 
   "availableForOpportunities": "Available for opportunities",
 
-  "language": "Language"
+  "language": "Language",
+
+  "helloIm": "Hello, Im a",
+  "ideasTakingShape": "Ideas taking shape.",
+  "oneCommitAtATime": "One commit at a time.",
+
+  "masterResearchProject": "Master research project",
+  "independetVenture": "Independet venture",
+  
+  "started": "Started",
+  "lastUpdated": "Last Update",
+  "notAdded": "Not added",
+  "last": "Last",
+  "days": "Days",
+  "repositoryActivity": "Repository activity",
+  "latestCommits": "Latest commits",
+  "activityUnavailable": "Activity Unavailable",
+  "couldntLoadActivityError1": "Could not load activity. The repository may be unreachable or require access.",
+  
+  "selectedWork": "Selected Work"
+
+
   
   
 }
